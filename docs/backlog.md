@@ -2,11 +2,17 @@
 
 Follow-ups that are not a work item yet. When one is taken up, it gets its own work folder under `docs/work/` (`docs/sdlc-playbook.md`) and leaves this list.
 
+## The options suite changes a player's settings (found 2026-11-27, docs/work/2026-11-25-settings-store)
+
+`Options/Window/Model.lua`'s `CheckDefaults` (the `defaults-restore-acedb` scenario) puts each option back in list order after a section's Defaults. Where two rows share one setting (the Pop Out modifier in Keys and clicks and in Pop Out, the date formats' Presets and Custom rows, the sort priority rows that swap), the later put-back undoes the earlier one, and ten values stay changed: on `main` too, so every in-game `options` run leaves them in the player's real settings (Krowi's Pop Out modifier, date presets and sort order may themselves be leftovers). The rule is that a run puts settings back. A fix: put back by setting (each key once), or snapshot the settings and restore them whole. Test first: a headless scenario that reads every option before and after the run.
+
 ## Leaving Ace (2026-11-25, docs/work/2026-11-25-unused-ace)
 
-Krowi split the move off Ace3 into work items, unused libraries first, then AceGUI, then AceConfig with AceDBOptions (2026-11-25; done: docs/work/2026-11-25-unused-ace, docs/work/2026-11-25-leave-acegui, docs/work/2026-11-25-leave-aceconfig). AceDB is the one Ace3 library the addon embeds itself (AceLocale comes with Krowi_Util); the migration below replaces it. The libraries and the AceConfig *format* of the option tables are separate: the options window reads the tables itself (`Options/Window/Source.lua`), so a library can go with every saved key in place, and only rewriting the tables can move one. The first, single-item draft of this (commit b588b39d, `docs/work/2026-11-25-leave-ace/`) holds the inventory and a saved-settings safety net for the later items.
+Krowi split the move off Ace3 into work items, unused libraries first, then AceGUI, then AceConfig with AceDBOptions (2026-11-25; done: docs/work/2026-11-25-unused-ace, docs/work/2026-11-25-leave-acegui, docs/work/2026-11-25-leave-aceconfig). AceDB went with the settings store (docs/work/2026-11-25-settings-store); AceLocale comes with Krowi_Util. The libraries and the AceConfig *format* of the option tables are separate: the options window reads the tables itself (`Options/Window/Source.lua`), so a library can go with every saved key in place, and only rewriting the tables can move one. The first, single-item draft of this (commit b588b39d, `docs/work/2026-11-25-leave-ace/`) holds the inventory and a saved-settings safety net for the later items.
 - **The native format** (optional, its own decision): option definitions in a format of KAF's own instead of AceConfig tables, behind that safety net. Open: where it lives (KAF, or Krowi_Options as the spike's `lib.Option`), the feature registry's `AddOptions`, fixed key-binding ids, `KrowiAF_GetOptions`, and ElvUI's "Skin Ace3" row (`Plugins/ElvUI.lua:680`).
-- **The settings re-layout, with AceDB replaced** (Krowi, 2026-11-25: "i also want to explore a data migration at the same time to re-organize setting and move user settings", then "One migration, with the AceDB swap"; AceDB "Replace it later"): one migration moves every player's settings, once, from AceDB's layout (`KrowiAF_Options`, `KrowiAF_Filters`, `KrowiAF_SearchOptions` with their profiles) into KAF's own store, in a new layout (what moves where is to be designed). It needs: the profiles and the per-character profile choice carried over; AceDB's rule of not saving a value equal to its default, which `Data/DataIntegrityManager.lua:73-88` and the feature switches rely on, kept or replaced on purpose; and the proof from docs/work/2026-11-25-leave-aceconfig, whose old-file check becomes every old value found at its new place. It fits with the native format above, which rewrites the same paths. No downgrade path is needed (Krowi, 2026-11-25).
+- **The settings re-layout, with AceDB replaced**: done in docs/work/2026-11-25-settings-store, which also retired `Data/DataIntegrityManager.lua` into one migration runner (`Settings/Migrations.lua`) and dropped the saved data no code reads. Its follow-ups:
+  - Krowi_Util's `Icon:Load` takes its minimap table and switch as arguments, so KAF stops handing it a stand-in `addon.Options.db` for the one call (`Krowi_AchievementFilter.lua`); best together with the settings store moving into Krowi_Util for the other addons.
+  - The option rows' limits (`min`, `max`, `step`, `values`) into the declarations, if Krowi wants them there (docs/work/2026-11-25-settings-store, plan step 7).
 
 ## From leaving AceGUI (2026-11-25, docs/work/2026-11-25-leave-acegui)
 
@@ -100,7 +106,7 @@ Two weaknesses of the Data Manager's character import, older than this work (its
   - `newAchievementsEarned` never shrinks (`Data/SavedData/AchievementData.lua:197-199`).
   - `SideButtonSystem:Load` adds two more Show/Hide hooks each time it runs again (`Features/EventReminders/SideButtonSystem.lua:108-121`).
   - `KrowiAF_SavedData.PopoutHideDebug` keeps a stack per achievement ever popped out (`Features/PopOut/AchievementPopout.lua`, `OnPopoutHide`).
-- **Saved data no code reads any more** stays in the file and in memory: `KrowiAF_SavedData.CalendarEventsCacheTest`, `VerifyHash` and `DFHashVerify` (about 1 MB on the maintainer's account). A `DataIntegrityManager` solution can drop them.
+- **Saved data no code reads any more**: done; migration 1 of docs/work/2026-11-25-settings-store drops `CalendarEventsCacheTest`, `VerifyHash`, `DFHashVerify` and the other keys its `renames.md` lists.
 
 ## From the 103.0 release (2026-10-14)
 
@@ -180,7 +186,7 @@ Two weaknesses of the Data Manager's character import, older than this work (its
 - **Existing accounts keep Blizzard's Y** (spec option 1, not taken, 2026-10-26).
   - The move of Y took on no account: since 11.2.7 and 5.5.1 its API is gone, and before that it ran before the key bindings were loaded.
   - So every current player whose Y is still Blizzard's keeps seeing #197 until they press Bind to Y.
-  - If reports continue, a `DataIntegrityManager` step can set `FirstTimeSetUp.YBindingPending` once for accounts that already have `AchievementTabsSwitched`.
+  - If reports continue, a migration in `Settings/Migrations.lua` can set `FirstTimeSetUp.YBindingPending` once for accounts that already have `AchievementTabsSwitched`.
 
 ## From the Active events chat fix (2026-10-28, docs/work/2026-10-28-active-events-chat-repeat)
 

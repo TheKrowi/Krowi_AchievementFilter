@@ -48,15 +48,15 @@ function achievementPopout.StartLog()
 end
 
 local function PersistenceEnabled()
-	return addon.Options.db.profile.Popout.PersistAcrossSessions
+	return addon.Settings.Get("popOut.persistAcrossSessions")
 end
 
 local function RememberSizeEnabled()
-	return addon.Options.db.profile.Popout.RememberSize
+	return addon.Settings.Get("popOut.rememberSize")
 end
 
 local function RememberLastPositionEnabled()
-	return addon.Options.db.profile.Popout.RememberLastPosition
+	return addon.Settings.Get("popOut.rememberLastPosition")
 end
 
 local function SavedPopouts()
@@ -132,7 +132,7 @@ function achievementPopout:Open(achievement)
 	popout:ClearAllPoints()
 	if saved and saved.Point then
 		popout:SetPoint(saved.Point, UIParent, saved.RelativePoint, saved.X, saved.Y)
-		popout:SetWidth((RememberSizeEnabled() and saved.Width) or addon.Options.db.profile.Popout.DefaultWidth)
+		popout:SetWidth((RememberSizeEnabled() and saved.Width) or addon.Settings.Get("popOut.defaultWidth"))
 		-- A saved raw screen position can fall outside the current resolution/UI scale (e.g. after
 		-- changing monitors or UIParent scale) and would otherwise silently restore off-screen
 		ValidateFramePosition(popout)
@@ -158,7 +158,7 @@ function achievementPopout:Open(achievement)
 			else
 				popout:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 			end
-			popout:SetWidth((RememberSizeEnabled() and saved and saved.Width) or addon.Options.db.profile.Popout.DefaultWidth)
+			popout:SetWidth((RememberSizeEnabled() and saved and saved.Width) or addon.Settings.Get("popOut.defaultWidth"))
 		end
 	end
 	popout:Show()

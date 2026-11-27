@@ -5,12 +5,12 @@ KrowiAF_SearchPreviewContainerShowFullSearchResultsButtonMixin = CreateFromMixin
 local function ShowSearchResultsAsCategory(query, results)
     for i = 1, #addon.SpecialCategories.SearchResults do
         local category = addon.SpecialCategories.SearchResults[i]
-        category.Achievements = addon.Options.db.profile.AdjustableCategories.SearchResults[i] and results or nil
+        category.Achievements = addon.Settings.GetEntry("categories.shownOnTab", "SearchResults", i) and results or nil
         category.Name = addon.L["Search Results"] .. " (" .. query .. ")"
         category.CountsDirty = true
     end
     for i = 1, #addon.SpecialCategories.SearchResults do
-        if addon.Options.db.profile.AdjustableCategories.SearchResults[i] then
+        if addon.Settings.GetEntry("categories.shownOnTab", "SearchResults", i) then
             KrowiAF_SelectCategory(addon.SpecialCategories.SearchResults[i])
             return
         end
@@ -29,7 +29,7 @@ end
 function KrowiAF_SearchPreviewContainerShowFullSearchResultsButtonMixin:OnClick()
     local results = KrowiAF_SearchBoxFrame.Results
 
-    if addon.Options.db.profile.SearchBox.ShowAllResultsInCategory then
+    if addon.Settings.Get("searchBox.showAllResultsInCategory") then
         ShowSearchResultsAsCategory(KrowiAF_SearchBoxFrame:GetText(), results)
     else
         ShowSearchResultsAsFrame(KrowiAF_SearchBoxFrame:GetText(), results)
@@ -48,7 +48,7 @@ function KrowiAF_SearchPreviewContainerMixin:OnShow()
 end
 
 function KrowiAF_SearchPreviewContainerMixin:GetNumButtons()
-    return min(#self.Buttons, addon.Options.db.profile.SearchBox.NumberOfSearchPreviews)
+    return min(#self.Buttons, addon.Settings.Get("searchBox.numberOfSearchPreviews"))
 end
 
 function KrowiAF_SearchPreviewContainerMixin:SelectNext(numResults)

@@ -21,10 +21,11 @@ function section:Add(menu, event, menuBuilder)
         addon.L["Stop tracking"],
 		function()
             local typeAsString = GetTypeAsString(event.Type)
-			addon.Options.db.profile.EventReminders[typeAsString .. "Events"][event.Id] = false
+            local key = "eventReminders." .. typeAsString:sub(1, 1):lower() .. typeAsString:sub(2) .. "Events" -- Calendar: eventReminders.calendarEvents
+            addon.Settings.SetEntry(key, event.Id, false)
             if event.LinkedEventIds then
                 for _, id in next, event.LinkedEventIds do
-                    addon.Options.db.profile.EventReminders[typeAsString .. "Events"][id] = false
+                    addon.Settings.SetEntry(key, id, false)
                 end
             end
             addon.Gui.EventReminderSideButtonSystem:Refresh()

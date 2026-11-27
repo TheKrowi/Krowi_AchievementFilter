@@ -23,7 +23,7 @@ end
 addon.Features.Register({
     Name = "PopOut",
     Title = addon.L["Pop Out"],
-    Switch = "Features.PopOut",
+    Switch = "popOut.enabled",
     Start = Start,
     AfterDataLoad = AfterDataLoad
 })

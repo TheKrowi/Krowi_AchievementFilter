@@ -13,26 +13,19 @@ function layout.RegisterOptionsTable()
 end
 
 function layout.PostLoad()
-    if addon.Options.db.profile.Calendar.FirstWeekDay < 1 or addon.Options.db.profile.Calendar.FirstWeekDay > 7 then
+    if addon.Settings.Get("calendar.firstWeekDay") < 1 or addon.Settings.Get("calendar.firstWeekDay") > 7 then
         if not C_AddOns.IsAddOnLoaded("Blizzard_Calendar") then -- This is to make sure we get the 1st day of the week correct
             C_AddOns.LoadAddOn("Blizzard_Calendar") -- breaks Blizzard_Calendar
         end
-        addon.Options.db.profile.Calendar.FirstWeekDay = CALENDAR_FIRST_WEEKDAY
+        addon.Settings.Set("calendar.firstWeekDay", CALENDAR_FIRST_WEEKDAY)
     end
 
     options.SetMaxNumberOfSearchPreviews()
 end
 
 local RefreshOptions -- Assigned at the end of the file
-function layout.OnProfileChanged(db, newProfile)
-    RefreshOptions()
-end
-
-function layout.OnProfileCopied(db, sourceProfile)
-    RefreshOptions()
-end
-
-function layout.OnProfileReset(db)
+-- After an options profile switch, copy or reset (Options/Options.lua, Load)
+function layout.OnProfileChanged()
     RefreshOptions()
 end
 
@@ -80,16 +73,15 @@ local function InjectDynamicFixedWatchListOptions()
         return
     end
 
-    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "ShowWatchedSubCategories", {
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "ShowWatchedSubCategories", addon.Settings.Row("categories.watchList.showSubCategories", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Show Sub Categories"],
-        desc = addon.L["Show Sub Categories Desc"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("Categories.WatchList.ShowSubCategories"),
-        get = function() return addon.Options.db.profile.Categories.WatchList.ShowSubCategories; end,
+        desc = addon.L["Show Sub Categories Desc"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("categories.watchList.showSubCategories"),
         set = function(_, value)
-            addon.Options.db.profile.Categories.WatchList.ShowSubCategories = value
+            addon.Settings.Set("categories.watchList.showSubCategories", value)
             DrawWatchListSubCategories()
         end
-    })
+    }))
     addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank1", {
         order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""
     })
@@ -99,29 +91,27 @@ local function InjectDynamicFixedWatchListOptions()
         desc = addon.L["Clear all Desc"],
         func = WatchListClearAllFunc
     })
-    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "IgnoreFilters", {
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "IgnoreFilters", addon.Settings.Row("categories.watchList.ignoreFilters", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Ignore Filters"],
-        desc = addon.L["Ignore Filters Desc"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("Categories.WatchList.IgnoreFilters"),
-        get = function() return addon.Options.db.profile.Categories.WatchList.IgnoreFilters; end,
+        desc = addon.L["Ignore Filters Desc"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("categories.watchList.ignoreFilters"),
         set = function(_, value)
-            addon.Options.db.profile.Categories.WatchList.IgnoreFilters = value
+            addon.Settings.Set("categories.watchList.ignoreFilters", value)
             DrawWatchListSubCategories()
         end
-    })
+    }))
     addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank2", {
         order = OrderPP(), type = "description", width = AdjustedWidth(2), name = ""
     })
-    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "CharacterSpecific", {
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "CharacterSpecific", addon.Settings.Row("categories.watchList.characterSpecific", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Character Specific"],
-        desc = addon.L["Character Specific Desc"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("Categories.WatchList.CharacterSpecific"),
-        get = function() return addon.Options.db.profile.Categories.WatchList.CharacterSpecific; end,
+        desc = addon.L["Character Specific Desc"]:K_ReplaceVars(addon.L["Watch List"]):KAF_AddDefaultValueText("categories.watchList.characterSpecific"),
         set = function (_, value)
-            addon.Options.db.profile.Categories.WatchList.CharacterSpecific = value
+            addon.Settings.Set("categories.watchList.characterSpecific", value)
             addon.Data.SavedData.AchievementData.ReloadWatchedAchievements()
         end
-    })
+    }))
     addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.WatchList.args", "Blank3", {
         order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""
     })
@@ -130,7 +120,7 @@ local function InjectDynamicFixedWatchListOptions()
         name = addon.L["Copy Account Wide to Character"],
         desc = addon.L["Copy Account Wide to Character Desc"]:K_ReplaceVars(addon.L["Watch List"]),
         func = addon.Data.SavedData.AchievementData.CopyAccountWideToCharacter,
-        disabled = function() return not addon.Options.db.profile.Categories.WatchList.CharacterSpecific; end
+        disabled = function() return not addon.Settings.Get("categories.watchList.characterSpecific"); end
     })
 end
 
@@ -140,24 +130,21 @@ local function InjectMoreDynamicTrackingAchievementsOptions()
         return
     end
 
-    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.TrackingAchievements.args", "LoadTrackingAchievements", {
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.TrackingAchievements.args", "LoadTrackingAchievements", addon.Settings.Row("categories.trackingAchievements.doLoad", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
         name = addon.L["Load Tracking Achievements"],
-        desc = addon.L["Load Tracking Achievements Desc"]:KAF_AddDefaultValueText("Categories.TrackingAchievements.DoLoad"):K_AddReloadRequired(),
-        get = function() return addon.Options.db.profile.Categories.TrackingAchievements.DoLoad; end,
-        set = function(_, value) addon.Options.db.profile.Categories.TrackingAchievements.DoLoad = value; end
-    })
+        desc = addon.L["Load Tracking Achievements Desc"]:KAF_AddDefaultValueText("categories.trackingAchievements.doLoad"):K_AddReloadRequired(),
+    }))
 
-    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.TrackingAchievements.args", "ShowTrackingSubCategories", {
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.TrackingAchievements.args", "ShowTrackingSubCategories", addon.Settings.Row("categories.trackingAchievements.showSubCategories", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Show Sub Categories"],
-        desc = addon.L["Show Sub Categories Desc"]:K_ReplaceVars(addon.L["Tracking Achievements"]):KAF_AddDefaultValueText("Categories.TrackingAchievements.ShowSubCategories"),
-        get = function() return addon.Options.db.profile.Categories.TrackingAchievements.ShowSubCategories; end,
+        desc = addon.L["Show Sub Categories Desc"]:K_ReplaceVars(addon.L["Tracking Achievements"]):KAF_AddDefaultValueText("categories.trackingAchievements.showSubCategories"),
         set = function(_, value)
-            addon.Options.db.profile.Categories.TrackingAchievements.ShowSubCategories = value
+            addon.Settings.Set("categories.trackingAchievements.showSubCategories", value)
             DrawTrackingAchievementsSubCategories()
         end
-    })
+    }))
 end
 
 -- [[ InjectMoreDynamicExcludedOptions ]]
@@ -165,7 +152,7 @@ local function ShowExcludedCategory()
     if addon.Gui.SelectedTab == nil then -- If nil, not yet loaded
         return
     end
-    if addon.Options.db.profile.Categories.Excluded.Show then
+    if addon.Settings.Get("categories.excluded.show") then
         addon.SpecialCategories.LoadExcludedAchievements()
     else
         addon.ResetExcludedCategories()
@@ -199,16 +186,15 @@ local function InjectMoreDynamicExcludedOptions()
         return
     end
 
-    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "Show", {
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "Show", addon.Settings.Row("categories.excluded.show", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Show Excluded Category"],
-        desc = addon.L["Show Excluded Category Desc"]:K_ReplaceVars(addon.L["Excluded"]):KAF_AddDefaultValueText("Categories.Excluded.Show"),
-        get = function() return addon.Options.db.profile.Categories.Excluded.Show; end,
+        desc = addon.L["Show Excluded Category Desc"]:K_ReplaceVars(addon.L["Excluded"]):KAF_AddDefaultValueText("categories.excluded.show"),
         set = function(_, value)
-            addon.Options.db.profile.Categories.Excluded.Show = value
+            addon.Settings.Set("categories.excluded.show", value)
             ShowExcludedCategory()
         end
-    })
+    }))
     addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "Blank1", {
         order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""
     })
@@ -218,17 +204,16 @@ local function InjectMoreDynamicExcludedOptions()
         desc = addon.L["Include all Desc"],
         func = ExcludedIncludeAllFunc
     })
-    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "ShowExcludedSubCategories", {
+    addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args.Excluded.args", "ShowExcludedSubCategories", addon.Settings.Row("categories.excluded.showSubCategories", {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = addon.L["Show Sub Categories"],
-        desc = addon.L["Show Sub Categories Desc"]:K_ReplaceVars(addon.L["Excluded"]):KAF_AddDefaultValueText("Categories.Excluded.ShowSubCategories"),
-        get = function() return addon.Options.db.profile.Categories.Excluded.ShowSubCategories; end,
+        desc = addon.L["Show Sub Categories Desc"]:K_ReplaceVars(addon.L["Excluded"]):KAF_AddDefaultValueText("categories.excluded.showSubCategories"),
         set = function()
-            addon.Options.db.profile.Categories.Excluded.ShowSubCategories = not addon.Options.db.profile.Categories.Excluded.ShowSubCategories
+            addon.Settings.Set("categories.excluded.showSubCategories", not addon.Settings.Get("categories.excluded.showSubCategories"))
             DrawExcludedSubCategories()
         end,
-        disabled = function() return not addon.Options.db.profile.Categories.Excluded.Show; end
-    })
+        disabled = function() return not addon.Settings.Get("categories.excluded.show"); end
+    }))
 end
 
 -- [[ InjectDynamicAdjustableCategoryOptions ]]
@@ -243,11 +228,7 @@ local function InjectDynamicFixedAdjustableCategoriesOptions(category)
 end
 
 function layout.InjectDynamicAdjustableCategoryOptions(category, categoryDisplayName, tabIndex, tab, tabDisplayName, defaultValue)
-    if not addon.InjectOptions:DefaultsExists("AdjustableCategories." .. category) then
-        addon.InjectOptions:AddDefaults("AdjustableCategories", category, { })
-    end
-
-    addon.InjectOptions:AddDefaults("AdjustableCategories." .. category, tabIndex, defaultValue)
+    addon.Settings.RegisterEntryDefault("categories.shownOnTab", category, tabIndex, defaultValue)
 
     if not addon.InjectOptions:TableExists("Layout.args.AdjustableCategories.args." .. category) then
         addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args", category, {
@@ -269,40 +250,43 @@ function layout.InjectDynamicAdjustableCategoryOptions(category, categoryDisplay
     addon.InjectOptions:AddTable("Layout.args.AdjustableCategories.args." .. category .. ".args", tab, {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = tabDisplayName,
-        desc = addon.Util.L["Requires a reload"]:KAF_AddDefaultValueText("AdjustableCategories." .. category .. "." .. tabIndex),
-        get = function() return addon.Options.db.profile.AdjustableCategories[category][tabIndex]; end,
-        set = function(_, value) addon.Options.db.profile.AdjustableCategories[category][tabIndex] = value; end
+        desc = addon.Util.L["Requires a reload"]:KAF_AddDefaultValueText("categories.shownOnTab", nil, category, tabIndex),
+        get = function() return addon.Settings.GetEntry("categories.shownOnTab", category, tabIndex) end,
+        set = function(_, value) addon.Settings.SetEntry("categories.shownOnTab", category, tabIndex, value) end
     })
 end
 
+-- The dropdowns' choices, each text under the number it saves (addon.Enum, Settings/Enum.lua); shown in number
+-- order unless a row gives its own sorting
+local enum = addon.Enum
+
 local achievementPointsDisplays = {
-    addon.L["Account wide (default)"],
-    addon.L["Character / Account wide"],
-    addon.L["Character only"]
+    [enum.PointsFormat.Account] = addon.L["Account wide (default)"],
+    [enum.PointsFormat.CharacterAndAccount] = addon.L["Character / Account wide"],
+    [enum.PointsFormat.Character] = addon.L["Character only"]
 }
 
 local criteriaBehaviour = {
-    addon.L["Overflow"],
-    addon.L["Truncate"],
-    addon.L["Flexible"],
-    -- addon.L["Wrap"]
+    [enum.CriteriaBehaviour.Overflow] = addon.L["Overflow"],
+    [enum.CriteriaBehaviour.Truncate] = addon.L["Truncate"],
+    [enum.CriteriaBehaviour.Flexible] = addon.L["Flexible"]
 }
 
-local guideWaypointProviders = { -- addon.Gui.Guide.Waypoint.Provider
-    addon.L["Map pin and TomTom"],
-    addon.L["Map pin"],
-    "TomTom"
+local guideWaypointProviders = {
+    [enum.GuideWaypointProvider.Both] = addon.L["Map pin and TomTom"],
+    [enum.GuideWaypointProvider.MapPin] = addon.L["Map pin"],
+    [enum.GuideWaypointProvider.TomTom] = "TomTom"
 }
 
-local guideActionStyles = { -- addon.Gui.Guide.Content.ActionStyle
-    addon.L["Icons"],
-    addon.L["Text links"]
+local guideActionStyles = {
+    [enum.GuideActionStyle.Icons] = addon.L["Icons"],
+    [enum.GuideActionStyle.Links] = addon.L["Text links"]
 }
 
 local function MovableSwitchMovableSet(_, value)
-    if addon.Options.db.profile.Window.Movable == value then return; end
-    addon.Options.db.profile.Window.Movable = value
-    if addon.Options.db.profile.Window.Movable then
+    if addon.Settings.Get("window.movable") == value then return; end
+    addon.Settings.Set("window.movable", value)
+    if addon.Settings.Get("window.movable") then
         addon.MakeWindowMovable()
     else
         addon.MakeWindowStatic()
@@ -310,9 +294,9 @@ local function MovableSwitchMovableSet(_, value)
 end
 
 local function MovableAchievementWindowRememberLastPositionSet(_, value)
-    if addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow == value then return; end
-    addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow = value
-    if not addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow then
+    if addon.Settings.Get("window.rememberPosition.achievementWindow") == value then return; end
+    addon.Settings.Set("window.rememberPosition.achievementWindow", value)
+    if not addon.Settings.Get("window.rememberPosition.achievementWindow") then
         if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
             C_AddOns.LoadAddOn("Blizzard_AchievementUI")
         end
@@ -321,9 +305,9 @@ local function MovableAchievementWindowRememberLastPositionSet(_, value)
 end
 
 local function MovableCalendarRememberLastPositionSet(_, value)
-    if addon.Options.db.profile.Window.RememberLastPosition.Calendar == value then return; end
-    addon.Options.db.profile.Window.RememberLastPosition.Calendar = value
-    if not addon.Options.db.profile.Window.RememberLastPosition.Calendar then
+    if addon.Settings.Get("window.rememberPosition.calendar") == value then return; end
+    addon.Settings.Set("window.rememberPosition.calendar", value)
+    if not addon.Settings.Get("window.rememberPosition.calendar") then
         if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
             C_AddOns.LoadAddOn("Blizzard_AchievementUI")
         end
@@ -332,9 +316,9 @@ local function MovableCalendarRememberLastPositionSet(_, value)
 end
 
 local function MovableDataManagerRememberLastPositionSet(_, value)
-    if addon.Options.db.profile.Window.RememberLastPosition.DataManager == value then return; end
-    addon.Options.db.profile.Window.RememberLastPosition.DataManager = value
-    if not addon.Options.db.profile.Window.RememberLastPosition.DataManager then
+    if addon.Settings.Get("window.rememberPosition.dataManager") == value then return; end
+    addon.Settings.Set("window.rememberPosition.dataManager", value)
+    if not addon.Settings.Get("window.rememberPosition.dataManager") then
         if not C_AddOns.IsAddOnLoaded("Blizzard_AchievementUI") then
             C_AddOns.LoadAddOn("Blizzard_AchievementUI")
         end
@@ -343,16 +327,16 @@ local function MovableDataManagerRememberLastPositionSet(_, value)
 end
 
 local function OffsetsCategoriesFrameWidthSet(_, value)
-    if addon.Options.db.profile.Window.CategoriesFrameWidthOffset == value then return; end
-    addon.Options.db.profile.Window.CategoriesFrameWidthOffset = value
+    if addon.Settings.Get("window.categoriesFrameWidthOffset") == value then return; end
+    addon.Settings.Set("window.categoriesFrameWidthOffset", value)
     if addon.Gui.SelectedTab then
         addon.Gui:SetAchievementFrameWidth()
     end
 end
 
 local function OffsetsAchievementsFrameWidthSet(_, value)
-    if addon.Options.db.profile.Window.AchievementsFrameWidthOffset == value then return; end
-    addon.Options.db.profile.Window.AchievementsFrameWidthOffset = value
+    if addon.Settings.Get("window.achievementsFrameWidthOffset") == value then return; end
+    addon.Settings.Set("window.achievementsFrameWidthOffset", value)
     if addon.Gui.SelectedTab then
         addon.Gui:SetAchievementFrameWidth()
         if addon.Gui.SelectedTab.SelectedCategory.IsSummary then
@@ -369,8 +353,8 @@ local function SetMaxNumberOfSearchPreviews()
 end
 
 local function OffsetsAchievementFrameHeightSet(_, value)
-    if addon.Options.db.profile.Window.AchievementFrameHeightOffset == value then return; end
-    addon.Options.db.profile.Window.AchievementFrameHeightOffset = value
+    if addon.Settings.Get("window.achievementFrameHeightOffset") == value then return; end
+    addon.Settings.Set("window.achievementFrameHeightOffset", value)
     SetMaxNumberOfSearchPreviews()
     if addon.Gui.SelectedTab then
         addon.Gui:SetAchievementFrameHeight()
@@ -378,12 +362,12 @@ local function OffsetsAchievementFrameHeightSet(_, value)
 end
 
 local function CenterHeaderSet(_, value)
-    addon.Options.db.profile.CenterHeader = value
+    addon.Settings.Set("window.centerHeader", value)
     addon.Gui.AchievementFrameHeader:AnchorHeader()
 end
 
 local function BrowserHistoryTrackSet(_, value)
-    addon.Options.db.profile.TrackAchievementBrowserHistory = value
+    addon.Settings.Set("window.trackBrowsingHistory", value)
     if not KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton or not KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton then
         return
     end
@@ -401,24 +385,24 @@ local function CalendarButtonOffsetSet()
         return
 
     end
-    KrowiAF_AchievementFrameCalendarButton:SetPoint("LEFT", AchievementFrame.Header.PointBorder, "RIGHT", addon.Options.db.profile.Calendar.ButtonOffsetX, addon.Options.db.profile.Calendar.ButtonOffsetY)
+    KrowiAF_AchievementFrameCalendarButton:SetPoint("LEFT", AchievementFrame.Header.PointBorder, "RIGHT", addon.Settings.Get("window.calendarButton.offsetX"), addon.Settings.Get("window.calendarButton.offsetY"))
 end
 
 local function CalendarButtonOffsetXSet(_, value)
-    if addon.Options.db.profile.Calendar.ButtonOffsetX == value then return; end
-    addon.Options.db.profile.Calendar.ButtonOffsetX = value
+    if addon.Settings.Get("window.calendarButton.offsetX") == value then return; end
+    addon.Settings.Set("window.calendarButton.offsetX", value)
     CalendarButtonOffsetSet()
 end
 
 local function CalendarButtonOffsetYSet(_, value)
-    if addon.Options.db.profile.Calendar.ButtonOffsetY == value then return; end
-    addon.Options.db.profile.Calendar.ButtonOffsetY = value
+    if addon.Settings.Get("window.calendarButton.offsetY") == value then return; end
+    addon.Settings.Set("window.calendarButton.offsetY", value)
     CalendarButtonOffsetSet()
 end
 
 local function SetSearchBoxMouseWheelPanScalar(_, value)
-    if addon.Options.db.profile.SearchBox.MouseWheelPanScalar == value then return; end
-    addon.Options.db.profile.SearchBox.MouseWheelPanScalar = value
+    if addon.Settings.Get("searchBox.mouseWheelPanScalar") == value then return; end
+    addon.Settings.Set("searchBox.mouseWheelPanScalar", value)
     if KrowiAF_SearchBoxFrame.ResultsFrame.ScrollBox then
         KrowiAF_SearchBoxFrame.ResultsFrame.ScrollBox.wheelPanScalar = value
     end
@@ -428,8 +412,8 @@ local function SetSearchBoxMouseWheelPanScalar(_, value)
 end
 
 local function SetSummaryMouseWheelPanScalar(_, value)
-    if addon.Options.db.profile.Summary.MouseWheelPanScalar == value then return; end
-    addon.Options.db.profile.Summary.MouseWheelPanScalar = value
+    if addon.Settings.Get("summary.mouseWheelPanScalar") == value then return; end
+    addon.Settings.Set("summary.mouseWheelPanScalar", value)
     if KrowiAF_SummaryFrame.AchievementsFrame.ScrollBox then
         KrowiAF_SummaryFrame.AchievementsFrame.ScrollBox.wheelPanScalar = value
     end
@@ -439,16 +423,16 @@ local function SetSummaryMouseWheelPanScalar(_, value)
 end
 
 local function SetCategoryIndentation(_, value)
-    if addon.Options.db.profile.Categories.Indentation == value then return; end
-    addon.Options.db.profile.Categories.Indentation = value
+    if addon.Settings.Get("categories.indentation") == value then return; end
+    addon.Settings.Set("categories.indentation", value)
     if KrowiAF_CategoriesFrame.ScrollView then
         KrowiAF_CategoriesFrame.ScrollView:Layout()
     end
 end
 
 local function SetCategoriesMouseWheelPanScalar(_, value)
-    if addon.Options.db.profile.Categories.MouseWheelPanScalar == value then return; end
-    addon.Options.db.profile.Categories.MouseWheelPanScalar = value
+    if addon.Settings.Get("categories.mouseWheelPanScalar") == value then return; end
+    addon.Settings.Set("categories.mouseWheelPanScalar", value)
     if KrowiAF_CategoriesFrame.ScrollBox then
         KrowiAF_CategoriesFrame.ScrollBox.wheelPanScalar = value
     end
@@ -458,13 +442,13 @@ local function SetCategoriesMouseWheelPanScalar(_, value)
 end
 
 local function MergeMergeSmallCategoriesThresholdSet(_, value)
-    if addon.Options.db.profile.Window.MergeSmallCategoriesThreshold == value then return; end
-    addon.Options.db.profile.Window.MergeSmallCategoriesThreshold = value
+    if addon.Settings.Get("categories.mergeSmallThreshold") == value then return; end
+    addon.Settings.Set("categories.mergeSmallThreshold", value)
     KrowiAF_CategoriesFrame:Update(true)
 end
 
 local function ShowAllianceFactionIconSet(_, value)
-    addon.Options.db.profile.Achievements.ShowAllianceFactionIcon = value
+    addon.Settings.Set("achievements.showAllianceFactionIcon", value)
     if not KrowiAF_AchievementsFrame then
         return
     end
@@ -473,7 +457,7 @@ local function ShowAllianceFactionIconSet(_, value)
 end
 
 local function ShowHordeFactionIconSet(_, value)
-    addon.Options.db.profile.Achievements.ShowHordeFactionIcon = value
+    addon.Settings.Set("achievements.showHordeFactionIcon", value)
     if not KrowiAF_AchievementsFrame then
         return
     end
@@ -482,7 +466,7 @@ local function ShowHordeFactionIconSet(_, value)
 end
 
 local function FactionIconAlphaSet(_, value)
-    addon.Options.db.profile.Achievements.FactionIconAlpha = value
+    addon.Settings.Set("achievements.factionIconAlpha", value)
     if not KrowiAF_AchievementsFrame then
         return
     end
@@ -491,7 +475,7 @@ local function FactionIconAlphaSet(_, value)
 end
 
 local function ShowTemporarilyObtainableIconSet(_, value)
-    addon.Options.db.profile.Achievements.ShowTemporarilyObtainableIcon = value
+    addon.Settings.Set("achievements.showTemporarilyObtainableIcon", value)
     if not KrowiAF_AchievementsFrame then
         return
     end
@@ -500,7 +484,7 @@ local function ShowTemporarilyObtainableIconSet(_, value)
 end
 
 local function TemporarilyObtainableHeaderColorsSet(_, value)
-    addon.Options.db.profile.Achievements.TemporarilyObtainableHeaderColors = value
+    addon.Settings.Set("achievements.temporarilyObtainableHeaderColors", value)
     if not KrowiAF_AchievementsFrame then
         return
     end
@@ -509,7 +493,7 @@ local function TemporarilyObtainableHeaderColorsSet(_, value)
 end
 
 local function ShowWarbandIconSet(_, value)
-    addon.Options.db.profile.Achievements.ShowWarbandIcon = value
+    addon.Settings.Set("achievements.showWarbandIcon", value)
     if not KrowiAF_AchievementsFrame then
         return
     end
@@ -518,7 +502,7 @@ local function ShowWarbandIconSet(_, value)
 end
 
 local function WarbandHeaderColorSet(_, value)
-    addon.Options.db.profile.Achievements.WarbandHeaderColor = value
+    addon.Settings.Set("achievements.warbandHeaderColor", value)
     if not KrowiAF_AchievementsFrame then
         return
     end
@@ -530,7 +514,7 @@ end
 -- icon and the block under the selected achievement)
 local function GuideOptionSetter(key)
     return function(_, value)
-        addon.Options.db.profile.Achievements.Guide[key] = value
+        addon.Settings.Set("guides." .. key:sub(1, 1):lower() .. key:sub(2), value) -- "ExpandedRow" is guides.expandedRow
         local panel = addon.Gui.Guide.Panel
         if panel.Frame and panel.Frame:IsShown() then
             panel:Render()
@@ -544,8 +528,8 @@ local function GuideOptionSetter(key)
 end
 
 local function SetAchievementsMouseWheelPanScalar(_, value)
-    if addon.Options.db.profile.Achievements.MouseWheelPanScalar == value then return; end
-    addon.Options.db.profile.Achievements.MouseWheelPanScalar = value
+    if addon.Settings.Get("achievements.mouseWheelPanScalar") == value then return; end
+    addon.Settings.Set("achievements.mouseWheelPanScalar", value)
     if not KrowiAF_AchievementsFrame then
         return
     end
@@ -568,7 +552,7 @@ local function AddStartTimeAndEndTimeFormat(format)
     AddFormat(startTimeAndEndTimeDateTimeFormats, startTimeAndEndTimeDateTimeValues, format)
 end
 
-AddStartTimeAndEndTimeFormat(options.Defaults.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime)
+AddStartTimeAndEndTimeFormat(addon.Settings.Declaration("tooltips.temporarilyObtainable.dateTimeFormat.startTimeAndEndTime").Default)
 AddStartTimeAndEndTimeFormat(addon.L["%d/%m/%Y %I:%M %p"])
 AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %R"])
 AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %I:%M %p"])
@@ -580,7 +564,7 @@ tinsert(startTimeAndEndTimeDateTimeFormats, addon.L["%m/%d/%Y %R"])
 
 local function StartTimeAndEndTimePresetsGet()
     for i, format in next, startTimeAndEndTimeDateTimeFormats do
-        if format == addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime then
+        if format == addon.Settings.Get("tooltips.temporarilyObtainable.dateTimeFormat.startTimeAndEndTime") then
             return i
         end
     end
@@ -588,13 +572,13 @@ local function StartTimeAndEndTimePresetsGet()
 end
 
 local function StartTimeAndEndTimeCustomSet(_, value)
-    if addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime == value then return; end
-    addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime = value
+    if addon.Settings.Get("tooltips.temporarilyObtainable.dateTimeFormat.startTimeAndEndTime") == value then return; end
+    addon.Settings.Set("tooltips.temporarilyObtainable.dateTimeFormat.startTimeAndEndTime", value)
 end
 
 local function SetCalendarMouseWheelPanScalar(_, value)
-    if addon.Options.db.profile.Calendar.MouseWheelPanScalar == value then return; end
-    addon.Options.db.profile.Calendar.MouseWheelPanScalar = value
+    if addon.Settings.Get("calendar.mouseWheelPanScalar") == value then return; end
+    addon.Settings.Set("calendar.mouseWheelPanScalar", value)
     if KrowiAF_AchievementCalendarFrame.SideFrame.AchievementsFrame.ScrollBox then
         KrowiAF_AchievementCalendarFrame.SideFrame.AchievementsFrame.ScrollBox.wheelPanScalar = value
     end
@@ -604,8 +588,8 @@ local function SetCalendarMouseWheelPanScalar(_, value)
 end
 
 local function SetDataManagerMouseWheelPanScalar(_, value)
-    if addon.Options.db.profile.DataManager.MouseWheelPanScalar == value then return; end
-    addon.Options.db.profile.DataManager.MouseWheelPanScalar = value
+    if addon.Settings.Get("dataManager.mouseWheelPanScalar") == value then return; end
+    addon.Settings.Set("dataManager.mouseWheelPanScalar", value)
     if KrowiAF_DataManagerFrame.CharacterList.ScrollBox then
         KrowiAF_DataManagerFrame.CharacterList.ScrollBox.wheelPanScalar = value
     end
@@ -622,21 +606,19 @@ local windowOptions = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Movable"],
             args = {
-                SwitchMovable = {
+                SwitchMovable = addon.Settings.Row("window.movable", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
                     name = addon.L["Make windows movable"],
-                    desc = addon.L["Make windows movable Desc"]:KAF_AddDefaultValueText("Window.Movable"),
-                    get = function() return addon.Options.db.profile.Window.Movable; end,
+                    desc = addon.L["Make windows movable Desc"]:KAF_AddDefaultValueText("window.movable"),
                     set = MovableSwitchMovableSet
-                },
+                }),
                 Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(), name = ""},
-                AchievementWindowRememberLastPosition = {
+                AchievementWindowRememberLastPosition = addon.Settings.Row("window.rememberPosition.achievementWindow", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
                     name = addon.L["Remember frame position"]:K_ReplaceVars(addon.L["Achievement Window"]),
-                    desc = addon.L["Remember frame position Desc"]:K_ReplaceVars(addon.L["Achievement Window"]):KAF_AddDefaultValueText("Window.RememberLastPosition.AchievementWindow"),
-                    get = function() return addon.Options.db.profile.Window.RememberLastPosition.AchievementWindow; end,
+                    desc = addon.L["Remember frame position Desc"]:K_ReplaceVars(addon.L["Achievement Window"]):KAF_AddDefaultValueText("window.rememberPosition.achievementWindow"),
                     set = MovableAchievementWindowRememberLastPositionSet
-                },
+                }),
                 AchievementWindowResetPosition = {
                     order = OrderPP(), type = "execute", width = AdjustedWidth(),
                     name = addon.L["Reset position"],
@@ -648,13 +630,12 @@ local windowOptions = {
                         AchievementFrame:ResetPosition()
                     end
                 },
-                CalendarRememberLastPosition = {
+                CalendarRememberLastPosition = addon.Settings.Row("window.rememberPosition.calendar", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
                     name = addon.L["Remember frame position"]:K_ReplaceVars(addon.L["Achievement Calendar"]),
-                    desc = addon.L["Remember frame position Desc"]:K_ReplaceVars(addon.L["Achievement Calendar"]):KAF_AddDefaultValueText("Window.RememberLastPosition.Calendar"),
-                    get = function() return addon.Options.db.profile.Window.RememberLastPosition.Calendar; end,
+                    desc = addon.L["Remember frame position Desc"]:K_ReplaceVars(addon.L["Achievement Calendar"]):KAF_AddDefaultValueText("window.rememberPosition.calendar"),
                     set = MovableCalendarRememberLastPositionSet
-                },
+                }),
                 CalendarResetPosition = {
                     order = OrderPP(), type = "execute", width = AdjustedWidth(),
                     name = addon.L["Reset position"],
@@ -666,13 +647,12 @@ local windowOptions = {
                         KrowiAF_AchievementCalendarFrame:ResetPosition()
                     end
                 },
-                DataManagerRememberLastPosition = {
+                DataManagerRememberLastPosition = addon.Settings.Row("window.rememberPosition.dataManager", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(2),
                     name = addon.L["Remember frame position"]:K_ReplaceVars(addon.L["Data Manager"]),
-                    desc = addon.L["Remember frame position Desc"]:K_ReplaceVars(addon.L["Data Manager"]):KAF_AddDefaultValueText("Window.RememberLastPosition.DataManager"),
-                    get = function() return addon.Options.db.profile.Window.RememberLastPosition.DataManager; end,
+                    desc = addon.L["Remember frame position Desc"]:K_ReplaceVars(addon.L["Data Manager"]):KAF_AddDefaultValueText("window.rememberPosition.dataManager"),
                     set = MovableDataManagerRememberLastPositionSet
-                },
+                }),
                 DataManagerResetPosition = {
                     order = OrderPP(), type = "execute", width = AdjustedWidth(),
                     name = addon.L["Reset position"],
@@ -691,30 +671,24 @@ local windowOptions = {
             name = addon.L["Offsets"],
             inline = true,
             args = {
-                CategoriesFrameWidth = {
+                CategoriesFrameWidth = addon.Settings.Row("window.categoriesFrameWidthOffset", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Categories width offset"],
-                    desc = addon.L["Categories width offset Desc"]:KAF_InjectAddonName():K_ReplaceVars(string.format(addon.Util.Colors.Yellow, addon.L["Expansions"])):KAF_AddDefaultValueText("Window.CategoriesFrameWidthOffset"),
-                    min = -125, max = 250, step = 1,
-                    get = function() return addon.Options.db.profile.Window.CategoriesFrameWidthOffset; end,
+                    desc = addon.L["Categories width offset Desc"]:KAF_InjectAddonName():K_ReplaceVars(string.format(addon.Util.Colors.Yellow, addon.L["Expansions"])):KAF_AddDefaultValueText("window.categoriesFrameWidthOffset"),
                     set = OffsetsCategoriesFrameWidthSet
-                },
-                AchievementsFrameWidth = {
+                }),
+                AchievementsFrameWidth = addon.Settings.Row("window.achievementsFrameWidthOffset", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Achievements width offset"],
-                    desc = addon.L["Achievements width offset Desc"]:KAF_InjectAddonName():K_ReplaceVars(string.format(addon.Util.Colors.Yellow, addon.L["Expansions"])):KAF_AddDefaultValueText("Window.AchievementsFrameWidthOffset"),
-                    min = 0, max = 500, step = 1,
-                    get = function() return addon.Options.db.profile.Window.AchievementsFrameWidthOffset; end,
+                    desc = addon.L["Achievements width offset Desc"]:KAF_InjectAddonName():K_ReplaceVars(string.format(addon.Util.Colors.Yellow, addon.L["Expansions"])):KAF_AddDefaultValueText("window.achievementsFrameWidthOffset"),
                     set = OffsetsAchievementsFrameWidthSet
-                },
-                AchievementFrameHeight = {
+                }),
+                AchievementFrameHeight = addon.Settings.Row("window.achievementFrameHeightOffset", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Achievement window height offset"],
-                    desc = addon.L["Achievement window height offset Desc"]:KAF_InjectAddonName():K_ReplaceVars(string.format(addon.Util.Colors.Yellow, addon.L["Expansions"])):KAF_AddDefaultValueText("Window.AchievementFrameHeightOffset"):K_AddReloadRequired(),
-                    min = -50, max = 750, step = 1,
-                    get = function() return addon.Options.db.profile.Window.AchievementFrameHeightOffset; end,
+                    desc = addon.L["Achievement window height offset Desc"]:KAF_InjectAddonName():K_ReplaceVars(string.format(addon.Util.Colors.Yellow, addon.L["Expansions"])):KAF_AddDefaultValueText("window.achievementFrameHeightOffset"):K_AddReloadRequired(),
                     set = OffsetsAchievementFrameHeightSet
-                }
+                })
             }
         }
     }
@@ -732,17 +706,15 @@ local tabsOptions = {
                     order = OrderPP(), type = "group", inline = true,
                     name = addon.Util.L["General"],
                     args = {
-                        Spacing = {
+                        Spacing = addon.Settings.Row("tabs.spacing", {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                             name = addon.L["Spacing"],
-                            desc = addon.L["Spacing Desc"]:KAF_AddDefaultValueText("TabsGeneral.Spacing"),
-                            min = -50, max = 50, step = 1,
-                            get = function() return addon.Options.db.profile.TabsGeneral.Spacing; end,
+                            desc = addon.L["Spacing Desc"]:KAF_AddDefaultValueText("tabs.spacing"),
                             set = function (_, value)
-                                addon.Options.db.profile.TabsGeneral.Spacing = value
+                                addon.Settings.Set("tabs.spacing", value)
                                 addon.Gui:ShowHideTabs()
                             end
-                        }
+                        })
                     }
                 }
             }
@@ -780,91 +752,75 @@ local headerOptions = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.Util.L["General"],
             args = {
-                CenterHeader = {
+                CenterHeader = addon.Settings.Row("window.centerHeader", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
                     name = addon.L["Center header"],
-                    desc = addon.L["Center header Desc"]:KAF_AddDefaultValueText("CenterHeader"),
-                    get = function() return addon.Options.db.profile.CenterHeader; end,
+                    desc = addon.L["Center header Desc"]:KAF_AddDefaultValueText("window.centerHeader"),
                     set = CenterHeaderSet
-                },
-                AchievementPointsFormat = {
+                }),
+                AchievementPointsFormat = addon.Settings.Row("window.pointsFormat", {
                     order = OrderPP(), type = "select", width = AdjustedWidth(1.45),
                     name = addon.L["Achievement Points"] .. " - " .. addon.L["Format"],
-                    desc = (""):KAF_AddDefaultValueText("AchievementPoints.Format", achievementPointsDisplays),
+                    desc = (""):KAF_AddDefaultValueText("window.pointsFormat", achievementPointsDisplays),
                     values = achievementPointsDisplays,
-                    get = function() return addon.Options.db.profile.AchievementPoints.Format; end,
-                    set = function (_, value) addon.Options.db.profile.AchievementPoints.Format = value; end
-                }
+                    set = function (_, value) addon.Settings.Set("window.pointsFormat", value); end
+                })
             }
         },
         BrowserHistory = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Achievement browsing history"],
             args = {
-                Track = {
+                Track = addon.Settings.Row("window.trackBrowsingHistory", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
                     name = addon.L["Track achievement browsing history"],
-                    desc = addon.L["Track achievement browsing history Desc"]:KAF_AddDefaultValueText("TrackAchievementBrowserHistory"),
-                    get = function() return addon.Options.db.profile.TrackAchievementBrowserHistory; end,
+                    desc = addon.L["Track achievement browsing history Desc"]:KAF_AddDefaultValueText("window.trackBrowsingHistory"),
                     set = BrowserHistoryTrackSet
-                }
+                })
             }
         },
         CalendarButton = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Calendar button"],
             args = {
-                OffsetX = {
+                OffsetX = addon.Settings.Row("window.calendarButton.offsetX", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
                     name = addon.L["Horizontal position"],
-                    desc = addon.L["Calendar button horizontal position Desc"]:K_ReplaceVars(addon.L["Calendar button"]):KAF_AddDefaultValueText("Calendar.ButtonOffsetX"),
-                    min = -50, max = 50, step = 1,
-                    get = function() return addon.Options.db.profile.Calendar.ButtonOffsetX; end,
+                    desc = addon.L["Calendar button horizontal position Desc"]:K_ReplaceVars(addon.L["Calendar button"]):KAF_AddDefaultValueText("window.calendarButton.offsetX"),
                     set = CalendarButtonOffsetXSet
-                },
-                OffsetY = {
+                }),
+                OffsetY = addon.Settings.Row("window.calendarButton.offsetY", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
                     name = addon.L["Vertical position"],
-                    desc = addon.L["Calendar button vertical position Desc"]:K_ReplaceVars(addon.L["Calendar button"]):KAF_AddDefaultValueText("Calendar.ButtonOffsetY"),
-                    min = -50, max = 50, step = 1,
-                    get = function() return addon.Options.db.profile.Calendar.ButtonOffsetY; end,
+                    desc = addon.L["Calendar button vertical position Desc"]:K_ReplaceVars(addon.L["Calendar button"]):KAF_AddDefaultValueText("window.calendarButton.offsetY"),
                     set = CalendarButtonOffsetYSet
-                }
+                })
             }
         },
         Tooltip = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Tooltip"],
             args = {
-                AlwaysShowRealm = {
+                AlwaysShowRealm = addon.Settings.Row("tooltips.points.alwaysShowRealm", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
                     name = addon.L["Always show realm"],
-                    desc = addon.L["Always show realm Desc"]:KAF_AddDefaultValueText("AchievementPoints.Tooltip.AlwaysShowRealm"),
-                    get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.AlwaysShowRealm; end,
-                    set = function(_, value) addon.Options.db.profile.AchievementPoints.Tooltip.AlwaysShowRealm = value; end
-                },
-                ShowFaction = {
+                    desc = addon.L["Always show realm Desc"]:KAF_AddDefaultValueText("tooltips.points.alwaysShowRealm"),
+                }),
+                ShowFaction = addon.Settings.Row("tooltips.points.showFaction", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
                     name = addon.L["Show faction icon"],
-                    desc = addon.L["Show faction icon Desc"]:KAF_AddDefaultValueText("AchievementPoints.Tooltip.ShowFaction"),
-                    get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.ShowFaction; end,
-                    set = function(_, value) addon.Options.db.profile.AchievementPoints.Tooltip.ShowFaction = value; end
-                },
-                MaxNumCharacters = {
+                    desc = addon.L["Show faction icon Desc"]:KAF_AddDefaultValueText("tooltips.points.showFaction"),
+                }),
+                MaxNumCharacters = addon.Settings.Row("tooltips.points.maxNumCharacters", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.45),
                     name = addon.L["Maximum number of characters"],
-                    desc = addon.L["Maximum number of characters Desc"]:KAF_AddDefaultValueText("AchievementPoints.Tooltip.MaxNumCharacters"),
-                    min = 0, max = 100, step = 1,
-                    get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.MaxNumCharacters; end,
-                    set = function(_, value) addon.Options.db.profile.AchievementPoints.Tooltip.MaxNumCharacters = value; end
-                },
-                KeepCurrentCharacter = {
+                    desc = addon.L["Maximum number of characters Desc"]:KAF_AddDefaultValueText("tooltips.points.maxNumCharacters"),
+                }),
+                KeepCurrentCharacter = addon.Settings.Row("tooltips.points.keepCurrentCharacter", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.45),
                     name = addon.L["Keep current character"],
-                    desc = addon.L["Keep current character Desc"]:K_ReplaceVars(addon.L["Maximum number of characters"]):KAF_AddDefaultValueText("AchievementPoints.Tooltip.KeepCurrentCharacter"),
-                    get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.KeepCurrentCharacter; end,
-                    set = function(_, value) addon.Options.db.profile.AchievementPoints.Tooltip.KeepCurrentCharacter = value; end
-                },
+                    desc = addon.L["Keep current character Desc"]:K_ReplaceVars(addon.L["Maximum number of characters"]):KAF_AddDefaultValueText("tooltips.points.keepCurrentCharacter"),
+                }),
                 SortPriority = {
                     order = OrderPP(), type = "group", inline = true,
                     name = addon.L["Sort priority"],
@@ -883,72 +839,57 @@ local searchOptions = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Search field"],
             args = {
-                ClearOnRightClick = {
+                ClearOnRightClick = addon.Settings.Row("searchBox.clearOnRightClick", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Clear search field on Right Click"],
-                    desc = addon.L["Clear search field on Right Click Desc"]:KAF_AddDefaultValueText("SearchBox.ClearOnRightClick"),
-                    get = function() return addon.Options.db.profile.SearchBox.ClearOnRightClick; end,
-                    set = function(_, value) addon.Options.db.profile.SearchBox.ClearOnRightClick = value; end
-                },
-                ExcludeExcluded = {
+                    desc = addon.L["Clear search field on Right Click Desc"]:KAF_AddDefaultValueText("searchBox.clearOnRightClick"),
+                }),
+                ExcludeExcluded = addon.Settings.Row("searchBox.excludeExcluded", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Exclude Excluded achievements"],
-                    desc = addon.L["Exclude Excluded achievements Desc"]:KAF_AddDefaultValueText("SearchBox.ExcludeExcluded"),
-                    get = function() return addon.Options.db.profile.SearchBox.ExcludeExcluded; end,
-                    set = function(_, value) addon.Options.db.profile.SearchBox.ExcludeExcluded = value; end
-                },
-                OnlySearchFiltered = {
+                    desc = addon.L["Exclude Excluded achievements Desc"]:KAF_AddDefaultValueText("searchBox.excludeExcluded"),
+                }),
+                OnlySearchFiltered = addon.Settings.Row("searchBox.onlySearchFiltered", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Only search filtered achievements"],
-                    desc = addon.L["Only search filtered achievements Desc"]:KAF_AddDefaultValueText("SearchBox.OnlySearchFiltered"),
-                    get = function() return addon.Options.db.profile.SearchBox.OnlySearchFiltered; end,
-                    set = function(_, value) addon.Options.db.profile.SearchBox.OnlySearchFiltered = value; end
-                },
+                    desc = addon.L["Only search filtered achievements Desc"]:KAF_AddDefaultValueText("searchBox.onlySearchFiltered"),
+                }),
                 Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
-                MinimumCharactersToSearch = {
+                MinimumCharactersToSearch = addon.Settings.Row("searchBox.minimumCharactersToSearch", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Minimum characters to search"],
-                    desc = addon.L["Minimum characters to search Desc"]:KAF_AddDefaultValueText("SearchBox.MinimumCharactersToSearch"),
-                    min = 1, max = 10, step = 1,
-                    get = function() return addon.Options.db.profile.SearchBox.MinimumCharactersToSearch; end,
-                    set = function(_, value) addon.Options.db.profile.SearchBox.MinimumCharactersToSearch = value; end
-                }
+                    desc = addon.L["Minimum characters to search Desc"]:KAF_AddDefaultValueText("searchBox.minimumCharactersToSearch"),
+                })
             }
         },
         SearchPreview = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Search preview"],
             args = {
-                NumberOfSearchPreviews = {
+                NumberOfSearchPreviews = addon.Settings.Row("searchBox.numberOfSearchPreviews", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Number of search previews"],
-                    desc = addon.L["Number of search previews Desc"]:KAF_AddDefaultValueText("SearchBox.NumberOfSearchPreviews"):K_AddReloadRequired(),
+                    desc = addon.L["Number of search previews Desc"]:KAF_AddDefaultValueText("searchBox.numberOfSearchPreviews"):K_AddReloadRequired(),
                     min = 1, max = 1000, step = 1, -- max set via PostLoad
-                    get = function() return addon.Options.db.profile.SearchBox.NumberOfSearchPreviews; end,
-                    set = function(_, value) addon.Options.db.profile.SearchBox.NumberOfSearchPreviews = value; end
-                },
+                }),
                 Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
-                ShowAllResultsInCategory = {
+                ShowAllResultsInCategory = addon.Settings.Row("searchBox.showAllResultsInCategory", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Show All Results in Category"],
-                    desc = addon.L["Show All Results in Category Desc"]:KAF_AddDefaultValueText("SearchBox.ShowAllResultsInCategory"),
-                    get = function() return addon.Options.db.profile.SearchBox.ShowAllResultsInCategory; end,
-                    set = function(_, value) addon.Options.db.profile.SearchBox.ShowAllResultsInCategory = value; end
-                },
+                    desc = addon.L["Show All Results in Category Desc"]:KAF_AddDefaultValueText("searchBox.showAllResultsInCategory"),
+                }),
             }
         },
         MouseWheelPanScalar = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Mouse Wheel Scroll Speed"],
             args = {
-                MouseWheelPanScalar = {
+                MouseWheelPanScalar = addon.Settings.Row("searchBox.mouseWheelPanScalar", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Mouse Wheel Scroll Speed"],
-                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("SearchBox.MouseWheelPanScalar"),
-                    min = 1, max = 50, step = 1,
-                    get = function() return addon.Options.db.profile.SearchBox.MouseWheelPanScalar; end,
+                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("searchBox.mouseWheelPanScalar"),
                     set = SetSearchBoxMouseWheelPanScalar
-                }
+                })
             }
         },
     }
@@ -962,39 +903,33 @@ local summaryOptions = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Summary"],
             args = {
-                AutoNumAchievements = {
+                AutoNumAchievements = addon.Settings.Row("summary.autoNumAchievements", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Auto number of summary achievements"],
-                    desc = addon.L["Auto number of summary achievements Desc"]:KAF_AddDefaultValueText("Summary.AutoNumAchievements"),
-                    get = function() return addon.Options.db.profile.Summary.AutoNumAchievements; end,
-                    set = function(_, value) addon.Options.db.profile.Summary.AutoNumAchievements = value; end
-                },
-                NumAchievements = {
+                    desc = addon.L["Auto number of summary achievements Desc"]:KAF_AddDefaultValueText("summary.autoNumAchievements"),
+                }),
+                NumAchievements = addon.Settings.Row("summary.numAchievements", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Number of summary achievements"],
-                    desc = addon.L["Number of summary achievements Desc"]:KAF_AddDefaultValueText("Summary.NumAchievements"),
-                    min = 1, max = 25, step = 1,
-                    get = function() return addon.Options.db.profile.Summary.NumAchievements; end,
+                    desc = addon.L["Number of summary achievements Desc"]:KAF_AddDefaultValueText("summary.numAchievements"),
                     set = function(_, value)
-                        addon.Options.db.profile.Summary.NumAchievements = value
+                        addon.Settings.Set("summary.numAchievements", value)
                         KrowiAF_SummaryFrame:UpdateAchievementsOnNextShow()
                     end,
-                    disabled = function() return addon.Options.db.profile.Summary.AutoNumAchievements end
-                }
+                    disabled = function() return addon.Settings.Get("summary.autoNumAchievements") end
+                })
             }
         },
         MouseWheelPanScalar = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Mouse Wheel Scroll Speed"],
             args = {
-                MouseWheelPanScalar = {
+                MouseWheelPanScalar = addon.Settings.Row("summary.mouseWheelPanScalar", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Mouse Wheel Scroll Speed"],
-                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("Summary.MouseWheelPanScalar"),
-                    min = 1, max = 50, step = 1,
-                    get = function() return addon.Options.db.profile.Summary.MouseWheelPanScalar; end,
+                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("summary.mouseWheelPanScalar"),
                     set = SetSummaryMouseWheelPanScalar
-                }
+                })
             }
         }
     }
@@ -1008,28 +943,24 @@ local categoriesOptions = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Indentation"],
             args = {
-                Indentation = {
+                Indentation = addon.Settings.Row("categories.indentation", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Indentation"],
-                    desc = addon.L["Indentation Desc"]:KAF_AddDefaultValueText("Categories.Indentation"),
-                    min = 1, max = 50, step = 1,
-                    get = function() return addon.Options.db.profile.Categories.Indentation; end,
+                    desc = addon.L["Indentation Desc"]:KAF_AddDefaultValueText("categories.indentation"),
                     set = SetCategoryIndentation
-                }
+                })
             }
         },
         MouseWheelPanScalar = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Mouse Wheel Scroll Speed"],
             args = {
-                MouseWheelPanScalar = {
+                MouseWheelPanScalar = addon.Settings.Row("categories.mouseWheelPanScalar", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Mouse Wheel Scroll Speed"],
-                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Categories"]):KAF_AddDefaultValueText("Categories.MouseWheelPanScalar"),
-                    min = 1, max = 50, step = 1,
-                    get = function() return addon.Options.db.profile.Categories.MouseWheelPanScalar; end,
+                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Categories"]):KAF_AddDefaultValueText("categories.mouseWheelPanScalar"),
                     set = SetCategoriesMouseWheelPanScalar
-                }
+                })
             }
         },
         Tooltip = {
@@ -1037,13 +968,11 @@ local categoriesOptions = {
             name = addon.L["Tooltip"],
             inline = true,
             args = {
-                ShowNotObtainable = {
+                ShowNotObtainable = addon.Settings.Row("categories.tooltip.showNotObtainable", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Show Not Obtainable"]:K_ReplaceVars(addon.L["Not Obtainable"]),
-                    desc = addon.L["Show Not Obtainable Desc"]:K_ReplaceVars(addon.L["Not Obtainable"]):KAF_AddDefaultValueText("Tooltip.Categories.ShowNotObtainable"),
-                    get = function() return addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable; end,
-                    set = function(_, value) addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable = value; end
-                }
+                    desc = addon.L["Show Not Obtainable Desc"]:K_ReplaceVars(addon.L["Not Obtainable"]):KAF_AddDefaultValueText("categories.tooltip.showNotObtainable"),
+                })
             }
         },
         Merge = {
@@ -1051,14 +980,12 @@ local categoriesOptions = {
             name = addon.L["Merge Small Categories"],
             inline = true,
             args = {
-                MergeSmallCategoriesThreshold = {
+                MergeSmallCategoriesThreshold = addon.Settings.Row("categories.mergeSmallThreshold", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Merge small categories threshold"],
-                    desc = addon.L["Merge small categories threshold Desc"]:KAF_AddDefaultValueText("Window.MergeSmallCategoriesThreshold"),
-                    min = 1, max = 50, step = 1,
-                    get = function() return addon.Options.db.profile.Window.MergeSmallCategoriesThreshold; end,
+                    desc = addon.L["Merge small categories threshold Desc"]:KAF_AddDefaultValueText("categories.mergeSmallThreshold"),
                     set = MergeMergeSmallCategoriesThresholdSet
-                }
+                })
             }
         }
     }
@@ -1082,27 +1009,21 @@ local achievementsOptions = {
                     order = OrderPP(), type = "group", inline = true,
                     name = addon.L["Style"],
                     args = {
-                        CompactAchievements = {
+                        CompactAchievements = addon.Settings.Row("achievements.compact", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Compact Achievements"],
-                            desc = addon.L["Compact Achievements Desc"]:KAF_AddDefaultValueText("Achievements.Compact"):K_AddReloadRequired(),
-                            get = function() return addon.Options.db.profile.Achievements.Compact; end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.Compact = value; end,
-                        },
-                        CenterHeader = {
+                            desc = addon.L["Compact Achievements Desc"]:KAF_AddDefaultValueText("achievements.compact"):K_AddReloadRequired(),
+                        }),
+                        CenterHeader = addon.Settings.Row("achievements.centerHeader", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Center Header"],
-                            desc = addon.L["Center Header Desc"]:KAF_AddDefaultValueText("Achievements.CenterHeader"):K_AddReloadRequired(),
-                            get = function() return addon.Options.db.profile.Achievements.CenterHeader; end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.CenterHeader = value; end,
-                        },
-                        HideDateCompleted = {
+                            desc = addon.L["Center Header Desc"]:KAF_AddDefaultValueText("achievements.centerHeader"):K_AddReloadRequired(),
+                        }),
+                        HideDateCompleted = addon.Settings.Row("achievements.hideDateCompleted", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Hide Date Completed"],
-                            desc = addon.L["Hide Date Completed Desc"]:KAF_AddDefaultValueText("Achievements.HideDateCompleted"):K_AddReloadRequired(),
-                            get = function() return addon.Options.db.profile.Achievements.HideDateCompleted; end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.HideDateCompleted = value; end,
-                        },
+                            desc = addon.L["Hide Date Completed Desc"]:KAF_AddDefaultValueText("achievements.hideDateCompleted"):K_AddReloadRequired(),
+                        }),
                         -- ShowOtherFactionWarbandAsCompleted = {
                         --     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                         --     name = addon.L["Show Other Faction Warband as Completed"],
@@ -1116,181 +1037,152 @@ local achievementsOptions = {
                         --     set = function(_, value) addon.Options.db.profile.Achievements.ShowOtherFactionWarbandAsCompleted = value; end,
                         -- },
                         Blank0 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.35), name = ""},
-                        ShowAllianceFactionIcon = {
+                        ShowAllianceFactionIcon = addon.Settings.Row("achievements.showAllianceFactionIcon", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Alliance"]),
-                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Alliance"]):KAF_AddDefaultValueText("Achievements.ShowAllianceFactionIcon"),
-                            get = function() return addon.Options.db.profile.Achievements.ShowAllianceFactionIcon; end,
+                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Alliance"]):KAF_AddDefaultValueText("achievements.showAllianceFactionIcon"),
                             set = ShowAllianceFactionIconSet,
-                        },
-                        ShowHordeFactionIcon = {
+                        }),
+                        ShowHordeFactionIcon = addon.Settings.Row("achievements.showHordeFactionIcon", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Faction Faction Icon"]:K_ReplaceVars(addon.L["Horde"]),
-                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Horde"]):KAF_AddDefaultValueText("Achievements.ShowHordeFactionIcon"),
-                            get = function() return addon.Options.db.profile.Achievements.ShowHordeFactionIcon; end,
+                            desc = addon.L["Show Faction Faction Icon Desc"]:K_ReplaceVars(addon.L["Horde"]):KAF_AddDefaultValueText("achievements.showHordeFactionIcon"),
                             set = ShowHordeFactionIconSet,
-                        },
-                        FactionIconAlpha = {
+                        }),
+                        FactionIconAlpha = addon.Settings.Row("achievements.factionIconAlpha", {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Faction Icon Transparency"],
-                            desc = addon.L["Faction Icon Transparency Desc"]:KAF_AddDefaultValueText("Achievements.FactionIconAlpha"),
-                            min = 0, max = 1, step = 0.01,
-                            get = function() return addon.Options.db.profile.Achievements.FactionIconAlpha; end,
+                            desc = addon.L["Faction Icon Transparency Desc"]:KAF_AddDefaultValueText("achievements.factionIconAlpha"),
                             set = FactionIconAlphaSet,
-                            disabled = function() return not addon.Options.db.profile.Achievements.ShowAllianceFactionIcon and not addon.Options.db.profile.Achievements.ShowHordeFactionIcon; end
-                        },
+                            disabled = function() return not addon.Settings.Get("achievements.showAllianceFactionIcon") and not addon.Settings.Get("achievements.showHordeFactionIcon"); end
+                        }),
                         Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.35), name = ""},
-                        ShowTemporarilyObtainableIcon = {
+                        ShowTemporarilyObtainableIcon = addon.Settings.Row("achievements.showTemporarilyObtainableIcon", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Temporarily obtainable Icon"]:K_ReplaceVars(addon.L["Temporarily obtainable"]),
-                            desc = addon.L["Show Temporarily obtainable Icon Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("Achievements.ShowTemporarilyObtainableIcon"),
-                            get = function() return addon.Options.db.profile.Achievements.ShowTemporarilyObtainableIcon; end,
+                            desc = addon.L["Show Temporarily obtainable Icon Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("achievements.showTemporarilyObtainableIcon"),
                             set = ShowTemporarilyObtainableIconSet,
-                        },
-                        TemporarilyObtainableHeaderColors = {
+                        }),
+                        TemporarilyObtainableHeaderColors = addon.Settings.Row("achievements.temporarilyObtainableHeaderColors", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Temporarily obtainable Header Colors"]:K_ReplaceVars(addon.L["Temporarily obtainable"]),
-                            desc = addon.L["Temporarily obtainable Header Colors Desc"]:KAF_AddDefaultValueText("Achievements.TemporarilyObtainableHeaderColors"),
-                            get = function() return addon.Options.db.profile.Achievements.TemporarilyObtainableHeaderColors; end,
+                            desc = addon.L["Temporarily obtainable Header Colors Desc"]:KAF_AddDefaultValueText("achievements.temporarilyObtainableHeaderColors"),
                             set = TemporarilyObtainableHeaderColorsSet,
-                        },
-                        ShowWarbandIcon = {
+                        }),
+                        ShowWarbandIcon = addon.Settings.Row("achievements.showWarbandIcon", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Warband Icon"]:K_ReplaceVars(addon.L["Warband"]),
-                            desc = addon.L["Show Warband Icon Desc"]:K_ReplaceVars(addon.L["Warband"]):KAF_AddDefaultValueText("Achievements.ShowWarbandIcon"),
-                            get = function() return addon.Options.db.profile.Achievements.ShowWarbandIcon; end,
+                            desc = addon.L["Show Warband Icon Desc"]:K_ReplaceVars(addon.L["Warband"]):KAF_AddDefaultValueText("achievements.showWarbandIcon"),
                             set = ShowWarbandIconSet,
-                        },
-                        WarbandHeaderColor = {
+                        }),
+                        WarbandHeaderColor = addon.Settings.Row("achievements.warbandHeaderColor", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Warband Header Color"]:K_ReplaceVars(addon.L["Warband"]),
-                            desc = addon.L["Warband Header Color Desc"]:K_ReplaceVars(addon.L["Show Warband Icon"]:K_ReplaceVars(addon.L["Warband"])):KAF_AddDefaultValueText("Achievements.WarbandHeaderColor"),
-                            get = function() return addon.Options.db.profile.Achievements.WarbandHeaderColor; end,
+                            desc = addon.L["Warband Header Color Desc"]:K_ReplaceVars(addon.L["Show Warband Icon"]:K_ReplaceVars(addon.L["Warband"])):KAF_AddDefaultValueText("achievements.warbandHeaderColor"),
                             set = WarbandHeaderColorSet,
-                        },
+                        }),
                         Guide = {
                             order = OrderPP(), type = "header",
                             name = addon.L["Guide"]
                         },
-                        GuideTooltip = {
+                        GuideTooltip = addon.Settings.Row("guides.tooltip", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Guide in Tooltip"],
-                            desc = addon.L["Show Guide in Tooltip Desc"]:KAF_AddDefaultValueText("Achievements.Guide.Tooltip"),
-                            get = function() return addon.Options.db.profile.Achievements.Guide.Tooltip end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.Guide.Tooltip = value end
-                        },
-                        GuideRightClickMenu = {
+                            desc = addon.L["Show Guide in Tooltip Desc"]:KAF_AddDefaultValueText("guides.tooltip"),
+                        }),
+                        GuideRightClickMenu = addon.Settings.Row("guides.rightClickMenu", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Guide in Right Click Menu"],
-                            desc = addon.L["Show Guide in Right Click Menu Desc"]:KAF_AddDefaultValueText("Achievements.Guide.RightClickMenu"),
-                            get = function() return addon.Options.db.profile.Achievements.Guide.RightClickMenu end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.Guide.RightClickMenu = value end
-                        },
-                        GuideIcon = {
+                            desc = addon.L["Show Guide in Right Click Menu Desc"]:KAF_AddDefaultValueText("guides.rightClickMenu"),
+                        }),
+                        GuideIcon = addon.Settings.Row("guides.icon", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Guide Icon"],
-                            desc = addon.L["Show Guide Icon Desc"]:KAF_AddDefaultValueText("Achievements.Guide.Icon"),
-                            get = function() return addon.Options.db.profile.Achievements.Guide.Icon end,
+                            desc = addon.L["Show Guide Icon Desc"]:KAF_AddDefaultValueText("guides.icon"),
                             set = GuideOptionSetter("Icon")
-                        },
-                        GuideMouseoverShow = {
+                        }),
+                        GuideMouseoverShow = addon.Settings.Row("guides.mouseoverShow", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Guide on Mouseover"],
-                            desc = addon.L["Show Guide on Mouseover Desc"]:KAF_AddDefaultValueText("Achievements.Guide.MouseoverShow"),
-                            get = function() return addon.Options.db.profile.Achievements.Guide.MouseoverShow end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.Guide.MouseoverShow = value end,
-                            disabled = function() return not addon.Options.db.profile.Achievements.Guide.Icon end
-                        },
-                        GuideExpandedRow = {
+                            desc = addon.L["Show Guide on Mouseover Desc"]:KAF_AddDefaultValueText("guides.mouseoverShow"),
+                            disabled = function() return not addon.Settings.Get("guides.icon") end
+                        }),
+                        GuideExpandedRow = addon.Settings.Row("guides.expandedRow", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Guide in Expanded Achievement"],
-                            desc = addon.L["Show Guide in Expanded Achievement Desc"]:KAF_AddDefaultValueText("Achievements.Guide.ExpandedRow"),
-                            get = function() return addon.Options.db.profile.Achievements.Guide.ExpandedRow end,
+                            desc = addon.L["Show Guide in Expanded Achievement Desc"]:KAF_AddDefaultValueText("guides.expandedRow"),
                             set = GuideOptionSetter("ExpandedRow")
-                        },
-                        GuideActionStyle = {
+                        }),
+                        GuideActionStyle = addon.Settings.Row("guides.actionStyle", {
                             order = OrderPP(), type = "select", width = AdjustedWidth(1.35),
                             name = addon.L["Guide Action Style"],
-                            desc = addon.L["Guide Action Style Desc"]:KAF_AddDefaultValueText("Achievements.Guide.ActionStyle", guideActionStyles),
+                            desc = addon.L["Guide Action Style Desc"]:KAF_AddDefaultValueText("guides.actionStyle", guideActionStyles),
                             values = guideActionStyles,
-                            get = function() return addon.Options.db.profile.Achievements.Guide.ActionStyle end,
                             set = GuideOptionSetter("ActionStyle")
-                        },
-                        GuideWaypointProvider = {
+                        }),
+                        GuideWaypointProvider = addon.Settings.Row("guides.waypointProvider", {
                             order = OrderPP(), type = "select", width = AdjustedWidth(1.35),
                             name = addon.L["Guide Waypoint"],
-                            desc = addon.L["Guide Waypoint Desc"]:KAF_AddDefaultValueText("Achievements.Guide.WaypointProvider", guideWaypointProviders),
+                            desc = addon.L["Guide Waypoint Desc"]:KAF_AddDefaultValueText("guides.waypointProvider", guideWaypointProviders),
                             values = guideWaypointProviders,
-                            get = function() return addon.Options.db.profile.Achievements.Guide.WaypointProvider end,
                             set = GuideOptionSetter("WaypointProvider")
-                        },
+                        }),
                         Objectives = {
                             order = OrderPP(), type = "header",
                             name = addon.L["Objectives"]
                         },
-                        ForceTwoColumns = {
+                        ForceTwoColumns = addon.Settings.Row("achievements.objectives.forceTwoColumns", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Force two columns"],
-                            desc = addon.L["Force two columns Desc"]:KAF_AddDefaultValueText("Achievements.Objectives.ForceTwoColumns"),
-                            get = function() return addon.Options.db.profile.Achievements.Objectives.ForceTwoColumns; end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.Objectives.ForceTwoColumns = value; end
-                        },
-                        ForceTwoColumnsThreshold = {
+                            desc = addon.L["Force two columns Desc"]:KAF_AddDefaultValueText("achievements.objectives.forceTwoColumns"),
+                        }),
+                        ForceTwoColumnsThreshold = addon.Settings.Row("achievements.objectives.forceTwoColumnsThreshold", {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Force two columns threshold"],
-                            desc = addon.L["Force two columns threshold Desc"]:KAF_AddDefaultValueText("Achievements.Objectives.ForceTwoColumnsThreshold"),
-                            min = 0, max = 50, step = 1,
-                            get = function() return addon.Options.db.profile.Achievements.Objectives.ForceTwoColumnsThreshold; end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.Objectives.ForceTwoColumnsThreshold = value; end,
-                            disabled = function() return not addon.Options.db.profile.Achievements.Objectives.ForceTwoColumns; end
-                        },
-                        CriteriaBehaviour = {
+                            desc = addon.L["Force two columns threshold Desc"]:KAF_AddDefaultValueText("achievements.objectives.forceTwoColumnsThreshold"),
+                            disabled = function() return not addon.Settings.Get("achievements.objectives.forceTwoColumns"); end
+                        }),
+                        CriteriaBehaviour = addon.Settings.Row("achievements.objectives.criteriaBehaviour", {
                             order = OrderPP(), type = "select", style = "radio",
                             name = addon.L["Criteria Behaviour"],
                             desc = addon.L["Criteria Behaviour Desc"]:K_ReplaceVars{
                                 overflow = addon.L["Overflow"],
                                 truncate = addon.L["Truncate"],
                                 flexible = addon.L["Flexible"]
-                            }:KAF_AddDefaultValueText("Achievements.Objectives.CriteriaBehaviour", criteriaBehaviour),
+                            }:KAF_AddDefaultValueText("achievements.objectives.criteriaBehaviour", criteriaBehaviour),
                             values = criteriaBehaviour,
-                            get = function() return addon.Options.db.profile.Achievements.Objectives.CriteriaBehaviour; end,
-                            set = function (_, value) addon.Options.db.profile.Achievements.Objectives.CriteriaBehaviour = value; end
-                        }
+                            set = function (_, value) addon.Settings.Set("achievements.objectives.criteriaBehaviour", value); end
+                        })
                     }
                 },
                 MouseWheelPanScalar = {
                     order = OrderPP(), type = "group", inline = true,
                     name = addon.L["Mouse Wheel Scroll Speed"],
                     args = {
-                        MouseWheelPanScalar = {
+                        MouseWheelPanScalar = addon.Settings.Row("achievements.mouseWheelPanScalar", {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                             name = addon.L["Mouse Wheel Scroll Speed"],
-                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("Achievements.MouseWheelPanScalar"),
-                            min = 1, max = 50, step = 1,
-                            get = function() return addon.Options.db.profile.Achievements.MouseWheelPanScalar; end,
+                            desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("achievements.mouseWheelPanScalar"),
                             set = SetAchievementsMouseWheelPanScalar
-                        }
+                        })
                     }
                 },
                 TabPriority = {
                     order = OrderPP(), type = "group", inline = true,
                     name = addon.L["Tab Priority"],
                     args = {
-                        EnableTabPriority = {
+                        EnableTabPriority = addon.Settings.Row("window.tabPriority.enabled", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Enable Tab Priority"],
-                            desc = addon.L["Enable Tab Priority Desc"]:KAF_AddDefaultValueText("Achievements.EnableTabPriority"),
-                            get = function() return addon.Options.db.profile.Achievements.EnableTabPriority; end,
-                            set = function(_, value) addon.Options.db.profile.Achievements.EnableTabPriority = value; end
-                        },
-                        TabPriority = {
+                            desc = addon.L["Enable Tab Priority Desc"]:KAF_AddDefaultValueText("window.tabPriority.enabled"),
+                        }),
+                        TabPriority = addon.Settings.Row("window.tabPriority.tab", {
                             order = OrderPP(), type = "select", width = AdjustedWidth(1.5),
                             name = addon.L["Tab Priority"],
-                            desc = function() return addon.L["Tab Priority Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("Achievements.TabPriority", KrowiAF_SavedData.TabKeys) end,
+                            desc = function() return addon.L["Tab Priority Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("window.tabPriority.tab", KrowiAF_SavedData.TabKeys) end,
                             values = function() return KrowiAF_SavedData.TabKeys; end,
-                            get = function() return addon.Options.db.profile.Achievements.TabPriority; end,
-                            set = function (_, value) addon.Options.db.profile.Achievements.TabPriority = value; end
-                        }
+                            set = function (_, value) addon.Settings.Set("window.tabPriority.tab", value); end
+                        })
                     }
                 }
             }
@@ -1307,164 +1199,129 @@ local achievementsOptions = {
                             order = OrderPP(), type = "header",
                             name = addon.L["Earned By"] .. " / " .. addon.L["Not Earned By"]
                         },
-                        EarnedByCharacters = {
+                        EarnedByCharacters = addon.Settings.Row("tooltips.earnedBy.characters", {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Number of Earned By characters"]:K_ReplaceVars(addon.L["Earned By"]),
-                            desc = addon.L["Number of Earned By characters Desc"]:KAF_AddDefaultValueText("Tooltip.Achievements.EarnedBy.Characters"),
-                            min = 0, max = 100, step = 1,
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.EarnedBy.Characters; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.EarnedBy.Characters = value; end
-                        },
-                        EarnedByNotCharacters = {
+                            desc = addon.L["Number of Earned By characters Desc"]:KAF_AddDefaultValueText("tooltips.earnedBy.characters"),
+                        }),
+                        EarnedByNotCharacters = addon.Settings.Row("tooltips.earnedBy.notCharacters", {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Number of Not Earned By characters"]:K_ReplaceVars(addon.L["Not Earned By"]),
-                            desc = addon.L["Number of Not Earned By characters Desc"]:KAF_AddDefaultValueText("Tooltip.Achievements.EarnedBy.NotCharacters"),
-                            min = 0, max = 100, step = 1,
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.EarnedBy.NotCharacters; end,
-                            set = function(_, value)addon.Options.db.profile.Tooltip.Achievements.EarnedBy.NotCharacters = value;end
-                        },
-                        EarnedByAlwaysShowRealm = {
+                            desc = addon.L["Number of Not Earned By characters Desc"]:KAF_AddDefaultValueText("tooltips.earnedBy.notCharacters"),
+                            set = function(_, value)addon.Settings.Set("tooltips.earnedBy.notCharacters", value);end
+                        }),
+                        EarnedByAlwaysShowRealm = addon.Settings.Row("tooltips.earnedBy.alwaysShowRealm", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Always show realm"],
-                            desc = addon.L["Always show realm Desc"]:KAF_AddDefaultValueText("Tooltip.Achievements.EarnedBy.AlwaysShowRealm"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.EarnedBy.AlwaysShowRealm; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.EarnedBy.AlwaysShowRealm = value; end
-                        },
+                            desc = addon.L["Always show realm Desc"]:KAF_AddDefaultValueText("tooltips.earnedBy.alwaysShowRealm"),
+                        }),
                         Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.35), name = ""},
-                        HideNotEarnedByIfEarnedByCurrentCharacter = {
+                        HideNotEarnedByIfEarnedByCurrentCharacter = addon.Settings.Row("tooltips.earnedBy.hideNotEarnedByIfEarnedByCurrentCharacter", {
                             order = OrderPP(), type = "toggle", width = "full",
                             name = addon.L["Hide Not Earned By if current character earned the achievement"]:K_ReplaceVars(addon.L["Not Earned By"]),
                             desc = addon.L["Hide Not Earned By if current character earned the achievement Desc"]:K_ReplaceVars{
                                 notEarnedBy = addon.L["Not Earned By"],
                                 earnedBy = addon.L["Earned By"]
-                            }:KAF_AddDefaultValueText("Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.EarnedBy.HideNotEarnedByIfEarnedByCurrentCharacter = value; end
-                        },
+                            }:KAF_AddDefaultValueText("tooltips.earnedBy.hideNotEarnedByIfEarnedByCurrentCharacter"),
+                        }),
                         AddedInVersion = {
                             order = OrderPP(), type = "header",
                             name = addon.L["Added in version"]
                         },
-                        ShowAddedInVersion = {
+                        ShowAddedInVersion = addon.Settings.Row("tooltips.showAddedInVersion", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Added in version"]:K_ReplaceVars(addon.L["Added in version"]),
-                            desc = addon.L["Show Added in version Desc"]:K_ReplaceVars(addon.L["Added in version"]):KAF_AddDefaultValueText("Tooltip.Achievements.ShowAddedInVersion"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.ShowAddedInVersion; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ShowAddedInVersion = value; end
-                        },
+                            desc = addon.L["Show Added in version Desc"]:K_ReplaceVars(addon.L["Added in version"]):KAF_AddDefaultValueText("tooltips.showAddedInVersion"),
+                        }),
                         Rewards = {
                             order = OrderPP(), type = "header",
                             name = addon.L["Rewards"]
                         },
-                        ShowRewards = {
+                        ShowRewards = addon.Settings.Row("tooltips.showRewards", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Rewards"]:K_ReplaceVars(addon.L["Rewards"]),
-                            desc = addon.L["Show Rewards Desc"]:K_ReplaceVars(addon.L["Rewards"]):KAF_AddDefaultValueText("Tooltip.Achievements.ShowRewards"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.ShowRewards; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ShowRewards = value; end
-                        },
+                            desc = addon.L["Show Rewards Desc"]:K_ReplaceVars(addon.L["Rewards"]):KAF_AddDefaultValueText("tooltips.showRewards"),
+                        }),
                         PartOfAChain = {
                             order = OrderPP(), type = "header",
                             name = addon.L["Part of a chain"]
                         },
-                        ShowPartOfAChain = {
+                        ShowPartOfAChain = addon.Settings.Row("tooltips.showPartOfAChain", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Part of a chain"]:K_ReplaceVars(addon.L["Part of a chain"]),
-                            desc = addon.L["Show Part of a chain Desc"]:K_ReplaceVars(addon.L["Part of a chain"]):KAF_AddDefaultValueText("Tooltip.Achievements.ShowPartOfAChain"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.ShowPartOfAChain; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ShowPartOfAChain = value; end
-                        },
-                        ShowCurrentCharacterIconsPartOfAChain = {
+                            desc = addon.L["Show Part of a chain Desc"]:K_ReplaceVars(addon.L["Part of a chain"]):KAF_AddDefaultValueText("tooltips.showPartOfAChain"),
+                        }),
+                        ShowCurrentCharacterIconsPartOfAChain = addon.Settings.Row("tooltips.showCurrentCharacterIconsPartOfAChain", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show current character icons"],
                             desc = addon.L["Show current character icons Desc"]:K_ReplaceVars{
                                 partOfAChain = addon.L["Part of a chain"],
                                 requiredFor = addon.L["Required for"]
-                            }:KAF_AddDefaultValueText("Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain = value; end,
-                            disabled = function() return not addon.Options.db.profile.Tooltip.Achievements.ShowPartOfAChain; end
-                        },
+                            }:KAF_AddDefaultValueText("tooltips.showCurrentCharacterIconsPartOfAChain"),
+                            disabled = function() return not addon.Settings.Get("tooltips.showPartOfAChain"); end
+                        }),
                         RequiredFor = {
                             order = OrderPP(), type = "header",
                             name = addon.L["Required for"]
                         },
-                        ShowRequiredFor = {
+                        ShowRequiredFor = addon.Settings.Row("tooltips.showRequiredFor", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Required for"]:K_ReplaceVars(addon.L["Required for"]),
-                            desc = addon.L["Show Required for Desc"]:K_ReplaceVars(addon.L["Required for"]):KAF_AddDefaultValueText("Tooltip.Achievements.ShowRequiredFor"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.ShowRequiredFor; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ShowRequiredFor = value; end
-                        },
-                        ShowCurrentCharacterIconsRequiredFor = {
+                            desc = addon.L["Show Required for Desc"]:K_ReplaceVars(addon.L["Required for"]):KAF_AddDefaultValueText("tooltips.showRequiredFor"),
+                        }),
+                        ShowCurrentCharacterIconsRequiredFor = addon.Settings.Row("tooltips.showCurrentCharacterIconsRequiredFor", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show current character icons"],
                             desc = addon.L["Show current character icons Desc"]:K_ReplaceVars{
                                 partOfAChain = addon.L["Part of a chain"],
                                 requiredFor = addon.L["Required for"]
-                            }:KAF_AddDefaultValueText("Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor = value; end,
-                            disabled = function() return not addon.Options.db.profile.Tooltip.Achievements.ShowRequiredFor; end
-                        },
+                            }:KAF_AddDefaultValueText("tooltips.showCurrentCharacterIconsRequiredFor"),
+                            disabled = function() return not addon.Settings.Get("tooltips.showRequiredFor"); end
+                        }),
                         OtherFaction = {
                             order = OrderPP(), type = "header",
                             name = addon.L["Other faction"]
                         },
-                        ShowOtherFaction = {
+                        ShowOtherFaction = addon.Settings.Row("tooltips.showOtherFaction", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Other faction"]:K_ReplaceVars(addon.L["Other faction"]),
-                            desc = addon.L["Show Other faction Desc"]:K_ReplaceVars(addon.L["Other faction"]):KAF_AddDefaultValueText("Tooltip.Achievements.ShowOtherFaction"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.ShowOtherFaction; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ShowOtherFaction = value; end
-                        },
+                            desc = addon.L["Show Other faction Desc"]:K_ReplaceVars(addon.L["Other faction"]):KAF_AddDefaultValueText("tooltips.showOtherFaction"),
+                        }),
                         ObjectivesProgress = {
                             order = OrderPP(), type = "header",
                             name = addon.L["Objectives progress"]
                         },
-                        ObjectivesProgressShow = {
+                        ObjectivesProgressShow = addon.Settings.Row("tooltips.objectivesProgress.show", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Objectives progress"]:K_ReplaceVars(addon.L["Objectives progress"]),
-                            desc = addon.L["Show Objectives progress Desc"]:K_ReplaceVars(addon.L["Objectives progress"]):KAF_AddDefaultValueText("Tooltip.Achievements.ObjectivesProgress.Show"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show = value; end
-                        },
-                        ObjectivesProgressShowWhenAchievementCompleted = {
+                            desc = addon.L["Show Objectives progress Desc"]:K_ReplaceVars(addon.L["Objectives progress"]):KAF_AddDefaultValueText("tooltips.objectivesProgress.show"),
+                        }),
+                        ObjectivesProgressShowWhenAchievementCompleted = addon.Settings.Row("tooltips.objectivesProgress.showWhenAchievementCompleted", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["When achievement completed"]:K_ReplaceVars(addon.L["Objectives progress"]),
-                            desc = addon.L["When achievement completed Desc"]:K_ReplaceVars(addon.L["Objectives progress"]):KAF_AddDefaultValueText("Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted = value; end,
-                            disabled = function() return not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show; end
-                        },
-                        ObjectivesProgressSecondColumnThreshold = {
+                            desc = addon.L["When achievement completed Desc"]:K_ReplaceVars(addon.L["Objectives progress"]):KAF_AddDefaultValueText("tooltips.objectivesProgress.showWhenAchievementCompleted"),
+                            disabled = function() return not addon.Settings.Get("tooltips.objectivesProgress.show"); end
+                        }),
+                        ObjectivesProgressSecondColumnThreshold = addon.Settings.Row("tooltips.objectivesProgress.secondColumnThreshold", {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Second column threshold"],
-                            desc = addon.L["Second column threshold Desc"]:KAF_AddDefaultValueText("Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold"),
-                            min = 0, max = 100, step = 1,
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold = value; end,
-                            disabled = function() return not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show; end
-                        },
+                            desc = addon.L["Second column threshold Desc"]:KAF_AddDefaultValueText("tooltips.objectivesProgress.secondColumnThreshold"),
+                            disabled = function() return not addon.Settings.Get("tooltips.objectivesProgress.show"); end
+                        }),
                         MostProgress = {
                             order = OrderPP(), type = "header",
                             name = addon.L["Most progress"]
                         },
-                        MostProgressAlwaysShowRealm = {
+                        MostProgressAlwaysShowRealm = addon.Settings.Row("tooltips.mostProgress.alwaysShowRealm", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Always show realm"],
-                            desc = addon.L["Always show realm Desc"]:KAF_AddDefaultValueText("Tooltip.Achievements.MostProgress.AlwaysShowRealm"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.MostProgress.AlwaysShowRealm; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.MostProgress.AlwaysShowRealm = value; end
-                        },
-                        MostProgressCharacters = {
+                            desc = addon.L["Always show realm Desc"]:KAF_AddDefaultValueText("tooltips.mostProgress.alwaysShowRealm"),
+                        }),
+                        MostProgressCharacters = addon.Settings.Row("tooltips.mostProgress.characters", {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Number of Most progress characters"]:K_ReplaceVars(addon.L["Most progress"]),
-                            desc = addon.L["Number of Most progress characters Desc"]:KAF_AddDefaultValueText("Tooltip.Achievements.MostProgress.Characters"),
-                            min = 0, max = 100, step = 1,
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters = value; end
-                        }
+                            desc = addon.L["Number of Most progress characters Desc"]:KAF_AddDefaultValueText("tooltips.mostProgress.characters"),
+                        })
                     }
                 }
             }
@@ -1477,14 +1334,12 @@ local achievementsOptions = {
                     order = OrderPP(), type = "group", inline = true,
                     name = addon.L["Tooltip"] .. " - " .. addon.L["Temporarily obtainable"],
                     args = {
-                        Show = {
+                        Show = addon.Settings.Row("tooltips.temporarilyObtainable.show", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Temporarily obtainable"]:K_ReplaceVars(addon.L["Temporarily obtainable"]),
-                            desc = addon.L["Show Temporarily obtainable Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("Tooltip.Achievements.TemporarilyObtainable.Show"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.Show; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.Show = value; end
-                        },
-                        ShowDateTime = {
+                            desc = addon.L["Show Temporarily obtainable Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("tooltips.temporarilyObtainable.show"),
+                        }),
+                        ShowDateTime = addon.Settings.Row("tooltips.temporarilyObtainable.showDateTime", {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.35),
                             name = addon.L["Show Start Time & End Time"]:K_ReplaceVars{
                                 startTime = addon.L["Start Time"],
@@ -1494,19 +1349,14 @@ local achievementsOptions = {
                                 startTime = addon.L["Start Time"],
                                 endTime = addon.L["End Time"],
                                 temporarilyObtainable = addon.L["Temporarily obtainable"]
-                            }:KAF_AddDefaultValueText("Tooltip.Achievements.TemporarilyObtainable.ShowDateTime"),
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.ShowDateTime; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.ShowDateTime = value; end,
-                            disabled = function() return not addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.Show end
-                        },
-                        EarnedByCharacters = {
+                            }:KAF_AddDefaultValueText("tooltips.temporarilyObtainable.showDateTime"),
+                            disabled = function() return not addon.Settings.Get("tooltips.temporarilyObtainable.show") end
+                        }),
+                        EarnedByCharacters = addon.Settings.Row("tooltips.temporarilyObtainable.numberOfLines", {
                             order = OrderPP(), type = "range", width = AdjustedWidth(1.35),
                             name = addon.L["Number of lines"],
-                            desc = addon.L["Number of Temporarily obtainable lines Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("Tooltip.Achievements.TemporarilyObtainable.NumberOfLines"),
-                            min = 1, max = 10, step = 1,
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.NumberOfLines; end,
-                            set = function(_, value) addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.NumberOfLines = value; end
-                        },
+                            desc = addon.L["Number of Temporarily obtainable lines Desc"]:K_ReplaceVars(addon.L["Temporarily obtainable"]):KAF_AddDefaultValueText("tooltips.temporarilyObtainable.numberOfLines"),
+                        }),
                     }
                 },
                 StartTimeAndEndTime = {
@@ -1523,12 +1373,11 @@ local achievementsOptions = {
                                 custom.set(nil, startTimeAndEndTimeDateTimeFormats[value])
                             end
                         },
-                        Custom = {
+                        Custom = addon.Settings.Row("tooltips.temporarilyObtainable.dateTimeFormat.startTimeAndEndTime", {
                             order = OrderPP(), type = "input", width = AdjustedWidth(1.35),
                             name = addon.L["Custom"],
-                            get = function() return addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime; end,
                             set = StartTimeAndEndTimeCustomSet
-                        }
+                        })
                     }
                 },
                 DateTimeFormattingGuideLine = {
@@ -1587,21 +1436,17 @@ local calendarOptions = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.Util.L["General"],
             args = {
-                LockAchievementMonth = {
+                LockAchievementMonth = addon.Settings.Row("calendar.lockAchievementMonth", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Lock month when closed by achievement"],
-                    desc = addon.L["Lock month when closed by achievement Desc"]:KAF_AddDefaultValueText("Calendar.LockAchievementMonth"),
-                    get = function() return addon.Options.db.profile.Calendar.LockAchievementMonth; end,
-                    set = function(_, value) addon.Options.db.profile.Calendar.LockAchievementMonth = value; end
-                },
+                    desc = addon.L["Lock month when closed by achievement Desc"]:KAF_AddDefaultValueText("calendar.lockAchievementMonth"),
+                }),
                 Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
-                LockMonth = {
+                LockMonth = addon.Settings.Row("calendar.lockMonth", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Lock month"],
-                    desc = addon.L["Lock month Desc"]:KAF_AddDefaultValueText("Calendar.LockMonth"),
-                    get = function() return addon.Options.db.profile.Calendar.LockMonth; end,
-                    set = function(_, value) addon.Options.db.profile.Calendar.LockMonth = value; end
-                }
+                    desc = addon.L["Lock month Desc"]:KAF_AddDefaultValueText("calendar.lockMonth"),
+                })
             }
         },
         Weekdays = {
@@ -1609,31 +1454,28 @@ local calendarOptions = {
             name = addon.L["Weekdays"],
             inline = true,
             args = {
-                FirstDayOfTheWeek = {
+                FirstDayOfTheWeek = addon.Settings.Row("calendar.firstWeekDay", {
                     order = OrderPP(), type = "select", width = AdjustedWidth(1.5),
                     name = addon.L["First day of the week"],
                     desc = addon.L["First day of the week Desc"],
                     values = CALENDAR_WEEKDAY_NAMES,
-                    get = function() return addon.Options.db.profile.Calendar.FirstWeekDay; end,
                     set = function (_, value)
-                        addon.Options.db.profile.Calendar.FirstWeekDay = value
+                        addon.Settings.Set("calendar.firstWeekDay", value)
                         KrowiAF_AchievementCalendarFrame:Update()
                     end
-                }
+                })
             }
         },
         SideFrameMouseWheelPanScalar = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Side Window"] .. " " .. addon.L["Mouse Wheel Scroll Speed"],
             args = {
-                MouseWheelPanScalar = {
+                MouseWheelPanScalar = addon.Settings.Row("calendar.mouseWheelPanScalar", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Mouse Wheel Scroll Speed"],
-                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("Calendar.MouseWheelPanScalar"),
-                    min = 1, max = 50, step = 1,
-                    get = function() return addon.Options.db.profile.Calendar.MouseWheelPanScalar; end,
+                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Achievements"]):KAF_AddDefaultValueText("calendar.mouseWheelPanScalar"),
                     set = SetCalendarMouseWheelPanScalar
-                }
+                })
             }
         }
     }
@@ -1647,42 +1489,34 @@ local criteriaOptions = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Tooltip"],
             args = {
-                ShowCriteria = {
+                ShowCriteria = addon.Settings.Row("unitTooltips.criteria.show", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Show Criteria"],
                     desc = function() return addon.L["Show Criteria Desc"]:K_ReplaceVars{
                         criteria = (GetAchievementCriteriaInfo(1206, 1)),
                         achievement = addon.GetAchievmentName(1206)
-                    }:KAF_AddDefaultValueText("Tooltip.Criteria.Show"); end,
-                    get = function() return addon.Options.db.profile.Tooltip.Criteria.Show; end,
-                    set = function(_, value) addon.Options.db.profile.Tooltip.Criteria.Show = value; end
-                },
+                    }:KAF_AddDefaultValueText("unitTooltips.criteria.show"); end,
+                }),
                 Blank1 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
                 ShowCriteriaIf = {
                     order = OrderPP(), type = "header",
                     name = addon.L["Show Criteria If"]
                 },
-                ShowCriteriaIfAchievementIsCompleted = {
+                ShowCriteriaIfAchievementIsCompleted = addon.Settings.Row("unitTooltips.criteria.showIf.achievementIsCompleted", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Achievement is Completed"],
-                    desc = addon.L["Achievement is Completed Desc"]:KAF_AddDefaultValueText("Tooltip.Criteria.ShowIf.AchievementIsCompleted"),
-                    get = function() return addon.Options.db.profile.Tooltip.Criteria.ShowIf.AchievementIsCompleted; end,
-                    set = function(_, value) addon.Options.db.profile.Tooltip.Criteria.ShowIf.AchievementIsCompleted = value; end
-                },
-                ShowCriteriaIfAchievementWasNotEarnedByMe = {
+                    desc = addon.L["Achievement is Completed Desc"]:KAF_AddDefaultValueText("unitTooltips.criteria.showIf.achievementIsCompleted"),
+                }),
+                ShowCriteriaIfAchievementWasNotEarnedByMe = addon.Settings.Row("unitTooltips.criteria.showIf.achievementWasNotEarnedByMe", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Achievement was Not Earned by Me"],
-                    desc = addon.L["Achievement was Not Earned by Me Desc"]:KAF_AddDefaultValueText("Tooltip.Criteria.ShowIf.AchievementWasNotEarnedByMe"),
-                    get = function() return addon.Options.db.profile.Tooltip.Criteria.ShowIf.AchievementWasNotEarnedByMe; end,
-                    set = function(_, value) addon.Options.db.profile.Tooltip.Criteria.ShowIf.AchievementWasNotEarnedByMe = value; end
-                },
-                ShowCriteriaIfCriteriaIsCompleted = {
+                    desc = addon.L["Achievement was Not Earned by Me Desc"]:KAF_AddDefaultValueText("unitTooltips.criteria.showIf.achievementWasNotEarnedByMe"),
+                }),
+                ShowCriteriaIfCriteriaIsCompleted = addon.Settings.Row("unitTooltips.criteria.showIf.criteriaIsCompleted", {
                     order = OrderPP(), type = "toggle", width = AdjustedWidth(1.5),
                     name = addon.L["Criteria is Completed"],
-                    desc = addon.L["Criteria is Completed Desc"]:KAF_AddDefaultValueText("Tooltip.Criteria.ShowIf.CriteriaIsCompleted"),
-                    get = function() return addon.Options.db.profile.Tooltip.Criteria.ShowIf.CriteriaIsCompleted; end,
-                    set = function(_, value) addon.Options.db.profile.Tooltip.Criteria.ShowIf.CriteriaIsCompleted = value; end
-                },
+                    desc = addon.L["Criteria is Completed Desc"]:KAF_AddDefaultValueText("unitTooltips.criteria.showIf.criteriaIsCompleted"),
+                }),
                 Blank2 = {order = OrderPP(), type = "description", width = AdjustedWidth(1.5), name = ""},
             }
         }
@@ -1697,14 +1531,12 @@ local dataManagerOptions = {
             order = OrderPP(), type = "group", inline = true,
             name = addon.L["Mouse Wheel Scroll Speed"],
             args = {
-                MouseWheelPanScalar = {
+                MouseWheelPanScalar = addon.Settings.Row("dataManager.mouseWheelPanScalar", {
                     order = OrderPP(), type = "range", width = AdjustedWidth(1.5),
                     name = addon.L["Mouse Wheel Scroll Speed"],
-                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Characters"]):KAF_AddDefaultValueText("DataManager.MouseWheelPanScalar"),
-                    min = 1, max = 50, step = 1,
-                    get = function() return addon.Options.db.profile.DataManager.MouseWheelPanScalar; end,
+                    desc = addon.L["Mouse Wheel Scroll Speed Desc"]:K_ReplaceVars(addon.L["Characters"]):KAF_AddDefaultValueText("dataManager.mouseWheelPanScalar"),
                     set = SetDataManagerMouseWheelPanScalar
-                }
+                })
             }
         }
     }
@@ -1735,28 +1567,27 @@ function RefreshOptions()
         SetMaxNumberOfSearchPreviews()
         return
     end
-    local profile = addon.Options.db.profile
-    MovableSwitchMovableSet(_, profile.Window.Movable)
-    MovableAchievementWindowRememberLastPositionSet(_, profile.Window.RememberLastPosition.AchievementWindow)
-    MovableCalendarRememberLastPositionSet(_, profile.Window.RememberLastPosition.Calendar)
-    MovableDataManagerRememberLastPositionSet(_, profile.Window.RememberLastPosition.DataManager)
-    OffsetsCategoriesFrameWidthSet(_, profile.Window.CategoriesFrameWidthOffset)
-    OffsetsAchievementsFrameWidthSet(_, profile.Window.AchievementsFrameWidthOffset)
-    OffsetsAchievementFrameHeightSet(_, profile.Window.AchievementFrameHeightOffset)
+    MovableSwitchMovableSet(_, addon.Settings.Get("window.movable"))
+    MovableAchievementWindowRememberLastPositionSet(_, addon.Settings.Get("window.rememberPosition.achievementWindow"))
+    MovableCalendarRememberLastPositionSet(_, addon.Settings.Get("window.rememberPosition.calendar"))
+    MovableDataManagerRememberLastPositionSet(_, addon.Settings.Get("window.rememberPosition.dataManager"))
+    OffsetsCategoriesFrameWidthSet(_, addon.Settings.Get("window.categoriesFrameWidthOffset"))
+    OffsetsAchievementsFrameWidthSet(_, addon.Settings.Get("window.achievementsFrameWidthOffset"))
+    OffsetsAchievementFrameHeightSet(_, addon.Settings.Get("window.achievementFrameHeightOffset"))
     addon.Gui:ShowHideTabs() -- Dynamic Tab Order and Visibility is handled by this one
-    CenterHeaderSet(_, profile.CenterHeader)
-    CalendarButtonOffsetXSet(_, profile.Calendar.ButtonOffsetX)
-    CalendarButtonOffsetYSet(_, profile.Calendar.ButtonOffsetY)
-    SetSearchBoxMouseWheelPanScalar(_, profile.SearchBox.MouseWheelPanScalar)
-    SetSummaryMouseWheelPanScalar(_, profile.Summary.MouseWheelPanScalar)
-    SetCategoryIndentation(_, profile.Categories.Indentation)
-    SetCategoriesMouseWheelPanScalar(_, profile.Categories.MouseWheelPanScalar)
-    MergeMergeSmallCategoriesThresholdSet(_, profile.Window.MergeSmallCategoriesThreshold)
+    CenterHeaderSet(_, addon.Settings.Get("window.centerHeader"))
+    CalendarButtonOffsetXSet(_, addon.Settings.Get("window.calendarButton.offsetX"))
+    CalendarButtonOffsetYSet(_, addon.Settings.Get("window.calendarButton.offsetY"))
+    SetSearchBoxMouseWheelPanScalar(_, addon.Settings.Get("searchBox.mouseWheelPanScalar"))
+    SetSummaryMouseWheelPanScalar(_, addon.Settings.Get("summary.mouseWheelPanScalar"))
+    SetCategoryIndentation(_, addon.Settings.Get("categories.indentation"))
+    SetCategoriesMouseWheelPanScalar(_, addon.Settings.Get("categories.mouseWheelPanScalar"))
+    MergeMergeSmallCategoriesThresholdSet(_, addon.Settings.Get("categories.mergeSmallThreshold"))
     DrawWatchListSubCategories()
     DrawTrackingAchievementsSubCategories()
     ShowExcludedCategory() -- Resets or reloads the Excluded tree for the new profile, so no separate redraw is needed
-    SetAchievementsMouseWheelPanScalar(_, profile.Achievements.MouseWheelPanScalar)
-    StartTimeAndEndTimeCustomSet(_, profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime)
-    SetCalendarMouseWheelPanScalar(_, profile.Calendar.MouseWheelPanScalar)
-    SetDataManagerMouseWheelPanScalar(_, profile.DataManager.MouseWheelPanScalar)
+    SetAchievementsMouseWheelPanScalar(_, addon.Settings.Get("achievements.mouseWheelPanScalar"))
+    StartTimeAndEndTimeCustomSet(_, addon.Settings.Get("tooltips.temporarilyObtainable.dateTimeFormat.startTimeAndEndTime"))
+    SetCalendarMouseWheelPanScalar(_, addon.Settings.Get("calendar.mouseWheelPanScalar"))
+    SetDataManagerMouseWheelPanScalar(_, addon.Settings.Get("dataManager.mouseWheelPanScalar"))
 end

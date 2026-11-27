@@ -55,7 +55,8 @@
 --         (Features.lua, Slots.lua and every feature under Features/, docs/work/2026-11-08-feature-split-poc: two
 --         whole-addon boots through options-env.lua, one with each feature off and one with it on, and whether a
 --         feature that is off starts, keeps a frame, data or a slot entry, and whether a feature's files make anything
---         while they load)
+--         while they load), store (Settings/Store.lua on its own through settings-store.lua,
+--         docs/work/2026-11-25-settings-store: declarations, kinds, the two profile systems, WithDefaults, the logout save)
 --
 -- Retail model is 12.1: the Blizzard_GameMenuEsc handler registry, the UI panel manager (its slots stay
 -- empty because the addon shows the achievement window with a plain Show), UISpecialFrames, static
@@ -228,6 +229,8 @@ end
 -------------------------------------------------------------------------------------------------
 -- One client: a sandboxed global environment plus the Blizzard model for that client
 -------------------------------------------------------------------------------------------------
+local headlessDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+
 local function BuildClient(client)
     local isRetail = client == "Retail"
     local env = {}
@@ -302,7 +305,22 @@ local function BuildClient(client)
         Util = { IsMainline = isRetail, IsModern = isRetail, IsForever = false, IsClassicWithAchievements = not isRetail },
         Tests = { Suites = {}, Ready = {}, Async = {}, FirstDraw = {} },
     }
-    setmetatable(addon, { __index = function(t, k) local s = Stub("addon." .. tostring(k)) rawset(t, k, s) return s end })
+    setmetatable(addon, { __index = function(t, k)
+        -- a real settings store made from the suite's fake old-shaped addon.Options.db (docs/work/2026-11-25-settings-store),
+        -- made the first time code asks for it
+        local options = rawget(t, "Options")
+        if k == "Settings" and type(options) == "table" and type(rawget(options, "db")) == "table" then
+            return assert(loadfile(headlessDir .. "/settings-store.lua"))().FromFakeProfile(root, t)
+        end
+        -- the dropdowns' numbers by name are the real ones (Settings/Enum.lua), never a stub: a stub compares only
+        -- with itself, so code and scenarios would agree on values no saved file holds
+        if k == "Enum" then
+            local chunk = assert(loadstring(readFile(root .. "/Settings/Enum.lua"), "@Settings/Enum.lua"))
+            chunk("Krowi_AchievementFilter", t)
+            return rawget(t, "Enum")
+        end
+        local s = Stub("addon." .. tostring(k)) rawset(t, k, s) return s
+    end })
 
     local function loadAddonFile(rel)
         local chunk, err = loadstring(readFile(root .. "/" .. rel), "@" .. rel)
@@ -530,12 +548,12 @@ suites.special = function(c)
         resets[kind]()
         loaders[kind]()
     end
-    function headless.SetSubCategories(kind, on)
-        profile.Categories[kind].ShowSubCategories = on
+    function headless.SetSubCategories(kind, on) -- "WatchList" is categories.watchList.showSubCategories
+        addon.Settings.Set("categories." .. kind:sub(1, 1):lower() .. kind:sub(2) .. ".showSubCategories", on)
         headless.Rebuild(kind)
     end
     function headless.SetExcludedShown(on) -- Options/Layout.lua's ShowExcludedCategory
-        profile.Categories.Excluded.Show = on
+        addon.Settings.Set("categories.excluded.show", on)
         if on then addon.SpecialCategories.LoadExcludedAchievements() else addon.ResetExcludedCategories() end
     end
     return special.Run(headless), "Tests/SpecialCategories.lua", {}
@@ -729,7 +747,7 @@ suites.navigation = function(c)
     function headless.ToggleOption() -- what Options/Layout.lua's BrowserHistoryTrackSet does for off, then on
         local prevButton, nextButton = env.KrowiAF_AchievementFrameBrowsingHistoryPrevAchievementButton, env.KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButton
         for _, on in ipairs({ false, true }) do
-            profile.TrackAchievementBrowserHistory = on
+            addon.Settings.Set("window.trackBrowsingHistory", on)
             prevButton:Hide()
             nextButton:Hide()
             if on then
@@ -1227,11 +1245,11 @@ suites.guide = function(c)
     function headless.Achievements() return achievements end
     local savedOptions
     function headless.SetOptions(options)
-        local guideOptions = addon.Options.db.profile.Achievements.Guide
         savedOptions = {}
-        for key, value in pairs(options or {}) do
-            savedOptions[key] = { Value = guideOptions[key] }
-            guideOptions[key] = value
+        for field, value in pairs(options or {}) do
+            local key = "guides." .. field:sub(1, 1):lower() .. field:sub(2) -- "ExpandedRow" is guides.expandedRow
+            savedOptions[key] = { Value = addon.Settings.Get(key) }
+            addon.Settings.Set(key, value)
         end
     end
     local anchor = env.CreateFrame("Frame", nil, env.UIParent)
@@ -1249,8 +1267,7 @@ suites.guide = function(c)
         return getLines()
     end
     function headless.Teardown()
-        local guideOptions = addon.Options.db.profile.Achievements.Guide
-        for key, saved in pairs(savedOptions or {}) do guideOptions[key] = saved.Value end
+        for key, saved in pairs(savedOptions or {}) do addon.Settings.Set(key, saved.Value) end
         savedOptions = nil
     end
     return suite.Run(headless, observations), "Tests/Guide.lua", observations
@@ -1667,7 +1684,7 @@ suites.schedules = function(c)
     addon.EventReminders = addon.EventReminders or {} -- the feature's table, which its registration file makes
     for _, rel in ipairs({ "Data/EventData.lua", "Features/EventReminders/Data/CustomWidgetEventTimers.lua", "Features/EventReminders/Data/CustomWorldEventTimers.lua",
         "Features/EventReminders/Data/EventScheduler.lua", "Features/EventReminders/Data/EventSchedules.lua", "Features/EventReminders/Data/EventObserver.lua",
-        "Features/EventReminders/Data/EventData.lua", "Data/DataIntegrityManager.lua", "Tests/Schedules.lua" }) do
+        "Features/EventReminders/Data/EventData.lua", "Settings/Migrations.lua", "Tests/Schedules.lua" }) do
         -- readFile raises on a missing file: a move must never leave the suite green on nothing
         -- (docs/work/2026-11-12-event-reminders)
         local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))
@@ -2766,14 +2783,20 @@ suites.features = function(c)
             chunk("Krowi_AchievementFilter", probe)
             known = probe.Tests.Features.Known
         end
+        -- the boot's options profile as a player's old file held it: each switch at its old path (the rename table
+        -- reversed), which the migration moves to its key
+        local oldPathOf = {}
+        for path, key in next, assert(loadfile(scriptDir .. "/settings-store.lua"))().Runner(root).Renames.Values do oldPathOf[key] = path end
         local profile = {}
         for _, feature in ipairs(known) do
+            local segments = {}
+            for segment in assert(oldPathOf[feature.Switch], "no old path for " .. feature.Switch):gmatch("[^%.]+") do segments[#segments + 1] = segment end
             local tbl = profile
-            for depth = 1, #feature.Switch - 1 do
-                tbl[feature.Switch[depth]] = tbl[feature.Switch[depth]] or {}
-                tbl = tbl[feature.Switch[depth]]
+            for depth = 1, #segments - 1 do
+                tbl[segments[depth]] = tbl[segments[depth]] or {}
+                tbl = tbl[segments[depth]]
             end
-            tbl[feature.Switch[#feature.Switch]] = state == "on"
+            tbl[segments[#segments]] = state == "on"
         end
         local loadCalls = {}
         local ctx = optionsEnv.New(root, c.client, { Profile = profile, XmlFrames = true,
@@ -2945,31 +2968,127 @@ suites.runner = function(c)
     return results, ".claude/tools/headless/run-tests.lua", {}
 end
 
+-- A table on one line, keys sorted (numbers before strings), for the settings and store suites' lines
+local function KeyOrder(a, b)
+    local ta, tb = type(a), type(b)
+    if ta ~= tb then return ta < tb end
+    return a < b
+end
+local function Compact(v)
+    if type(v) == "string" then return ("%q"):format(v) end
+    if type(v) ~= "table" then return tostring(v) end
+    local keys = {}
+    for k in next, v do keys[#keys + 1] = k end
+    table.sort(keys, KeyOrder)
+    local parts = {}
+    for _, k in ipairs(keys) do
+        local name = (type(k) == "string" and k:match("^[%a_][%w_]*$")) and k or ("[" .. Compact(k) .. "]")
+        parts[#parts + 1] = name .. "=" .. Compact(v[k])
+    end
+    return "{" .. table.concat(parts, ",") .. "}"
+end
+
 -- The saved-settings proof, headless only (docs/work/2026-11-25-leave-aceconfig), each scenario on a whole-addon load of
 -- its own, recorded on the code before AceConfig went. A change to the options must keep every line, or say why it moves.
 -- None of it runs in game: saved-keys-unchanged sets every option, and a script the game cuts short between a set and its
 -- put-back ("script ran too long", Retail, 2026-11-25, on a 7 MB saved file) leaves a player's setting changed. In game,
 -- Compare-SavedSettings.ps1 checks a player's files instead, touching nothing.
 local settingsScenarios = {
-    -- the defaults the three AceDB databases were made with: AceDB does not save a value equal to its default, so a
-    -- default that changes or moves changes the settings of the players who kept it
-    {Name = "defaults-unchanged", Recorded = "hash=10ea1a00", Target = "hash=10ea1a00", RecordedClassic = "hash=e5944253",
-        TargetClassic = "hash=e5944253"},
-    -- which saved keys every option that stores a value writes, hidden and disabled ones too (paths only, a profile's
-    -- name as *): an option that reads or writes another key moves this
-    {Name = "saved-keys-unchanged", Recorded = "options=359 hash=ffa1ae09", Target = "options=359 hash=ffa1ae09",
-        RecordedClassic = "options=255 hash=a1fc83f7", TargetClassic = "options=255 hash=a1fc83f7"},
-    -- a new install's raw saved variables once the boot is done (empty files in, AceDB fills the profiles from the
-    -- defaults it was made with): a default registered after the database was made would be missing here
-    {Name = "first-install-profile", Recorded = "hash=46a01e8b", Target = "hash=46a01e8b", RecordedClassic = "hash=cd75285e", TargetClassic = "hash=cd75285e"},
     -- the old file (fixtures/settings-baseline-<client>.lua, write-settings-fixture.lua): the values each option reads in
     -- the profiles Default and Second, and the filter and search values, against those it was written with
     {Name = "old-file-same-values", Recorded = "default=0 second=0 filters=0 search=0 missing=0",
         Target = "default=0 second=0 filters=0 search=0 missing=0"},
-    -- a profile switch on the options and on the filters database: the callbacks registered for each profile event, and
-    -- whether every tab's filters follow the new filters profile
-    {Name = "profile-switch", Recorded = "options=1/1/1 filters=1/1/1 options-switch=yes filters-follow=yes",
-        Target = "options=1/1/1 filters=1/1/1 options-switch=yes filters-follow=yes"},
+    -- the next login on what the logout save wrote, with the migration done (Version 1): every option, filter, search
+    -- toggle and sort list still reads as the old build read it, and nothing migrates again
+    {Name = "second-login", Recorded = "default=0 second=0 filters=0 search=0 missing=0 sort=3,2,4,5,1 migrated-again=no", Target = "default=0 second=0 filters=0 search=0 missing=0 sort=3,2,4,5,1 migrated-again=no"},
+    -- the two profile systems on the settings store (docs/work/2026-11-25-settings-store, requirements 6-8): an options
+    -- profile switch moves the options and fires the change events of the values that differ, keeps the filter profile and
+    -- the account values; a filter profile switch re-points every tab's filters, makes the search results stale (the
+    -- search toggles follow it) and keeps the options profile
+    {Name = "profile-switch", Recorded = "options-switch=yes events=2 filters-kept=yes account-kept=yes filters-follow=yes search-stale=yes options-kept=yes", Target = "options-switch=yes events=2 filters-kept=yes account-kept=yes filters-follow=yes search-stale=yes options-kept=yes"},
+    -- the old file's sort lists, saved by AceDB with holes, come back whole from its migrated store
+    {Name = "sort-lists", Recorded = "old-holes=1 list=3,2,4,5,1 length=5", Target = "old-holes=1 list=3,2,4,5,1 length=5"},
+    -- the migration runs with debug info on in the old file and diagnostics not loaded yet, without an error; its log waits
+    {Name = "runner-quiet", Recorded = "errors=0 log=yes debug=on", Target = "errors=0 log=yes debug=on"},
+    -- the logout save: a value set back to its default is not saved, a filter changed is saved as its difference only
+    {Name = "sparse-save", Recorded = "compact=absent filters={MergeSmallCategories=false}", Target = "compact=absent filters={MergeSmallCategories=false}"},
+    -- a new install's saved settings after the boot and the logout save: what the boot itself sets, and Version 1 (with
+    -- clearing on since plan step 12: a new install has nothing to migrate, so it is current at once)
+    {Name = "first-install-boot",
+        Recorded = 'saved={Account={},Filters={ProfileOf={},Profiles={Default={}}},Options={ProfileOf={},Profiles={Default={["calendar.firstWeekDay"]=1,["tabs.order"]={Blizzard_AchievementUI={Achievements=4},Krowi_AchievementFilter={Achievements=1}},["window.microButtonTab"]=4}}},Version=1}',
+        Target = 'saved={Account={},Filters={ProfileOf={},Profiles={Default={}}},Options={ProfileOf={},Profiles={Default={["calendar.firstWeekDay"]=1,["tabs.order"]={Blizzard_AchievementUI={Achievements=4},Krowi_AchievementFilter={Achievements=1}},["window.microButtonTab"]=4}}},Version=1}'},
+    -- the rename table (Settings/Renames.lua, generate-renames.lua; docs/work/2026-11-25-settings-store): every path an
+    -- option of the old code writes (fixtures/settings-option-paths-<client>.lua), every leaf of the old defaults
+    -- (settings-old-defaults-<client>.lua) and every options value of the old file (settings-baseline-<client>.lua)
+    -- has a row, and no two old paths share a key. Read from frozen fixtures only, so it holds once the old code is gone.
+    {Name = "renames-cover", Recorded = "option-paths=422 defaults=414 fixture=737 no-row=0 shared=0",
+        Target = "option-paths=422 defaults=414 fixture=737 no-row=0 shared=0",
+        RecordedClassic = "option-paths=271 defaults=263 fixture=435 no-row=0 shared=0",
+        TargetClassic = "option-paths=271 defaults=263 fixture=435 no-row=0 shared=0"},
+    -- for every option of the old code, the keys this build's row writes in KrowiAF_Settings when set are the keys the
+    -- rename table gives its old paths: a row and a rename that disagree (two swapped keys) fail here, before the game.
+    -- Until the rows name keys (plan step 7) no option writes KrowiAF_Settings.
+    {Name = "renames-by-option", Recorded = "options=359 match=359 differ=0 none=0 missing=0",
+        Target = "options=359 match=359 differ=0 none=0 missing=0",
+        RecordedClassic = "options=255 match=255 differ=0 none=0 missing=0",
+        TargetClassic = "options=255 match=255 differ=0 none=0 missing=0"},
+    -- every declaration's default equals the old default at its old path (requirement 5), by the rename table, on a
+    -- whole-addon boot (the store not loaded yet, so a read gives the declared default): every leaf of the old defaults
+    -- (settings-old-defaults-<client>.lua: values, map entries, objects), the filters and search objects; no old
+    -- default undeclared and no declared value without an old default
+    {Name = "defaults-unchanged", Recorded = "values=183 map-entries=220 object-fields=11 differ=0 missing=0 new=0 filters=same search=same",
+        Target = "values=183 map-entries=220 object-fields=11 differ=0 missing=0 new=0 filters=same search=same",
+        RecordedClassic = "values=183 map-entries=69 object-fields=11 differ=0 missing=0 new=0 filters=same search=same",
+        TargetClassic = "values=183 map-entries=69 object-fields=11 differ=0 missing=0 new=0 filters=same search=same"},
+    -- every option that stores a value, set to another value through its own set, reads that value back through its
+    -- own get, and is put back: a row whose get names another key than its set writes (a swapped key) fails here, where
+    -- saved-keys-unchanged sees only the writes (docs/work/2026-11-25-settings-store, plan step 7)
+    {Name = "rows-round-trip", Recorded = "options=359 back=359 differ=0", Target = "options=359 back=359 differ=0",
+        RecordedClassic = "options=255 back=255 differ=0", TargetClassic = "options=255 back=255 differ=0"},
+    -- Migration 1 (Settings/Migrations.lua and Check.lua, run alone on plain tables; requirements 11-15). Clearing is on
+    -- in these scenarios unless one says otherwise; the build itself keeps it off until plan step 11.
+    -- the old file migrates: the check passes again against a fresh copy, every profile is kept, the old variables go
+    {Name = "migrate-fixture", Recorded = "result=migrated version=1 records=946 failures=0 not-carried=5 profiles=Default,Second filter-profiles=Default profile-of={} cleared=3",
+        Target = "result=migrated version=1 records=946 failures=0 not-carried=5 profiles=Default,Second filter-profiles=Default profile-of={} cleared=3",
+        RecordedClassic = "result=migrated version=1 records=567 failures=0 not-carried=5 profiles=Default,Second filter-profiles=Default profile-of={} cleared=3",
+        TargetClassic = "result=migrated version=1 records=567 failures=0 not-carried=5 profiles=Default,Second filter-profiles=Default profile-of={} cleared=3"},
+    -- a second load changes nothing; with clearing off every load builds the same store again and keeps the old tables
+    {Name = "migrate-twice", Recorded = "first=migrated second=current unchanged=yes dry=migrated/migrated rebuilt-same=yes version=none old=kept",
+        Target = "first=migrated second=current unchanged=yes dry=migrated/migrated rebuilt-same=yes version=none old=kept"},
+    -- two planted dropped values: nothing cleared, Version 0, the failing records kept, the new store in use; the same
+    -- version waits; a new one moves the failed values again, keeps the one the player set since, and clears on a pass
+    {Name = "migrate-fails", Recorded = "first=failed version=0 failing=3 old=kept in-use=yes second=waiting third=migrated moved=yes kept=yes second-profile=moved/- version=1 cleared=yes failed-record=gone",
+        Target = "first=failed version=0 failing=3 old=kept in-use=yes second=waiting third=migrated moved=yes kept=yes second-profile=moved/- version=1 cleared=yes failed-record=gone"},
+    -- the retry after a failed check keeps what the player changed since inside a live table (the code review's probe,
+    -- 2026-11-27): the move drops the minimap position, a sort place and a filter; the player then drags the icon,
+    -- swaps the sort and changes the filter, and logs out; the fix release's retry leaves all three as the player set them
+    {Name = "retry-keeps-live-changes", Recorded = "first=failed third=migrated minimap=222 earned-by=CharacterAccount priority=2,1,4,5,1", Target = "first=failed third=migrated minimap=222 earned-by=CharacterAccount priority=2,1,4,5,1"},
+    -- an error midway through the build: no new store in place, the old tables kept, the failure recorded; an error in
+    -- the check: the store as built is used, every value is retried after the next update
+    {Name = "migrate-errors", Recorded = "result=error store=none old=kept recorded=yes check-error=failed/all/kept/in-use",
+        Target = "result=error store=none old=kept recorded=yes check-error=failed/all/kept/in-use"},
+    -- an old value with no row (an option removed in the past) is not carried, is logged, and does not fail the check
+    -- a value in the old variables that the migration does not read (an AceDB global section, a search profile other
+    -- than Default) fails the check, so the old tables are not cleared with it in them
+    {Name = "unread-blocks-clear", Recorded = "result=failed unread=KrowiAF_Options.global.Something,KrowiAF_SearchOptions.profiles.Other.SearchIds old=kept version=nil",
+        Target = "result=failed unread=KrowiAF_Options.global.Something,KrowiAF_SearchOptions.profiles.Other.SearchIds old=kept version=nil"},
+    {Name = "dead-key", Recorded = "result=migrated logged=yes carried=no", Target = "result=migrated logged=yes carried=no"},
+    -- the Legion Assaults merge (Tests/Schedules.lua's merge scenarios, now migration 1's step 1) on a pre-104 file, and
+    -- nothing for a file that ran it: per profile 5175 on or off and the zone toggles left; the check passes on both
+    {Name = "legion-assaults",
+        Recorded = "pre-104: Active on; AllOff off; Azsuna on; Others on; Untouched on (migrated) / ran-before: Active on, 3 left; AllOff off, 3 left; Azsuna off; Others on, 1 left; Untouched on (migrated)",
+        Target = "pre-104: Active on; AllOff off; Azsuna on; Others on; Untouched on (migrated) / ran-before: Active on, 3 left; AllOff off, 3 left; Azsuna off; Others on, 1 left; Untouched on (migrated)"},
+    -- a new install: no old variables, no KrowiAF_Settings: an empty store, Version 1
+    {Name = "first-install", Recorded = "result=migrated settings={Account={},Filters={ProfileOf={},Profiles={}},Options={ProfileOf={},Profiles={}},Version=1}",
+        Target = "result=migrated settings={Account={},Filters={ProfileOf={},Profiles={}},Options={ProfileOf={},Profiles={}},Version=1}"},
+    -- the DataIntegrityManager's other steps, in place: a character's missing name and realm from its GUID, the dead
+    -- keys and the old alert copy out, on Retail the account-wide achievements out of the character records, and its
+    -- marks (Build, Version, Fixes, Verifications) only with the clear
+    {Name = "saved-data-steps",
+        Recorded = "migrated names=Krowi/1234 0FEDCBA/5678 earned-by=nil/y not-completed=3 saved-data=CharacterList,Tabs / clearing off: migrated names=Krowi/1234 0FEDCBA/5678 earned-by=nil/y not-completed=3 saved-data=Build,CharacterList,Fixes,Tabs,Verifications,Version",
+        Target = "migrated names=Krowi/1234 0FEDCBA/5678 earned-by=nil/y not-completed=3 saved-data=CharacterList,Tabs / clearing off: migrated names=Krowi/1234 0FEDCBA/5678 earned-by=nil/y not-completed=3 saved-data=Build,CharacterList,Fixes,Tabs,Verifications,Version",
+        RecordedClassic = "migrated names=Krowi/1234 0FEDCBA/5678 earned-by=x/y not-completed=1,3 saved-data=CharacterList,Tabs / clearing off: migrated names=Krowi/1234 0FEDCBA/5678 earned-by=x/y not-completed=1,3 saved-data=Build,CharacterList,Fixes,Tabs,Version",
+        TargetClassic = "migrated names=Krowi/1234 0FEDCBA/5678 earned-by=x/y not-completed=1,3 saved-data=CharacterList,Tabs / clearing off: migrated names=Krowi/1234 0FEDCBA/5678 earned-by=x/y not-completed=1,3 saved-data=Build,CharacterList,Fixes,Tabs,Version"},
 }
 
 suites.settings = function(c)
@@ -2980,7 +3099,6 @@ suites.settings = function(c)
     local function Boot(opts)
         local ctx = optionsEnv.New(root, c.client, opts)
         assert(#ctx.Errors == 0, "load error: " .. tostring(ctx.Errors[1]))
-        ctx.addon.SearchOptions:Load() -- as the search box does once Blizzard's achievement window loads
         return ctx, ctx.addon.Options.Window.Model
     end
     local function Walk(t, keys)
@@ -2990,79 +3108,553 @@ suites.settings = function(c)
         end
         return t
     end
-    local reads = {
-        ["defaults-unchanged"] = function()
-            local ctx = Boot()
-            return "hash=" .. proof.DefaultsHash(ctx.addon)
-        end,
-        ["saved-keys-unchanged"] = function()
-            local count, hash = proof.SavedKeys(Boot())
-            return ("options=%d hash=%s"):format(count, hash)
-        end,
-        ["first-install-profile"] = function()
-            local ctx = Boot()
-            local parts = {}
-            for _, name in ipairs({ "KrowiAF_Options", "KrowiAF_Filters", "KrowiAF_SearchOptions" }) do
-                parts[#parts + 1] = name .. " = " .. proof.Serialize(rawget(ctx.env, name))
-            end
-            return "hash=" .. proof.Hash(table.concat(parts, "\n"))
-        end,
-        ["old-file-same-values"] = function()
-            local file = scriptDir .. "/fixtures/settings-baseline-" .. c.client
-            local saved = assert(loadfile(file .. ".lua"))()
-            local values = assert(loadfile(file .. "-values.lua"))()
-            local ctx, model = Boot({ SavedVariables = saved })
-            local byId = {}
-            for _, item in ipairs(model.Options()) do byId[item.Option.Id] = item.Option end
-            local missing = 0
-            local function Compare(expected)
-                local wrong = 0
-                for id, value in next, expected do
-                    local option = byId[id]
-                    if not option then
-                        missing = missing + 1
-                    elseif option:Get() ~= value then
-                        wrong = wrong + 1
-                    end
+    -- The old file (fixtures/settings-baseline-<client>.lua) as a boot reads it, with the mark every file the old code
+    -- wrote since 104 holds (the DataIntegrityManager set it at the first load): the fixture writer never ran it, and
+    -- without it the migration would merge the Legion Assault toggles
+    local function OldFileForBoot()
+        local file = scriptDir .. "/fixtures/settings-baseline-" .. c.client
+        local saved = assert(loadfile(file .. ".lua"))()
+        local values = assert(loadfile(file .. "-values.lua"))()
+        saved.KrowiAF_SavedData.Fixes = { MergeLegionAssaultToggles = true }
+        return saved, values
+    end
+    -- On a booted ctx: every option in both options profiles, every filter and search value, against what the old
+    -- build read (the -values fixture), by option Id
+    local function SameByOption(values, ctx)
+        local byId = {}
+        for _, item in ipairs(ctx.addon.Options.Window.Model.Options()) do byId[item.Option.Id] = item.Option end
+        local missing = 0
+        local function Compare(expected)
+            local wrong = 0
+            for id, value in next, expected do
+                local option = byId[id]
+                if not option then
+                    missing = missing + 1
+                elseif option:Get() ~= value then
+                    wrong = wrong + 1
                 end
-                return wrong
             end
-            local db = ctx.addon.Options.db
-            local default = Compare(values.Options.Default)
-            db:SetProfile("Second")
-            local second = Compare(values.Options.Second)
-            db:SetProfile("Default")
-            local filters, search = 0, 0
-            for _, entry in ipairs(values.Filters) do
-                if Walk(ctx.addon.Filters.db.profile, entry.Keys) ~= entry.Value then filters = filters + 1 end
-            end
-            for _, entry in ipairs(values.Search) do
-                if Walk(ctx.addon.SearchOptions.db.profile, entry.Keys) ~= entry.Value then search = search + 1 end
-            end
-            return ("default=%d second=%d filters=%d search=%d missing=%d"):format(default, second, filters, search, missing)
+            return wrong
+        end
+        local settings = ctx.addon.Settings
+        local default = Compare(values.Options.Default)
+        settings.SetProfile("options", "Second")
+        local second = Compare(values.Options.Second)
+        settings.SetProfile("options", "Default")
+        local filters, search = 0, 0
+        for _, entry in ipairs(values.Filters) do
+            if Walk(settings.GetObject("filters"), entry.Keys) ~= entry.Value then filters = filters + 1 end
+        end
+        for _, entry in ipairs(values.Search) do
+            if Walk(settings.GetObject("search"), entry.Keys) ~= entry.Value then search = search + 1 end
+        end
+        return ("default=%d second=%d filters=%d search=%d missing=%d"):format(default, second, filters, search, missing)
+    end    -- The migration runner alone (settings-store.lua), the old file as plain tables, and the runner's context
+    local storeHelper = assert(loadfile(scriptDir .. "/settings-store.lua"))()
+    local function Runner(clear)
+        local s = storeHelper.Runner(root)
+        s.Migrations.ClearOld = clear
+        return s
+    end
+    local function OldFile()
+        local saved = assert(loadfile(scriptDir .. "/fixtures/settings-baseline-" .. c.client .. ".lua"))()
+        return { Options = saved.KrowiAF_Options, Filters = saved.KrowiAF_Filters, SearchOptions = saved.KrowiAF_SearchOptions,
+            SavedData = saved.KrowiAF_SavedData }
+    end
+    local function Context(version)
+        return { Character = "Player - Realm", AddonVersion = version or "107.0", IsMainline = isRetail,
+            IsAccountWide = function() return false end }
+    end
+    local function Keys(t)
+        local keys = {}
+        for k in next, t or {} do keys[#keys + 1] = k end
+        table.sort(keys, KeyOrder)
+        for n, k in ipairs(keys) do keys[n] = tostring(k) end
+        return table.concat(keys, ",")
+    end
+    -- The rename table and the migration's own classifier (Settings/Check.lua's Home: an old options path's home, "value",
+    -- "map" or "object", its key, the keys under the map's or object's path, and whether it is of account scope)
+    local function Renames()
+        local s = storeHelper.Runner(root)
+        return s.Renames, s.Check
+    end
+    local function Split(path)
+        local segments = {}
+        for segment in path:gmatch("[^%.]+") do segments[#segments + 1] = segment end
+        return segments
+    end
+    -- Where in KrowiAF_Settings the old path's value goes, as SavedKeys writes a path (a profile as *)
+    local function NewPath(check, segments)
+        local kind, key, rest, account = check.Home(segments)
+        if not kind then return nil end
+        local base = account and "KrowiAF_Settings.Account." or "KrowiAF_Settings.Options.Profiles.*."
+        if kind == "value" then return base .. key end
+        return base .. key .. "." .. check.Join(rest)
+    end
+    local reads = {
+        ["old-file-same-values"] = function()
+            local saved, values = OldFileForBoot()
+            return SameByOption(values, Boot({ SavedVariables = saved }))
+        end,
+        ["second-login"] = function()
+            local saved, values = OldFileForBoot()
+            local first = Boot({ SavedVariables = saved })
+            first.Logout()
+            local store = rawget(first.env, "KrowiAF_Settings")
+            store.Version = 1 -- as the final build leaves it: the next login does not migrate again
+            local again = Boot({ SavedVariables = { KrowiAF_Settings = store, KrowiAF_SavedData = saved.KrowiAF_SavedData } })
+            local priority = again.addon.Settings.GetObject("tooltips.points.sortPriority")
+            local parts = {}
+            for n = 1, 5 do parts[n] = tostring(priority[n]) end
+            return SameByOption(values, again) .. " sort=" .. table.concat(parts, ",") .. " migrated-again=" ..
+                (#again.addon.Settings.Migrations.Log == 0 and "no" or "yes")
         end,
         ["profile-switch"] = function()
             local ctx = Boot()
             local addon = ctx.addon
-            local function Count(db, event)
-                local n = 0
-                for _ in next, rawget(db.callbacks.events, event) or {} do n = n + 1 end
-                return n
-            end
-            local options, filters = addon.Options.db, addon.Filters.db
-            local registered = ("options=%d/%d/%d filters=%d/%d/%d"):format(
-                Count(options, "OnProfileChanged"), Count(options, "OnProfileCopied"), Count(options, "OnProfileReset"),
-                Count(filters, "OnProfileChanged"), Count(filters, "OnProfileCopied"), Count(filters, "OnProfileReset"))
-            local switched = pcall(options.SetProfile, options, "SettingsTest") and pcall(options.SetProfile, options, "Default")
-            pcall(options.DeleteProfile, options, "SettingsTest")
-            filters:SetProfile("SettingsTest")
+            local s = addon.Settings
+            local function Yes(v) return v and "yes" or "no" end
+            s.Set("advanced.debugInfo", true) -- account scope: no profile switch moves it
+            local events = 0
+            s.OnChange("achievements.compact", function() events = events + 1 end)
+            s.SetProfile("options", "SettingsTest")
+            s.Set("achievements.compact", true) -- this profile's own value: an event
+            s.SetProfile("options", "Default") -- the value differs again: an event
+            local switched = s.CurrentProfile("options") == "Default" and s.Get("achievements.compact") == false
+            local filtersKept = s.CurrentProfile("filters") == "Default"
+            local accountKept = s.Get("advanced.debugInfo") == true
+            s.DeleteProfile("options", "SettingsTest")
+            addon.SearchOptions.Changed = nil
+            s.SetProfile("filters", "SettingsTest")
             local follow = true
             for t in next, addon.Tabs do
-                if addon.Tabs[t].Filters ~= filters.profile.Tabs[t] then follow = false end
+                if addon.Tabs[t].Filters ~= s.GetObject("filters").Tabs[t] then follow = false end
             end
-            filters:SetProfile("Default")
-            filters:DeleteProfile("SettingsTest")
-            return ("%s options-switch=%s filters-follow=%s"):format(registered, switched and "yes" or "no", follow and "yes" or "no")
+            local searchStale, optionsKept = addon.SearchOptions.Changed == true, s.CurrentProfile("options") == "Default"
+            s.SetProfile("filters", "Default")
+            s.DeleteProfile("filters", "SettingsTest")
+            s.Set("advanced.debugInfo", false)
+            return ("options-switch=%s events=%d filters-kept=%s account-kept=%s filters-follow=%s search-stale=%s options-kept=%s"):format(
+                Yes(switched), events, Yes(filtersKept), Yes(accountKept), Yes(follow), Yes(searchStale), Yes(optionsKept))
+        end,
+        ["sort-lists"] = function()
+            local file = scriptDir .. "/fixtures/settings-baseline-" .. c.client
+            local saved = assert(loadfile(file .. ".lua"))()
+            local sort = saved.KrowiAF_Options.profiles.Default.AchievementPoints.Tooltip.Sort
+            local holes = 0
+            for n = 1, 5 do if sort.Priority[n] == nil then holes = holes + 1 end end
+            local ctx = Boot({ SavedVariables = saved })
+            local priority = ctx.addon.Settings.GetObject("tooltips.points.sortPriority")
+            local reverse = ctx.addon.Settings.GetObject("tooltips.points.sortReverse")
+            local parts = {}
+            for n = 1, 5 do parts[n] = tostring(priority[n]) .. (reverse[n] and "r" or "") end
+            return ("old-holes=%d list=%s length=%d"):format(holes, table.concat(parts, ","), #priority)
+        end,
+        ["runner-quiet"] = function()
+            local file = scriptDir .. "/fixtures/settings-baseline-" .. c.client
+            local saved = assert(loadfile(file .. ".lua"))()
+            saved.KrowiAF_Options.profiles.Default.EnableDebugInfo = true
+            local ctx = optionsEnv.New(root, c.client, { SavedVariables = saved })
+            local log = ctx.addon.Settings.Migrations.Log
+            return ("errors=%d log=%s debug=%s"):format(#ctx.Errors, #log > 0 and "yes" or "no",
+                ctx.addon.Diagnostics.DebugEnabled() and "on" or "off")
+        end,
+        ["sparse-save"] = function()
+            local ctx = Boot()
+            local s = ctx.addon.Settings
+            s.Set("achievements.compact", true)
+            s.Set("achievements.compact", false) -- back to its default: not saved
+            s.GetObject("filters").MergeSmallCategories = false
+            ctx.Logout()
+            local stored = rawget(ctx.env, "KrowiAF_Settings")
+            local options = stored.Options.Profiles.Default or {}
+            local filters = (stored.Filters.Profiles.Default or {}).filters
+            return ("compact=%s filters=%s"):format(options["achievements.compact"] == nil and "absent" or "saved", Compact(filters))
+        end,
+        ["first-install-boot"] = function()
+            local ctx = Boot()
+            ctx.Logout()
+            return "saved=" .. Compact(rawget(ctx.env, "KrowiAF_Settings"))
+        end,
+        ["renames-cover"] = function()
+            local renames, check = Renames()
+            local counts, noRow, seen = {}, {}, {}
+            local function Check(source, segments)
+                local path = table.concat(segments, ".")
+                if path == "Categories.Excluded.CharacterSpecific" then return end -- an unused default (renames.md, Not carried over)
+                counts[source] = (counts[source] or 0) + 1
+                if not check.Home(segments) and not seen[path] then
+                    seen[path] = true
+                    noRow[#noRow + 1] = path
+                end
+            end
+            local function Leaves(t, prefix, source)
+                for k, v in next, t do
+                    if k ~= "*" and k ~= "**" then
+                        local segments = { unpack(prefix) }
+                        segments[#segments + 1] = tostring(k)
+                        if type(v) == "table" then Leaves(v, segments, source) else Check(source, segments) end
+                    end
+                end
+            end
+            for _, paths in next, assert(loadfile(scriptDir .. "/fixtures/settings-option-paths-" .. c.client .. ".lua"))() do
+                for _, path in ipairs(paths) do Check("option-paths", Split(path:gsub("^KrowiAF_Options%.profiles%.%*%.", ""))) end
+            end
+            Leaves(assert(loadfile(scriptDir .. "/fixtures/settings-old-defaults-" .. c.client .. ".lua"))().Options.profile, {}, "defaults")
+            for _, profile in next, assert(loadfile(scriptDir .. "/fixtures/settings-baseline-" .. c.client .. ".lua"))().KrowiAF_Options.profiles do
+                Leaves(profile, {}, "fixture")
+            end
+            local byKey, shared = {}, 0
+            for _, key in next, renames.Values do
+                if byKey[key] then shared = shared + 1 end
+                byKey[key] = true
+            end
+            table.sort(noRow)
+            return ("option-paths=%d defaults=%d fixture=%d no-row=%d shared=%d%s"):format(counts["option-paths"] or 0,
+                counts.defaults or 0, counts.fixture or 0, #noRow, shared, #noRow > 0 and (" (" .. table.concat(noRow, ", ", 1, math.min(3, #noRow)) .. ")") or "")
+        end,
+        ["renames-by-option"] = function()
+            local _, check = Renames()
+            local frozen = assert(loadfile(scriptDir .. "/fixtures/settings-option-paths-" .. c.client .. ".lua"))()
+            local ctx, model = Boot()
+            local present = {}
+            for _, item in ipairs(model.Options()) do present[item.Option.Id] = true end
+            local function Save()
+                local settings = ctx.addon.Settings
+                if settings and settings.IsLoaded() then settings.Save() end
+            end
+            local _, _, lines = proof.SavedKeys(ctx, { "KrowiAF_Settings" }, Save)
+            local written = {}
+            for _, line in ipairs(lines) do
+                local id, list = line:match("^(.-) => (.*)$")
+                written[id] = list
+            end
+            local count, match, differ, none, missing = 0, 0, 0, 0, 0
+            for id, paths in next, frozen do
+                count = count + 1
+                if not present[id] then
+                    missing = missing + 1
+                else
+                    local expected, unique = {}, {}
+                    for _, path in ipairs(paths) do
+                        local new = NewPath(check, Split(path:gsub("^KrowiAF_Options%.profiles%.%*%.", "")))
+                        if new and not unique[new] then
+                            unique[new] = true
+                            expected[#expected + 1] = new
+                        end
+                    end
+                    table.sort(expected)
+                    local got = written[id] or ""
+                    if got == "" then
+                        none = none + 1
+                    elseif got == table.concat(expected, ",") then
+                        match = match + 1
+                    else
+                        differ = differ + 1
+                    end
+                end
+            end
+            return ("options=%d match=%d differ=%d none=%d missing=%d"):format(count, match, differ, none, missing)
+        end,
+        ["defaults-unchanged"] = function()
+            local ctx = Boot()
+            local settings = ctx.addon.Settings
+            local check = storeHelper.Runner(root).Check
+            local old = assert(loadfile(scriptDir .. "/fixtures/settings-old-defaults-" .. c.client .. ".lua"))()
+            local counts = { value = 0, map = 0, object = 0 }
+            local differ, missing, seenValue = {}, {}, {}
+            local function Leaves(t, prefix)
+                for k, v in next, t do
+                    local segments = { unpack(prefix) }
+                    segments[#segments + 1] = k
+                    if type(v) == "table" then
+                        Leaves(v, segments)
+                    else
+                        local path = check.Join(segments)
+                        local kind, key, rest = check.Home(segments)
+                        local declaration = key and settings.Declaration(key)
+                        if path == "Categories.Excluded.CharacterSpecific" then
+                            -- an unused default (renames.md, Not carried over)
+                        elseif not declaration then
+                            missing[#missing + 1] = path
+                        else
+                            counts[kind] = counts[kind] + 1
+                            local got
+                            if kind == "value" then
+                                seenValue[key] = true
+                                got = declaration.Default
+                                if declaration.Type ~= type(v) then got = "type " .. tostring(declaration.Type) end
+                            elseif kind == "map" then
+                                got = settings.EntryDefault(key, unpack(rest))
+                            else
+                                got = Walk(declaration.Default, rest)
+                            end
+                            if got ~= v then differ[#differ + 1] = path end
+                        end
+                    end
+                end
+            end
+            Leaves(old.Options.profile, {})
+            local function Same(a, b)
+                if type(a) ~= "table" or type(b) ~= "table" then return a == b end
+                for k, v in next, a do if not Same(v, b[k]) then return false end end
+                for k in next, b do if a[k] == nil then return false end end
+                return true
+            end
+            local new = {}
+            for key, declaration in settings.Declared() do
+                if declaration.Kind == "value" and not seenValue[key] then new[#new + 1] = key end
+            end
+            table.sort(differ)
+            table.sort(missing)
+            table.sort(new)
+            local function List(t) return #t == 0 and "0" or (#t .. " (" .. table.concat(t, ", ", 1, math.min(3, #t)) .. ")") end
+            return ("values=%d map-entries=%d object-fields=%d differ=%s missing=%s new=%s filters=%s search=%s"):format(
+                counts.value, counts.map, counts.object, List(differ), List(missing), List(new),
+                Same(settings.Declaration("filters").Default, old.Filters.profile) and "same" or "differ",
+                Same(settings.Declaration("search").Default, old.SearchOptions.profile) and "same" or "differ")
+        end,
+        ["rows-round-trip"] = function()
+            local _, model = Boot()
+            local count, back, differ = 0, 0, {}
+            for _, item in ipairs(model.Options()) do
+                local option = item.Option
+                if model.Settable(option) then
+                    local before = option:Get()
+                    local value = model.OtherValue(option, before)
+                    if value ~= nil then
+                        count = count + 1
+                        pcall(option.Set, option, value)
+                        local ok, got = pcall(option.Get, option)
+                        if ok and got == value then back = back + 1 else differ[#differ + 1] = option.Id end
+                        pcall(option.Set, option, before)
+                    end
+                end
+            end
+            table.sort(differ)
+            return ("options=%d back=%d differ=%s"):format(count, back,
+                #differ == 0 and "0" or (#differ .. " (" .. table.concat(differ, ", ", 1, math.min(4, #differ)) .. ")"))
+        end,
+        ["migrate-fixture"] = function()
+            local s = Runner(true)
+            local sv = OldFile()
+            local result = s.Migrations.Run(sv, Context())
+            -- the check again, against a fresh copy of the old file with the Legion Assaults merge applied
+            local fresh = OldFile()
+            local profiles = fresh.Options.profiles
+            s.Migrations.MergeLegionAssaultToggles(profiles, {}, false)
+            local old = s.Check.Old(fresh, profiles, Context())
+            local records = 0
+            s.Check.Records(old, function() records = records + 1 end)
+            local failures, notCarried = s.Check.Run(old, sv.Settings)
+            local cleared = (sv.Options == nil and 1 or 0) + (sv.Filters == nil and 1 or 0) + (sv.SearchOptions == nil and 1 or 0)
+            return ("result=%s version=%s records=%d failures=%d not-carried=%d profiles=%s filter-profiles=%s profile-of=%s cleared=%d"):format(
+                result, tostring(sv.Settings.Version), records, #failures, #notCarried, Keys(sv.Settings.Options.Profiles),
+                Keys(sv.Settings.Filters.Profiles), Compact(sv.Settings.Options.ProfileOf), cleared)
+        end,
+        ["migrate-twice"] = function()
+            local s = Runner(true)
+            local sv = OldFile()
+            local first = s.Migrations.Run(sv, Context())
+            local before = Compact(sv.Settings)
+            local second = s.Migrations.Run(sv, Context())
+            local dry = Runner(false)
+            local svDry = OldFile()
+            local a = dry.Migrations.Run(svDry, Context())
+            local built = Compact(svDry.Settings)
+            local b = dry.Migrations.Run(svDry, Context())
+            return ("first=%s second=%s unchanged=%s dry=%s/%s rebuilt-same=%s version=%s old=%s"):format(first, second,
+                Compact(sv.Settings) == before and "yes" or "no", a, b, Compact(svDry.Settings) == built and "yes" or "no",
+                svDry.Settings.Version == nil and "none" or tostring(svDry.Settings.Version),
+                (svDry.Options and svDry.Filters and svDry.SearchOptions) and "kept" or "cleared")
+        end,
+        ["migrate-fails"] = function()
+            local s = Runner(true)
+            local check = s.Check
+            -- two value rows of the old Default profile are dropped by a broken move: the first (sorted) that the
+            -- second profile holds too, which the player then sets in Default only, and the first that it does not
+            local both, defaultOnly = {}, {}
+            local profiles = OldFile().Options.profiles
+            check.Records(check.Old({}, { Default = profiles.Default }, Context()), function(record)
+                if check.Home(record.Path) == "value" then
+                    local list = Walk(profiles.Second, record.Path) ~= nil and both or defaultOnly
+                    list[#list + 1] = check.Join(record.Path)
+                end
+            end)
+            table.sort(both)
+            table.sort(defaultOnly)
+            local kept, moved = both[1], defaultOnly[1]
+            local realMove = check.Move
+            check.Move = function(new, record, value, old)
+                local path = record.Section == "options" and check.Join(record.Path)
+                if path == kept or path == moved then return end
+                return realMove(new, record, value, old)
+            end
+            local sv = OldFile()
+            local first = s.Migrations.Run(sv, Context())
+            local failed = sv.Settings.MigrationFailed
+            local failing = failed and failed.Paths and #failed.Paths or -1
+            local version = sv.Settings.Version or 0
+            local oldKept = (sv.Options and sv.Filters and sv.SearchOptions) and "kept" or "cleared"
+            local inUse = sv.Settings.Options and sv.Settings.Options.Profiles.Default and "yes" or "no"
+            local second = s.Migrations.Run(sv, Context())
+            -- the fix release; meanwhile the player set the first value (the store records it in Touched)
+            check.Move = realMove
+            local _, keptKey = check.Home(Split(kept))
+            local _, movedKey = check.Home(Split(moved))
+            sv.Settings.Options.Profiles.Default[keptKey] = "player"
+            failed.Touched["options:Default:" .. keptKey] = true -- set in Default only: the other profiles are moved again
+            local third = s.Migrations.Run(sv, Context("107.1"))
+            local default, oldProfiles = sv.Settings.Options.Profiles.Default, OldFile().Options.profiles
+            -- the two values in the second profile, which failed there too where it holds them
+            local inSecond = {}
+            for _, path in ipairs({ kept, moved }) do
+                local oldValue = Walk(oldProfiles.Second, Split(path))
+                local _, key = check.Home(Split(path))
+                inSecond[#inSecond + 1] = oldValue == nil and "-" or (sv.Settings.Options.Profiles.Second[key] == oldValue and "moved" or "lost")
+            end
+            return ("first=%s version=%d failing=%d old=%s in-use=%s second=%s third=%s moved=%s kept=%s second-profile=%s version=%s cleared=%s failed-record=%s"):format(
+                first, version, failing, oldKept, inUse, second, third,
+                default[movedKey] == Walk(oldProfiles.Default, Split(moved)) and "yes" or "no",
+                default[keptKey] == "player" and "yes" or "no", table.concat(inSecond, "/"), tostring(sv.Settings.Version),
+                (sv.Options == nil and sv.Filters == nil and sv.SearchOptions == nil) and "yes" or "no",
+                sv.Settings.MigrationFailed == nil and "gone" or "kept")
+        end,
+        ["retry-keeps-live-changes"] = function()
+            local s = Runner(true)
+            local check = s.Check
+            local dropped = { ["options:Minimap.minimapPos"] = true, ["options:AchievementPoints.Tooltip.Sort.Priority.1"] = true, ["filters:EarnedBy"] = true }
+            local realMove = check.Move
+            check.Move = function(new, record, value, old)
+                if record.Path and dropped[record.Section .. ":" .. check.Join(record.Path)] then return end
+                return realMove(new, record, value, old)
+            end
+            local sv = OldFile()
+            sv.Options.profiles.Default.Minimap = { minimapPos = 100 }
+            sv.Filters.profiles.Default.EarnedBy = "CharacterOnly"
+            local first = s.Migrations.Run(sv, Context())
+            -- a session on the store as placed: the player's changes inside the live tables, then the logout save
+            local session = storeHelper.New(root, { Saved = sv.Settings, Declarations = {
+                ["minimap.icon"] = { Kind = "object", Default = { hide = true } },
+                ["tooltips.points.sortPriority"] = { Kind = "object", Default = { 1, 2, 3, 4, 5 } },
+                ["filters"] = { Kind = "object", System = "filters", Default = {} },
+            } })
+            session.Settings.GetObject("minimap.icon").minimapPos = 222
+            local priority = session.Settings.GetObject("tooltips.points.sortPriority")
+            priority[1], priority[2] = 2, 1
+            session.Settings.GetObject("filters").EarnedBy = "CharacterAccount"
+            session.Logout()
+            check.Move = realMove
+            local third = s.Migrations.Run(sv, Context("107.1"))
+            local options, filters = sv.Settings.Options.Profiles.Default, sv.Settings.Filters.Profiles.Default
+            local list = { 1, 2, 3, 4, 5 }
+            for i, v in next, options["tooltips.points.sortPriority"] or {} do list[i] = v end
+            return ("first=%s third=%s minimap=%s earned-by=%s priority=%s"):format(first, third,
+                tostring((options["minimap.icon"] or {}).minimapPos), tostring((filters.filters or {}).EarnedBy), table.concat(list, ","))
+        end,
+        ["migrate-errors"] = function()
+            local s = Runner(true)
+            local calls, realMove = 0, s.Check.Move
+            s.Check.Move = function(...)
+                calls = calls + 1
+                if calls == 100 then error("planted") end
+                return realMove(...)
+            end
+            local sv = OldFile()
+            local result = s.Migrations.Run(sv, Context())
+            local failed = sv.Settings and sv.Settings.MigrationFailed
+            local s2 = Runner(true)
+            s2.Check.Run = function() error("planted") end
+            local sv2 = OldFile()
+            local result2 = s2.Migrations.Run(sv2, Context())
+            local failed2 = sv2.Settings.MigrationFailed
+            return ("result=%s store=%s old=%s recorded=%s check-error=%s/%s/%s/%s"):format(result,
+                (sv.Settings and sv.Settings.Options) and "placed" or "none",
+                (sv.Options and sv.Filters and sv.SearchOptions) and "kept" or "cleared",
+                (failed and failed.Error) and "yes" or "no", result2, (failed2 and failed2.Paths == nil) and "all" or "some",
+                (sv2.Options and sv2.Filters and sv2.SearchOptions) and "kept" or "cleared",
+                sv2.Settings.Options and sv2.Settings.Options.Profiles.Default and "in-use" or "none")
+        end,
+        ["unread-blocks-clear"] = function()
+            local s = Runner(true)
+            local sv = OldFile()
+            sv.Options.global = { Something = true } -- an AceDB section the migration does not read
+            sv.SearchOptions.profiles.Other = { SearchIds = false } -- a search profile other than Default
+            local result = s.Migrations.Run(sv, Context())
+            local failed = sv.Settings.MigrationFailed
+            local unread = {}
+            for _, record in ipairs(failed and failed.Paths or {}) do
+                if record.Section == "unread" then unread[#unread + 1] = record.Variable .. "." .. s.Check.Join(record.Path) end
+            end
+            table.sort(unread)
+            return ("result=%s unread=%s old=%s version=%s"):format(result, table.concat(unread, ","),
+                (sv.Options and sv.Filters and sv.SearchOptions) and "kept" or "cleared", tostring(sv.Settings.Version))
+        end,
+        ["dead-key"] = function()
+            local s = Runner(true)
+            local sv = OldFile()
+            local default = sv.Options.profiles.Default
+            default.Achievements = default.Achievements or {}
+            default.Achievements.ShowDateCompletedTime = true
+            local result = s.Migrations.Run(sv, Context())
+            local logged = false
+            for _, line in ipairs(s.Migrations.Log) do
+                if line:find("no-row: Default.Achievements.ShowDateCompletedTime", 1, true) then logged = true end
+            end
+            local carried = Compact(sv.Settings):find("ShowDateCompletedTime") ~= nil
+            return ("result=%s logged=%s carried=%s"):format(result, logged and "yes" or "no", carried and "yes" or "no")
+        end,
+        ["legion-assaults"] = function()
+            local function Case(fixes)
+                local s = Runner(true)
+                local sv = { Options = { profiles = {
+                    AllOff = { EventReminders = { WorldEvents = { [5175] = false, [5177] = false, [5178] = false, [5210] = false } } },
+                    Azsuna = { EventReminders = { WorldEvents = { [5175] = false } } }, -- only Azsuna off: the others were on
+                    Others = { EventReminders = { WorldEvents = { [5177] = false } } }, -- Azsuna on, Highmountain off
+                    Active = { EventReminders = { WorldEvents = { [5175] = true, [5177] = true, [5178] = true, [5210] = false } } },
+                    Untouched = {},
+                }, profileKeys = {} }, SavedData = { Fixes = fixes } }
+                local result = s.Migrations.Run(sv, Context())
+                local parts = {}
+                for _, name in ipairs({ "Active", "AllOff", "Azsuna", "Others", "Untouched" }) do
+                    local world = sv.Settings.Options.Profiles[name]["eventReminders.worldEvents"] or {}
+                    local left = 0
+                    for _, id in ipairs({ 5177, 5178, 5210 }) do
+                        if world[id] ~= nil then left = left + 1 end
+                    end
+                    parts[#parts + 1] = ("%s %s%s"):format(name, world[5175] == false and "off" or "on", left > 0 and (", " .. left .. " left") or "")
+                end
+                return table.concat(parts, "; ") .. " (" .. result .. ")"
+            end
+            return ("pre-104: %s / ran-before: %s"):format(Case(nil), Case({ MergeLegionAssaultToggles = true }))
+        end,
+        ["first-install"] = function()
+            local s = Runner(true)
+            local sv = {}
+            local result = s.Migrations.Run(sv, Context())
+            return ("result=%s settings=%s"):format(result, Compact(sv.Settings))
+        end,
+        ["saved-data-steps"] = function()
+            local function Case(clear)
+                local s = Runner(clear)
+                local sv = {
+                    SavedData = { AlertSystem = {}, CalendarEventsCache = {}, DebugTable = {}, Build = "11.0", Version = "100.0",
+                        Fixes = { MergeLegionAssaultToggles = true }, Tabs = {},
+                        CharacterList = { ["Player-1234-0ABCDEF"] = { Name = "Krowi" }, ["Player-5678-0FEDCBA"] = {} } },
+                    Achievements = { Completed = { [1] = { EarnedBy = "x" }, [2] = { EarnedBy = "y" } }, NotCompleted = { [1] = {}, [3] = {} } },
+                }
+                local context = Context()
+                context.IsAccountWide = function(id) return id == 1 end
+                local result = s.Migrations.Run(sv, context)
+                local list = sv.SavedData.CharacterList
+                local names = ("%s/%s %s/%s"):format(tostring(list["Player-1234-0ABCDEF"].Name), tostring(list["Player-1234-0ABCDEF"].Realm),
+                    tostring(list["Player-5678-0FEDCBA"].Name), tostring(list["Player-5678-0FEDCBA"].Realm))
+                local a = sv.Achievements
+                local achievements = ("earned-by=%s/%s not-completed=%s"):format(tostring(a.Completed[1].EarnedBy),
+                    tostring(a.Completed[2].EarnedBy), Keys(a.NotCompleted))
+                return ("%s names=%s %s saved-data=%s"):format(result, names, achievements, Keys(sv.SavedData))
+            end
+            return Case(true) .. " / clearing off: " .. Case(false)
         end,
     }
     local results = {}
@@ -3075,6 +3667,231 @@ suites.settings = function(c)
         local targetMet = got == target
         results[#results + 1] = { Name = scenario.Name, Status = status, TargetMet = targetMet,
             Line = ("settings/%s: %s recorded=[%s] got=[%s] target=[%s] %s"):format(scenario.Name, status, recorded, got, target, targetMet and "met" or "open") }
+    end
+    return results, ".claude/tools/headless/run-tests.lua", {}
+end
+
+-- The settings store on its own (Settings/Store.lua through settings-store.lua; docs/work/2026-11-25-settings-store,
+-- requirements 4, 6-8 and 10), headless only: declarations, the three kinds, the two profile systems, the account
+-- scope, change events, WithDefaults and the logout save, each scenario on a fresh store. The same for both clients.
+local storeScenarios = {
+    -- before Load: Get gives the default and a write is an error; an undeclared key or the wrong kind is an error
+    {Name = "store-before-load", Recorded = "get=true loaded=false set=error undeclared=error kind=error",
+        Target = "get=true loaded=false set=error undeclared=error kind=error"},
+    -- only what differs from a default is saved, false included; the holed sort list comes back whole and is saved
+    -- holed again; an object's fields its default lacks (a disabled plugin's tab) survive the logout save
+    {Name = "store-sparse-save",
+        Recorded = 'saved-false=false bool=false/removed num=absent/7 list=3,2,4,5,1 options={["o.sort"]={Priority={[1]=3,[3]=4,[4]=5,[5]=1}},["v.num"]=7} filters={["f.filters"]={Tabs={A={X=false},Plugin={Z=true}}}}',
+        Target = 'saved-false=false bool=false/removed num=absent/7 list=3,2,4,5,1 options={["o.sort"]={Priority={[1]=3,[3]=4,[4]=5,[5]=1}},["v.num"]=7} filters={["f.filters"]={Tabs={A={X=false},Plugin={Z=true}}}}'},
+    -- maps: an entry with no default and nothing saved reads nil; a saved entry nobody registered reads and survives;
+    -- an entry set to its default leaves the file; Entries lists registered and saved; RemoveEntries drops an addon
+    {Name = "store-maps",
+        Recorded = "none=nil unregistered=false has=false/true set=false/removed entries=374=true,500=false tabs=KAF=true,Other=true/KAF=true tab=Ach=true removed={[\"m.events\"]={[500]=false}}",
+        Target = "none=nil unregistered=false has=false/true set=false/removed entries=374=true,500=false tabs=KAF=true,Other=true/KAF=true tab=Ach=true removed={[\"m.events\"]={[500]=false}}"},
+    -- the options profiles: switch, copy, delete, reset; change events for the values that differ, the profile event
+    -- each time; the filter profile and the account values do not move; a deleted or reset profile's objects are not
+    -- written back by the logout save
+    {Name = "store-profiles",
+        Recorded = 'x=3,2,3,1 events=4 changed=4 filter-events=0 filters=Default account=true copy-obj=9 reset-obj=1 profiles=Default,Second/Default other=Default delete-active=error delete-missing=error delete-silent=ok options={Default={}}',
+        Target = 'x=3,2,3,1 events=4 changed=4 filter-events=0 filters=Default account=true copy-obj=9 reset-obj=1 profiles=Default,Second/Default other=Default delete-active=error delete-missing=error delete-silent=ok options={Default={}}'},
+    -- the profiles listed are those that exist and the current one: with Default deleted it is not offered (copy or
+    -- delete would raise on it)
+    {Name = "store-profile-list", Recorded = "Second", Target = "Second"},
+    -- WithDefaults: reads give defaults and fn's own writes, objects are copies of the default, no event, the real
+    -- settings untouched after, also when fn errors; whether a setting was read
+    {Name = "store-with-defaults", Recorded = "read=true inner=1/9/true/7 after=5/2/false events=0 default=1 error=boom/5 noread=false",
+        Target = "read=true inner=1/9/true/7 after=5/2/false events=0 default=1 error=boom/5 noread=false"},
+    -- the logout save is a PLAYER_LOGOUT handler on a frame of its own, made at Load
+    {Name = "store-logout", Recorded = "frames=0/1 registered=yes saved={[\"o.obj\"]={N=4}}", Target = "frames=0/1 registered=yes saved={[\"o.obj\"]={N=4}}"},
+    -- while a failed migration waits for its retry, every key the player sets is recorded (requirement 15), never
+    -- inside WithDefaults
+    {Name = "store-touched", Recorded = "touched=account:a.debug=true,options:Default:m.events=true,options:Default:o.x=true,options:Second:*=true,profileOf:options:Tester - Realm=true",
+        Target = "touched=account:a.debug=true,options:Default:m.events=true,options:Default:o.x=true,options:Second:*=true,profileOf:options:Tester - Realm=true"},
+}
+
+suites.store = function(c)
+    local scriptDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+    local store = assert(loadfile(scriptDir .. "/settings-store.lua"))()
+    local function List(iterator, state, init)
+        local keys, values = {}, {}
+        for k, v in iterator, state, init do
+            keys[#keys + 1] = k
+            values[k] = v
+        end
+        table.sort(keys, KeyOrder)
+        for n, k in ipairs(keys) do keys[n] = tostring(k) .. "=" .. tostring(values[k]) end
+        return table.concat(keys, ",")
+    end
+    local function Fails(fn, ...) return pcall(fn, ...) and "ok" or "error" end
+    local reads = {
+        ["store-before-load"] = function()
+            local s = store.New(root, { Declarations = { ["a.flag"] = { Default = true }, ["a.map"] = { Kind = "map" } } })
+            local settings = s.Settings
+            return ("get=%s loaded=%s set=%s undeclared=%s kind=%s"):format(tostring(settings.Get("a.flag")),
+                tostring(settings.IsLoaded()), Fails(settings.Set, "a.flag", false), Fails(settings.Get, "a.nope"),
+                Fails(settings.Get, "a.map"))
+        end,
+        ["store-sparse-save"] = function()
+            local saved = {
+                Options = { Profiles = { Default = { ["v.flag"] = false, ["o.sort"] = { Priority = { [1] = 3, [3] = 4, [4] = 5, [5] = 1 } } } } },
+                Filters = { Profiles = { Default = { ["f.filters"] = { Tabs = { Plugin = { Z = true } } } } } },
+            }
+            local s = store.New(root, { Saved = saved, Declarations = {
+                ["v.flag"] = { Default = true }, ["v.bool"] = { Default = true }, ["v.num"] = { Default = 5 },
+                ["o.sort"] = { Kind = "object", Default = { Priority = { 1, 2, 3, 4, 5 }, Reverse = { true, false, false, false, false } } },
+                ["f.filters"] = { Kind = "object", System = "filters", Default = { Tabs = { A = { X = true, Y = false } } } },
+            } })
+            local settings, profile = s.Settings, saved.Options.Profiles.Default
+            local savedFalse = tostring(settings.Get("v.flag"))
+            settings.Set("v.flag", true) -- back to its default: removed
+            settings.Set("v.bool", false)
+            local bool = tostring(profile["v.bool"])
+            settings.Set("v.bool", true)
+            bool = bool .. "/" .. (profile["v.bool"] == nil and "removed" or tostring(profile["v.bool"]))
+            settings.Set("v.num", 5)
+            local num = profile["v.num"] == nil and "absent" or tostring(profile["v.num"])
+            settings.Set("v.num", 7)
+            num = num .. "/" .. tostring(profile["v.num"])
+            local list = table.concat(settings.GetObject("o.sort").Priority, ",")
+            settings.GetObject("f.filters").Tabs.A.X = false
+            s.Logout()
+            return ("saved-false=%s bool=%s num=%s list=%s options=%s filters=%s"):format(savedFalse, bool, num, list,
+                Compact(profile), Compact(saved.Filters.Profiles.Default))
+        end,
+        ["store-maps"] = function()
+            local saved = { Options = { Profiles = { Default = { ["m.events"] = { [500] = false }, ["m.tabs"] = { Other = { T = false } } } } } }
+            local s = store.New(root, { Saved = saved, Declarations = {
+                ["m.events"] = { Kind = "map" }, ["m.tabs"] = { Kind = "map", Depth = 2 },
+            } })
+            local settings, profile = s.Settings, saved.Options.Profiles.Default
+            settings.RegisterEntryDefault("m.events", 374, true)
+            settings.RegisterEntryDefault("m.tabs", "KAF", "Ach", true)
+            local none = tostring(settings.GetEntry("m.events", 999))
+            local unregistered = tostring(settings.GetEntry("m.events", 500))
+            local has = tostring(settings.HasEntry("m.events", 999)) .. "/" .. tostring(settings.HasEntry("m.events", 500))
+            settings.SetEntry("m.events", 374, false)
+            local set = tostring(profile["m.events"][374])
+            settings.SetEntry("m.events", 374, true)
+            set = set .. "/" .. (profile["m.events"][374] == nil and "removed" or "kept")
+            local entries = List(settings.Entries("m.events"))
+            local tabs = List(settings.Entries("m.tabs"))
+            local tab = List(settings.Entries("m.tabs", "KAF"))
+            settings.RemoveEntries("m.tabs", "Other")
+            tabs = tabs .. "/" .. List(settings.Entries("m.tabs"))
+            s.Logout()
+            return ("none=%s unregistered=%s has=%s set=%s entries=%s tabs=%s tab=%s removed=%s"):format(none,
+                unregistered, has, set, entries, tabs, tab, Compact(profile))
+        end,
+        ["store-profiles"] = function()
+            local saved = {
+                Options = { Profiles = { Default = { ["o.x"] = 2 }, Second = { ["o.x"] = 3 } },
+                    ProfileOf = { ["Other - Realm"] = "Second" } },
+            }
+            local s = store.New(root, { Saved = saved, Declarations = {
+                ["o.x"] = { Default = 1 }, ["f.y"] = { Default = "a", System = "filters" },
+                ["acc.debug"] = { Default = false, Scope = "account" }, ["o.obj"] = { Kind = "object", Default = { N = 1 } },
+            } })
+            local settings = s.Settings
+            local events, changed, filterEvents = 0, 0, 0
+            settings.OnChange("o.x", function() events = events + 1 end)
+            settings.OnChange("f.y", function() filterEvents = filterEvents + 1 end)
+            settings.OnProfileChanged("options", function() changed = changed + 1 end)
+            settings.Set("acc.debug", true)
+            local x = {}
+            settings.SetProfile("options", "Second")
+            x[#x + 1] = settings.Get("o.x")
+            settings.GetObject("o.obj").N = 9
+            settings.SetProfile("options", "Default")
+            x[#x + 1] = settings.Get("o.x")
+            local profiles = table.concat(settings.Profiles("options"), ",")
+            settings.CopyProfile("options", "Second")
+            x[#x + 1] = settings.Get("o.x")
+            local copyObj = settings.GetObject("o.obj").N
+            settings.DeleteProfile("options", "Second")
+            profiles = profiles .. "/" .. table.concat(settings.Profiles("options"), ",")
+            settings.ResetProfile("options")
+            x[#x + 1] = settings.Get("o.x")
+            local resetObj = settings.GetObject("o.obj").N
+            settings.Set("o.x", 1) -- no change: no event
+            local deleteActive = Fails(settings.DeleteProfile, "options", "Default")
+            local deleteMissing = Fails(settings.DeleteProfile, "options", "Nope")
+            local deleteSilent = Fails(settings.DeleteProfile, "options", "Nope", true)
+            s.Logout()
+            return ("x=%s events=%d changed=%d filter-events=%d filters=%s account=%s copy-obj=%d reset-obj=%d profiles=%s other=%s delete-active=%s delete-missing=%s delete-silent=%s options=%s"):format(
+                table.concat(x, ","), events, changed, filterEvents, settings.CurrentProfile("filters"),
+                tostring(settings.Get("acc.debug")), copyObj, resetObj, profiles,
+                saved.Options.ProfileOf["Other - Realm"] or "Default", deleteActive, deleteMissing, deleteSilent,
+                Compact(saved.Options.Profiles))
+        end,
+        ["store-profile-list"] = function()
+            local saved = { Options = { Profiles = { Second = {} }, ProfileOf = { ["Tester - Realm"] = "Second" } } }
+            local s = store.New(root, { Saved = saved, Declarations = { ["o.x"] = { Default = 1 } } })
+            return table.concat(s.Settings.Profiles("options"), ",")
+        end,
+        ["store-with-defaults"] = function()
+            local saved = { Options = { Profiles = { Default = { ["o.x"] = 5, ["m.e"] = { [1] = false }, ["o.obj"] = { A = { B = 2 } } } } } }
+            local s = store.New(root, { Saved = saved, Declarations = {
+                ["o.x"] = { Default = 1 }, ["m.e"] = { Kind = "map" }, ["o.obj"] = { Kind = "object", Default = { A = { B = 1 } } },
+            } })
+            local settings = s.Settings
+            settings.RegisterEntryDefault("m.e", 1, true)
+            local events = 0
+            settings.OnChange("o.x", function() events = events + 1 end)
+            local read, inner = settings.WithDefaults(function()
+                local v = settings.Get("o.x")
+                settings.Set("o.x", 9)
+                local v2 = settings.Get("o.x")
+                local obj = settings.GetObject("o.obj")
+                local e = settings.GetEntry("m.e", 1)
+                settings.SetEntry("m.e", 1, false)
+                obj.A.B = 7
+                return v .. "/" .. v2 .. "/" .. tostring(e) .. "/" .. settings.GetObject("o.obj").A.B
+            end)
+            local after = settings.Get("o.x") .. "/" .. settings.GetObject("o.obj").A.B .. "/" .. tostring(settings.GetEntry("m.e", 1))
+            local ok, err = pcall(settings.WithDefaults, function()
+                settings.Set("o.x", 8)
+                error("boom", 0)
+            end)
+            local errorText = (ok and "none" or tostring(err)) .. "/" .. settings.Get("o.x")
+            local noRead = settings.WithDefaults(function() return 1 end)
+            return ("read=%s inner=%s after=%s events=%d default=%d error=%s noread=%s"):format(tostring(read), inner,
+                after, events, settings.Declaration("o.obj").Default.A.B, errorText, tostring(noRead))
+        end,
+        ["store-logout"] = function()
+            local s = store.New(root, { Declarations = { ["o.obj"] = { Kind = "object", Default = { N = 1 } } } })
+            local before = #s.Frames
+            local saved = {}
+            s.Settings.Load(saved, "Tester - Realm")
+            s.Settings.GetObject("o.obj").N = 4
+            s.Logout()
+            local frame = s.Frames[1]
+            return ("frames=%d/%d registered=%s saved=%s"):format(before, #s.Frames,
+                (frame and frame.Events.PLAYER_LOGOUT) and "yes" or "no", Compact(saved.Options.Profiles.Default))
+        end,
+        ["store-touched"] = function()
+            local saved = { MigrationFailed = { Touched = {} } }
+            local s = store.New(root, { Saved = saved, Declarations = {
+                ["o.x"] = { Default = 1 }, ["o.y"] = { Default = 1 }, ["m.events"] = { Kind = "map" },
+                ["a.debug"] = { Default = false, Scope = "account" },
+            } })
+            local settings = s.Settings
+            settings.Set("o.x", 2)
+            settings.SetEntry("m.events", 3, true)
+            settings.Set("a.debug", true)
+            settings.WithDefaults(function() settings.Set("o.y", 2) end)
+            settings.SetProfile("options", "Second")
+            settings.ResetProfile("options")
+            return "touched=" .. List(next, saved.MigrationFailed.Touched)
+        end,
+    }
+    local results = {}
+    for _, scenario in ipairs(storeScenarios) do
+        local ok, got = pcall(reads[scenario.Name])
+        if not ok then got = "error: " .. tostring(got) end
+        local status = got == scenario.Recorded and "PASS" or "FAIL"
+        local targetMet = got == scenario.Target
+        results[#results + 1] = { Name = scenario.Name, Status = status, TargetMet = targetMet,
+            Line = ("store/%s: %s recorded=[%s] got=[%s] target=[%s] %s"):format(scenario.Name, status, scenario.Recorded, got, scenario.Target, targetMet and "met" or "open") }
     end
     return results, ".claude/tools/headless/run-tests.lua", {}
 end

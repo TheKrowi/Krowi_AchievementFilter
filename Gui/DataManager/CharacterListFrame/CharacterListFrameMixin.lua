@@ -217,8 +217,8 @@ function KrowiAF_CharacterListFrameMixin:OnLoad()
     self.ColumnDisplay.sortingFunction = SortingFunction
     self.ColumnDisplay:Show()
 
-	self.ScrollBox.wheelPanScalar = addon.Options.db.profile.DataManager.MouseWheelPanScalar
-	self.ScrollBar.wheelPanScalar = addon.Options.db.profile.DataManager.MouseWheelPanScalar
+	self.ScrollBox.wheelPanScalar = addon.Settings.Get("dataManager.mouseWheelPanScalar")
+	self.ScrollBar.wheelPanScalar = addon.Settings.Get("dataManager.mouseWheelPanScalar")
 
     CreateScrollView(self)
 	AddManagedScrollBarVisibilityBehavior(self)

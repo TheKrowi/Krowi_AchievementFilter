@@ -29,12 +29,11 @@ end
 
 -- The preferred tab of this addon if the player shows it, else the first one shown
 local function ShownTab(preferred)
-    local tabs = addon.Options.db.profile.Tabs[addonName]
-    if tabs[preferred] and tabs[preferred].Show then
+    if addon.Settings.GetEntry("tabs.show", addonName, preferred) then
         return preferred
     end
     for _, name in ipairs(tabPreference) do
-        if tabs[name] and tabs[name].Show then
+        if addon.Settings.GetEntry("tabs.show", addonName, name) then
             return name
         end
     end
@@ -175,7 +174,7 @@ function scenes.tabs(ready)
 end
 
 function scenes.window(ready)
-    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab]
+    local tab = KrowiAF_SavedData.Tabs[addon.Settings.Get("window.microButtonTab")]
     KrowiAF_ToggleAchievementFrame(tab.AddonName, tab.Name, nil, true)
     Ready(ready, {Tab = tab.Name})
 end

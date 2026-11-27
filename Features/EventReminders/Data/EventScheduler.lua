@@ -157,12 +157,11 @@ end
 
 -- Whether a reminder can show a watched event: event reminders on and at least one of their toggles on
 local function IsWanted()
-    local eventReminders = addon.Options.db.profile.EventReminders
-    if not eventReminders.Enabled then
+    if not addon.Settings.Get("eventReminders.enabled") then
         return false
     end
     for areaPoiId in next, watched do
-        if eventReminders.WorldEvents[areaPoiId] then
+        if addon.Settings.GetEntry("eventReminders.worldEvents", areaPoiId) then
             return true
         end
     end

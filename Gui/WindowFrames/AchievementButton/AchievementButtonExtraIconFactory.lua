@@ -136,7 +136,7 @@ local function SetExtraIconRemix(self, achievement)
 end
 
 local function SetExtraIconEvent(self, achievement)
-	if not addon.Options.db.profile.Achievements.ShowTemporarilyObtainableIcon or not achievement.TemporaryObtainable then
+	if not addon.Settings.Get("achievements.showTemporarilyObtainableIcon") or not achievement.TemporaryObtainable then
 		return
 	end
 
@@ -157,7 +157,7 @@ local function SetExtraIconEvent(self, achievement)
 end
 
 local function SetExtraIconWarband(self, achievement)
-	if not addon.Options.db.profile.Achievements.ShowWarbandIcon or not achievement.IsAccountWide then
+	if not addon.Settings.Get("achievements.showWarbandIcon") or not achievement.IsAccountWide then
 		return
 	end
 
@@ -172,7 +172,7 @@ local function SetExtraIconWarband(self, achievement)
 end
 
 local function GuideOnEnter(icon)
-	if not addon.Options.db.profile.Achievements.Guide.MouseoverShow then
+	if not addon.Settings.Get("guides.mouseoverShow") then
 		return
 	end
 	local frame = addon.Gui.Guide.Panel.Frame
@@ -183,7 +183,7 @@ local function GuideOnEnter(icon)
 end
 
 local function GuideOnLeave(icon)
-	if not addon.Options.db.profile.Achievements.Guide.MouseoverShow then
+	if not addon.Settings.Get("guides.mouseoverShow") then
 		return
 	end
 	addon.Gui.Guide.Panel:HideIfUnpinned(icon:GetParent())
@@ -194,7 +194,7 @@ local function GuideOnClick(icon)
 end
 
 local function SetExtraIconGuide(self, achievement)
-	if achievement.Guide == nil or not addon.Options.db.profile.Achievements.Guide.Icon then
+	if achievement.Guide == nil or not addon.Settings.Get("guides.icon") then
 		return
 	end
 

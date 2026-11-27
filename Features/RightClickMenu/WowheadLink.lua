@@ -3,13 +3,14 @@ local section = {Order = 10} -- its place among the menu's entries (Slots.lua, A
 tinsert(addon.Gui.RightClickMenu.AchievementMenu.Sections, section)
 
 local popupDialog = LibStub("Krowi_PopupDialog_2")
+local wowheadTab = addon.Gui.RightClickMenu.Enum.WowheadTab
 local relatedTabs = {
-    "",
-	"#criteria-of",
-	"#guides",
-	"#news",
-	"#comments",
-	"#screenshots"
+    [wowheadTab.None] = "",
+	[wowheadTab.CriteriaOf] = "#criteria-of",
+	[wowheadTab.Guides] = "#guides",
+	[wowheadTab.News] = "#news",
+	[wowheadTab.Comments] = "#comments",
+	[wowheadTab.Screenshots] = "#screenshots"
 }
 
 function section:CheckAdd(achievement)
@@ -18,7 +19,7 @@ end
 
 function section:Add(menu, achievement, menuBuilder)
 	local locale = ""
-	if addon.Options.db.profile.RightClickMenu.WowheadLink.AddLocale then
+	if addon.Settings.Get("rightClickMenu.wowheadLink.addLocale") then
 		locale = GetLocale()
 		locale = locale:sub(1, 2)
 		if locale == "zh" then
@@ -27,7 +28,7 @@ function section:Add(menu, achievement, menuBuilder)
 		locale = locale .. "."
 	end
 
-	local addRelatedTab = addon.Options.db.profile.RightClickMenu.WowheadLink.AddRelatedTab
+	local addRelatedTab = addon.Settings.Get("rightClickMenu.wowheadLink.addRelatedTab")
 	local relatedTab = relatedTabs[addRelatedTab]
 	local expansion = ""
 	if addon.Util.IsWrathClassic then

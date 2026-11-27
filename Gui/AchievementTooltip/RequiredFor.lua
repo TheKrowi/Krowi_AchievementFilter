@@ -4,7 +4,7 @@ tinsert(addon.Gui.AchievementTooltip.Sections, section)
 
 local requiredForIds
 function section:CheckAdd(achievement)
-    if not addon.Options.db.profile.Tooltip.Achievements.ShowRequiredFor then
+    if not addon.Settings.Get("tooltips.showRequiredFor") then
 		return
 	end
     requiredForIds = achievement:GetRequiredForIds()
@@ -14,6 +14,6 @@ end
 function section:Add(achievement)
 	Krowi_Tooltip:AddLine(addon.L["Required for"])
 	for _, id in next, requiredForIds do
-		addon.Gui.AchievementTooltip:AddAchievementLine(achievement, id, addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor)
+		addon.Gui.AchievementTooltip:AddAchievementLine(achievement, id, addon.Settings.Get("tooltips.showCurrentCharacterIconsRequiredFor"))
 	end
 end

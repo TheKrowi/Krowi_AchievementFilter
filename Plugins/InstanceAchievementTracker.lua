@@ -10,9 +10,7 @@ local function IsLoaded()
 end
 
 function iat:InjectOptions()
-    KrowiAF.UtilApi.InjectOptions:AddDefaults("Plugins", "InstanceAchievementTracker", {
-        AddToRightClickMenu = true,
-    })
+    addon.Settings.Declare("plugins.instanceAchievementTracker.addToRightClickMenu", {Type = "boolean", Default = true})
 
     local pluginTable = KrowiAF.UtilApi.InjectOptions:AddPluginTable(
         "InstanceAchievementTracker",
@@ -22,19 +20,17 @@ function iat:InjectOptions()
             return IsLoaded()
         end
     )
-    KrowiAF.UtilApi.InjectOptions:AddTable(pluginTable, "AddToRightClickMenu", {
+    KrowiAF.UtilApi.InjectOptions:AddTable(pluginTable, "AddToRightClickMenu", addon.Settings.Row("plugins.instanceAchievementTracker.addToRightClickMenu", {
         order = KrowiAF.UtilApi.InjectOptions.AutoOrderPlusPlus(), type = "toggle", width = "full",
         name = addon.L["Add To Right Click Menu"],
-        desc = addon.L["Add To Right Click Menu Desc"]:K_ReplaceVars(addon.L["Instance Achievement Tracker"]):KAF_AddDefaultValueText("Plugins.InstanceAchievementTracker.AddToRightClickMenu"),
-        get = function() return addon.Options.db.profile.Plugins.InstanceAchievementTracker.AddToRightClickMenu; end,
-        set = function(_, value) addon.Options.db.profile.Plugins.InstanceAchievementTracker.AddToRightClickMenu = value; end,
+        desc = addon.L["Add To Right Click Menu Desc"]:K_ReplaceVars(addon.L["Instance Achievement Tracker"]):KAF_AddDefaultValueText("plugins.instanceAchievementTracker.addToRightClickMenu"),
         disabled = function() return not IsLoaded(); end
-    })
+    }))
 end
 
 function iat:AddAchievementRightClickMenuItems(rightClickMenu, achievement, menuBuilder)
     if IsLoaded()
-    and addon.Options.db.profile.Plugins.InstanceAchievementTracker.AddToRightClickMenu
+    and addon.Settings.Get("plugins.instanceAchievementTracker.addToRightClickMenu")
     and IAT_HasAchievement(achievement.Id) then
         menuBuilder:CreateButtonAndAdd(
             rightClickMenu,

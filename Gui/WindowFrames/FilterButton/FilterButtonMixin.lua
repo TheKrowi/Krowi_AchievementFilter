@@ -74,7 +74,7 @@ do -- Logic
         if addon.Gui.SelectedTab and filters ~= addon.Gui.SelectedTab.Filters then
             filters.Refresh = true
         end
-        if filters ~= addon.Filters.db.profile then
+        if filters ~= addon.Settings.GetObject("filters") then
             return
         end
         for t, _ in next, addon.Tabs do
@@ -108,7 +108,7 @@ do -- Checkbox
     end
 
     function KrowiAF_AchievementFrameFilterButtonMixin:GetCheckBoxStateText(text, filters, keys)
-        return text .. ((filters == addon.Filters.db.profile and CheckBoxStateIsIndeterminate(keys)) and " (*)" or "")
+        return text .. ((filters == addon.Settings.GetObject("filters") and CheckBoxStateIsIndeterminate(keys)) and " (*)" or "")
     end
 
     function KrowiAF_AchievementFrameFilterButtonMixin:OnCheckboxSelect(filters, keys, checkTabs)
@@ -169,7 +169,7 @@ do -- AchievementFilters
         mb:CreateCheckbox(menu, addon.GetCategoryInfoTitle(81), filters, {"Special", "FeatsOfStrength"}, true)
         mb:CreateCheckbox(menu, addon.GetCategoryInfoTitle(95), filters, {"Special", "PvP"}, true)
         mb:CreateCheckbox(menu, addon.L["Collapse Chain"], filters, {"CollapseSeries"}, true)
-        if addon.Options.db.profile.Categories.TrackingAchievements.DoLoad then
+        if addon.Settings.Get("categories.trackingAchievements.doLoad") then
             mb:CreateCheckbox(menu, addon.L["Tracking"], filters, {"Tracking"}, true)
         end
         mb:CreateCheckbox(menu, addon.L["Excluded"], filters, {"Excluded"}, true)
@@ -178,7 +178,7 @@ do -- AchievementFilters
         mb:CreateDivider(menu)
 
         local text = addon.L["Sort By"]
-        if filters == addon.Filters.db.profile and SortByValueIsIndeterminate{"SortBy", "Criteria"} then
+        if filters == addon.Settings.GetObject("filters") and SortByValueIsIndeterminate{"SortBy", "Criteria"} then
             text = text .. " (*)"
         end
         local sortBy = mb:CreateSubmenuButton(menu, text)
@@ -207,16 +207,16 @@ end
 function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
     local mb = self.menuBuilder
     mb:CreateTitle(menu, addon.L["Categories"])
-    mb:CreateCheckbox(menu, addon.L["Merge Small Categories"], addon.Filters.db.profile, {"MergeSmallCategories"})
+    mb:CreateCheckbox(menu, addon.L["Merge Small Categories"], addon.Settings.GetObject("filters"), {"MergeSmallCategories"})
 
     mb:CreateDivider(menu)
     mb:CreateTitle(menu, addon.L["Achievements"])
-    self:CreateAchievementFilters(menu, addon.Filters.db.profile)
+    self:CreateAchievementFilters(menu, addon.Settings.GetObject("filters"))
 
     local earnedBy = mb:CreateSubmenuButton(menu, addon.L["Earned By"])
-    mb:CreateRadio(earnedBy, addon.Filters.Account, addon.Filters.db.profile, {"EarnedBy"}, 'Account')
-    mb:CreateRadio(earnedBy, addon.Filters.CharacterAccount, addon.Filters.db.profile, {"EarnedBy"}, 'CharacterAccount')
-    mb:CreateRadio(earnedBy, addon.Filters.CharacterOnly, addon.Filters.db.profile, {"EarnedBy"}, 'CharacterOnly')
+    mb:CreateRadio(earnedBy, addon.Filters.Account, addon.Settings.GetObject("filters"), {"EarnedBy"}, 'Account')
+    mb:CreateRadio(earnedBy, addon.Filters.CharacterAccount, addon.Settings.GetObject("filters"), {"EarnedBy"}, 'CharacterAccount')
+    mb:CreateRadio(earnedBy, addon.Filters.CharacterOnly, addon.Settings.GetObject("filters"), {"EarnedBy"}, 'CharacterOnly')
     mb:AddChildMenu(menu, earnedBy)
 
     mb:CreateDivider(menu)
@@ -227,9 +227,9 @@ function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
 
     mb:CreateDivider(menu)
     mb:CreateTitle(menu, addon.L["Special Categories"])
-    self:CreateAchievementFilters(mb:CreateSubmenuButton(menu, addon.L["Current Zone"]), addon.Filters.db.profile.CurrentZone, menu)
-    self:CreateAchievementFilters(mb:CreateSubmenuButton(menu, addon.L["Selected Zone"]), addon.Filters.db.profile.SelectedZone, menu)
-    self:CreateAchievementFilters(mb:CreateSubmenuButton(menu, addon.L["Tracking Achievements"]), addon.Filters.db.profile.TrackingAchievements, menu)
+    self:CreateAchievementFilters(mb:CreateSubmenuButton(menu, addon.L["Current Zone"]), addon.Settings.GetObject("filters").CurrentZone, menu)
+    self:CreateAchievementFilters(mb:CreateSubmenuButton(menu, addon.L["Selected Zone"]), addon.Settings.GetObject("filters").SelectedZone, menu)
+    self:CreateAchievementFilters(mb:CreateSubmenuButton(menu, addon.L["Tracking Achievements"]), addon.Settings.GetObject("filters").TrackingAchievements, menu)
 
     mb:CreateDivider(menu)
     mb:CreateButtonAndAdd(
@@ -240,8 +240,8 @@ function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
         end
     )
 
-    if addon.Options.db.profile.ShowPlaceholdersFilter then
+    if addon.Settings.Get("advanced.placeholdersFilter") then
         mb:CreateDivider(menu)
-        mb:CreateCheckbox(menu, addon.L["Show placeholders"], addon.Filters.db.profile, {"ShowPlaceholders"})
+        mb:CreateCheckbox(menu, addon.L["Show placeholders"], addon.Settings.GetObject("filters"), {"ShowPlaceholders"})
     end
 end

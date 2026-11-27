@@ -48,7 +48,7 @@ local function CreateAchievementFrame()
 end
 
 local function LoadCollections()
-    if addon.Options.db and not addon.Options.db.profile.Experimental.CollectionsAchievementWindow then
+    if addon.Settings.IsLoaded() and not addon.Settings.Get("advanced.experimental.collectionsAchievementWindow") then
         return
     end
 

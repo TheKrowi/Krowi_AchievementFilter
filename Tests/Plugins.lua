@@ -292,7 +292,7 @@ function gameEnv.CloseWindow()
 end
 
 function gameEnv.ToggleWithAddonBinding(tabName, picked)
-    if addon.Options.db.profile.ResetViewOnOpen then
+    if addon.Settings.Get("window.resetViewOnOpen") then
         return "Reset view on open is on, which selects the tab's first category"
     end
     local undo = Preset(tabName, picked)

@@ -288,7 +288,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
     end
 
     local function FormatTime(timestamp)
-        return tostring(date(addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime, timestamp))
+        return tostring(date(addon.Settings.Get("tooltips.temporarilyObtainable.dateTimeFormat.startTimeAndEndTime"), timestamp))
     end
 
     -- The patch a Version anchor reaches on this game version; when none has, the patch as Retail shipped it
@@ -322,7 +322,7 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             }
         end
 
-        if not addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.ShowDateTime then
+        if not addon.Settings.Get("tooltips.temporarilyObtainable.showDateTime") then
             return seasonDetail
         end
 
@@ -413,8 +413,8 @@ do -- Tooltip, maybe move to not obtainable tooltip lua
             local occurrence = addon.L["Next occurrence unknown"]
             if startDate and endDate then
                 occurrence = addon.L["Next from startDate until endDate"]:K_ReplaceVars{
-                    startDate = tostring(date(addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime, startDate)),
-                    endDate = tostring(date(addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime, endDate))
+                    startDate = tostring(date(addon.Settings.Get("tooltips.temporarilyObtainable.dateTimeFormat.startTimeAndEndTime"), startDate)),
+                    endDate = tostring(date(addon.Settings.Get("tooltips.temporarilyObtainable.dateTimeFormat.startTimeAndEndTime"), endDate))
                 }
             end
             if record.IsNotObtainable then

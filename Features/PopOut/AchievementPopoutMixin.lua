@@ -54,7 +54,7 @@ local function FadeTo(popout, targetAlpha)
 		return
 	end
 
-	local duration = addon.Options.db.profile.Popout.FadeSpeed
+	local duration = addon.Settings.Get("popOut.fadeSpeed")
 	popout.FadeAnimGroup:Stop()
 	if duration <= 0 then
 		popout:SetAlpha(targetAlpha)
@@ -68,12 +68,12 @@ local function FadeTo(popout, targetAlpha)
 end
 
 local function UpdateChrome(popout, hovered)
-	local popoutOptions = addon.Options.db.profile.Popout
-	popout.CloseButton:SetShown(hovered or not popoutOptions.AutoHideCloseButton)
+	local settings = addon.Settings
+	popout.CloseButton:SetShown(hovered or not settings.Get("popOut.autoHideCloseButton"))
 	-- Never hide mid-drag: the button's own OnMouseUp is what stops the resize, so hiding it
 	-- (e.g. when the cursor drifts off its small hit-rect while dragging) would strand it in sizing mode
-	popout.ResizeButton:SetShown(popout.Resizing or hovered or not popoutOptions.AutoHideResizeButton)
-	FadeTo(popout, (popoutOptions.FadeWhenNotHovered and not hovered and popoutOptions.FadedOpacity) or 1)
+	popout.ResizeButton:SetShown(popout.Resizing or hovered or not settings.Get("popOut.autoHideResizeButton"))
+	FadeTo(popout, (settings.Get("popOut.fadeWhenNotHovered") and not hovered and settings.Get("popOut.fadedOpacity")) or 1)
 end
 
 -- Recomputes the objectives display and re-expands the button to fit; used instead of
@@ -125,9 +125,9 @@ local function OnButtonEvent(button, event, ...)
 	end
 	RefreshButton(button)
 
-	if event == "ACHIEVEMENT_EARNED" and not wasAlreadyCompleted and addon.Options.db.profile.Popout.CloseOnEarn then
+	if event == "ACHIEVEMENT_EARNED" and not wasAlreadyCompleted and addon.Settings.Get("popOut.closeOnEarn") then
 		local popout = button:GetParent()
-		local delay = addon.Options.db.profile.Popout.CloseOnEarnDelay
+		local delay = addon.Settings.Get("popOut.closeOnEarnDelay")
 		if delay <= 0 then
 			popout.UserClosed = true
 			popout:Hide()
@@ -153,8 +153,8 @@ function KrowiAF_AchievementPopoutMixin:OnLoad()
 
 	Mixin(self, KrowiAF_SnapFrameMixin)
 	self:InitSnapping({
-		IsEnabled = function() return addon.Options.db.profile.Popout.EnableSnapping; end,
-		Threshold = function() return addon.Options.db.profile.Popout.SnapDistance; end,
+		IsEnabled = function() return addon.Settings.Get("popOut.enableSnapping"); end,
+		Threshold = function() return addon.Settings.Get("popOut.snapDistance"); end,
 		GetCandidates = function() return addon.Gui.AchievementPopout.OpenPopouts; end,
 		OnSnapped = function(self_, parent) addon.Gui.AchievementPopout:OnSnapped(self_, parent); end,
 		OnUnsnapped = function(self_) addon.Gui.AchievementPopout:OnUnsnapped(self_); end,

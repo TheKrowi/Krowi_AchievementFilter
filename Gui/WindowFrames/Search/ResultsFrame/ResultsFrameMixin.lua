@@ -31,8 +31,8 @@ local function AddManagedScrollBarVisibilityBehavior(self)
 end
 
 function KrowiAF_SearchResultsFrameMixin:OnLoad()
-	self.ScrollBox.wheelPanScalar = addon.Options.db.profile.SearchBox.MouseWheelPanScalar
-	self.ScrollBar.wheelPanScalar = addon.Options.db.profile.SearchBox.MouseWheelPanScalar
+	self.ScrollBox.wheelPanScalar = addon.Settings.Get("searchBox.mouseWheelPanScalar")
+	self.ScrollBar.wheelPanScalar = addon.Settings.Get("searchBox.mouseWheelPanScalar")
 
 	CreateScrollView(self)
 	AddManagedScrollBarVisibilityBehavior(self)

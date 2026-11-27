@@ -6,7 +6,7 @@ local feature = addon.RewardPreview
 -- (Gui/WindowFrames/AchievementButton/AchievementButtonExtraIconFactory.lua).
 
 local function OnEnter(icon)
-    if not addon.Options.db.profile.Achievements.RewardPreviewMouseoverShow then
+    if not addon.Settings.Get("rewardPreview.mouseoverShow") then
         return
     end
     local frame = KrowiAF_RewardPreview
@@ -23,7 +23,7 @@ local function OnEnter(icon)
 end
 
 local function OnLeave(icon)
-    if not addon.Options.db.profile.Achievements.RewardPreviewMouseoverShow then
+    if not addon.Settings.Get("rewardPreview.mouseoverShow") then
         return
     end
     addon.Gui.RewardPreview:HideIfUnpinned(icon:GetParent())
@@ -44,7 +44,7 @@ end
 -- Achievements with more than a handful of options (e.g. a "choose any of ~50 mounts" item reward) collapse into a single chooser icon instead.
 -- Last of all the row's icons (the slot's highest Order), because it adds a varying number of them.
 function feature.SetRowIcons(row, achievement, getIcon)
-    if not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon then
+    if not addon.Settings.Get("rewardPreview.showIcon") then
         return
     end
     local groups = addon.RewardPreviewData.GetIconGroups(achievement.Id)

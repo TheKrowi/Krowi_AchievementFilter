@@ -9,16 +9,17 @@ function eventReminderSideButtonSystem:GetAnchor()
     if self.AttachedAnchor then
         return self.AttachedAnchor
     end
-    if addon.Options.db.profile.EventReminders.SideButtonsAnchor == 1 then
+    local anchor = addon.EventReminders.Enum.SideButtonsAnchor
+    if addon.Settings.Get("eventReminders.sideButtonsAnchor") == anchor.AchievementWindow then
         return AchievementFrame
-    elseif addon.Options.db.profile.EventReminders.SideButtonsAnchor == 2 then
+    elseif addon.Settings.Get("eventReminders.sideButtonsAnchor") == anchor.WorldMap then
         return WorldMapFrame
     end
 end
 
 local sideButtons = {}
 local function GetNewSideButton(index)
-    local template = "KrowiAF_EventReminderSideButton_" .. (addon.Options.db.profile.EventReminders.Compact and "Small" or "Normal") .. "_Template"
+    local template = "KrowiAF_EventReminderSideButton_" .. (addon.Settings.Get("eventReminders.compact") and "Small" or "Normal") .. "_Template"
     local sideButton = CreateFrame("Button", "KrowiAF_AchievementFrameSideButton" .. index, nil, template)
     sideButton:Reset()
     return sideButton
@@ -83,7 +84,7 @@ function eventReminderSideButtonSystem:Refresh(activeEvents, upcomingCalendarEve
     for index, activeEvent in next, activeEvents do
         AddEvent(index, activeEvent)
     end
-    if addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Enabled then
+    if addon.Settings.Get("eventReminders.upcomingCalendarEvents.enabled") then
         upcomingCalendarEvents = upcomingCalendarEvents or addon.EventReminders.EventData.GetUpcomingCalendarEvents() -- Alert system does the refreshing
         for index, upcomgingCalendarEvent in next, upcomingCalendarEvents do
             AddEvent(#activeEvents + index, upcomgingCalendarEvent)
@@ -124,7 +125,7 @@ end
 -- LoadWithBlizzard_AchievementUI loads the buttons onto the achievement window once it does
 local function Attach(self)
     self.AttachedAnchor = nil -- the setting's window again
-    local anchor = addon.Options.db.profile.EventReminders.Enabled and self:GetAnchor() or nil
+    local anchor = addon.Settings.Get("eventReminders.enabled") and self:GetAnchor() or nil
     self.AttachedAnchor = anchor
     self.Loaded = anchor and true or false
     if anchor then

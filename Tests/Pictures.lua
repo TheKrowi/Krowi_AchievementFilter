@@ -351,18 +351,18 @@ local function SceneStep(name, picture, scene, text, cut, check, more)
     }
 end
 
--- An achievement option set for the pictures, back to the player's own value at the end of the run (RestoreOptions). The
--- player's values wait in the saved variables, so a /reload mid-run still puts them back at login, with the profile
--- they belong to.
-local function SetForRun(option, value)
+-- A setting changed for the pictures, back to the player's own value at the end of the run (RestoreOptions). The
+-- player's values wait in the saved variables by key, so a /reload mid-run still puts them back at login, with the
+-- profile they belong to.
+local function SetForRun(key, value)
     KrowiAF_DebugTable = KrowiAF_DebugTable or {}
     KrowiAF_DebugTable.PicturesRestore = KrowiAF_DebugTable.PicturesRestore or {}
-    KrowiAF_DebugTable.PicturesRestoreProfile = KrowiAF_DebugTable.PicturesRestoreProfile or addon.Options.db:GetCurrentProfile()
-    local saved, achievements = KrowiAF_DebugTable.PicturesRestore, addon.Options.db.profile.Achievements
-    if saved[option] == nil then
-        saved[option] = achievements[option]
+    KrowiAF_DebugTable.PicturesRestoreProfile = KrowiAF_DebugTable.PicturesRestoreProfile or addon.Settings.CurrentProfile("options")
+    local saved = KrowiAF_DebugTable.PicturesRestore
+    if saved[key] == nil then
+        saved[key] = addon.Settings.Get(key)
     end
-    achievements[option] = value
+    addon.Settings.Set(key, value)
 end
 
 local function ColorStep(look, more)
@@ -374,8 +374,8 @@ local function ColorStep(look, more)
         Run = function()
             KrowiAF_SearchBoxFrame:SetText("") -- the list must show the category, not search results
             -- green, yellow and red headers and the blue warband one are options; on for these rows, back at the end
-            SetForRun("TemporarilyObtainableHeaderColors", true)
-            SetForRun("WarbandHeaderColor", true)
+            SetForRun("achievements.temporarilyObtainableHeaderColors", true)
+            SetForRun("achievements.warbandHeaderColor", true)
             live.Look = FindLook(look)
             if not live.Look then
                 return "no achievement with this look in the data"
@@ -447,7 +447,7 @@ steps = {
         Text = "compact achievements",
         More = {Top = 30, Left = 30},
         Run = function()
-            if not addon.Options.db.profile.Achievements.Compact then
+            if not addon.Settings.Get("achievements.compact") then
                 return "Compact Achievements is off; it needs a /reload, so turn it on and run the pictures again"
             end
             Scenes().achievements(function(opened)
@@ -661,9 +661,8 @@ steps = {
             end
             -- at its default size, not the player's: the 2026-11-01 run's was 485 x 654, of which Overview's card showed
             -- only the title bar (Krowi, 2026-11-02, docs/work/2026-11-02-overview-cards)
-            local defaults = addon.Options.Defaults.profile.Achievements
-            SetForRun("RewardPreviewDefaultWidth", defaults.RewardPreviewDefaultWidth)
-            SetForRun("RewardPreviewDefaultHeight", defaults.RewardPreviewDefaultHeight)
+            SetForRun("rewardPreview.defaultWidth", addon.Settings.Declaration("rewardPreview.defaultWidth").Default)
+            SetForRun("rewardPreview.defaultHeight", addon.Settings.Declaration("rewardPreview.defaultHeight").Default)
             Scenes().rewards(function(opened)
                 live.Scene = opened
             end)
@@ -841,12 +840,18 @@ local function RestoreOptions()
         return
     end
     local profile = KrowiAF_DebugTable.PicturesRestoreProfile
-    if profile and profile ~= addon.Options.db:GetCurrentProfile() then
+    if profile and profile ~= addon.Settings.CurrentProfile("options") then
         return
     end
-    local achievements = addon.Options.db.profile.Achievements
-    for option, value in next, saved do
-        achievements[option] = value
+    for key, value in next, saved do
+        -- a value a run before the settings store kept under its old name, "WarbandHeaderColor": the old path's key
+        -- (docs/work/2026-11-25-settings-store)
+        if not key:find(".", 1, true) then
+            key = addon.Settings.Renames.Values["Achievements." .. key]
+        end
+        if key then
+            addon.Settings.Set(key, value)
+        end
     end
     KrowiAF_DebugTable.PicturesRestore, KrowiAF_DebugTable.PicturesRestoreProfile = nil, nil
     if KrowiAF_SummaryFrame then

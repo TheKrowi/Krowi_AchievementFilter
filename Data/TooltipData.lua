@@ -22,11 +22,11 @@ local function AddTooltipLine(tooltip, tooltipLine)
     end
 
     local show = not achievementIsCompleted
-    if not wasEarnedByMe and addon.Options.db.profile.Tooltip.Criteria.ShowIf.AchievementWasNotEarnedByMe then
+    if not wasEarnedByMe and addon.Settings.Get("unitTooltips.criteria.showIf.achievementWasNotEarnedByMe") then
         show = true
     end
 
-    if achievementIsCompleted and addon.Options.db.profile.Tooltip.Criteria.ShowIf.AchievementIsCompleted then
+    if achievementIsCompleted and addon.Settings.Get("unitTooltips.criteria.showIf.achievementIsCompleted") then
         show = true
     end
 
@@ -44,7 +44,7 @@ local function AddTooltipLine(tooltip, tooltipLine)
         criteriaString = achievementName
         criteriaIsCompleted = achievementIsCompleted
     end
-    if criteriaIsCompleted and not addon.Options.db.profile.Tooltip.Criteria.ShowIf.CriteriaIsCompleted then
+    if criteriaIsCompleted and not addon.Settings.Get("unitTooltips.criteria.showIf.criteriaIsCompleted") then
         return
     end
 
@@ -67,7 +67,7 @@ end
 local function ProcessUnit(tooltip, guid)
     if issecretvalue and issecretvalue(guid) then return end
     
-    if not addon.Options.db.profile.Tooltip.Criteria.Show then
+    if not addon.Settings.Get("unitTooltips.criteria.show") then
         return
     end
 
@@ -100,7 +100,7 @@ end
 local function ProcessItem(tooltip, itemId)
     if issecretvalue and issecretvalue(itemId) then return end
 
-    if not addon.Options.db.profile.Tooltip.Criteria.Show then
+    if not addon.Settings.Get("unitTooltips.criteria.show") then
         return
     end
 
@@ -132,7 +132,7 @@ end
 local function ProcessSpell(tooltip, spellId)
     if issecretvalue and issecretvalue(spellId) then return end
 
-    if not addon.Options.db.profile.Tooltip.Criteria.Show then
+    if not addon.Settings.Get("unitTooltips.criteria.show") then
         return
     end
 

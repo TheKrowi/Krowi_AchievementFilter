@@ -3,7 +3,7 @@ local section = {}
 tinsert(addon.Gui.AchievementTooltip.Sections, section)
 
 function section:CheckAdd(achievement)
-	if not addon.Options.db.profile.Tooltip.Achievements.ShowAddedInVersion or achievement.IsTracking then
+	if not addon.Settings.Get("tooltips.showAddedInVersion") or achievement.IsTracking then
 		return
 	end
     return true

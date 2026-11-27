@@ -29,7 +29,7 @@ local tempObtainableFutureSaturationStyle = saturationStyle:New(
 	function() return ACHIEVEMENT_RED_BORDER_COLOR; end
 )
 local accountSaturationStyle = saturationStyle:New(
-	function(_, isAccountWide) return addon.Options.db.profile.Achievements.WarbandHeaderColor and isAccountWide; end,
+	function(_, isAccountWide) return addon.Settings.Get("achievements.warbandHeaderColor") and isAccountWide; end,
 	"account",
 	nil,
 	"Interface/AchievementFrame/AccountLevel-AchievementHeader",
@@ -50,7 +50,7 @@ local saturationStyles = {
 }
 
 local function GetSaturationStyle(state, isAccountWide)
-	if addon.Options.db.profile.Achievements.TemporarilyObtainableHeaderColors then
+	if addon.Settings.Get("achievements.temporarilyObtainableHeaderColors") then
 		for _, _saturationStyle in next, newSaturationStyles do
 			if _saturationStyle.UseThis(state, isAccountWide) then
 				return _saturationStyle
@@ -114,7 +114,7 @@ function achievementButton.ProcessModifiers(self, ignoreModifiers)
 		return
 	end
 
-	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.PasteToChat) then
+	if addon.IsCustomModifierKeyDown(addon.Settings.Get("keys.modifiers.pasteToChat")) then
 		local achievementLink = GetAchievementLink(self.Achievement.Id)
 		if achievementLink then
 			if ChatFrameUtil.InsertLink(achievementLink) then
@@ -126,11 +126,11 @@ function achievementButton.ProcessModifiers(self, ignoreModifiers)
 			end
 		end
 	end
-	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleTracking) then
+	if addon.IsCustomModifierKeyDown(addon.Settings.Get("keys.modifiers.toggleTracking")) then
 		self:ToggleTracking()
 		return true
 	end
-	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleWatchList) then
+	if addon.IsCustomModifierKeyDown(addon.Settings.Get("keys.modifiers.toggleWatchList")) then
 		if self.Achievement.IsWatched then
 			addon.ClearWatchAchievement(self.Achievement)
 		else
@@ -138,7 +138,7 @@ function achievementButton.ProcessModifiers(self, ignoreModifiers)
 		end
 		return true
 	end
-	if addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.ToggleExcluded) then
+	if addon.IsCustomModifierKeyDown(addon.Settings.Get("keys.modifiers.toggleExcluded")) then
 		if self.Achievement.IsExcluded then
 			addon.IncludeAchievement(self.Achievement)
 		else
@@ -460,12 +460,12 @@ local function SetCompletionState(self, achievement, completed, month, day, year
 	-- 	end
 	-- end
 
-	local earnedByFilter = addon.Filters.db.profile.EarnedBy
+	local earnedByFilter = addon.Settings.GetObject("filters").EarnedBy
 	if (earnedByFilter == 'Account' and completed or wasEarnedByMe) or (earnedByFilter == 'CharacterAccount' and completed and wasEarnedByMe) then
 		self.Completed = true
 		achievement.IsCompleted = true
 		self.DateCompleted:SetText(FormatShortDate(day, month, year))
-		if not addon.Options.db.profile.Achievements.HideDateCompleted then
+		if not addon.Settings.Get("achievements.hideDateCompleted") then
 			self.DateCompleted:Show()
 		end
 		if self.saturatedStyle ~= saturatedStyle then
@@ -477,7 +477,7 @@ local function SetCompletionState(self, achievement, completed, month, day, year
 		self.Completed = true
 		achievement.IsCompleted = true
 		self.DateCompleted:SetText(FormatShortDate(day, month, year))
-		if not addon.Options.db.profile.Achievements.HideDateCompleted then
+		if not addon.Settings.Get("achievements.hideDateCompleted") then
 			self.DateCompleted:Show()
 		end
 		SaturatePartial(self)
@@ -518,13 +518,13 @@ local function SetFaction(self, achievement)
 		self.FactionIcon:Hide()
 		return
 	end
-	self.FactionIcon:SetAlpha(addon.Options.db.profile.Achievements.FactionIconAlpha)
-	if achievement.Faction == KrowiAF.Enum.Faction.Alliance and addon.Options.db.profile.Achievements.ShowAllianceFactionIcon then
+	self.FactionIcon:SetAlpha(addon.Settings.Get("achievements.factionIconAlpha"))
+	if achievement.Faction == KrowiAF.Enum.Faction.Alliance and addon.Settings.Get("achievements.showAllianceFactionIcon") then
 		self.FactionIcon:SetTexCoord(0.65966796875, 0.74951171875, 0.150879, self.Compact and 0.19961 or 0.22412109375)
 		self.FactionIcon:Show()
 		return
 	end
-	if achievement.Faction == KrowiAF.Enum.Faction.Horde and addon.Options.db.profile.Achievements.ShowHordeFactionIcon then
+	if achievement.Faction == KrowiAF.Enum.Faction.Horde and addon.Settings.Get("achievements.showHordeFactionIcon") then
 		self.FactionIcon:SetTexCoord(0.75048828125, 0.84033203125, 0.150879, self.Compact and 0.19961 or 0.22412109375)
 		self.FactionIcon:Show()
 		return

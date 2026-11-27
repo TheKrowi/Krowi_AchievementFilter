@@ -8,15 +8,18 @@ local _, addon = ...
 
 local settingsPath = addon.Features.Path("EventReminders") .. ".args.Settings.args."
 
+-- The setting of an event type's toggles: "Calendar" is eventReminders.calendarEvents
+local function EventsKey(eventType)
+    return "eventReminders." .. eventType:sub(1, 1):lower() .. eventType:sub(2) .. "Events"
+end
+
 local function InjectOptionsDefaults(eventType, eventIds, hideByDefault)
     if hideByDefault == nil then
         hideByDefault = false
     end
-    if not addon.InjectOptions:DefaultsExists("EventReminders." .. eventType .. "Events") then
-        addon.InjectOptions:AddDefaults("EventReminders", eventType .. "Events", { })
-    end
+    local key = EventsKey(eventType)
     for _, eventId in next, eventIds do
-        addon.InjectOptions:AddDefaults("EventReminders." .. eventType .. "Events", eventId, not hideByDefault)
+        addon.Settings.RegisterEntryDefault(key, eventId, not hideByDefault)
     end
 end
 
@@ -55,10 +58,10 @@ local function InjectOptionsTable(eventTypeGroup, eventType, eventIds, eventDisp
     addon.InjectOptions:AddTable(path, tostring(eventIds[1]), {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(),
         name = eventDisplayName,
-        get = function() return addon.Options.db.profile.EventReminders[eventType .. "Events"][eventIds[1]]; end,
+        get = function() return addon.Settings.GetEntry(EventsKey(eventType), eventIds[1]) end,
         set = function(_, value)
             for _, eventId in next, eventIds do
-                addon.Options.db.profile.EventReminders[eventType .. "Events"][eventId] = value
+                addon.Settings.SetEntry(EventsKey(eventType), eventId, value)
             end
             addon.Gui.EventReminderSideButtonSystem:Refresh()
         end

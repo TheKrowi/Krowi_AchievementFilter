@@ -329,52 +329,54 @@ end
 
 function addon.ChangeAchievementMicroButtonOnClick()
     addon.Gui:TabsOrderGetActiveKeys() -- Cleanup unused tabs
-    if addon.Options.db.profile.MicroButtonTab > #KrowiAF_SavedData.Tabs then
+    if addon.Settings.Get("window.microButtonTab") > #KrowiAF_SavedData.Tabs then
         for i, _ in next, KrowiAF_SavedData.Tabs do
             if KrowiAF_SavedData.Tabs[i].AddonName == addonName and KrowiAF_SavedData.Tabs[i].Name == "Achievements" then
-                addon.Options.db.profile.MicroButtonTab = i
+                addon.Settings.Set("window.microButtonTab", i)
             end
         end
     end
-    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab]
+    local tab = KrowiAF_SavedData.Tabs[addon.Settings.Get("window.microButtonTab")]
     AchievementMicroButton:SetScript("OnClick", function(self)
         KrowiAF_ToggleAchievementFrame(tab.AddonName, tab.Name)
     end)
 end
 
+-- The modifier dropdowns' choices, each text under the number it saves (addon.Enum.Modifier, Settings/Enum.lua)
+local modifier = addon.Enum.Modifier
 addon.Modifiers = {
-    addon.L["None"],
-    addon.L["Alt"],
-    addon.L["Ctrl"],
-    addon.L["Shift"],
-    addon.L["Right Alt"],
-    addon.L["Right Ctrl"],
-    addon.L["Right Shift"],
-    addon.L["Left Alt"],
-    addon.L["Left Ctrl"],
-    addon.L["Left Shift"]
+    [modifier.None] = addon.L["None"],
+    [modifier.Alt] = addon.L["Alt"],
+    [modifier.Ctrl] = addon.L["Ctrl"],
+    [modifier.Shift] = addon.L["Shift"],
+    [modifier.RightAlt] = addon.L["Right Alt"],
+    [modifier.RightCtrl] = addon.L["Right Ctrl"],
+    [modifier.RightShift] = addon.L["Right Shift"],
+    [modifier.LeftAlt] = addon.L["Left Alt"],
+    [modifier.LeftCtrl] = addon.L["Left Ctrl"],
+    [modifier.LeftShift] = addon.L["Left Shift"]
 }
 
-function addon.IsCustomModifierKeyDown(modifier)
-    if modifier == 1 then
+function addon.IsCustomModifierKeyDown(chosen)
+    if chosen == modifier.None then
         return
-    elseif modifier == 2 then
+    elseif chosen == modifier.Alt then
         return IsAltKeyDown()
-    elseif modifier == 3 then
+    elseif chosen == modifier.Ctrl then
         return IsControlKeyDown()
-    elseif modifier == 4 then
+    elseif chosen == modifier.Shift then
         return IsShiftKeyDown()
-    elseif modifier == 5 then
+    elseif chosen == modifier.RightAlt then
         return IsRightAltKeyDown()
-    elseif modifier == 6 then
+    elseif chosen == modifier.RightCtrl then
         return IsRightControlKeyDown()
-    elseif modifier == 7 then
+    elseif chosen == modifier.RightShift then
         return IsRightShiftKeyDown()
-    elseif modifier == 8 then
+    elseif chosen == modifier.LeftAlt then
         return IsLeftAltKeyDown()
-    elseif modifier == 9 then
+    elseif chosen == modifier.LeftCtrl then
         return IsLeftControlKeyDown()
-    elseif modifier == 10 then
+    elseif chosen == modifier.LeftShift then
         return IsLeftShiftKeyDown()
     end
 end

@@ -151,7 +151,7 @@ end
 
 local function InitLastCompleted()
     local lastCompleted = {GetLatestCompletedAchievements()}
-    for i = addon.Options.db.profile.Summary.NumAchievements + 1, #lastCompleted do
+    for i = addon.Settings.Get("summary.numAchievements") + 1, #lastCompleted do
         lastCompleted[i] = nil
     end
     return lastCompleted
@@ -163,7 +163,7 @@ local function AddNewAchievementsEarned(lastCompleted)
     for _, achievementId in next, newAchievementsEarned do
         if not lastCompletedEnum[achievementId] then
             tinsert(lastCompleted, achievementId)
-            if #lastCompleted >= addon.Options.db.profile.Summary.NumAchievements then
+            if #lastCompleted >= addon.Settings.Get("summary.numAchievements") then
                 break
             end
         end
@@ -175,7 +175,7 @@ local function AddFromEarnedByCharacter(characterGuid, lastCompleted)
     local lastCompletedEnum = addon.Util.Enum2(lastCompleted)
     local earnedByCharacter = achievementData.GetEarnedByCharacter(characterGuid)
     sort(earnedByCharacter, function(a, b) return a.Date > b.Date; end)
-    local max = min(addon.Options.db.profile.Summary.NumAchievements, #earnedByCharacter)
+    local max = min(addon.Settings.Get("summary.numAchievements"), #earnedByCharacter)
     for i = 1, max do
         if not lastCompletedEnum[earnedByCharacter[i].Id] then
             tinsert(lastCompleted, earnedByCharacter[i].Id)
@@ -232,7 +232,7 @@ function achievementData.SetWatched(achievement, isWatched)
     if isWatched or isWatched == nil then
         achievement.IsWatched = true
         KrowiAF_Achievements.Watched[achievement.Id] = KrowiAF_Achievements.Watched[achievement.Id] or {}
-        if addon.Options.db.profile.Categories.WatchList.CharacterSpecific then
+        if addon.Settings.Get("categories.watchList.characterSpecific") then
             KrowiAF_Achievements.Watched[achievement.Id][UnitGUID("player")] = true
         else
             KrowiAF_Achievements.Watched[achievement.Id].AccountWide = true
@@ -242,7 +242,7 @@ function achievementData.SetWatched(achievement, isWatched)
 
     achievement.IsWatched = nil
 
-    if addon.Options.db.profile.Categories.WatchList.CharacterSpecific then
+    if addon.Settings.Get("categories.watchList.characterSpecific") then
         KrowiAF_Achievements.Watched[achievement.Id][UnitGUID("player")] = nil
     else
         KrowiAF_Achievements.Watched[achievement.Id].AccountWide = nil
@@ -267,7 +267,7 @@ local function LoadAchievements(sourceTable, func)
 
     for achievementId, _ in next, sourceTable do
         if addon.Data.Achievements[achievementId] then
-            if addon.Options.db.profile.Categories.WatchList.CharacterSpecific then
+            if addon.Settings.Get("categories.watchList.characterSpecific") then
                 if sourceTable[achievementId][UnitGUID("player")] then
                     func(addon.Data.Achievements[achievementId], false)
                 end

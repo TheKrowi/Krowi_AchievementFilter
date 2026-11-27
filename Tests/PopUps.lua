@@ -197,7 +197,8 @@ end
 -- world map; headlessly on the runner's models of both
 
 local sideButtonsAnchor = "Features.EventReminders.Settings.General.Style.SideButtonsAnchor"
-local achievementWindow, worldMap = 1, 2 -- the option's values (Features/EventReminders/Options.lua)
+local achievementWindow = addon.EventReminders.Enum.SideButtonsAnchor.AchievementWindow -- the option's values
+local worldMap = addon.EventReminders.Enum.SideButtonsAnchor.WorldMap
 
 local function SideButtonSystem()
     return addon.Gui.EventReminderSideButtonSystem
@@ -258,7 +259,7 @@ end
 -- Runs observe with the achievement window closed, then puts the anchor and the window back as they were
 local function SideButtonScenario(env, observe)
     -- the feature not started this session (Features.lua), or switched off since (the reminders-off scenario)
-    if not (addon.Features.IsStarted("EventReminders") and addon.Options.db.profile.EventReminders.Enabled) then
+    if not (addon.Features.IsStarted("EventReminders") and addon.Settings.Get("eventReminders.enabled")) then
         return nil, "event reminders are off"
     end
     local anchor = GetOption(sideButtonsAnchor)
@@ -303,7 +304,7 @@ popUps.Scenarios = {
                 return "no such setting"
             end
             local before = appliesTo.get()
-            appliesTo.set(nil, 2)
+            appliesTo.set(nil, addon.EventReminders.Enum.PopUpsAppliesTo.EventReminders)
             local moves = NudgeOffset()
             appliesTo.set(nil, before)
             return moves
@@ -375,7 +376,7 @@ popUps.Scenarios = {
             if not env.ShowGameToast then
                 return nil, "headless only: shows one of the game's toasts"
             end
-            SetOption(location .. "GrowDirection", 2)
+            SetOption(location .. "GrowDirection", addon.EventReminders.Enum.PopUpsGrowDirection.Down)
             local toast = env.ShowGameToast()
             local point, relativeTo, relativePoint = toast:GetPoint(1)
             local where = relativeTo ~= AlertFrame and "elsewhere"
@@ -383,7 +384,7 @@ popUps.Scenarios = {
                 or point == "BOTTOM" and relativePoint == "TOP" and "above the alert frame"
                 or "elsewhere"
             env.HideGameToasts()
-            SetOption(location .. "GrowDirection", 1)
+            SetOption(location .. "GrowDirection", addon.EventReminders.Enum.PopUpsGrowDirection.Up)
             return where
         end,
         Recorded = "below the alert frame",
@@ -395,9 +396,9 @@ popUps.Scenarios = {
             if not env.ShowGameToast then
                 return nil, "headless only: shows one of the game's toasts"
             end
-            SetOption(location .. "GrowDirection", 2)
+            SetOption(location .. "GrowDirection", addon.EventReminders.Enum.PopUpsGrowDirection.Down)
             local toast = env.ShowGameToast()
-            SetOption(location .. "GrowDirection", 1)
+            SetOption(location .. "GrowDirection", addon.EventReminders.Enum.PopUpsGrowDirection.Up)
             env.ShowGameToast()
             local point, relativeTo, relativePoint = toast:GetPoint(1)
             local where = relativeTo == AlertFrame and point == "BOTTOM" and relativePoint == "TOP" and "above the alert frame" or "elsewhere"
@@ -415,13 +416,13 @@ popUps.Scenarios = {
             if not env.ShowGameToast then
                 return nil, "headless only: shows the game's toasts in an order it picks"
             end
-            SetOption(location .. "GrowDirection", 2)
+            SetOption(location .. "GrowDirection", addon.EventReminders.Enum.PopUpsGrowDirection.Down)
             env.ShowGameToast()
             env.ShowGameToast()
             env.ReorderGameToasts()
             local ok = pcall(env.ShowGameToast, true)
             env.HideGameToasts()
-            SetOption(location .. "GrowDirection", 1)
+            SetOption(location .. "GrowDirection", addon.EventReminders.Enum.PopUpsGrowDirection.Up)
             return ok and "no loop" or "loop"
         end,
         Recorded = "no loop",
@@ -533,17 +534,17 @@ popUps.Scenarios = {
             if not env.Reload then
                 return nil, "headless only: switches the profile"
             end
-            local db = addon.Options.db
-            local current = db:GetCurrentProfile()
+            local settings = addon.Settings
+            local current = settings.CurrentProfile("options")
             local test = "KrowiAF_Tests_PopUps"
-            db:SetProfile(test)
-            db.profile.EventReminders.PopUps.OffsetY = 400 -- this profile's own position, as a player's saved one
-            db:SetProfile(current)
+            settings.SetProfile("options", test)
+            settings.Set("eventReminders.popUps.offsetY", 400) -- this profile's own position, as a player's saved one
+            settings.SetProfile("options", current)
             local before = Anchor(AlertFrame) .. Anchor(System().Holder)
-            db:SetProfile(test)
+            settings.SetProfile("options", test)
             local after = Anchor(AlertFrame) .. Anchor(System().Holder)
-            db:SetProfile(current)
-            db:DeleteProfile(test, true)
+            settings.SetProfile("options", current)
+            settings.DeleteProfile("options", test, true)
             return after ~= before and "moves" or "stays"
         end,
         -- moved at once until 106; since then every options-profile action ends with the reload prompt and the pop-ups
@@ -591,11 +592,10 @@ popUps.Scenarios = {
             if not env.Reload then
                 return nil, "headless only: loads the addon again with event reminders off"
             end
-            local reminders = addon.Options.db.profile.EventReminders
-            reminders.Enabled = false
+            addon.Settings.Set("eventReminders.enabled", false)
             env.Reload()
             local owners = ToastOwners()
-            reminders.Enabled = true
+            addon.Settings.Set("eventReminders.enabled", true)
             env.Reload()
             return owners
         end,
@@ -683,9 +683,8 @@ popUps.Scenarios = {
             if not env.Reload then
                 return nil, "headless only: logs in again before the achievement window loads"
             end
-            local reminders = addon.Options.db.profile.EventReminders
-            local anchor = reminders.SideButtonsAnchor
-            reminders.SideButtonsAnchor = worldMap
+            local anchor = addon.Settings.Get("eventReminders.sideButtonsAnchor")
+            addon.Settings.Set("eventReminders.sideButtonsAnchor", worldMap)
             env.Reload()
             local ok, got = pcall(function()
                 SetOption(sideButtonsAnchor, achievementWindow)
@@ -695,7 +694,7 @@ popUps.Scenarios = {
                 end))
             end)
             env.CloseAnchor("AchievementFrame")
-            reminders.SideButtonsAnchor = anchor
+            addon.Settings.Set("eventReminders.sideButtonsAnchor", anchor)
             env.Reload()
             if not ok then
                 error(got, 0)
@@ -712,13 +711,13 @@ popUps.Scenarios = {
                 return nil, "headless only: switches the profile"
             end
             return SideButtonScenario(env, function()
-                local db = addon.Options.db
-                local current = db:GetCurrentProfile()
+                local settings = addon.Settings
+                local current = settings.CurrentProfile("options")
                 local test = "KrowiAF_Tests_SideButtons"
                 SetOption(sideButtonsAnchor, achievementWindow)
-                db:SetProfile(test)
-                db.profile.EventReminders.SideButtonsAnchor = worldMap -- this profile's own anchor, as a player's saved one
-                db:SetProfile(current)
+                settings.SetProfile("options", test)
+                settings.Set("eventReminders.sideButtonsAnchor", worldMap) -- this profile's own anchor, as a player's saved one
+                settings.SetProfile("options", current)
                 OpenWindow(env)
                 local alertSystem = addon.Gui.EventReminderAlertSystem
                 local unregister, removed = alertSystem.UnregisterOnRefresh, false
@@ -727,12 +726,12 @@ popUps.Scenarios = {
                     return unregister(self, key, ...)
                 end
                 local ok, err = pcall(function()
-                    db:SetProfile(test)
+                    settings.SetProfile("options", test)
                     CloseWindow(env)
                 end)
                 alertSystem.UnregisterOnRefresh = unregister
-                db:SetProfile(current)
-                db:DeleteProfile(test, true)
+                settings.SetProfile("options", current)
+                settings.DeleteProfile("options", test, true)
                 if not ok then
                     error(err, 0)
                 end

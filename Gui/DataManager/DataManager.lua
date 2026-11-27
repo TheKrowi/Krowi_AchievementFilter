@@ -127,6 +127,13 @@ function dataManager.ImportCharacter(text)
 	end
 
 	KrowiAF_SavedData.CharacterList[data.Guid] = data.Character
+	-- A character without a name or realm gets them from its GUID (Player-<server id>-<hex id>), as the saved-data check
+	-- did at every load until the settings store's migration took its place (docs/work/2026-11-25-settings-store)
+	if type(data.Character) == "table" and type(data.Guid) == "string" then
+		local _, realm, name = strsplit("-", data.Guid)
+		data.Character.Name = data.Character.Name or name
+		data.Character.Realm = data.Character.Realm or realm
+	end
 	for _, achievement in next, data.Completed do
 		local achievementInfo = addon.GetAchievementInfoTable(achievement.Id)
 		local dateTable = date("*t", achievement.Date)

@@ -8,53 +8,45 @@ local L = addon.L
 
 local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 
+-- The choices, each text under the number it saves (addon.Gui.RightClickMenu.Enum, RightClickMenu.lua)
+local wowheadTab = addon.Gui.RightClickMenu.Enum.WowheadTab
 local wowheadRelatedTabs = {
-    L["None"],
-    L["Criteria of"],
-    L["Guides"],
-    L["News"],
-    L["Comments"],
-    L["Screenshots"]
+    [wowheadTab.None] = L["None"],
+    [wowheadTab.CriteriaOf] = L["Criteria of"],
+    [wowheadTab.Guides] = L["Guides"],
+    [wowheadTab.News] = L["News"],
+    [wowheadTab.Comments] = L["Comments"],
+    [wowheadTab.Screenshots] = L["Screenshots"]
 }
 
 local function Rows()
     return {
         Button = {order = 1, type = "header", name = L["Button"]},
-        ShowButtonOnAchievement = {
+        ShowButtonOnAchievement = addon.Settings.Row("rightClickMenu.showButtonOnAchievement", {
             order = 2, type = "toggle", width = AdjustedWidth(1.5),
             name = L["Show Menu Button"],
-            desc = L["Show Menu Button Desc"]:KAF_AddDefaultValueText("RightClickMenu.ShowButtonOnAchievement"):K_AddReloadRequired(),
-            get = function() return addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement end,
-            set = function(_, value) addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement = value end
-        },
+            desc = L["Show Menu Button Desc"]:KAF_AddDefaultValueText("rightClickMenu.showButtonOnAchievement"):K_AddReloadRequired(),
+        }),
         Wowhead = {order = 3, type = "header", name = L["Wowhead link"]},
-        AddLocale = {
+        AddLocale = addon.Settings.Row("rightClickMenu.wowheadLink.addLocale", {
             order = 4, type = "toggle", width = AdjustedWidth(1.5),
             name = L["Use Game Language"],
-            desc = L["Use Game Language Desc"]:KAF_AddDefaultValueText("RightClickMenu.WowheadLink.AddLocale"),
-            get = function() return addon.Options.db.profile.RightClickMenu.WowheadLink.AddLocale end,
-            set = function(_, value) addon.Options.db.profile.RightClickMenu.WowheadLink.AddLocale = value end
-        },
-        AddRelatedTab = {
+            desc = L["Use Game Language Desc"]:KAF_AddDefaultValueText("rightClickMenu.wowheadLink.addLocale"),
+        }),
+        AddRelatedTab = addon.Settings.Row("rightClickMenu.wowheadLink.addRelatedTab", {
             order = 5, type = "select", width = AdjustedWidth(1.5),
             name = L["Open on Tab"],
-            desc = L["Open on Tab Desc"]:KAF_AddDefaultValueText("RightClickMenu.WowheadLink.AddRelatedTab", wowheadRelatedTabs),
+            desc = L["Open on Tab Desc"]:KAF_AddDefaultValueText("rightClickMenu.wowheadLink.addRelatedTab", wowheadRelatedTabs),
             values = wowheadRelatedTabs,
-            get = function() return addon.Options.db.profile.RightClickMenu.WowheadLink.AddRelatedTab end,
-            set = function(_, value) addon.Options.db.profile.RightClickMenu.WowheadLink.AddRelatedTab = value end
-        }
+        })
     }
 end
 
 addon.Features.AddOptions("RightClickMenu", {
     Defaults = {
-        RightClickMenu = {
-            ShowButtonOnAchievement = false,
-            WowheadLink = {
-                AddLocale = true,
-                AddRelatedTab = 1
-            }
-        }
+        ["rightClickMenu.showButtonOnAchievement"] = false,
+        ["rightClickMenu.wowheadLink.addLocale"] = true,
+        ["rightClickMenu.wowheadLink.addRelatedTab"] = wowheadTab.None,
     },
     Rows = Rows,
     -- Between Tooltips and Pop Out in the Achievement window group (Options/Window/Map.lua)

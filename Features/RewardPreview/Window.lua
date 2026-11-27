@@ -35,8 +35,7 @@ function rewardPreview:ShowUnpinned(button, achievementId, entry, entryList)
     frame.EntryList = entryList
     addon.Gui.HookOwnerWindowHide(frame.OwnerWindow, OnOwnerWindowHide)
 
-    local achievementsOptions = addon.Options.db.profile.Achievements
-    frame:SetSize(achievementsOptions.RewardPreviewDefaultWidth, achievementsOptions.RewardPreviewDefaultHeight)
+    frame:SetSize(addon.Settings.Get("rewardPreview.defaultWidth"), addon.Settings.Get("rewardPreview.defaultHeight"))
 
     addon.Gui.RegisterSidePanel(frame)
     addon.Gui.AnchorSidePanel(frame, button) -- next to the row, or next to the guide panel when that is open for it

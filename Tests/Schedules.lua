@@ -257,7 +257,7 @@ end
 
 -- Model profiles, as AceDB keeps them in KrowiAF_Options.profiles: a toggle is only saved when it differs from the default
 local function DescribeMerge()
-    local manager = addon.Data.DataIntegrityManager
+    local manager = addon.Settings.Migrations -- migration 1's step 1 (docs/work/2026-11-25-settings-store)
     if not manager or not manager.MergeLegionAssaultToggles then
         return "no merge"
     end
@@ -282,7 +282,7 @@ local function DescribeMerge()
     return table.concat(parts, "; ")
 end
 
--- The solution as DataIntegrityManager runs it, on model profiles and a model of KrowiAF_SavedData.Fixes
+-- The merge as migration 1 runs it (Settings/Migrations.lua), on model profiles and a model of KrowiAF_SavedData.Fixes
 local mergeCases = {}
 
 -- Merged on one update; the player turns Legion Assaults off; the next update must leave it off
@@ -312,7 +312,7 @@ function mergeCases.FirstInstall(merge)
 end
 
 local function DescribeMergeCase(scenario)
-    local manager = addon.Data.DataIntegrityManager
+    local manager = addon.Settings.Migrations -- migration 1's step 1 (docs/work/2026-11-25-settings-store)
     if not manager or not manager.MergeLegionAssaultToggles then
         return "no merge"
     end
@@ -579,14 +579,16 @@ end
 -- The toggles the scenarios read, on for the run whatever the player chose, and the player's own back after it, with
 -- the events' details read again at the real time
 local function ForceToggles()
-    local eventReminders = addon.Options.db.profile.EventReminders
     local saved = {}
+    if not addon.Util.IsMainline then -- Classic has neither world nor widget event toggles
+        return saved
+    end
     for _, scenario in ipairs(schedules.Scenarios) do
-        local toggles = scenario.Widget and eventReminders.WidgetEvents or eventReminders.WorldEvents
+        local key = scenario.Widget and "eventReminders.widgetEvents" or "eventReminders.worldEvents"
         for _, id in ipairs(scenario.Ids or {scenario.Event}) do
-            if toggles and saved[id] == nil then
-                saved[id] = {Toggles = toggles, Value = toggles[id], Widget = scenario.Widget}
-                toggles[id] = true
+            if saved[id] == nil then
+                saved[id] = {Key = key, Value = addon.Settings.GetEntry(key, id), Widget = scenario.Widget}
+                addon.Settings.SetEntry(key, id, true)
             end
         end
     end
@@ -595,7 +597,7 @@ end
 
 local function RestoreToggles(saved)
     for id, entry in next, saved do
-        entry.Toggles[id] = entry.Value
+        addon.Settings.SetEntry(entry.Key, id, entry.Value)
         local event = entry.Widget and WidgetEvent(id) or WorldEvent(id)
         if event then
             if entry.Widget then

@@ -9,7 +9,6 @@ local guide = addon.Gui.Guide
 -- The actions follow Achievements.Guide.ActionStyle: small icons at the right of the headline (the default), or gold text
 -- links on a line under the details. Krowi compared both in game on 2026-10-11 and kept both as an option.
 
-content.ActionStyle = {Icons = 1, Links = 2} -- Achievements.Guide.ActionStyle
 
 local numberWidth = 18
 local textIndent = numberWidth + 6
@@ -159,7 +158,7 @@ function content.Render(frame, achievement, width)
             frame[key].Used = 0
         end
     end
-    local useLinks = addon.Options.db.profile.Achievements.Guide.ActionStyle == content.ActionStyle.Links
+    local useLinks = addon.Settings.Get("guides.actionStyle") == addon.Enum.GuideActionStyle.Links
     local y, numControls = 0, 0
     local lines = guide.GetLines(achievement)
     for index, line in ipairs(lines) do
@@ -210,9 +209,9 @@ end
 -- only when what it shows can have changed: another achievement or width, a guide option, combat, TomTom, an NPC's name
 -- the client has learned since, or forced.
 function content.DisplayUnderObjectives(objectives, achievement, forced)
-    local options = addon.Options.db.profile.Achievements.Guide
+    local settings = addon.Settings
     local block = objectives.GuideBlock
-    if achievement.Guide == nil or not options.ExpandedRow then
+    if achievement.Guide == nil or not settings.Get("guides.expandedRow") then
         if block then
             block:Hide()
         end
@@ -226,7 +225,7 @@ function content.DisplayUnderObjectives(objectives, achievement, forced)
     block:SetPoint("TOPLEFT", objectives, "BOTTOMLEFT", 0, -stepGap)
     block:SetPoint("TOPRIGHT", objectives, "BOTTOMRIGHT", 0, -stepGap)
     local width = objectives:GetWidth()
-    local key = table.concat({achievement.Id, tostring(width), tostring(options.ActionStyle), tostring(options.WaypointProvider),
+    local key = table.concat({achievement.Id, tostring(width), tostring(settings.Get("guides.actionStyle")), tostring(settings.Get("guides.waypointProvider")),
         tostring(InCombatLockdown()), tostring(TomTom ~= nil), guide.GetNpcNames(achievement)}, ":")
     if forced or block.CacheKey ~= key then
         block.CachedHeight = content.Render(block, achievement, width)

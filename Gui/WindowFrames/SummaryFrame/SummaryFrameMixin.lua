@@ -71,8 +71,8 @@ end
 
 function KrowiAF_SummaryFrameMixin:OnLoad()
     LoadTotalStatusBar(self)
-    self.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Options.db.profile.Summary.MouseWheelPanScalar
-	self.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Options.db.profile.Summary.MouseWheelPanScalar
+    self.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Settings.Get("summary.mouseWheelPanScalar")
+	self.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Settings.Get("summary.mouseWheelPanScalar")
 end
 
 function KrowiAF_SummaryFrameMixin:OnEvent(event)
@@ -311,7 +311,7 @@ local function UpdateCategories(self, event)
     local numStatusBars = 0
     lastShown = self.TotalStatusBar
     local totalNumOfAch, totalNumOfCompAch, totalNumOfNotObtAch = 0, 0, 0
-    local showNotObtainable = addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable
+    local showNotObtainable = addon.Settings.Get("categories.tooltip.showNotObtainable")
     repeat
         local category = GetNextCategory()
         if category then
@@ -325,7 +325,7 @@ end
 
 local buildAtLeastOnce
 local function BuildLastCompleted(event)
-    local numLastCompleted = addon.Options.db.profile.Summary.NumAchievements or 25
+    local numLastCompleted = addon.Settings.Get("summary.numAchievements") or 25
     local lastCompleted = KrowiAF_Achievements.LastCompleted[UnitGUID("player")]
     if type(lastCompleted) == "table" and #lastCompleted == numLastCompleted and event ~= "ACHIEVEMENT_EARNED" and buildAtLeastOnce then
         return -- Doesn't require an update
@@ -337,14 +337,14 @@ end
 local updateAchievementsOnNextShow
 local function UpdateAchievements(self, event)
     BuildLastCompleted(event)
-    return self.AchievementsFrame:Update(KrowiAF_Achievements.LastCompleted[UnitGUID("player")], updateAchievementsOnNextShow, addon.Options.db.profile.Summary.AutoNumAchievements)
+    return self.AchievementsFrame:Update(KrowiAF_Achievements.LastCompleted[UnitGUID("player")], updateAchievementsOnNextShow, addon.Settings.Get("summary.autoNumAchievements"))
 end
 
 function KrowiAF_SummaryFrameMixin:Update(event)
     UpdateCategories(self, event)
     local emptyAchievementsSpace = UpdateAchievements(self, event)
 
-    if addon.Options.db.profile.Summary.AutoNumAchievements then
+    if addon.Settings.Get("summary.autoNumAchievements") then
         AlignCategoriesHeader(self, lastShown, emptyAchievementsSpace)
     end
 end

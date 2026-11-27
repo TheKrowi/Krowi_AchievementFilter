@@ -107,8 +107,8 @@ special.Scenarios = {
 local kinds = {
     WatchList = {
         Roots = function() return addon.SpecialCategories.WatchList end,
-        Enabled = function(i) return addon.Options.db.profile.AdjustableCategories.WatchList[i] end,
-        Options = function() return addon.Options.db.profile.Categories.WatchList end,
+        Enabled = function(i) return addon.Settings.GetEntry("categories.shownOnTab", "WatchList", i) end,
+        SubCategoriesKey = "categories.watchList.showSubCategories",
         ListName = "WatchListCategories",
         Add = function(achievement) addon.WatchAchievement(achievement, false) end,
         Remove = function(achievement) addon.ClearWatchAchievement(achievement, false) end,
@@ -117,8 +117,8 @@ local kinds = {
     },
     Excluded = {
         Roots = function() return addon.SpecialCategories.Excluded end,
-        Enabled = function(i) return addon.Options.db.profile.AdjustableCategories.Excluded[i] end,
-        Options = function() return addon.Options.db.profile.Categories.Excluded end,
+        Enabled = function(i) return addon.Settings.GetEntry("categories.shownOnTab", "Excluded", i) end,
+        SubCategoriesKey = "categories.excluded.showSubCategories",
         ListName = "ExcludedCategories",
         Add = function(achievement) addon.ExcludeAchievement(achievement, false) end,
         Remove = function(achievement) addon.IncludeAchievement(achievement, false) end,
@@ -127,8 +127,8 @@ local kinds = {
     },
     TrackingAchievements = {
         Roots = function() return addon.SpecialCategories.TrackingAchievements end,
-        Enabled = function(i) return addon.Options.db.profile.AdjustableCategories.TrackingAchievements[i] end,
-        Options = function() return addon.Options.db.profile.Categories.TrackingAchievements end,
+        Enabled = function(i) return addon.Settings.GetEntry("categories.shownOnTab", "TrackingAchievements", i) end,
+        SubCategoriesKey = "categories.trackingAchievements.showSubCategories",
         Add = function(achievement)
             addon.TrackingAchievements[achievement.Id] = true -- what the cache build records, so the reload finds it
             addon.AddToTrackingAchievementsCategories(achievement, false)
@@ -450,19 +450,19 @@ function gameEnv.Setup()
     if not addon.Gui.SelectedTab then
         return false, "could not select the addon's Achievements tab"
     end
-    local profile = addon.Options.db.profile
+    local settings = addon.Settings
     snapshot = {
         Watched = CopyTable(KrowiAF_Achievements.Watched),
         Excluded = KrowiAF_SavedData.ExcludedAchievements and CopyTable(KrowiAF_SavedData.ExcludedAchievements) or nil,
-        WatchListSub = profile.Categories.WatchList.ShowSubCategories,
-        ExcludedSub = profile.Categories.Excluded.ShowSubCategories,
-        ExcludedShow = profile.Categories.Excluded.Show,
-        TrackingSub = profile.Categories.TrackingAchievements.ShowSubCategories
+        WatchListSub = settings.Get("categories.watchList.showSubCategories"),
+        ExcludedSub = settings.Get("categories.excluded.showSubCategories"),
+        ExcludedShow = settings.Get("categories.excluded.show"),
+        TrackingSub = settings.Get("categories.trackingAchievements.showSubCategories")
     }
     for kindName, kind in next, kinds do
         tinsert(observations, ("%s: %d of %d tabs enabled"):format(kindName, #EnabledRoots(kind), #kind.Roots()))
     end
-    tinsert(observations, "character-specific watch list: " .. tostring(profile.Categories.WatchList.CharacterSpecific == true))
+    tinsert(observations, "character-specific watch list: " .. tostring(settings.Get("categories.watchList.characterSpecific") == true))
     return true
 end
 
@@ -481,7 +481,7 @@ end
 
 function gameEnv.SetSubCategories(kindName, on)
     if kindName == "Excluded" then -- this setter flips the value instead of taking it
-        addon.Options.db.profile.Categories.Excluded.ShowSubCategories = not on
+        addon.Settings.Set("categories.excluded.showSubCategories", not on)
         Option(kindName).set()
         return
     end
@@ -493,7 +493,7 @@ function gameEnv.SetExcludedShown(on)
 end
 
 function gameEnv.Rebuild(kindName)
-    gameEnv.SetSubCategories(kindName, kinds[kindName].Options().ShowSubCategories)
+    gameEnv.SetSubCategories(kindName, addon.Settings.Get(kinds[kindName].SubCategoriesKey))
 end
 
 addon.Tests.Suites.special = function()

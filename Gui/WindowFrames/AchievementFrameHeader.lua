@@ -22,12 +22,13 @@ local function LoadIfIsClassicWithAchievements()
     AchievementFrame.Header.LeftDDLInset = AchievementFrameHeaderLeftDDLInset
 end
 
+local sortBy = addon.Enum.PointsSortBy
 local sortFuncs = {
-    addon.Objects.CompareFunc:New("number", "Points"),
-    addon.Objects.CompareFunc:New("string", "Name"),
-    addon.Objects.CompareFunc:New("string", "Realm"),
-    addon.Objects.CompareFunc:New("number", "Faction"),
-    addon.Objects.CompareFunc:New("string", "Class"),
+    [sortBy.Points] = addon.Objects.CompareFunc:New("number", "Points"),
+    [sortBy.Name] = addon.Objects.CompareFunc:New("string", "Name"),
+    [sortBy.Realm] = addon.Objects.CompareFunc:New("string", "Realm"),
+    [sortBy.Faction] = addon.Objects.CompareFunc:New("number", "Faction"),
+    [sortBy.Class] = addon.Objects.CompareFunc:New("string", "Class"),
 }
 
 local function GetSortedCharacters()
@@ -44,16 +45,17 @@ local function GetSortedCharacters()
         })
     end
 
-    local sortOptions = addon.Options.db.profile.AchievementPoints.Tooltip.Sort
-    for index, sortFunc in next, sortOptions.Priority do
-        sortFuncs[sortFunc].Reverse = sortOptions.Reverse[index]
+    local priority = addon.Settings.GetObject("tooltips.points.sortPriority")
+    local reverse = addon.Settings.GetObject("tooltips.points.sortReverse")
+    for index, sortFunc in next, priority do
+        sortFuncs[sortFunc].Reverse = reverse[index]
     end
 
-    local sortFunc = sortFuncs[sortOptions.Priority[1]]
-    for i = 1, #sortOptions.Priority - 1 do
-        sortFuncs[sortOptions.Priority[i]].Fallback = sortFuncs[sortOptions.Priority[i + 1]]
+    local sortFunc = sortFuncs[priority[1]]
+    for i = 1, #priority - 1 do
+        sortFuncs[priority[i]].Fallback = sortFuncs[priority[i + 1]]
     end
-    sortFuncs[sortOptions.Priority[#sortOptions.Priority]]:SetDefaultFallback()
+    sortFuncs[priority[#priority]]:SetDefaultFallback()
 
     table.sort(characters, function(a, b)
         return sortFunc:Compare(a, b)
@@ -62,10 +64,10 @@ local function GetSortedCharacters()
 end
 
 local function LimitNumCharacters(characters)
-    local maxNumCharacters = addon.Options.db.profile.AchievementPoints.Tooltip.MaxNumCharacters
+    local maxNumCharacters = addon.Settings.Get("tooltips.points.maxNumCharacters")
     local trimmedCharacters = {}
 
-    if not addon.Options.db.profile.AchievementPoints.Tooltip.KeepCurrentCharacter then -- We can just take the 1st x characters and return
+    if not addon.Settings.Get("tooltips.points.keepCurrentCharacter") then -- We can just take the 1st x characters and return
         for i = 1, maxNumCharacters do
             tinsert(trimmedCharacters, characters[i])
         end
@@ -92,7 +94,7 @@ local function LimitNumCharacters(characters)
 end
 
 local function AddFactionIcon(name, faction)
-    if addon.Options.db.profile.AchievementPoints.Tooltip.ShowFaction then
+    if addon.Settings.Get("tooltips.points.showFaction") then
         local icon
         if faction == KrowiAF.Enum.Faction.Alliance then
             icon = "|A:worldquest-icon-alliance:15:16|a"
@@ -114,7 +116,7 @@ local function OnEnter(frame)
     for _, character in next, characters do
         local r, g, b = GetClassColor(character.Class)
         local name = character.Name
-        if addon.Options.db.profile.AchievementPoints.Tooltip.AlwaysShowRealm or character.Realm ~= (select(2, UnitFullName("player"))) then
+        if addon.Settings.Get("tooltips.points.alwaysShowRealm") or character.Realm ~= (select(2, UnitFullName("player"))) then
             name = name .. " - " .. character.Realm
         end
         name = AddFactionIcon(name, character.Faction)
@@ -143,7 +145,7 @@ function header:AnchorHeader()
     end
 
     AchievementFrame.Header:ClearAllPoints()
-    if addon.Options.db.profile.CenterHeader then
+    if addon.Settings.Get("window.centerHeader") then
         AchievementFrame.Header:SetPoint("BOTTOM", AchievementFrame, "TOP", 0, -38)
     else
         AchievementFrame.Header:SetPoint("BOTTOMLEFT", AchievementFrame, "TOPLEFT", 26, -38)
@@ -157,38 +159,42 @@ function header:Load()
 end
 
 local headerSortPriorities = {
-    addon.L["Points"],
-    addon.L["Name"],
-    addon.L["Realm"],
-    addon.L["Faction"],
-    addon.L["Class"]
+    [sortBy.Points] = addon.L["Points"],
+    [sortBy.Name] = addon.L["Name"],
+    [sortBy.Realm] = addon.L["Realm"],
+    [sortBy.Faction] = addon.L["Faction"],
+    [sortBy.Class] = addon.L["Class"]
 }
 
+-- Swaps the two places the value is at, in the sort priority and its reverse flags (two live lists, in place)
 local function SetPriority(index, value)
-    local priorities = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority
+    local priorities = addon.Settings.GetObject("tooltips.points.sortPriority")
+    local reverse = addon.Settings.GetObject("tooltips.points.sortReverse")
     local otherIndex
     for i, prio in next, priorities do
         if prio == value then
             otherIndex = i
         end
     end
-    local currentValue = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[index]
-    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[index] = value
-    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[otherIndex] = currentValue
-    local currentReverse = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[index]
-    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[index] = addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[otherIndex]
-    addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[otherIndex] = currentReverse
+    local currentValue = priorities[index]
+    priorities[index] = value
+    priorities[otherIndex] = currentValue
+    local currentReverse = reverse[index]
+    reverse[index] = reverse[otherIndex]
+    reverse[otherIndex] = currentReverse
 end
 
 local OrderPP = addon.InjectOptions.AutoOrderPlusPlus
 local AdjustedWidth = addon.InjectOptions.AdjustedWidth
 function header:InjectDynamicOptions()
-    for i = 1, #headerSortPriorities do
+    local numSlots = 0 -- one priority slot per choice; counted, as the choices' numbers need not run 1 to n
+    for _ in next, headerSortPriorities do numSlots = numSlots + 1 end
+    for i = 1, numSlots do
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Priority" .. i, {
             order = OrderPP(), type = "select", width = AdjustedWidth(0.95),
             name = "",
             values = headerSortPriorities,
-            get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Priority[i]; end,
+            get = function() return addon.Settings.GetObject("tooltips.points.sortPriority")[i] end,
             set = function (_, value) SetPriority(i, value); end
         })
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank1" .. i, {
@@ -198,9 +204,9 @@ function header:InjectDynamicOptions()
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Reverse" .. i, {
             order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
             name = addon.L["Reverse Sort"],
-            desc = (""):KAF_AddDefaultValueText("AchievementPoints.Tooltip.Sort.Reverse." .. i),
-            get = function() return addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i]; end,
-            set = function(_, value) addon.Options.db.profile.AchievementPoints.Tooltip.Sort.Reverse[i] = value; end
+            desc = (""):KAF_AddDefaultValueText("tooltips.points.sortReverse", nil, i),
+            get = function() return addon.Settings.GetObject("tooltips.points.sortReverse")[i] end,
+            set = function(_, value) addon.Settings.GetObject("tooltips.points.sortReverse")[i] = value end
         })
         addon.InjectOptions:AddTable("Layout.args.Header.args.Tooltip.args.SortPriority.args", "Blank2" .. i, {
             order = OrderPP(), type = "description", width = AdjustedWidth(0.80),
@@ -228,10 +234,11 @@ function header:HookSetPointsText()
 
         processHook = false
         local points = KrowiAF_SavedData.CharacterList[UnitGUID("player")].Points
-        if addon.Options.db.profile.AchievementPoints.Format == 1 then
-        elseif addon.Options.db.profile.AchievementPoints.Format == 2 then
+        local pointsFormat = addon.Enum.PointsFormat
+        if addon.Settings.Get("window.pointsFormat") == pointsFormat.Account then
+        elseif addon.Settings.Get("window.pointsFormat") == pointsFormat.CharacterAndAccount then
             AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints() or -1))
-        elseif addon.Options.db.profile.AchievementPoints.Format == 3 then
+        elseif addon.Settings.Get("window.pointsFormat") == pointsFormat.Character then
             AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1))
         end
         processHook = true

@@ -11,23 +11,47 @@ local eventReminderAlertSystem = addon.Gui.EventReminderAlertSystem
 -- An addon that places the game's alerts (ElvUI, GW2_UI, EllesmereUI's mover, Dominos Roll's Alerts bar) wins: once
 -- AlertFrame is anywhere else than where Blizzard or the addon put it, the addon stops placing and restacking, and new
 -- pop-ups go to a queued system in AlertFrame, so that addon stacks them with its toasts.
-local everyAlert = 1
+local enum = addon.EventReminders.Enum
+local everyAlert = enum.PopUpsAppliesTo.EveryAlert
+local line1, line2 = enum.TimeDisplayLine1, enum.TimeDisplayLine2
 local blizzardX, blizzardY = 0, 128 -- AlertFrame's anchor on UIParent (Mainline and Classic AlertFrames.xml)
 local blizzardSpacing = 10 -- AlertFrameQueueMixin:AdjustAnchors (Mainline/AlertFrames.lua:243-248)
 local placedX, placedY -- where the addon put AlertFrame under Every alert; nil while it is where Blizzard put it
 local restacked -- the game's toasts showing carry points of the addon's, not Blizzard's
 
-local function PopUpOptions()
-    return addon.Options.db.profile.EventReminders.PopUps
+-- One pop-up setting (Options.lua): "growDirection" is eventReminders.popUps.growDirection
+local function PopUp(field)
+    return addon.Settings.Get("eventReminders.popUps." .. field)
 end
+
+-- A reminder's trigger (on login, on a reload or when an event starts; as pop-ups or chat lines; for active or upcoming
+-- events): each field the key of its setting, or a fixed value (Tests/Events.lua). Built once here, so the refresh reads
+-- them without making a table (docs/work/2026-11-25-settings-store).
+local function TriggerOn(trigger, field)
+    local value = trigger[field]
+    if type(value) == "string" then
+        return addon.Settings.Get(value)
+    end
+    return value
+end
+
+local triggers = {}
+for _, channel in ipairs({"popUps", "chatMessages"}) do
+    for _, when in ipairs({"onLogin", "onReload", "onEventStart"}) do
+        local prefix = "eventReminders." .. channel .. "." .. when
+        triggers[channel .. "." .. when] = {Show = prefix .. ".show", ShowInInstances = prefix .. ".showInInstances",
+            ShowOnlyWhenTimeDataIsAvailable = prefix .. ".showOnlyWhenTimeDataIsAvailable"}
+        triggers[channel .. "." .. when .. "Upcoming"] = {Show = prefix .. "Upcoming.show", ShowInInstances = prefix .. "Upcoming.showInInstances"}
+    end
+end
+eventReminderAlertSystem.Triggers = triggers
 
 -- Growing up an alert's bottom hangs on the previous one's top, growing down its top on the previous one's bottom
 local function GrowPoints()
-    local options = PopUpOptions()
-    if options.GrowDirection == 1 then
-        return "BOTTOM", "TOP", options.Spacing
+    if PopUp("growDirection") == enum.PopUpsGrowDirection.Up then
+        return "BOTTOM", "TOP", PopUp("spacing")
     end
-    return "TOP", "BOTTOM", -options.Spacing
+    return "TOP", "BOTTOM", -PopUp("spacing")
 end
 
 -- The plugins' skins hook this one (Plugins/ElvUI.lua, GW2_UI, EllesmereUI), so it reaches pop-ups in either system
@@ -131,9 +155,8 @@ function eventReminderAlertSystem:IsFollowing()
     end
     -- the pop-ups showing stay in the holder until they fade, on the options' spot rather than on a toast whose pool
     -- hands it out again
-    local options = PopUpOptions()
     self.Holder:ClearAllPoints()
-    self.Holder:SetPoint("BOTTOM", UIParent, "BOTTOM", options.OffsetX, options.OffsetY)
+    self.Holder:SetPoint("BOTTOM", UIParent, "BOTTOM", PopUp("offsetX"), PopUp("offsetY"))
     return true
 end
 
@@ -165,12 +188,12 @@ function eventReminderAlertSystem:ApplyLocation()
     if not holder or self:IsFollowing() then
         return
     end
-    local options = PopUpOptions()
-    self.AppliesTo = options.AppliesTo
-    if options.AppliesTo == everyAlert then
+    local offsetX, offsetY = PopUp("offsetX"), PopUp("offsetY")
+    self.AppliesTo = PopUp("appliesTo")
+    if self.AppliesTo == everyAlert then
         AlertFrame:ClearAllPoints()
-        AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", options.OffsetX, options.OffsetY)
-        placedX, placedY = options.OffsetX, options.OffsetY
+        AlertFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", offsetX, offsetY)
+        placedX, placedY = offsetX, offsetY
         if self:IsFollowing() then -- EllesmereUI's mover puts its own spot back inside SetPoint
             return
         end
@@ -180,13 +203,13 @@ function eventReminderAlertSystem:ApplyLocation()
             GiveBack(true)
         end
         holder:ClearAllPoints()
-        holder:SetPoint("BOTTOM", UIParent, "BOTTOM", options.OffsetX, options.OffsetY)
+        holder:SetPoint("BOTTOM", UIParent, "BOTTOM", offsetX, offsetY)
     end
     holder:UpdateAnchors()
 end
 
 function eventReminderAlertSystem:Load()
-    if not addon.Options.db.profile.EventReminders.Enabled then
+    if not addon.Settings.Get("eventReminders.enabled") then
         return
     end
 
@@ -199,8 +222,8 @@ function eventReminderAlertSystem:Load()
         holder:SetScript("OnEvent", holder.OnEvent)
     end
     self.Holder = holder
-    self.Template = "KrowiAF_EventReminderAlertFrame_" .. (addon.Options.db.profile.EventReminders.Compact and "Small" or "Normal") .. "_Template"
-    self.SubSystem = holder:AddQueuedAlertFrameSubSystem(self.Template, SetUp, PopUpOptions().MaxAlerts, 100)
+    self.Template = "KrowiAF_EventReminderAlertFrame_" .. (addon.Settings.Get("eventReminders.compact") and "Small" or "Normal") .. "_Template"
+    self.SubSystem = holder:AddQueuedAlertFrameSubSystem(self.Template, SetUp, PopUp("maxAlerts"), 100)
     self.SubSystem.AdjustAnchors = AdjustAnchors
 
     -- The pop-ups wait while the game holds its own alerts back (the What's New splash, the Runeforge craft)
@@ -221,7 +244,7 @@ function eventReminderAlertSystem:GetActiveSubSystem()
         return self.SubSystem
     end
     if not self.FollowSubSystem then
-        self.FollowSubSystem = AlertFrame:AddQueuedAlertFrameSubSystem(self.Template, SetUp, PopUpOptions().MaxAlerts, 100)
+        self.FollowSubSystem = AlertFrame:AddQueuedAlertFrameSubSystem(self.Template, SetUp, PopUp("maxAlerts"), 100)
     end
     return self.FollowSubSystem
 end
@@ -260,16 +283,15 @@ end
 -- one more can show, so none waits, also not while the game holds its alerts back (issue #364). worldFirst: the event
 -- list's Show me starts with the world events, the reminders' with the calendar ones. Returns how many it showed.
 local placeholderTypes = {
-    {Type = "Calendar", On = "CalendarEvents"},
-    {Type = "Widget", On = "WidgetEvents"},
-    {Type = "World", On = "WorldEvents"}
+    {Type = "Calendar", On = "eventReminders.calendarEvents"},
+    {Type = "Widget", On = "eventReminders.widgetEvents"},
+    {Type = "World", On = "eventReminders.worldEvents"}
 }
 
 function eventReminderAlertSystem:ShowPlaceholders(worldFirst, duration)
     if not self.SubSystem then -- no alert container: the feature did not start (Features.lua), which greys the buttons that call this
         return 0
     end
-    local options = addon.Options.db.profile.EventReminders
     local subSystem = self:GetActiveSubSystem()
     local shown, endTime = 0, GetServerTime() + 2 * 60 * 60
     local first, last, step = 1, #placeholderTypes, 1
@@ -278,9 +300,8 @@ function eventReminderAlertSystem:ShowPlaceholders(worldFirst, duration)
     end
     for i = first, last, step do
         local eventType = placeholderTypes[i]
-        local toggles = options[eventType.On]
         for _, event in next, addon.Data.Events[KrowiAF.Enum.EventType[eventType.Type]] or {} do
-            if toggles and toggles[event.Id] and event.Category and subSystem:CanShowMore() then
+            if addon.Settings.GetEntry(eventType.On, event.Id) and event.Category and subSystem:CanShowMore() then
                 local name = event.Name or event.Category.Name or addon.L["Placeholder"]
                 local placeholder = setmetatable({EventDetails = {Name = name, EndTime = endTime}}, {__index = event})
                 if self:AddAlert(placeholder, duration) then
@@ -310,7 +331,7 @@ end
 
 -- time: the moment the line shows, whose day and month the names are
 local function LocalizeDateFormat(time)
-    local dateFormat = addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime
+    local dateFormat = addon.Settings.Get("eventReminders.dateTimeFormat.startTimeAndEndTime")
     if not eventReminderAlertSystem.LocalizeDateNames then
         return dateFormat
     end
@@ -367,7 +388,7 @@ function eventReminderAlertSystem:GetRuntimeText(event, chat)
         end
     end
 
-    if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 2 or addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 3 or chat then -- Time Left
+    if addon.Settings.Get("eventReminders.timeDisplay.line1") == line1.TimeLeft or addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.TimeLeft or chat then
         local secondsLeft = event.EventDetails.EndTime - GetServerTime()
         timeLeft = GetSecondsLeftFormattedText(secondsLeft)
     end
@@ -376,17 +397,17 @@ function eventReminderAlertSystem:GetRuntimeText(event, chat)
         return timeLeft
     end
 
-    if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 1 then -- End Time
+    if addon.Settings.Get("eventReminders.timeDisplay.line1") == line1.EndTime then
         runtime = FormatDate(event.EventDetails.EndTime)
-    elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 2 then -- Time Left
+    elseif addon.Settings.Get("eventReminders.timeDisplay.line1") == line1.TimeLeft then
         runtime = timeLeft
     end
 
-    if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 1 or addon.Options.db.profile.EventReminders.Compact then -- None
+    if addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.None or addon.Settings.Get("eventReminders.compact") then
         return runtime
-    elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 2 then -- End Time
+    elseif addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.EndTime then
         return runtime .. "\n" .. FormatDate(event.EventDetails.EndTime)
-    elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 3 then -- Time Left
+    elseif addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.TimeLeft then
         return runtime .. "\n" .. timeLeft
     end
 
@@ -396,24 +417,24 @@ end
 function eventReminderAlertSystem:GetUpcomingText(event)
     local runtime, timeLeft
 
-    if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 2 or addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 3 then -- Time Left
+    if addon.Settings.Get("eventReminders.timeDisplay.line1") == line1.TimeLeft or addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.TimeLeft then
         local secondsLeft = event.UpcomingEventDetails.StartTime - GetServerTime()
         timeLeft = GetSecondsLeftFormattedText(secondsLeft)
     end
 
     -- Line 1's End Time shows when an upcoming event starts: the frame puts "In" before it, and the time left counts to
     -- the start (issue #247). Line 2's, with no "In" before it, shows when it ends
-    if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 1 then -- End Time
+    if addon.Settings.Get("eventReminders.timeDisplay.line1") == line1.EndTime then
         runtime = FormatDate(event.UpcomingEventDetails.StartTime)
-    elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == 2 then -- Time Left
+    elseif addon.Settings.Get("eventReminders.timeDisplay.line1") == line1.TimeLeft then
         runtime = timeLeft
     end
 
-    if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 1 or addon.Options.db.profile.EventReminders.Compact then -- None
+    if addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.None or addon.Settings.Get("eventReminders.compact") then
         return runtime
-    elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 2 then -- End Time
+    elseif addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.EndTime then
         return runtime .. "\n" .. FormatDate(event.UpcomingEventDetails.EndTime)
-    elseif addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == 3 then -- Time Left
+    elseif addon.Settings.Get("eventReminders.timeDisplay.line2") == line2.TimeLeft then
         return runtime .. "\n" .. timeLeft
     end
 
@@ -434,7 +455,7 @@ local function ShowActiveEventPopUp(self, event, canShow, canShowWithTimeDataOnl
     if not canShowWithTimeDataOnly or (canShowWithTimeDataOnly and event.EventDetails and event.EventDetails.EndTime) then
         KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch
         if KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] >= currentTime then
-            if not self:AddAlert(event, addon.Options.db.profile.EventReminders.PopUps.FadeDelay) then
+            if not self:AddAlert(event, addon.Settings.Get("eventReminders.popUps.fadeDelay")) then
                 KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] = nil
             end
         end
@@ -477,10 +498,10 @@ end
 
 function eventReminderAlertSystem:ShowActiveEvents(popUpsOptions, chatMessagesOptions, currentTime, activeEvents)
     local isInInstance = (select(3, GetInstanceInfo())) ~= 0
-    local canShowPopUps = popUpsOptions.Show and (not isInInstance or (popUpsOptions.ShowInInstances and isInInstance))
-    local canShowChatMessages = chatMessagesOptions.Show and (not isInInstance or (chatMessagesOptions.ShowInInstances and isInInstance))
-    local canShowPopUpsWithTimeDataOnly = popUpsOptions.ShowOnlyWhenTimeDataIsAvailable
-    local canShowChatMessagesWithTimeDataOnly = chatMessagesOptions.ShowOnlyWhenTimeDataIsAvailable
+    local canShowPopUps = TriggerOn(popUpsOptions, "Show") and (not isInInstance or (TriggerOn(popUpsOptions, "ShowInInstances") and isInInstance))
+    local canShowChatMessages = TriggerOn(chatMessagesOptions, "Show") and (not isInInstance or (TriggerOn(chatMessagesOptions, "ShowInInstances") and isInInstance))
+    local canShowPopUpsWithTimeDataOnly = TriggerOn(popUpsOptions, "ShowOnlyWhenTimeDataIsAvailable")
+    local canShowChatMessagesWithTimeDataOnly = TriggerOn(chatMessagesOptions, "ShowOnlyWhenTimeDataIsAvailable")
 
     if not canShowPopUps and not canShowChatMessages then
         return
@@ -509,8 +530,8 @@ local function ShowUpcomingCalendarEventPopUp(self, event, canShow, currentTime)
         return
     end
     KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] = occurrence.StartTime
-    if KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] < currentTime + (addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Days * 24 * 60 * 60) then
-        if not self:AddAlert(event, addon.Options.db.profile.EventReminders.PopUps.FadeDelay) then
+    if KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] < currentTime + (addon.Settings.Get("eventReminders.upcomingCalendarEvents.days") * 24 * 60 * 60) then
+        if not self:AddAlert(event, addon.Settings.Get("eventReminders.popUps.fadeDelay")) then
             KrowiAF_SavedData.UpcomingCalendarEventPopUpsShown[event.Id] = nil
         end
     end
@@ -533,19 +554,19 @@ local function ShowUpcomingCalendarEventChatMessage(self, event, canShow, curren
         return
     end
     KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown[event.Id] = occurrence.StartTime
-    if KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown[event.Id] < currentTime + (addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Days * 24 * 60 * 60) then
+    if KrowiAF_SavedData.UpcomingCalendarEventChatMessagesShown[event.Id] < currentTime + (addon.Settings.Get("eventReminders.upcomingCalendarEvents.days") * 24 * 60 * 60) then
         self.Print("    -", occurrence.Name, "(In " .. GetSecondsLeftFormattedText(occurrence.StartTime - currentTime) .. ")")
     end
 end
 
 function eventReminderAlertSystem:ShowUpcomingCalendarEvents(popUpsOptions, chatMessagesOptions, currentTime, upcomingCalendarEvents)
-    if not addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Enabled then
+    if not addon.Settings.Get("eventReminders.upcomingCalendarEvents.enabled") then
         return
     end
 
     local isInInstance = (select(3, GetInstanceInfo())) ~= 0
-    local canShowPopUps = popUpsOptions.Show and (not isInInstance or (popUpsOptions.ShowInInstances and isInInstance))
-    local canShowChatMessages = chatMessagesOptions.Show and (not isInInstance or (chatMessagesOptions.ShowInInstances and isInInstance))
+    local canShowPopUps = TriggerOn(popUpsOptions, "Show") and (not isInInstance or (TriggerOn(popUpsOptions, "ShowInInstances") and isInInstance))
+    local canShowChatMessages = TriggerOn(chatMessagesOptions, "Show") and (not isInInstance or (TriggerOn(chatMessagesOptions, "ShowInInstances") and isInInstance))
 
     if not canShowPopUps and not canShowChatMessages then
         return
@@ -572,7 +593,7 @@ local refreshStartReasons = {
 }
 
 local function GetRefreshInterval()
-    local interval = addon.Options.db.profile.EventReminders.RefreshInterval
+    local interval = addon.Settings.Get("eventReminders.refreshInterval")
     if not interval or interval < 1 then
         interval = 1
     end
@@ -633,14 +654,14 @@ function Refresh(self)
     local refreshedUpcomingCalendarEvents
     if hasCallbacks then
         refreshedActiveEvents = addon.EventReminders.EventData.GetActiveEvents(true)
-        if addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Enabled then
+        if addon.Settings.Get("eventReminders.upcomingCalendarEvents.enabled") then
             refreshedUpcomingCalendarEvents = addon.EventReminders.EventData.GetUpcomingCalendarEvents()
         end
     end
 
     local currentTime = GetServerTime() -- the realm's clock, which the events' sources use
-    self:ShowActiveEvents(addon.Options.db.profile.EventReminders.PopUps.OnEventStart, addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart, currentTime, refreshedActiveEvents)
-    self:ShowUpcomingCalendarEvents(addon.Options.db.profile.EventReminders.PopUps.OnEventStartUpcoming, addon.Options.db.profile.EventReminders.ChatMessages.OnEventStartUpcoming, currentTime, refreshedUpcomingCalendarEvents)
+    self:ShowActiveEvents(triggers["popUps.onEventStart"], triggers["chatMessages.onEventStart"], currentTime, refreshedActiveEvents)
+    self:ShowUpcomingCalendarEvents(triggers["popUps.onEventStartUpcoming"], triggers["chatMessages.onEventStartUpcoming"], currentTime, refreshedUpcomingCalendarEvents)
     self:ForgetEndedReminders(currentTime)
 
     for _, callback in next, refreshCallbacks do
@@ -660,7 +681,7 @@ local function StartRefresh(self, reason)
 end
 
 function eventReminderAlertSystem:StartRefreshTicker()
-    if not addon.Options.db.profile.EventReminders.Enabled then
+    if not addon.Settings.Get("eventReminders.enabled") then
         return
     end
     StartRefresh(self, "Callbacks")
@@ -688,7 +709,7 @@ function eventReminderAlertSystem:UnregisterOnRefresh(key)
 end
 
 function eventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions)
-    if not addon.Options.db.profile.EventReminders.Enabled then
+    if not addon.Settings.Get("eventReminders.enabled") then
         return
     end
 
@@ -697,13 +718,13 @@ function eventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOp
 
     local currentTime = GetServerTime()
 
-    if popUpsOptions and not popUpsOptions.Show then
+    if popUpsOptions and not TriggerOn(popUpsOptions, "Show") then
         local activeEvents = addon.EventReminders.EventData.GetActiveEvents(true)
         for _, event in next, activeEvents do
             KrowiAF_SavedData.ActiveEventPopUpsShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch
         end
     end
-    if chatMessagesOptions and not chatMessagesOptions.Show then
+    if chatMessagesOptions and not TriggerOn(chatMessagesOptions, "Show") then
         local activeEvents = addon.EventReminders.EventData.GetActiveEvents(true)
         for _, event in next, activeEvents do
             KrowiAF_SavedData.ActiveEventChatMessagesShown[event.Id] = event.EventDetails and event.EventDetails.EndTime or placeholderEpoch
@@ -718,7 +739,7 @@ function eventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUpsOp
 end
 
 function eventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorld(popUpsOptions, chatMessagesOptions)
-    if not addon.Options.db.profile.EventReminders.Enabled or not addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Enabled then
+    if not addon.Settings.Get("eventReminders.enabled") or not addon.Settings.Get("eventReminders.upcomingCalendarEvents.enabled") then
         return
     end
 
@@ -727,7 +748,7 @@ function eventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorl
 
     local currentTime = GetServerTime()
 
-    if popUpsOptions and not popUpsOptions.Show then
+    if popUpsOptions and not TriggerOn(popUpsOptions, "Show") then
         local upcomingCalendarEvents = addon.EventReminders.EventData.GetUpcomingCalendarEvents()
         for _, event in next, upcomingCalendarEvents do
             local occurrence = addon.EventData.GetNextEventOccurance(event.Id)
@@ -736,7 +757,7 @@ function eventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorl
             end
         end
     end
-    if chatMessagesOptions and not chatMessagesOptions.Show then
+    if chatMessagesOptions and not TriggerOn(chatMessagesOptions, "Show") then
         local upcomingCalendarEvents = addon.EventReminders.EventData.GetUpcomingCalendarEvents()
         for _, event in next, upcomingCalendarEvents do
             local occurrence = addon.EventData.GetNextEventOccurance(event.Id)

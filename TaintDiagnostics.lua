@@ -182,7 +182,7 @@ local function OnUpdate(_, elapsed)
 end
 
 function taintProbe.Load()
-    if not addon.Options.db.profile.EnableTaintDiagnostics then
+    if not addon.Settings.Get("advanced.taintDiagnostics") then
         return
     end
 

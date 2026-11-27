@@ -5,7 +5,7 @@ local _, addon = ...
 addon.Gui.AchievementPopout.Modifier = {
     Order = 10,
     Handle = function(row)
-        if not addon.IsCustomModifierKeyDown(addon.Options.db.profile.Achievements.Modifiers.PopOut) then
+        if not addon.IsCustomModifierKeyDown(addon.Settings.Get("popOut.modifier")) then
             return false
         end
         addon.Gui.AchievementPopout:Open(row.Achievement)

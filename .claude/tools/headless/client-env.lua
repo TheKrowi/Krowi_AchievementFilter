@@ -205,7 +205,15 @@ function M.New(root, client)
         addon[fn] = function(id) return fn:gsub("^Get", "") .. " " .. tostring(id) end
     end
     addon.GetCategoryInfoTitle = function(id) return "CategoryInfoTitle " .. tostring(id) end -- Blizzard's title, a fallback beside it
-    setmetatable(addon, { __index = function(t, k) local s = Stub("addon." .. tostring(k)); rawset(t, k, s); return s end })
+    setmetatable(addon, { __index = function(t, k)
+        -- a real settings store made from a suite's fake old-shaped addon.Options.db (docs/work/2026-11-25-settings-store);
+        -- without a fake, a stub as before
+        local options = rawget(t, "Options")
+        if k == "Settings" and type(options) == "table" and type(rawget(options, "db")) == "table" then
+            return assert(loadfile(root .. "/.claude/tools/headless/settings-store.lua"))().FromFakeProfile(root, t)
+        end
+        local s = Stub("addon." .. tostring(k)); rawset(t, k, s); return s
+    end })
     self:EnsureDataTables()
     -- The feature registry (Features.lua) as the data pipeline needs it: every feature counts as started, and the data
     -- fields a feature's Api.lua takes go into the data slot (Slots.lua) at once, so the data load and the data snapshot

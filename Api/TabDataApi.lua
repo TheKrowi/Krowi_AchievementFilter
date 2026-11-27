@@ -35,28 +35,16 @@ local function GetIndexOrInsertTab(addonName, addonDisplayName, tabName, tabDisp
     return index
 end
 
+-- A tab's show and order defaults, as the tab registers (docs/work/2026-11-25-settings-store)
 local function InjectOptionsDefaults(addonName, tabName, showByDefault)
     if showByDefault == nil then
         showByDefault = false
     end
-    if not addon.InjectOptions:DefaultsExists("Tabs." .. addonName) then
-        addon.InjectOptions:AddDefaults("Tabs", addonName, { })
-    end
-    addon.InjectOptions:AddDefaults("Tabs." .. addonName, tabName, {
-        Show = showByDefault
-    })
+    addon.Settings.RegisterEntryDefault("tabs.show", addonName, tabName, showByDefault)
 end
 
 local function SetOptionsOrder(addonName, tabName, index)
-    local options
-    if addon.Options.Defaults then -- Pre options loaded
-        options = addon.Options.Defaults.profile.Tabs
-    else -- Post options loaderdata
-        options = addon.Options.db.profile.Tabs
-    end
-    options[addonName] = options[addonName] or {}
-    options[addonName][tabName] = options[addonName][tabName] or {}
-    options[addonName][tabName].Order = index
+    addon.Settings.RegisterEntryDefault("tabs.order", addonName, tabName, index)
 end
 
 local OrderPP = addon.InjectOptions.AutoOrderPlusPlus
@@ -96,9 +84,9 @@ end
 
 local function GetOrder(index)
     addon.Gui:TabsOrderGetActiveKeys() -- Just to make sure the list is cleaned up
-    for addonName2, tabs in next, addon.Options.db.profile.Tabs do
-        for tabName, tab in next, tabs do
-            if tab.Order == index then
+    for addonName2 in addon.Settings.Entries("tabs.order") do
+        for tabName, order in addon.Settings.Entries("tabs.order", addonName2) do
+            if order == index then
                 for i, tab2 in next, KrowiAF_SavedData.Tabs do
                     if tab2.AddonName == addonName2 and tab2.Name == tabName then
                         return i
@@ -114,24 +102,23 @@ local function SetOrder(index, value)
 
     -- We get the addon name and tab name for the selected tab
     local tab = KrowiAF_SavedData.Tabs[value]
-    -- print(value, tab.AddonName, tab.Name, addon.Options.db.profile.Tabs[tab.AddonName][tab.Name].Order);
 
     -- Get the current order
-    local order = addon.Options.db.profile.Tabs[tab.AddonName][tab.Name].Order
+    local order = addon.Settings.GetEntry("tabs.order", tab.AddonName, tab.Name)
 
     -- This order is new order for old selection
     local aName, tName
-    for addonName2, tabs in next, addon.Options.db.profile.Tabs do
-        for tabName, tab2 in next, tabs do
-            if tab2.Order == index then
+    for addonName2 in addon.Settings.Entries("tabs.order") do
+        for tabName, order2 in addon.Settings.Entries("tabs.order", addonName2) do
+            if order2 == index then
                 aName = addonName2
                 tName = tabName
             end
         end
     end
 
-    addon.Options.db.profile.Tabs[aName][tName].Order = order
-    addon.Options.db.profile.Tabs[tab.AddonName][tab.Name].Order = index
+    addon.Settings.SetEntry("tabs.order", aName, tName, order)
+    addon.Settings.SetEntry("tabs.order", tab.AddonName, tab.Name, index)
 
     addon.Gui:ShowHideTabs()
 end
@@ -158,8 +145,8 @@ local function InjectTabsShowOptionsTable(addonName, addonDisplayName, tabName, 
     addon.InjectOptions:AddTable("Layout.args.Tabs.args.Show.args.Show.args", addonName .. tabName, {
         order = OrderPP(), type = "toggle", width = AdjustedWidth(0.95),
         name = tabDisplayName,
-        desc = (""):KAF_AddDefaultValueText("Tabs." .. addonName .. "." .. tabName .. ".Show"),
-        get = function() return addon.Options.db.profile.Tabs[addonName][tabName].Show; end,
+        desc = (""):KAF_AddDefaultValueText("tabs.show", nil, addonName, tabName),
+        get = function() return addon.Settings.GetEntry("tabs.show", addonName, tabName) end,
         set = function() addon.Gui:ShowHideTabs(addonName, tabName); end
     })
 end

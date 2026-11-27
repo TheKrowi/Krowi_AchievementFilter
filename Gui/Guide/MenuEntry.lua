@@ -9,8 +9,7 @@ addon.Slots.AchievementMenu.Add(section)
 -- The waypoint actions of every step that names a place, kept from CheckAdd for Add
 local actions
 function section:CheckAdd(achievement)
-    local options = addon.Options.db.profile.Achievements.Guide
-    if achievement.Guide == nil or not options.RightClickMenu then
+    if achievement.Guide == nil or not addon.Settings.Get("guides.rightClickMenu") then
         return
     end
     actions = {}
@@ -21,12 +20,12 @@ function section:CheckAdd(achievement)
             end
         end
     end
-    return options.Icon or #actions > 0 -- the panel comes with the icon option
+    return addon.Settings.Get("guides.icon") or #actions > 0 -- the panel comes with the icon option
 end
 
 function section:Add(menu, achievement, menuBuilder, caller)
     local guideMenu = menuBuilder:CreateSubmenuButton(menu, addon.L["Guide"])
-    if addon.Options.db.profile.Achievements.Guide.Icon then
+    if addon.Settings.Get("guides.icon") then
         menuBuilder:CreateButtonAndAdd(
             guideMenu,
             addon.L["Guide Open"],

@@ -34,8 +34,7 @@ end
 
 -- Follows Show Icon on Achievements, read each time the page draws: without the icon only the right-click menu opens it
 local function Intro()
-    local db = addon.Options.db
-    local key = (db and not db.profile.Achievements.ShowRewardPreviewIcon) and "Help Rewards Intro No Icon" or "Help Rewards Intro"
+    local key = not addon.Settings.Get("rewardPreview.showIcon") and "Help Rewards Intro No Icon" or "Help Rewards Intro" -- on by default
     return L[key]:K_ReplaceVars({previewReward = L["Preview Reward"]})
 end
 

@@ -23,7 +23,7 @@ end
 local function CreateMenu(menuObj)
     menuBuilder:CreateTitle(menuObj, addon.L["Search options"])
 
-    local profile = addon.SearchOptions.db.profile
+    local profile = addon.Settings.GetObject("search")
     menuBuilder:CreateCheckbox(menuObj, addon.L["Search Ids"] .. " (#)", profile, {"SearchIds"})
     menuBuilder:CreateCheckbox(menuObj, addon.L["Search Names"], profile, {"SearchNames"})
     menuBuilder:CreateCheckbox(menuObj, addon.L["Search Descriptions"], profile, {"SearchDescriptions"})

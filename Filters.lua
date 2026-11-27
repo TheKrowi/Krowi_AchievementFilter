@@ -46,6 +46,9 @@ local defaults = {
         ShowPlaceholders = false
     }
 }
+-- The filters of a filter profile, one live table (docs/work/2026-11-25-settings-store): its default is filled by
+-- InjectDefaults, before anything asks for it
+addon.Settings.Declare("filters", {Kind = "object", System = "filters", Default = defaults.profile})
 
 -- [[ Inject Defaults ]] --
 local function InjectDynamicRewardTypeFilters()
@@ -94,31 +97,35 @@ local function ResetFactionFilters(tbl)
 end
 
 function filters:ResetFilters()
-    if addon.Options.db.profile.Filters.ResetFactionFilters then
-        ResetFactionFilters(self.db.profile.Faction)
-        ResetFactionFilters(self.db.profile.CurrentZone.Faction)
-        ResetFactionFilters(self.db.profile.SelectedZone.Faction)
-        ResetFactionFilters(self.db.profile.TrackingAchievements.Faction)
+    if addon.Settings.Get("filtering.resetFactionFilters") then
+        local profile = addon.Settings.GetObject("filters")
+        ResetFactionFilters(profile.Faction)
+        ResetFactionFilters(profile.CurrentZone.Faction)
+        ResetFactionFilters(profile.SelectedZone.Faction)
+        ResetFactionFilters(profile.TrackingAchievements.Faction)
         for t, _ in next, addon.Tabs do
-            ResetFactionFilters(self.db.profile.Tabs[t].Faction)
+            ResetFactionFilters(profile.Tabs[t].Faction)
         end
     end
 end
 
+-- Every tab's filters on the current filter profile's; the search toggles follow that profile too, so the search
+-- results are made again (docs/work/2026-11-25-settings-store, requirement 8)
 function filters:RefreshFilters()
+    local profile = addon.Settings.GetObject("filters")
     for t, _ in next, addon.Tabs do
-        addon.Tabs[t].Filters = self.db.profile.Tabs[t]
+        addon.Tabs[t].Filters = profile.Tabs[t]
     end
+    addon.SearchOptions.Changed = true
 end
 
+-- At the options' load (Options/Profiles.lua), once the filters' defaults are in (InjectDefaults)
 function filters:Load()
-    self.db = LibStub("AceDB-3.0"):New("KrowiAF_Filters", defaults, true)
-    self.db.RegisterCallback(self, "OnProfileChanged", "RefreshFilters")
-    self.db.RegisterCallback(self, "OnProfileCopied", "RefreshFilters")
-    self.db.RegisterCallback(self, "OnProfileReset", "RefreshFilters")
+    addon.Settings.OnProfileChanged("filters", function() filters:RefreshFilters() end)
 
+    local profile = addon.Settings.GetObject("filters")
     for t, _ in next, addon.Tabs do
-        addon.Tabs[t].Filters = self.db.profile.Tabs[t]
+        addon.Tabs[t].Filters = profile.Tabs[t]
     end
 
     self.Account = addon.L["Account"]
@@ -235,10 +242,10 @@ local validations = {
     },
     {   -- 13
         Validate = function(_filters, achievement, ignoreFilters)
-            if not addon.Options.db.profile.ShowPlaceholdersFilter and achievement.DoesNotExist then
+            if not addon.Settings.Get("advanced.placeholdersFilter") and achievement.DoesNotExist then
                 return true
             end
-            return not filters.db.profile.ShowPlaceholders and achievement.DoesNotExist
+            return not addon.Settings.GetObject("filters").ShowPlaceholders and achievement.DoesNotExist
         end
     },
     {   -- 14
@@ -271,7 +278,7 @@ function filters.Validate(_filters, achievement, ignoreFilters, ignoreCollapseSe
         return 2
     end
     achievementInfoCache = addon.GetAchievementInfoTable(achievement.Id)
-    if addon.Filters.db.profile.EarnedBy == 'CharacterOnly' then
+    if addon.Settings.GetObject("filters").EarnedBy == 'CharacterOnly' then
         achievementInfoCache.IsCompleted = achievementInfoCache.WasEarnedByMe
     end
     ignoreFilters = ignoreFilters or {}
@@ -292,14 +299,15 @@ function filters:AutoValidate(achievement, ignoreFilters, ignoreCollapseSeries)
 end
 
 function filters:GetFilters(category)
-    self.db.profile.Ignore = nil
+    local profile = addon.Settings.GetObject("filters")
+    profile.Ignore = nil
 
     if addon.Gui.SelectedTab == nil then
         local categoriesTree = category:GetTree()
 
         local tab = addon.Tabs[categoriesTree[1].Name]
         if tab == nil then
-            return self.db.profile
+            return profile
         end
 
         local filters2 = addon.Tabs[categoriesTree[1].Name].Filters
@@ -307,7 +315,7 @@ function filters:GetFilters(category)
             return filters2
         end
 
-        return self.db.profile
+        return profile
     end
 
     if category == nil then
@@ -315,19 +323,19 @@ function filters:GetFilters(category)
     end
 
 	if category.IsCurrentZone then
-		return self.db.profile.CurrentZone
+		return profile.CurrentZone
 	elseif category.IsSelectedZone then
-		return self.db.profile.SelectedZone
+		return profile.SelectedZone
 	elseif category.IsWatchList then
-        self.db.profile.Ignore = addon.Options.db.profile.Categories.WatchList.IgnoreFilters
-        return self.db.profile
+        profile.Ignore = addon.Settings.Get("categories.watchList.ignoreFilters")
+        return profile
     elseif category.IsTracking then
-        return self.db.profile.TrackingAchievements
+        return profile.TrackingAchievements
     elseif addon.Gui.SelectedTab.Filters ~= nil then
         return addon.Gui.SelectedTab.Filters
 	end
 
-    return self.db.profile
+    return profile
 end
 
 function filters.GetHighestAchievementWhenCollapseSeries(_fliters, achievement)

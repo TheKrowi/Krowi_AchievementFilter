@@ -32,7 +32,7 @@ local specialCategoriesMatrix = { -- Order of this list is important
         Text = addon.L["Summary"],
         Side = "TOP",
         PostLoad = function(category, index)
-            local value = addon.Options.db.profile.AdjustableCategories.Summary[index]
+            local value = addon.Settings.GetEntry("categories.shownOnTab", "Summary", index)
             category:SetAlwaysVisible(value)
             category.IsSummary = true
         end,

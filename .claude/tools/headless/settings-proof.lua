@@ -105,7 +105,9 @@ local function Diff(before, after, path, out)
         local at = path .. "." .. tostring(key)
         if type(value) == "table" and type(old) == "table" then
             Diff(old, value, at, out)
-        elseif value ~= old and not (type(value) == "table" and next(value) == nil and old == nil) then
+        elseif type(value) == "table" and old == nil then
+            Diff({}, value, at, out) -- a table new as a whole (the settings store saves a map only once an entry differs): its leaves
+        elseif value ~= old then
             out[#out + 1] = at
         end
     end
@@ -118,8 +120,11 @@ end
 -- model's Settable, hidden and disabled ones too) set one at a time to another value (the model's OtherValue). The four
 -- saved variables are copied before each set and put back raw and in place after it, and the option is set back too. A
 -- profile's name reads as *, so the paths are the same for every profile. Returns the count, the hash and the lines.
-function M.SavedKeys(ctx)
+-- names: the saved variables to watch (default M.SavedVariables); prepare: run after each set, before the diff (the
+-- settings store's save, which writes its live objects into the saved table).
+function M.SavedKeys(ctx, names, prepare)
     local env, model = ctx.env, ctx.addon.Options.Window.Model
+    local savedVariables = names or M.SavedVariables
     local lines = {}
     for _, item in ipairs(model.Options()) do
         local option = item.Option
@@ -128,10 +133,11 @@ function M.SavedKeys(ctx)
             local value = model.OtherValue(option, before)
             if value ~= nil then
                 local snapshot = {}
-                for _, name in ipairs(M.SavedVariables) do snapshot[name] = Copy(rawget(env, name)) end
+                for _, name in ipairs(savedVariables) do snapshot[name] = Copy(rawget(env, name)) end
                 pcall(option.Set, option, value)
+                if prepare then prepare() end
                 local paths = {}
-                for _, name in ipairs(M.SavedVariables) do
+                for _, name in ipairs(savedVariables) do
                     local live = rawget(env, name)
                     if type(live) == "table" and type(snapshot[name]) == "table" then
                         Diff(snapshot[name], live, name, paths)
@@ -140,11 +146,14 @@ function M.SavedKeys(ctx)
                     end
                 end
                 pcall(option.Set, option, before)
-                for _, name in ipairs(M.SavedVariables) do
+                if prepare then prepare() end
+                for _, name in ipairs(savedVariables) do
                     local live = rawget(env, name)
                     if type(live) == "table" and type(snapshot[name]) == "table" then Restore(live, snapshot[name]) end
                 end
-                for i, path in ipairs(paths) do paths[i] = path:gsub("^(KrowiAF_%a+%.profiles%.)[^%.]+", "%1*") end
+                for i, path in ipairs(paths) do
+                    paths[i] = path:gsub("^(KrowiAF_%a+%.profiles%.)[^%.]+", "%1*"):gsub("^(KrowiAF_Settings%.%a+%.Profiles%.)[^%.]+", "%1*")
+                end
                 table.sort(paths)
                 lines[#lines + 1] = option.Id .. " => " .. table.concat(paths, ",")
             end

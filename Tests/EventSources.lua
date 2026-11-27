@@ -69,7 +69,6 @@ local function TimedBy(event, widgetTimed)
 end
 
 local function ObserveWorldEvents(observations)
-    local eventReminders = addon.Options.db.profile.EventReminders
     local events = addon.Data.Events[KrowiAF.Enum.EventType.World]
     local quiet = 0
     for _, id in ipairs(SortedIds(events)) do
@@ -81,7 +80,7 @@ local function ObserveWorldEvents(observations)
             if secondsLeft or onMap or details then
                 tinsert(observations, ("world %d %q, map %s: POI seconds left %s, POI on its map %s%s, timed by %s; reminders get %s"):format(id, tostring(event.Name),
                     tostring(event.MapId), tostring(secondsLeft), tostring(onMap), (secondsLeft and not onMap) and (", " .. FindPoiMap(event)) or "",
-                    TimedBy(event, addon.EventReminders.CustomWorldEventTimers.HasCustomTimer(id)), RemindersGet(details, eventReminders.WorldEvents[id])))
+                    TimedBy(event, addon.EventReminders.CustomWorldEventTimers.HasCustomTimer(id)), RemindersGet(details, addon.Settings.GetEntry("eventReminders.worldEvents", id))))
             else
                 quiet = quiet + 1
             end
@@ -93,14 +92,13 @@ local function ObserveWorldEvents(observations)
 end
 
 local function ObserveWidgetEvents(observations)
-    local eventReminders = addon.Options.db.profile.EventReminders
     local events = addon.Data.Events[KrowiAF.Enum.EventType.Widget]
     for _, id in ipairs(SortedIds(events)) do
         local event = events[id]
         local details = addon.EventReminders.EventData.GetWidgetEventDetails(event)
         local timedBy = event.Source == KrowiAF.Enum.EventSource.FixedSchedule and "a fixed schedule"
             or addon.EventReminders.CustomWidgetEventTimers.IsComputed(id) and "a schedule" or "its widget"
-        tinsert(observations, ("widget %d %q: timed by %s; reminders get %s"):format(id, tostring(event.Name), timedBy, RemindersGet(details, eventReminders.WidgetEvents[id])))
+        tinsert(observations, ("widget %d %q: timed by %s; reminders get %s"):format(id, tostring(event.Name), timedBy, RemindersGet(details, addon.Settings.GetEntry("eventReminders.widgetEvents", id))))
     end
 end
 

@@ -29,7 +29,7 @@ There is no build step, no external linter or test framework and no CI: never ru
 
 - **Two namespaces.** Every file starts `local _, addon = ...` (or `local addonName, addon = ...`). `addon.*` is the private namespace (`addon.Data`, `addon.Gui`, `addon.Objects`, `addon.Options`, `addon.Filters`, `addon.Diagnostics`, `addon.Plugins`, ...). `KrowiAF` is the public surface: enums (`KrowiAF.Enum.Faction`, `RewardType`, `EventType`, ...), data-registration tables (`KrowiAF.AchievementData`, `KrowiAF.CategoryData`, ...), the builder `KrowiAF.Ach` and `KrowiAF.PluginsApi`. `KROWI_LIBMAN` is the library manager from `Libs/Krowi_Util/LibMan.lua`. Data files write only to `KrowiAF.*`; runtime code reads `addon.Data.*`.
 - **Three-phase boot** (`Krowi_AchievementFilter.lua`):
-  1. `ADDON_LOADED` for this addon: options, saved-data migrations (`Data/DataIntegrityManager.lua`), plugins, GUI parts that do not depend on Blizzard's frame; the feature registry starts the features whose switch is on.
+  1. `ADDON_LOADED` for this addon: the saved variables' migrations and the settings store first (`Settings/Migrations.lua`), then options, plugins, GUI parts that do not depend on Blizzard's frame; the feature registry starts the features whose switch is on.
   2. `ADDON_LOADED` for `Blizzard_AchievementUI` (load-on-demand): `addon.Gui:LoadWithBlizzard_AchievementUI()` hooks and reshapes `AchievementFrame`. Anything touching Blizzard's achievement frames goes here, not in phase 1.
   3. `PLAYER_LOGIN`: `addon.Data:LoadOnPlayerLogin()` builds all achievement, category and zone objects, then `addon.BuildCacheAsync` (`Data/AchievementCache.lua`) walks every achievement id, both as task groups yielding on a per-frame time budget. **`addon.Data.Achievements` is empty until phase 3 completes**: code that needs the data hooks `PostLoadOnPlayerLogin` / `PostBuildCache` in `Data/Data.lua`.
 - **Features** (since 106) live in `Features/<Name>/`, switch off per profile, and reach the core only through `Slots.lua` and the registry's parts; the core never names a feature (`feature-boundary` rule; `.claude/rules/features.md`).
@@ -55,7 +55,7 @@ A background job is code that can run with every addon window closed: an OnUpdat
 
 ## Saved variables
 
-Declared on the `.toc`'s `## SavedVariables` line; one not listed there is lost on logout. Schema changes go through numbered solutions in `Data/DataIntegrityManager.lua`, which run in order on version upgrade.
+Declared on the `.toc`'s `## SavedVariables` line; one not listed there is lost on logout. Settings live in the settings store (`Settings/`, `KrowiAF_Settings`): code declares each setting once and reads and writes it only through `addon.Settings` by its key (`Get`, `Set`, `GetEntry`, `GetObject`; the `settings-keys` and `settings-direct` lint rules). A dropdown's numbers go by name, each written once (`.claude/rules/settings.md`). A change to a saved variable's shape is a numbered migration in `Settings/Migrations.lua`, which runs once, in order, under the runner (`KrowiAF_Settings.Version`).
 
 ## Code style
 

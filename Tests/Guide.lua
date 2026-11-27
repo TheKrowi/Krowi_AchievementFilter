@@ -53,10 +53,10 @@ local guide = addon.Tests.Guide
 --   addon.Gui.Guide.Content.DisplayUnderObjectives(objectives, achievement) -> the height the row grows by, the block as
 --     objectives.GuideBlock with NumGuideLines and NumGuideButtons
 --   addon.Gui.Guide.RequestNpcNames(achievements) -> the sorted NPC ids of their guides, each asked of the client once
---   addon.Options.db.profile.Achievements.Guide: Tooltip, RightClickMenu, Icon, ExpandedRow, WaypointProvider
+--   the guide settings (guides.tooltip, rightClickMenu, icon, expandedRow, waypointProvider), by their field names
 
-local provider = {Both = 1, MapPin = 2, TomTom = 3} -- Achievements.Guide.WaypointProvider
-local actionStyle = {Icons = 1, Links = 2} -- Achievements.Guide.ActionStyle
+local provider = addon.Enum.GuideWaypointProvider
+local actionStyle = addon.Enum.GuideActionStyle
 local zubashi = {MapId = 648, X = 47.7, Y = 53.8} -- Archivist Zubashi, Acherus: the map pin is allowed there
 local dalaran = {MapId = 627, X = 32.7, Y = 69.8} -- a spot in Dalaran, which refuses the map pin
 local paladinPortal = {PoiId = 5057, MapId = 627, X = 32.7, Y = 69.8} -- the Alliance Paladin portal, Dalaran
@@ -777,14 +777,11 @@ function gameEnv.Objectives()
 end
 
 function gameEnv.SetOptions(options)
-    local achievements = addon.Options.db.profile.Achievements
-    local guideOptions = achievements and achievements.Guide -- absent until the feature exists: nothing to set
     savedOptions = {}
-    if guideOptions then
-        for key, value in next, options or {} do
-            savedOptions[key] = {Value = guideOptions[key]}
-            guideOptions[key] = value
-        end
+    for field, value in next, options or {} do
+        local key = "guides." .. field:sub(1, 1):lower() .. field:sub(2) -- "ExpandedRow" is guides.expandedRow
+        savedOptions[key] = {Value = addon.Settings.Get(key)}
+        addon.Settings.Set(key, value)
     end
 end
 
@@ -802,9 +799,8 @@ function gameEnv.TooltipLines(achievement)
 end
 
 function gameEnv.Teardown()
-    local guideOptions = addon.Options.db.profile.Achievements and addon.Options.db.profile.Achievements.Guide
     for key, saved in next, savedOptions or {} do
-        guideOptions[key] = saved.Value
+        addon.Settings.Set(key, saved.Value)
     end
     savedOptions = nil
     Krowi_Tooltip:Hide()

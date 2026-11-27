@@ -109,7 +109,7 @@ function rewardPreviewData.GetIconGroups(achievementId)
         return nil
     end
 
-    local maxIndividualIcons = addon.Options.db.profile.Achievements.RewardPreviewMaxIndividualIcons
+    local maxIndividualIcons = addon.Settings.Get("rewardPreview.maxIndividualIcons")
     if #entries <= maxIndividualIcons then
         local groups = {}
         for _, entry in next, entries do

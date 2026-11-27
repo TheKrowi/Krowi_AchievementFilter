@@ -26,9 +26,7 @@ local function RenameExplorationDragonIslesCategory()
 end
 
 function atf:InjectOptions()
-    KrowiAF.UtilApi.InjectOptions:AddDefaults("Plugins", "AchievementsTabFixes", {
-        RenameExplorationDragonIslesCategory = true,
-    })
+    addon.Settings.Declare("plugins.achievementsTabFixes.renameExplorationDragonIslesCategory", {Type = "boolean", Default = true})
 
     local pluginTable = KrowiAF.UtilApi.InjectOptions:AddPluginTable(
         "AchievementsTabFixes",
@@ -38,17 +36,16 @@ function atf:InjectOptions()
             return true
         end
     )
-    KrowiAF.UtilApi.InjectOptions:AddTable(pluginTable, "RenameExplorationDragonIslesCategory", {
+    KrowiAF.UtilApi.InjectOptions:AddTable(pluginTable, "RenameExplorationDragonIslesCategory", addon.Settings.Row("plugins.achievementsTabFixes.renameExplorationDragonIslesCategory", {
         order = KrowiAF.UtilApi.InjectOptions.AutoOrderPlusPlus(), type = "toggle", width = "full",
         name = addon.L["RenameExplorationDragonIslesCategory"],
-        desc = addon.L["RenameExplorationDragonIslesCategory Desc"]:KAF_AddDefaultValueText("Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory"):K_AddReloadRequired(),
-        get = function() return addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory; end,
+        desc = addon.L["RenameExplorationDragonIslesCategory Desc"]:KAF_AddDefaultValueText("plugins.achievementsTabFixes.renameExplorationDragonIslesCategory"):K_AddReloadRequired(),
         set = function(_, value)
-            addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory = value
+            addon.Settings.Set("plugins.achievementsTabFixes.renameExplorationDragonIslesCategory", value)
             RenameExplorationDragonIslesCategory()
         end,
         hidden = not addon.Util.IsMainline
-    })
+    }))
 end
 
 function atf:Load()

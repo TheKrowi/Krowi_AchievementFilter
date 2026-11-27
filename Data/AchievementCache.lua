@@ -27,7 +27,7 @@ local function HandleTrackingAchievement(achievementInfo)
         return
     end
     addon.Data.Achievements[achievementId].IsTracking = true
-    if not addon.Options.db.profile.Categories.TrackingAchievements.DoLoad then
+    if not addon.Settings.Get("categories.trackingAchievements.doLoad") then
         return
     end
     addon.TrackingAchievements[achievementId] = true

@@ -6,8 +6,8 @@ local features = addon.Features
 -- while its files load; loading them makes nothing (no frame, hook, script, event, timer or slash command). At
 -- ADDON_LOADED, right after the options' AceDB is made, StartAll starts every feature whose switch is on in the current
 -- profile; one that is off never starts that session, and turning a switch on or off takes effect after a reload.
--- - Register{Name, Title, Switch, Start, OnNotStarted}: Switch is the saved path in the profile ("Features.<Name>", or a
---   setting the feature had before it was one), on by default; Start makes the feature's frames and adds its entries to
+-- - Register{Name, Title, Switch, Start, OnNotStarted}: Switch is the switch's key in the settings store ("popOut.enabled",
+--   or a setting the feature had before it was one), declared here and on by default; Start makes the feature's frames and adds its entries to
 --   the core's slots (Slots.lua); OnNotStarted lets a feature that stays off drop what its public API queued while the
 --   files loaded; AfterDataLoad runs once the login data load filled addon.Data.Achievements, only for a started feature
 --   (DataLoaded); AfterAchievementUI runs once Blizzard's achievement window has loaded, only for a started feature
@@ -65,29 +65,9 @@ local function Read(tbl, path)
     return tbl
 end
 
-local function Write(tbl, path, value)
-    local parts = Split(path)
-    for i = 1, #parts - 1 do
-        tbl[parts[i]] = tbl[parts[i]] or {}
-        tbl = tbl[parts[i]]
-    end
-    tbl[parts[#parts]] = value
-end
-
-local function Merge(into, from)
-    for key, value in next, from do
-        if type(value) == "table" and type(into[key]) == "table" then
-            Merge(into[key], value)
-        else
-            into[key] = value
-        end
-    end
-end
-
--- The switch as saved in the current profile; on before the options load
+-- The switch as saved in the current profile; on before the settings load
 local function IsOn(record)
-    local db = addon.Options.db
-    return not db or Read(db.profile, record.Switch) ~= false
+    return not addon.Settings.IsLoaded() or addon.Settings.Get(record.Switch) ~= false
 end
 
 function features.Register(def)
@@ -99,7 +79,7 @@ function features.Register(def)
     end
     record.Registered = true
     tinsert(order, record)
-    Write(addon.Options.Defaults.profile, record.Switch, true)
+    addon.Settings.Declare(record.Switch, {Type = "boolean", Default = true})
     return record
 end
 
@@ -150,10 +130,21 @@ function features.AddOptions(name, def)
     tinsert(optionsOrder, record)
 end
 
+-- A feature's Defaults: a key's default value, or a table that declares the key (a map: {Kind = "map"})
+local function Declare(defaults)
+    for key, value in next, defaults do
+        if type(value) == "table" then
+            addon.Settings.Declare(key, value)
+        else
+            addon.Settings.Declare(key, {Type = type(value), Default = value})
+        end
+    end
+end
+
 local function BuildFeatureOptions(record)
     local name, def = record.Name, record.Options
     if def.Defaults then
-        Merge(addon.Options.Defaults.profile, def.Defaults)
+        Declare(def.Defaults)
     end
     local path = features.Path(name)
     local args = {
@@ -162,7 +153,7 @@ local function BuildFeatureOptions(record)
             name = addon.L["Enable"],
             desc = addon.L["Feature Switch Desc"]:K_ReplaceVars({feature = record.Title}):KAF_AddDefaultValueText(record.Switch):K_AddReloadRequired(),
             get = function() return IsOn(record) end,
-            set = function(_, value) Write(addon.Options.db.profile, record.Switch, value) end
+            set = function(_, value) addon.Settings.Set(record.Switch, value) end
         },
         Settings = {
             order = 2, type = "group", inline = true, name = "",
@@ -404,5 +395,5 @@ function features.GetSwitch(name)
 end
 
 function features.SetSwitch(name, value)
-    Write(addon.Options.db.profile, Get(name).Switch, value and true or false)
+    addon.Settings.Set(Get(name).Switch, value and true or false)
 end

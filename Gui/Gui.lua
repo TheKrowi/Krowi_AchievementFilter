@@ -138,7 +138,7 @@ function gui:LoadWithBlizzard_AchievementUI()
 end
 
 function gui:SetAchievementFrameWidth()
-    AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Options.db.profile.Window.CategoriesFrameWidthOffset + addon.Options.db.profile.Window.AchievementsFrameWidthOffset)
+    AchievementFrame:SetWidth(defaultAchievementFrameWidth + addon.Settings.Get("window.categoriesFrameWidthOffset") + addon.Settings.Get("window.achievementsFrameWidthOffset"))
     KrowiAF_CategoriesFrame:SetRightPoint()
 end
 
@@ -147,7 +147,7 @@ function gui:ResetAchievementFrameWidth()
 end
 
 function gui:SetAchievementFrameHeight()
-    local offset = addon.Options.db.profile.Window.AchievementFrameHeightOffset
+    local offset = addon.Settings.Get("window.achievementFrameHeightOffset")
     AchievementFrame:SetHeight(defaultAchievementFrameHeight + offset)
     AchievementFrameMetalBorderLeft:SetHeight(defaultAchievementFrameMetalBorderHeight + offset)
     AchievementFrameMetalBorderRight:SetHeight(defaultAchievementFrameMetalBorderHeight + offset)
@@ -205,7 +205,7 @@ function gui:ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
         end
     end
 
-    if (AchievementFrame:IsShown() and ((not addon.Options.db.profile.ResetViewOnOpen and addon.Options.db.profile.ToggleWindow) or tabIsSelected)) and not resetView and not forceOpen then
+    if (AchievementFrame:IsShown() and ((not addon.Settings.Get("window.resetViewOnOpen") and addon.Settings.Get("window.toggleWindow")) or tabIsSelected)) and not resetView and not forceOpen then
         AchievementFrame:Hide()
         return
     end
@@ -215,10 +215,10 @@ function gui:ToggleAchievementFrame(_addonName, tabName, resetView, forceOpen) -
     if not addon.Util.IsClassicWithAchievements then
         AchievementFrame_HideSearchPreview()
     end
-    if firstTimeLatch or not (not addon.Options.db.profile.ResetViewOnOpen and addon.Options.db.profile.ToggleWindow) or resetView or forceOpen then
+    if firstTimeLatch or not (not addon.Settings.Get("window.resetViewOnOpen") and addon.Settings.Get("window.toggleWindow")) or resetView or forceOpen then
         SelectTab(self, _addonName, tabName)
     end
-    if addon.Options.db.profile.ResetViewOnOpen or resetView then
+    if addon.Settings.Get("window.resetViewOnOpen") or resetView then
         ResetView()
     end
     firstTimeLatch = nil
@@ -232,7 +232,7 @@ function gui:UpdateTabsLayout(tabsOrder)
             if prevTab == nil then
                 btn:SetPoint("BOTTOMLEFT", AchievementFrame, 11, -30)
             else
-                btn:SetPoint("LEFT", prevTab, "RIGHT", -5 + addon.Options.db.profile.TabsGeneral.Spacing, 0)
+                btn:SetPoint("LEFT", prevTab, "RIGHT", -5 + addon.Settings.Get("tabs.spacing"), 0)
             end
             prevTab = btn
         end
@@ -241,10 +241,10 @@ end
 
 function gui:ShowHideTabs(_addonName, tabName)
     if _addonName and tabName then
-        if not addon.Options.db.profile.Tabs[_addonName] or not addon.Options.db.profile.Tabs[_addonName][tabName] then
+        if not addon.Settings.HasEntry("tabs.show", _addonName, tabName) then
             return
         end
-        addon.Options.db.profile.Tabs[_addonName][tabName].Show = not addon.Options.db.profile.Tabs[_addonName][tabName].Show
+        addon.Settings.SetEntry("tabs.show", _addonName, tabName, not addon.Settings.GetEntry("tabs.show", _addonName, tabName))
         if not C_AddOns.IsAddOnLoaded(_addonName) or not addon.Gui.Tabs[_addonName] or not addon.Gui.Tabs[_addonName][tabName] then
             return
         end
@@ -254,13 +254,13 @@ function gui:ShowHideTabs(_addonName, tabName)
 
     local tabsOrder = {}
     local button
-    for addonName2, tabs in next, addon.Options.db.profile.Tabs do
-        for tabName2, tab in next, tabs do
+    for addonName2 in addon.Settings.Entries("tabs.show") do
+        for tabName2, show in addon.Settings.Entries("tabs.show", addonName2) do
             if addon.Gui.Tabs[addonName2] then
                 button = addon.Gui.Tabs[addonName2][tabName2]
                 if button then
-                    tabsOrder[tab.Order] = button
-                    if tab.Show then
+                    tabsOrder[addon.Settings.GetEntry("tabs.order", addonName2, tabName2)] = button
+                    if show then
                         button:Show()
                     else
                         button:Hide()
@@ -276,7 +276,7 @@ end
 function gui.ShowStatusBarTooltip(frame, anchor, extraText, color) -- . instead of : because it needs to work for the frame
     local text = ""
     local numOfNotObtAch = frame.NumOfNotObtAch
-    if numOfNotObtAch > 0 and addon.Options.db.profile.Tooltip.Categories.ShowNotObtainable then
+    if numOfNotObtAch > 0 and addon.Settings.Get("categories.tooltip.showNotObtainable") then
         text = " (+" .. numOfNotObtAch .. ")"
     else
         numOfNotObtAch = 0
@@ -296,17 +296,18 @@ end
 
 local function AssignProperTabsOrder()
     local tabsOrder = {}
-    for tabsAddonName, tabs in next, addon.Options.db.profile.Tabs do
+    for tabsAddonName in addon.Settings.Entries("tabs.order") do -- a list of its own: removing below is safe
         if tabsAddonName == "Blizzard_AchievementUI" or C_AddOns.IsAddOnLoaded(tabsAddonName) then
-            for tabName, tab in next, tabs do
+            for tabName, order in addon.Settings.Entries("tabs.order", tabsAddonName) do
                 tinsert(tabsOrder, {
                     AddonName = tabsAddonName,
                     TabName = tabName,
-                    Order = tab.Order
+                    Order = order
                 })
             end
         else
-            addon.Options.db.profile.Tabs[tabsAddonName] = nil
+            addon.Settings.RemoveEntries("tabs.order", tabsAddonName)
+            addon.Settings.RemoveEntries("tabs.show", tabsAddonName)
             for i = #KrowiAF_SavedData.Tabs, 1, -1 do
                 if KrowiAF_SavedData.Tabs[i].AddonName == tabsAddonName then
                     tremove(KrowiAF_SavedData.Tabs, i)
@@ -322,7 +323,7 @@ local function AssignProperTabsOrder()
 
     local properIndex = 1
     for _, order in next, tabsOrder do
-        addon.Options.db.profile.Tabs[order.AddonName][order.TabName].Order = properIndex
+        addon.Settings.SetEntry("tabs.order", order.AddonName, order.TabName, properIndex)
         properIndex = properIndex + 1
     end
 
@@ -339,9 +340,9 @@ local function SwitchAchievementTabs()
             addonAchId = i
         end
     end
-    addon.Options.db.profile.Tabs["Blizzard_AchievementUI"]["Achievements"].Order = addonAchId
-    addon.Options.db.profile.Tabs[addonName]["Achievements"].Order = blizzAchId
-    addon.Options.db.profile.MicroButtonTab = addonAchId
+    addon.Settings.SetEntry("tabs.order", "Blizzard_AchievementUI", "Achievements", addonAchId)
+    addon.Settings.SetEntry("tabs.order", addonName, "Achievements", blizzAchId)
+    addon.Settings.Set("window.microButtonTab", addonAchId)
 end
 
 local function SafeSwitchAchievementTabs()
@@ -376,7 +377,7 @@ end
 local game = {
     FirstTimeSetUp = function() return KrowiAF_SavedData.FirstTimeSetUp end,
     MicroButtonCommand = function()
-        local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab]
+        local tab = KrowiAF_SavedData.Tabs[addon.Settings.Get("window.microButtonTab")]
         return tab and tab.BindingName
     end,
     BindingSet = function() return GetCurrentBindingSet() end,

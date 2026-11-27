@@ -33,15 +33,15 @@ function KrowiAF_SelectAchievement(achievement)
 
 	-- Get category
 	local category
-	if filters and filters.db.profile.MergeSmallCategories then
+	if filters and addon.Settings.GetObject("filters").MergeSmallCategories then
 		category = achievement:GetMergedCategory() -- This way we get the parent category
 	else
 		category = achievement.Category
 	end
 
-	if addon.Options.db.profile.Achievements.EnableTabPriority and achievement.MoreCategories then
+	if addon.Settings.Get("window.tabPriority.enabled") and achievement.MoreCategories then
 		for _, moreCategory in next, achievement.MoreCategories do
-			if moreCategory:GetTree()[1].TabName == KrowiAF_SavedData.Tabs[addon.Options.db.profile.Achievements.TabPriority].Name then
+			if moreCategory:GetTree()[1].TabName == KrowiAF_SavedData.Tabs[addon.Settings.Get("window.tabPriority.tab")].Name then
 				category = moreCategory
 			end
 		end
@@ -142,7 +142,7 @@ function KrowiAF_OpenCurrentZone(collapsed)
         return
     end
 	for i = 1, #addon.SpecialCategories.CurrentZone do
-		if addon.Options.db.profile.AdjustableCategories.CurrentZone[i] then
+		if addon.Settings.GetEntry("categories.shownOnTab", "CurrentZone", i) then
 			KrowiAF_SelectCategory(addon.SpecialCategories.CurrentZone[i], collapsed)
 			return
 		end

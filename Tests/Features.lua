@@ -16,7 +16,7 @@ local features = addon.Tests.Features
 -- preview's frame was made at file load and its data kept whatever the profile said; Recorded is now the spec's Target.
 
 -- Name: the feature's folder under Features/ and its key in the registry
--- Switch: its saved path in the profile; Frame: a frame it makes; Data: what its data load keeps
+-- Switch: its switch's key in the settings store; Frame: a frame it makes; Data: what its data load keeps
 -- Help: the section id of its help page, or a list of them
 -- Opener: it hosts the achievement menu (Slots.lua, AchievementMenu.SetOpener); RowPart: it adds a part to the rows
 -- (Slots.lua, RowParts); MenuEntry: it adds an entry to the achievement menu (Slots.lua, AchievementMenu); Modifier: a
@@ -26,14 +26,14 @@ local features = addon.Tests.Features
 -- Made: whether any of its unnamed frames exists; AfterAchievementUI: it runs once Blizzard's achievement window has
 -- loaded (Features.lua, AfterAchievementUI); DataManagerTab: it adds a tab to the Data Manager (Slots.lua, DataManagerTabs)
 features.Known = {
-    {Name = "RewardPreview", Switch = {"Features", "RewardPreview"}, Frame = "KrowiAF_RewardPreview", Help = "rewards",
+    {Name = "RewardPreview", Switch = "rewardPreview.enabled", Frame = "KrowiAF_RewardPreview", Help = "rewards",
         Data = function() return addon.Data.RewardPreviewData end},
-    {Name = "RightClickMenu", Switch = {"Features", "RightClickMenu"}, Help = "rightclick", Opener = true, RowPart = true},
-    {Name = "PopOut", Switch = {"Features", "PopOut"}, Help = "popout", MenuEntry = true, Modifier = true, AfterDataLoad = true,
+    {Name = "RightClickMenu", Switch = "rightClickMenu.enabled", Help = "rightclick", Opener = true, RowPart = true},
+    {Name = "PopOut", Switch = "popOut.enabled", Help = "popout", MenuEntry = true, Modifier = true, AfterDataLoad = true,
         Opens = function() return addon.Gui.AchievementPopout end},
     -- docs/work/2026-11-12-event-reminders: its switch is the setting reminders always had; the pop-ups' container and the
     -- feature's listener frame are its frames
-    {Name = "EventReminders", Switch = {"EventReminders", "Enabled"}, Help = {"events", "eventlist"}, AfterAchievementUI = true,
+    {Name = "EventReminders", Switch = "eventReminders.enabled", Help = {"events", "eventlist"}, AfterAchievementUI = true,
         DataManagerTab = true, Made = function()
             local alerts, own = addon.Gui.EventReminderAlertSystem, addon.EventReminders
             return (alerts and alerts.Holder) ~= nil or (own and own.Listener) ~= nil
@@ -67,28 +67,17 @@ features.Scenarios = {
     {Check = "load", Recorded = {off = "nothing made", on = "nothing made"}, Target = {off = "nothing made", on = "nothing made"}}
 }
 
-local function Read(tbl, path)
-    for _, key in ipairs(path) do
-        if type(tbl) ~= "table" then
-            return nil
-        end
-        tbl = tbl[key]
-    end
-    return tbl
-end
-
 -- "on" or "off" by the feature's switch in the current profile; on while the profile has none
 function features.State(feature)
-    local db = addon.Options and addon.Options.db
-    local value = db and Read(db.profile, feature.Switch)
+    local value = addon.Settings.IsLoaded() and addon.Settings.Get(feature.Switch) -- the switch's key
     return value == false and "off" or "on"
 end
 
 local observe = {}
 
 function observe.default(feature)
-    local defaults = addon.Options and addon.Options.Defaults and addon.Options.Defaults.profile
-    return Read(defaults, feature.Switch) == true and "default on" or "no default"
+    local declaration = addon.Settings.Declaration(feature.Switch)
+    return declaration and declaration.Default == true and "default on" or "no default"
 end
 
 function observe.started(feature)
@@ -145,7 +134,7 @@ end
 local function WithOpenRecorded(feature, fn)
     local target = feature.Opens()
     local isDown, open = addon.IsCustomModifierKeyDown, target.Open
-    local setting = addon.Options.db.profile.Achievements.Modifiers.PopOut
+    local setting = addon.Settings.Get("popOut.modifier")
     local opened
     addon.IsCustomModifierKeyDown = function(modifier) return modifier == setting end
     target.Open = function(_, achievement) opened = achievement end

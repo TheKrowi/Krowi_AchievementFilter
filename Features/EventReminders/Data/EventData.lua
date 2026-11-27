@@ -30,11 +30,11 @@ function eventData.GetUpcomingCalendarEvents()
     end
 
     local currentTime = GetServerTime() -- the calendar's times are true UTC seconds, which the realm's clock counts
-    local nDaysFromNow = currentTime + (addon.Options.db.profile.EventReminders.UpcomingCalendarEvents.Days * 24 * 60 * 60)
+    local nDaysFromNow = currentTime + (addon.Settings.Get("eventReminders.upcomingCalendarEvents.days") * 24 * 60 * 60)
     local calendarEvents = addon.Data.Events[KrowiAF.Enum.EventType.Calendar]
     for _, event in next, calendarEvents do
         event.UpcomingEventDetails = nil
-        if addon.Options.db.profile.EventReminders.CalendarEvents[event.Id] then
+        if addon.Settings.GetEntry("eventReminders.calendarEvents", event.Id) then
             local occurrence = addon.EventData.GetNextEventOccurance(event.Id)
             if occurrence and occurrence.StartTime and occurrence.StartTime > currentTime and occurrence.StartTime <= nDaysFromNow then
                 event.UpcomingEventDetails = occurrence
@@ -58,7 +58,7 @@ local function GetActiveCalendarEvents()
 
     for _, event in next, calendarEvents do
         event.EventDetails = nil
-        if addon.Options.db.profile.EventReminders.CalendarEvents[event.Id] then
+        if addon.Settings.GetEntry("eventReminders.calendarEvents", event.Id) then
             local occurrence = addon.EventData.GetNextEventOccurance(event.Id)
             if occurrence and occurrence.StartTime and occurrence.EndTime then
                 local eventHasStarted = occurrence.StartTime <= currentTime
@@ -88,7 +88,7 @@ end
 
 -- now: the server time to read the event at, GetServerTime() unless a test gives one (Tests/Events.lua, Tests/Schedules.lua)
 function eventData.GetWidgetEventDetails(event, now)
-    if not addon.Options.db.profile.EventReminders.WidgetEvents[event.Id] then
+    if not addon.Settings.GetEntry("eventReminders.widgetEvents", event.Id) then
         event.EventDetails = nil
         return
     end
@@ -149,7 +149,7 @@ end
 
 -- now: the server time to read the event at, GetServerTime() unless a test gives one (Tests/Events.lua)
 function eventData.GetWorldEventDetails(event, now)
-    if not addon.Options.db.profile.EventReminders.WorldEvents[event.Id] then
+    if not addon.Settings.GetEntry("eventReminders.worldEvents", event.Id) then
         event.EventDetails = nil
         return
     end

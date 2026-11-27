@@ -45,7 +45,10 @@ function addon.MakeMovable(frame, rememberLastPositionOption, target, point)
     end)
     frame:SetScript("OnMouseUp", function()
         target:StopMovingOrSizing()
-        if addon.Options.db.profile.Window.RememberLastPosition[rememberLastPositionOption] then
+        -- "Calendar" is window.rememberPosition.calendar; a frame without that setting (the Map Verifier, the text frame)
+        -- remembers nothing, as before
+        local key = "window.rememberPosition." .. rememberLastPositionOption:sub(1, 1):lower() .. rememberLastPositionOption:sub(2)
+        if addon.Settings.Declaration(key) and addon.Settings.Get(key) then
             KrowiAF_SavedData.RememberLastPosition = KrowiAF_SavedData.RememberLastPosition or {}
             KrowiAF_SavedData.RememberLastPosition[rememberLastPositionOption] = {
                 X = target:GetLeft(),

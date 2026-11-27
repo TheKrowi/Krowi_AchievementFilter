@@ -17,9 +17,15 @@ local function RefreshChrome()
 end
 
 -- A Popout.* setting: its getter and setter; refresh redraws the open Pop Outs' chrome
+-- The setting a Pop Out row names, from its field name: "CloseOnEarn" is popOut.closeOnEarn
+local function Key(field)
+    return "popOut." .. field:sub(1, 1):lower() .. field:sub(2)
+end
+
 local function Popout(key, refresh)
-    return function() return addon.Options.db.profile.Popout[key] end, function(_, value)
-        addon.Options.db.profile.Popout[key] = value
+    local settingKey = Key(key)
+    return function() return addon.Settings.Get(settingKey) end, function(_, value)
+        addon.Settings.Set(settingKey, value)
         if refresh then RefreshChrome() end
     end
 end
@@ -28,19 +34,21 @@ local function Toggle(order, key, name, desc, refresh)
     local get, set = Popout(key, refresh)
     return {
         order = order, type = "toggle", width = AdjustedWidth(1.5),
-        name = name, desc = desc:KAF_AddDefaultValueText("Popout." .. key),
+        name = name, desc = desc:KAF_AddDefaultValueText(Key(key)),
         get = get, set = set
     }
 end
 
-local function Range(order, key, name, desc, min, max, step, disabledBy, refresh)
+-- A slider, its limits from the setting's declaration (the Defaults below)
+local function Range(order, key, name, desc, disabledBy, refresh)
     local get, set = Popout(key, refresh)
+    local declaration = addon.Settings.Declaration(Key(key))
     return {
         order = order, type = "range", width = AdjustedWidth(1.5),
-        name = name, desc = desc:KAF_AddDefaultValueText("Popout." .. key),
-        min = min, max = max, step = step,
+        name = name, desc = desc:KAF_AddDefaultValueText(Key(key)),
+        min = declaration.Min, max = declaration.Max, step = declaration.Step,
         get = get, set = set,
-        disabled = function() return not addon.Options.db.profile.Popout[disabledBy] end
+        disabled = function() return not addon.Settings.Get(Key(disabledBy)) end
     }
 end
 
@@ -49,14 +57,12 @@ end
 -- that Pop Out's switch controls it; Pop Out's own section names the key and says what holding it does, under the
 -- switch it follows
 local function ModifierRow(order, name, desc)
-    return {
+    return addon.Settings.Row("popOut.modifier", {
         order = order, type = "select", width = AdjustedWidth(0.93),
         name = name,
-        desc = desc:KAF_AddDefaultValueText("Achievements.Modifiers.PopOut", addon.Modifiers),
+        desc = desc:KAF_AddDefaultValueText("popOut.modifier", addon.Modifiers),
         values = addon.Modifiers,
-        get = function() return addon.Options.db.profile.Achievements.Modifiers.PopOut end,
-        set = function(_, value) addon.Options.db.profile.Achievements.Modifiers.PopOut = value end
-    }
+    })
 end
 
 -- A button that opens another section of the options window
@@ -76,27 +82,22 @@ local function Rows()
         PersistAcrossSessions = Toggle(3, "PersistAcrossSessions", L["Reopen After Login"], L["Persist Across Sessions Desc"]),
         RememberSize = Toggle(4, "RememberSize", L["Remember Size"], L["Remember Size Desc"]),
         RememberLastPosition = Toggle(5, "RememberLastPosition", L["Open Where Last Moved"], L["Remember Last Position Desc"]),
-        DefaultWidth = (function()
-            local get, set = Popout("DefaultWidth")
-            return {
-                order = 6, type = "range", width = AdjustedWidth(1.5),
-                name = L["Starting Width"],
-                desc = L["Default Width Desc"]:KAF_AddDefaultValueText("Popout.DefaultWidth"),
-                min = 360, max = 800, step = 1,
-                get = get, set = set
-            }
-        end)(),
+        DefaultWidth = addon.Settings.Row("popOut.defaultWidth", {
+            order = 6, type = "range", width = AdjustedWidth(1.5),
+            name = L["Starting Width"],
+            desc = L["Default Width Desc"]:KAF_AddDefaultValueText("popOut.defaultWidth"),
+        }),
         CloseOnEarn = Toggle(7, "CloseOnEarn", L["Close When Earned"], L["Close On Earn Desc"]),
-        CloseOnEarnDelay = Range(8, "CloseOnEarnDelay", L["Close Delay"], L["Close On Earn Delay Desc"], 0, 10, 0.5, "CloseOnEarn"),
+        CloseOnEarnDelay = Range(8, "CloseOnEarnDelay", L["Close Delay"], L["Close On Earn Delay Desc"], "CloseOnEarn"),
         EnableSnapping = Toggle(9, "EnableSnapping", L["Snap into Stacks"], L["Enable Snapping Desc"]),
-        SnapDistance = Range(10, "SnapDistance", L["Snap Distance"], L["Snap Distance Desc"], 5, 50, 1, "EnableSnapping"),
+        SnapDistance = Range(10, "SnapDistance", L["Snap Distance"], L["Snap Distance Desc"], "EnableSnapping"),
         Buttons = {order = 11, type = "header", name = L["Buttons"]},
         AutoHideCloseButton = Toggle(12, "AutoHideCloseButton", L["Close Button on Mouseover"], L["Auto-Hide Close Button Desc"], true),
         AutoHideResizeButton = Toggle(13, "AutoHideResizeButton", L["Resize Button on Mouseover"], L["Auto-Hide Resize Button Desc"], true),
         Appearance = {order = 14, type = "header", name = L["Appearance"]},
         FadeWhenNotHovered = Toggle(15, "FadeWhenNotHovered", L["Fade without Mouseover"], L["Fade When Not Hovered Desc"], true),
-        FadedOpacity = Range(16, "FadedOpacity", L["Faded Opacity"], L["Faded Opacity Desc"], 0, 1, 0.01, "FadeWhenNotHovered", true),
-        FadeSpeed = Range(17, "FadeSpeed", L["Fade Time"], L["Fade Speed Desc"], 0, 1, 0.05, "FadeWhenNotHovered", true)
+        FadedOpacity = Range(16, "FadedOpacity", L["Faded Opacity"], L["Faded Opacity Desc"], "FadeWhenNotHovered", true),
+        FadeSpeed = Range(17, "FadeSpeed", L["Fade Time"], L["Fade Speed Desc"], "FadeWhenNotHovered", true)
     }
 end
 
@@ -112,26 +113,20 @@ end
 
 addon.Features.AddOptions("PopOut", {
     Defaults = {
-        Achievements = {
-            Modifiers = {
-                PopOut = 3
-            }
-        },
-        Popout = {
-            PersistAcrossSessions = true,
-            RememberSize = true,
-            RememberLastPosition = true,
-            DefaultWidth = 434,
-            CloseOnEarn = true,
-            CloseOnEarnDelay = 2,
-            EnableSnapping = true,
-            SnapDistance = 20,
-            AutoHideCloseButton = false,
-            AutoHideResizeButton = false,
-            FadeWhenNotHovered = false,
-            FadedOpacity = 0.5,
-            FadeSpeed = 0.2
-        }
+        ["popOut.autoHideCloseButton"] = false,
+        ["popOut.autoHideResizeButton"] = false,
+        ["popOut.closeOnEarn"] = true,
+        ["popOut.closeOnEarnDelay"] = {Type = "number", Default = 2, Min = 0, Max = 10, Step = 0.5},
+        ["popOut.defaultWidth"] = {Type = "number", Default = 434, Min = 360, Max = 800, Step = 1},
+        ["popOut.enableSnapping"] = true,
+        ["popOut.fadeSpeed"] = {Type = "number", Default = 0.2, Min = 0, Max = 1, Step = 0.05},
+        ["popOut.fadeWhenNotHovered"] = false,
+        ["popOut.fadedOpacity"] = {Type = "number", Default = 0.5, Min = 0, Max = 1, Step = 0.01},
+        ["popOut.modifier"] = addon.Enum.Modifier.Ctrl,
+        ["popOut.persistAcrossSessions"] = true,
+        ["popOut.rememberLastPosition"] = true,
+        ["popOut.rememberSize"] = true,
+        ["popOut.snapDistance"] = {Type = "number", Default = 20, Min = 5, Max = 50, Step = 1},
     },
     Rows = Rows,
     Into = Into,
