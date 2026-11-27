@@ -97,8 +97,14 @@ Each step ends with the headless suites it reaches green and a commit. Nothing r
        - A suite's fake profile is copied once and then removed, so a later write into it fails loudly. That found the navigation suite's write, now through the store.
        - In `Libs/`, only `Icon.lua` reads `addon.Options.db`, served by the hand-over.
      - **Open for Krowi before step 11:** with clearing off, the build migrates from the old tables at every login, so a setting changed in game does not survive a `/reload` (`migrate-twice` records it). Every in-game run that sets something and reloads (`-Matrix` sets the feature switches and reloads per step) cannot pass at step 11. Either those runs move to step 12, with clearing on; or clearing off marks the migration done and only skips the clear, a change to the spec's requirement on clearing.
-     - **Owed before step 11:** `Compare-SavedSettings.ps1` and `saved-settings.lua` learn the new layout. `write-settings-fixture.lua` and `write-option-paths.lua` no longer run (no AceDB); their fixtures are frozen, as intended.
+     - **Owed before step 11:** `Compare-SavedSettings.ps1` and `saved-settings.lua` learn the new layout (done with step 10, below). `write-settings-fixture.lua` and `write-option-paths.lua` no longer run (no AceDB); their fixtures are frozen, as intended.
 10. **The DataIntegrityManager's retirement**, the import fix, the dead `KrowiAF_SavedData` keys, the failure line in 11 languages, the jobs list. The real-file dry run again.
+   - Done 2026-11-27.
+     - **The DataIntegrityManager** is gone; its Legion Assaults scenarios run on migration 1's step.
+     - **Player-facing.** The Data Manager's import fills a character's missing name and realm. A failed move prints one chat line per session, in all 11 languages. The changelog has four lines under 106.1.
+     - **Docs.** `CLAUDE.md`, the architecture doc, the backlog and the suites' README follow the store.
+     - **The dry run** on the six real files still passes.
+     - **`saved-settings.lua`** reads a checkout with the store or with AceDB alike, by option, and a file the store wrote as the game saved it. On the six real files, every option in every profile reads the same on `main` (72c80618) and on this branch, except the two changes Krowi approved: the Advanced switches show the logging-in character's profile's value in every profile (account scope), and each filter profile has its own search toggles (copied from the old ones).
 11. **In game, clearing still off.**
     - Before the first deploy: copy the six saved files to the scratchpad and take `Compare-SavedSettings.ps1 -Snapshot`.
     - Then `Deploy.ps1 -WhatIf`, deploy, Retail login.
