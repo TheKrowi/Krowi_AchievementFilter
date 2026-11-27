@@ -16,6 +16,8 @@
     -Options <dir>   boots the headless options environment of -Checkout (default: this checkout) on each snapshot file
                      and writes every option's value in every profile, and every filters and search profile, to
                      <dir>\<account>\options-<Label>.txt; with -Against <label>, compares it with that label's file.
+                     With -Live it reads the client's files as they are now instead of the snapshot's copies: after a
+                     login with a new build, what the game saved (a settings store's file is read as it was saved).
 
     Snapshots belong in the scratchpad, never in the repo: they are a player's own files.
 
@@ -25,6 +27,7 @@
     & .claude\tools\Compare-SavedSettings.ps1 -Options $dir -Label branch -Against main          # the same values?
     # deploy the branch, log in, /reload, quit
     & .claude\tools\Compare-SavedSettings.ps1 -Compare $dir                                   # the same files?
+    & .claude\tools\Compare-SavedSettings.ps1 -Options $dir -Live -Label live -Against branch  # what the game saved, the same?
 #>
 [CmdletBinding(DefaultParameterSetName = 'Snapshot')]
 param(
@@ -34,6 +37,7 @@ param(
     [Parameter(ParameterSetName = 'Options')][string]$Checkout,
     [Parameter(ParameterSetName = 'Options')][string]$Label = 'checkout',
     [Parameter(ParameterSetName = 'Options')][string]$Against,
+    [Parameter(ParameterSetName = 'Options')][switch]$Live,
     [ValidateSet('Retail', 'Classic')][string]$Client = 'Retail'
 )
 $ErrorActionPreference = 'Stop'
@@ -88,9 +92,12 @@ switch ($PSCmdlet.ParameterSetName) {
     'Options' {
         if (-not $Checkout) { $Checkout = (git -C $PSScriptRoot rev-parse --show-toplevel) }
         $allSame = $true
+        $liveFiles = @{}
+        if ($Live) { foreach ($entry in Get-AccountFiles) { $liveFiles[$entry.Account] = $entry.File } }
         foreach ($dir in Get-ChildItem $Options -Directory) {
             $file = Join-Path $dir.FullName $fileName
-            if (-not (Test-Path $file)) { continue }
+            if ($Live) { $file = $liveFiles[$dir.Name] }
+            if (-not $file -or -not (Test-Path $file)) { continue }
             $errFile = [IO.Path]::GetTempFileName()
             $out = & $KitLua $script options $Checkout $Client $file 2> $errFile
             $failed = $LASTEXITCODE -ne 0
