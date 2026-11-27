@@ -3194,7 +3194,7 @@ suites.settings = function(c)
             local again = Boot({ SavedVariables = { KrowiAF_Settings = store, KrowiAF_SavedData = saved.KrowiAF_SavedData } })
             local priority = again.addon.Settings.GetObject("tooltips.points.sortPriority")
             local parts = {}
-            for i = 1, 5 do parts[i] = tostring(priority[i]) end
+            for n = 1, 5 do parts[n] = tostring(priority[n]) end
             return SameByOption(values, again) .. " sort=" .. table.concat(parts, ",") .. " migrated-again=" ..
                 (#again.addon.Settings.Migrations.Log == 0 and "no" or "yes")
         end,
@@ -3231,12 +3231,12 @@ suites.settings = function(c)
             local saved = assert(loadfile(file .. ".lua"))()
             local sort = saved.KrowiAF_Options.profiles.Default.AchievementPoints.Tooltip.Sort
             local holes = 0
-            for i = 1, 5 do if sort.Priority[i] == nil then holes = holes + 1 end end
+            for n = 1, 5 do if sort.Priority[n] == nil then holes = holes + 1 end end
             local ctx = Boot({ SavedVariables = saved })
             local priority = ctx.addon.Settings.GetObject("tooltips.points.sortPriority")
             local reverse = ctx.addon.Settings.GetObject("tooltips.points.sortReverse")
             local parts = {}
-            for i = 1, 5 do parts[i] = tostring(priority[i]) .. (reverse[i] and "r" or "") end
+            for n = 1, 5 do parts[n] = tostring(priority[n]) .. (reverse[n] and "r" or "") end
             return ("old-holes=%d list=%s length=%d"):format(holes, table.concat(parts, ","), #priority)
         end,
         ["runner-quiet"] = function()
@@ -3255,9 +3255,9 @@ suites.settings = function(c)
             s.Set("achievements.compact", false) -- back to its default: not saved
             s.GetObject("filters").MergeSmallCategories = false
             ctx.Logout()
-            local root = rawget(ctx.env, "KrowiAF_Settings")
-            local options = root.Options.Profiles.Default or {}
-            local filters = (root.Filters.Profiles.Default or {}).filters
+            local stored = rawget(ctx.env, "KrowiAF_Settings")
+            local options = stored.Options.Profiles.Default or {}
+            local filters = (stored.Filters.Profiles.Default or {}).filters
             return ("compact=%s filters=%s"):format(options["achievements.compact"] == nil and "absent" or "saved", Compact(filters))
         end,
         ["first-install-boot"] = function()
