@@ -7,18 +7,19 @@ The rules (the two namespaces, the three-phase boot, taint, background jobs) are
 The WoW client reads `Krowi_AchievementFilter.toc`, which defines the **exact load order**. Files load sequentially in the order listed in the `.toc` and the nested `Files.xml` manifests, and a file can only use what earlier files defined. Every new `.lua` file must be added to the right `Files.xml` or it silently never loads (the `files-xml` rule). The order is:
 
 1. `Libs/Files.xml` — bundled libraries, the options window's `Krowi_Options` among them
-2. `Api/Files.xml` — public API (`KrowiAF`), enums, data registration functions and builders
-3. `Plugins/Files.xml` — plugin integrations (BetterWardrobe, ElvUI, GW2_UI, InstanceAchievementTracker, ZygorGuidesViewer, AchievementsTabFixes, EllesmereUI)
-4. `Localization/Files.xml` — enUS first, then the other locales, then `Shared.lua`
-5. `Krowi_AchievementFilter.lua`, `Globals.lua`, `Slots.lua` — the core's extension points for the features
-6. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Features.lua` (the feature registry), `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `BrowsingHistory.lua`
-7. `Objects/Files.xml`
-8. `Filters.lua`, `SearchOptions.lua`
-9. `Gui/FilesModern.xml` (Retail) or `Gui/FilesClassic.xml` (Classic), then `Features/Files.xml` — one folder per switchable feature
-10. `Data/Files.xml`
-11. `DataAddons/Shared/Files.xml`, then `DataAddons/Retail/Files.xml` or `DataAddons/Classic/Files.xml`
-12. `DataAddons/Loaders/Files.xml` — post-processing loaders that wire the data tables to their processors
-13. `Tests/Files.xml`
+2. `Settings/Files.xml` — the settings store (`Store.lua`), the rename table, the migration runner and its check, the core's declarations; first after the libraries, so every later file can declare and read settings
+3. `Api/Files.xml` — public API (`KrowiAF`), enums, data registration functions and builders
+4. `Plugins/Files.xml` — plugin integrations (BetterWardrobe, ElvUI, GW2_UI, InstanceAchievementTracker, ZygorGuidesViewer, AchievementsTabFixes, EllesmereUI)
+5. `Localization/Files.xml` — enUS first, then the other locales, then `Shared.lua`
+6. `Krowi_AchievementFilter.lua`, `Globals.lua`, `Slots.lua` — the core's extension points for the features
+7. `Diagnostics.lua`, `TaintDiagnostics.lua`, `Options/Files.xml`, `Features.lua` (the feature registry), `Libs/Krowi_Util/Icon.lua`, `Icon.lua`, `BrowsingHistory.lua`
+8. `Objects/Files.xml`
+9. `Filters.lua`, `SearchOptions.lua`
+10. `Gui/FilesModern.xml` (Retail) or `Gui/FilesClassic.xml` (Classic), then `Features/Files.xml` — one folder per switchable feature
+11. `Data/Files.xml`
+12. `DataAddons/Shared/Files.xml`, then `DataAddons/Retail/Files.xml` or `DataAddons/Classic/Files.xml`
+13. `DataAddons/Loaders/Files.xml` — post-processing loaders that wire the data tables to their processors
+14. `Tests/Files.xml`
 
 Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[AllowLoadGameType wrath, cata, mists]` directives in the `.toc`.
 
@@ -41,9 +42,10 @@ Game-version-conditional loading uses `[AllowLoadGameType mainline]` and `[Allow
 | `Api/` | Public API (`KrowiAF`, created in `API.lua`): enums, data registration functions, fluent builders, `PluginsApi`; `ApiDocumentation.lua` holds example data structures |
 | `Objects/` | Metatable classes: `Achievement`, `Category`, `Event`, `Tab`, `BuildVersion`, `Flags`, `CompareFunc`, `SaturationStyle` |
 | `Gui/` | All UI code (`FilesModern.xml` Retail, `FilesClassic.xml` Classic), one sub-folder per feature; `BlizzardOverrides.lua` holds every FrameXML override, API polyfill and hook on Blizzard's frame |
-| `Data/` | Runtime data: task runner, registry (`Data.lua`), `LoadDiagnostics`, achievement cache, temporary obtainability, events, tooltips, special categories, migrations (`DataIntegrityManager.lua`), `SavedData/` |
+| `Data/` | Runtime data: task runner, registry (`Data.lua`), `LoadDiagnostics`, achievement cache, temporary obtainability, events, tooltips, special categories, `SavedData/` |
 | `DataAddons/` | All **data definitions** (achievement, category, zone, tooltip, transmog set, pet battle link, guide, build version, event, custom criteria) per expansion (`01_Vanilla/` to `12_Midnight/`): `Shared/` identical on both clients, `Retail/` and `Classic/` client-specific, `Loaders/` the post-processing that wires them into the runtime |
-| `Options/` | The settings as tables in AceConfig's shape, held by name in `options.Registry`; `Window/` maps them onto the options window's 22 feature sections and wires the window (`/kaf`, `addon.Options.Open`, the Settings > AddOns stub) |
+| `Settings/` | The settings store (`addon.Settings`, docs/work/2026-11-25-settings-store): every setting declared once and read and written by key, two profile systems (options, filters), the account scope, the logout save; the migration runner for every saved variable (`Migrations.lua`, which replaced `Data/DataIntegrityManager.lua`) with its rename table and check |
+| `Options/` | The option rows, as tables in AceConfig's shape, held by name in `options.Registry`; `Window/` maps them onto the options window's 22 feature sections and wires the window (`/kaf`, `addon.Options.Open`, the Settings > AddOns stub) |
 | `Plugins/` | Third-party addon integrations; the plugin API is `Api/PluginsApi.lua` (`KrowiAF.PluginsApi`) |
 | `Localization/` | One file per locale (`enUS`, `deDE`, `esES`, `esMX`, `frFR`, `itIT`, `koKR`, `ptBR`, `ruRU`, `zhCN`, `zhTW`), `.Plugins.lua` and `.WrathClassic.lua` variants, `Shared.lua` helpers |
 | `Libs/` | Vendored libraries, several of them git submodules of `TheKrowi/*` repos, the options window (`Krowi_Options`, registered as `Krowi_Options_2`, with its own translations) among them. **Do not edit `Libs/` unless asked**; fixes belong upstream, in `Krowi_Libraries` |
@@ -100,14 +102,13 @@ Runtime data management.
 | `TooltipData.lua` | tooltip data |
 | `SpecialCategories.lua` | the special category matrix: Summary, Watch List, Excluded, ... |
 | `SpecialCategoryAchievements.lua` | `addon.WatchAchievement`, `ExcludeAchievement`, `IncludeAchievement`, ...: adding achievements to the special categories and building their mirrored sub-category trees |
-| `DataIntegrityManager.lua` | saved-variable migrations |
 | `SavedData/` | persistence |
 
 The cache build, the special category trees, the task runner, the Blizzard overrides and the movable-window helpers lived in `Globals.lua` until 2026-09-19 (`docs/codebase-analysis.md`, THE UGLY §3).
 
 ### `Options/`
 
-The settings as tables in AceConfig's shape: `Defaults.lua`, `General.lua`, `Layout.lua`, `Profiles.lua`, `Plugins.lua`, `Credits.lua`. The options window draws them (docs/work/2026-10-25-options-revamp). `Options.lua`'s `options.Registry` holds them by name for `KrowiAF_GetOptions` and the plugins; it replaced AceConfig's registry, and AceConfig itself is no longer loaded (docs/work/2026-11-25-leave-aceconfig). The saved-settings proof, the headless `settings` suite (`Tests/README.md`, `.claude/tools/headless/settings-proof.lua`), guards their saved keys and defaults.
+The option rows as tables in AceConfig's shape: `General.lua`, `Layout.lua`, `Profiles.lua`, `Plugins.lua`, `Credits.lua`; each row names its setting's key (`addon.Settings.Row`), and `Options.lua` is the addon's own options shell (it replaced Krowi_Util's `Options/Options.lua` with the settings store). The options window draws them (docs/work/2026-10-25-options-revamp). `Options.lua`'s `options.Registry` holds them by name for `KrowiAF_GetOptions` and the plugins; it replaced AceConfig's registry, and AceConfig itself is no longer loaded (docs/work/2026-11-25-leave-aceconfig). The headless `settings` suite (`Tests/README.md`) guards their keys, defaults and the move of the old settings.
 
 `Window/` is the addon's side of the options window:
 - `Map.lua`: the 22 feature sections in three groups, and where each AceConfig option shows in them.
@@ -119,7 +120,7 @@ The settings as tables in AceConfig's shape: `Defaults.lua`, `General.lua`, `Lay
 
 ### `Libs/`
 
-Vendored libraries: AceDB, the one Ace3 library the addon embeds itself; AceLocale comes with Krowi_Util (AceTimer, AceSerializer and AceEvent went in docs/work/2026-11-25-unused-ace, AceGUI and AceConfigDialog in docs/work/2026-11-25-leave-acegui, AceConfig and AceDBOptions in docs/work/2026-11-25-leave-aceconfig), LibStub, CallbackHandler, LibDataBroker, LibDBIcon, LibDeflate, LibSerialize, MetaLua, and the `Krowi_*` libraries. `Krowi_Menu`, `Krowi_ProgressBar`, `Krowi_WorldMapButtons`, `Krowi_Util`, `Krowi_PopupDialog` and `Krowi_Options` are git submodules pointing at `TheKrowi/*` repos, which is why fixes belong upstream, in `Krowi_Libraries`.
+Vendored libraries: no Ace3 library of the addon's own; AceLocale comes with Krowi_Util (AceTimer, AceSerializer and AceEvent went in docs/work/2026-11-25-unused-ace, AceGUI and AceConfigDialog in docs/work/2026-11-25-leave-acegui, AceConfig and AceDBOptions in docs/work/2026-11-25-leave-aceconfig, AceDB in docs/work/2026-11-25-settings-store), LibStub, CallbackHandler, LibDataBroker, LibDBIcon, LibDeflate, LibSerialize, MetaLua, and the `Krowi_*` libraries. `Krowi_Menu`, `Krowi_ProgressBar`, `Krowi_WorldMapButtons`, `Krowi_Util`, `Krowi_PopupDialog` and `Krowi_Options` are git submodules pointing at `TheKrowi/*` repos, which is why fixes belong upstream, in `Krowi_Libraries`.
 
 `Krowi_Options` (`Krowi_Options_2`) is the options window, addon-neutral and translated on its own CurseForge project; it was made here and became a library of its own in 2.0 (docs/work/2026-11-04-krowi-options-library). `WindowMixin.lua`/`WindowFrame.lua` hold the window: navigation, the page of rows, the help pane or its strip with tooltips, search, Defaults asked inside the window, the reload bar, resizing and the saved place. `RowMixins.lua`/`RowFrames.lua` hold one row type per element: check box, slider, dropdown, button, text box, key binding, note, heading, grid, tab list, link. Its frames are built in Lua, each list row hung on its list's frame as `frame.Row`.
 

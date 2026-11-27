@@ -1677,7 +1677,7 @@ suites.schedules = function(c)
     addon.EventReminders = addon.EventReminders or {} -- the feature's table, which its registration file makes
     for _, rel in ipairs({ "Data/EventData.lua", "Features/EventReminders/Data/CustomWidgetEventTimers.lua", "Features/EventReminders/Data/CustomWorldEventTimers.lua",
         "Features/EventReminders/Data/EventScheduler.lua", "Features/EventReminders/Data/EventSchedules.lua", "Features/EventReminders/Data/EventObserver.lua",
-        "Features/EventReminders/Data/EventData.lua", "Data/DataIntegrityManager.lua", "Tests/Schedules.lua" }) do
+        "Features/EventReminders/Data/EventData.lua", "Settings/Migrations.lua", "Tests/Schedules.lua" }) do
         -- readFile raises on a missing file: a move must never leave the suite green on nothing
         -- (docs/work/2026-11-12-event-reminders)
         local chunk = assert(loadstring(readFile(root .. "/" .. rel), "@" .. rel))

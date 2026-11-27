@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 - The addon no longer loads three Ace3 libraries it stopped using (AceTimer, AceSerializer and AceEvent)
 - The Data Manager's export, import and log boxes use the game's own text box, and the addon no longer loads AceGUI
 - The addon no longer loads AceConfig and AceDBOptions
+- Your settings move to the addon's own new format the first time you log in with this version; they carry over on their own, and the old saved settings are removed once the move is checked
+- The Advanced settings (debug info, trace info, taint diagnostics, map info and the placeholders filter) are now the same on every character and no longer change with the profile
+- The search options now follow the filter profile
+- The addon no longer loads AceDB
 
 ## 106.0 - 2026-11-23
 ### Added

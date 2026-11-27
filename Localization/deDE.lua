@@ -998,6 +998,7 @@ L["Select All"] = "Alle auswählen"
 L["Selected Zone"] = "Ausgewählte Zone"
 L["Set Keybind"] = "Tastaturbelegung ändern"
 L["Set Keybind Desc"] = "Setze die Tastaturbelegung für den ausgewählten Tab auf \"Y\". Dies hebt die Bindung aller anderen an 'Y' gebundenen Aktionen auf. Andere Tastaturbelegungen können in den regulären {keyBindings} festgelegt werden."
+L["Settings Move Failed"] = "Einige deiner Einstellungen konnten nicht in das neue Format übernommen werden. Deine alten Einstellungen bleiben erhalten, und das nächste Update versucht es erneut."
 L["Settings profile"] = "Einstellungs-Profil"
 L["Shadowlands (pre-patch)"] = true
 L["Shadows of Argus"] = "Schatten von Argus"

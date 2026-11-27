@@ -1007,6 +1007,7 @@ L["Select All"] = true
 L["Selected Zone"] = true
 L["Set Keybind"] = true
 L["Set Keybind Desc"] = "Set the keybind for the selected tab to 'Y'. This will unbind all other actions bound to 'Y'. Different key binding can be set in the regular {keyBindings}."
+L["Settings Move Failed"] = "Some of your settings could not be moved to the new format. Your old settings are kept, and the next update tries again."
 L["Settings profile"] = true
 L["Shadowlands (pre-patch)"] = true
 L["Shadows of Argus"] = true

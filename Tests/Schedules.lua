@@ -257,7 +257,7 @@ end
 
 -- Model profiles, as AceDB keeps them in KrowiAF_Options.profiles: a toggle is only saved when it differs from the default
 local function DescribeMerge()
-    local manager = addon.Data.DataIntegrityManager
+    local manager = addon.Settings.Migrations -- migration 1's step 1 (docs/work/2026-11-25-settings-store)
     if not manager or not manager.MergeLegionAssaultToggles then
         return "no merge"
     end
@@ -282,7 +282,7 @@ local function DescribeMerge()
     return table.concat(parts, "; ")
 end
 
--- The solution as DataIntegrityManager runs it, on model profiles and a model of KrowiAF_SavedData.Fixes
+-- The merge as migration 1 runs it (Settings/Migrations.lua), on model profiles and a model of KrowiAF_SavedData.Fixes
 local mergeCases = {}
 
 -- Merged on one update; the player turns Legion Assaults off; the next update must leave it off
@@ -312,7 +312,7 @@ function mergeCases.FirstInstall(merge)
 end
 
 local function DescribeMergeCase(scenario)
-    local manager = addon.Data.DataIntegrityManager
+    local manager = addon.Settings.Migrations -- migration 1's step 1 (docs/work/2026-11-25-settings-store)
     if not manager or not manager.MergeLegionAssaultToggles then
         return "no merge"
     end

@@ -76,6 +76,11 @@ local function LoadBlizzard_AchievementUI()
 end
 
 local function LoadPlayerLogin()
+    -- Once a session while the settings' move failed and waits for an update (Settings/Migrations.lua, requirement 15)
+    if addon.Settings.Migrations.Failed then
+        print(addon.Metadata.Title .. ": " .. addon.L["Settings Move Failed"])
+    end
+
     addon.Data:LoadOnPlayerLogin()
 
     if addon.Diagnostics.DebugEnabled() or addon.Settings.Get("advanced.printMapInfo") then
