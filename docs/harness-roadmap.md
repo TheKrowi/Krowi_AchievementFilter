@@ -128,6 +128,8 @@ Parts of 15 and 18 change the kit. The kit also has its own share of the start c
 
 **Design.** Read the prompts of the 40 general-purpose spawns. If most were read-only searches, which Explore does at a third of the start context, one line in `CLAUDE.md` says so; otherwise nothing changes. `data-verifier` gets `model: sonnet`, and `omitClaudeMd: true` once its prompt is checked to name everything it needs. `krowi:taint-reviewer` (37 runs) stays on Opus; whether it can start without the hierarchy and read only the rules it needs is a kit change.
 
+**Started 2026-11-09.** `data-verifier` runs on `model: sonnet` with `effort: medium` (frontmatter keys confirmed in the sub-agents docs; `effort` overrides the session level). Its output is script-backed, so a quality loss shows quickly. Judge it with `Measure-Sessions.ps1 -All -Since 2026-11-10` after about a week: if it misses a dead or live id that Opus caught, go back to `opus` and keep `effort: medium`. `omitClaudeMd` stays off until its prompt is checked. Effort policy: `high` is the default, `xhigh` is chosen per task with `/effort xhigh` (unclear root cause, taint, release gate, a bug that survived one try at high).
+
 **Done when.** The general-purpose agents' count or start context falls over the next 15 sessions, or their prompts show they were not searches and the step closes with that finding.
 
 ## Parked
