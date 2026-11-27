@@ -1,5 +1,5 @@
 # Intent: One settings store of the addon's own, and one migration runner for every saved variable
-Author: Krowi (maintainer). Source: idea, 2026-11-25; design answers 2026-11-27 ([gates.md](gates.md)). Status: draft
+Author: Krowi (maintainer). Source: idea, 2026-11-25; design answers 2026-11-27 ([gates.md](gates.md)). Status: accepted 2026-11-27
 
 ## Problem
 The last step of leaving Ace3 (`docs/backlog.md`, "Leaving Ace"). In Krowi's words: "i also want to explore a data migration at the same time to re-organize setting and move user settings", as "One migration, with the AceDB swap" (gates of docs/work/2026-11-25-leave-aceconfig).

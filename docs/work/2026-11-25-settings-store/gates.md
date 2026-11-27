@@ -15,3 +15,4 @@ Class: saved-data
 | 2026-11-27 | design | Where the five search toggles go | With the filters' profiles | "search toggles go to filters" | accept |
 | 2026-11-27 | scope | Retire the DataIntegrityManager into one migration runner for every saved variable, carrying its four steps over, no loss accepted | Carry them over | "DataIntegrityManager ok" | accept |
 | 2026-11-27 | design | (unprompted correction) How long the old saved variables stay | Untouched until Krowi says so (Krowi's earlier answer) | "can be cleared once the migration is succesful after a check. migrate, check, if ok, clear the tables so the user has no "polluted" files. this should only run once offcourse" | other |
+| 2026-11-27 | intent | Accept the intent so the spec can start? | Accept | "Accept (Recommended)" | accept |
