@@ -18,7 +18,11 @@ Every old path and its new key: [renames.md](renames.md). Today's layout: [inven
 10. Option rows name their key: their getter, setter, limits and default text come from the declaration. The rows keep the table shape the options window reads (`Options/Window/Source.lua`), so the window, its search, its help and its suites see no difference.
 
 **The migration runner**
-11. `KrowiAF_Settings.Version` (absent is 0) counts the migrations run. At `ADDON_LOADED`, before anything reads a setting, each migration above that number runs once, in order. A migration builds its result on copies; nothing it touches changes until its check passes.
+11. `KrowiAF_Settings.Version` (absent is 0) counts the migrations run. At `ADDON_LOADED`, before anything reads a setting, each migration above that number runs once, in order, under `xpcall`: a migration that errors counts as a failed check (requirement 15).
+    - It builds its result in a new table, `Version` included, and changes nothing else.
+    - Only after its check passes does it put that table in place, in one assignment, and then clear what it replaces. An error between the two leaves both the new store and the old tables, never neither.
+    - Steps that work on `KrowiAF_SavedData` and `KrowiAF_Achievements` (step 12.5 and 12.6) are not copied (the achievement records are 7 MB on Krowi's main account): each is safe to run twice, and they run in place only after the settings check passed.
+    - The migration and the check read and write raw tables by key, never through `Get` or `Set`, so a known path whose key is not declared this session is carried as it is and never errors.
 12. Migration 1, from AceDB's three databases and the DataIntegrityManager:
     1. on the copy of the old options, the Legion Assaults merge (today's solution 1), unless `KrowiAF_SavedData.Fixes.MergeLegionAssaultToggles` says it ran;
     2. every value of every options profile to its new key, by the rename table; account-scope values from the profile the logging-in character uses;
@@ -26,16 +30,16 @@ Every old path and its new key: [renames.md](renames.md). Today's layout: [inven
     4. each character's options and filter profile choices;
     5. the DataIntegrityManager's other steps: clear `KrowiAF_SavedData.AlertSystem`; fill a character's missing name and realm from its GUID; on Retail, drop account-wide achievements from the per-character records unless `Verifications.AchievementsData` says it ran; then remove `Build`, `Version`, `Fixes` and `Verifications`;
     6. remove the `KrowiAF_SavedData` keys no code reads (the list in [renames.md](renames.md), Not carried over), if Krowi agrees at this gate.
-13. The check, before anything is cleared: every value in every old options, filter and search profile whose path the rename table knows reads back equal through the interface for that profile; every character's two profile choices are equal; each account-scope value equals the one in the logging-in character's old profile. An old value whose path the rename table does not know (an option removed in the past) is not moved and does not fail the check; the debug log lists it.
+13. The check, before anything is cleared: every value in every old options, filter and search profile whose path the rename table knows is found, equal, at its new key in that profile; every character's two profile choices are equal; each account-scope value equals the one in the logging-in character's old profile. The rename table holds explicit rows only (one per old path, plus the map, list and object patterns of [renames.md](renames.md)), no catch-all. An old value whose path has no row (an option removed in the past; three such in Krowi's real files) is not moved and does not fail the check; the debug log lists it.
 14. A passing check puts the results in place, sets `Version` to 1 and clears `KrowiAF_Options`, `KrowiAF_Filters` and `KrowiAF_SearchOptions` (the saved file no longer holds them). It runs once: the next login finds `Version` 1.
-15. A failing check (recommended handling, see Options considered): the addon uses the new store as built, so it runs; the old tables stay untouched; `Version` stays 0; `KrowiAF_Settings.MigrationFailed` records the addon version and the first failing paths; the player gets one chat line per session; the migration runs again from the old tables only once the addon's version changes (a fix release).
+15. A failing check (recommended handling, see Options considered): the addon uses the new store as built, so it runs; the old tables stay untouched; `Version` stays 0; `KrowiAF_Settings.MigrationFailed` records the addon version and every failing path; the player gets one chat line per session. Once the addon's version changes (a fix release), the migration moves only the failed paths again from the old tables, so the changes the player made since are kept, checks again, and clears on a pass.
 16. The DataIntegrityManager retires: `Data/DataIntegrityManager.lua` goes, and its test (`Tests/Schedules.lua`, the Legion Assaults scenarios) moves to migration 1's step.
 17. The Data Manager's import fills a character's missing name and realm from its GUID, which the verification did on every load until now.
 18. The three old variables stay on the `.toc`'s `SavedVariables` line, so the game still loads them for a returning player's migration, until Krowi removes them (probably 13.0).
 
 **Players, plugins and the rest**
 19. Players see no difference except: the Advanced switches no longer change with the options profile; the search toggles follow the filter profile. The options window, filter menu, search menu, Profiles section, minimap icon and world map icon behave as today.
-20. `KrowiAF_GetOptions` still returns the option tables; the plugins (ElvUI, GW2_UI, EllesmereUI, Achievements Tab Fixes, Instance Achievement Tracker) keep working. Their settings move to `plugins.*` keys. The tab data and event data APIs (`KrowiAF.RegisterTabDataOptions`, `KrowiAF.RegisterEventDataOptions`) register their map entries' defaults through the store.
+20. `KrowiAF_GetOptions` still returns the option tables; the plugins (ElvUI, GW2_UI, EllesmereUI, Achievements Tab Fixes, Instance Achievement Tracker) keep working. Their settings move to `plugins.*` keys; both plugins with settings declare them unconditionally, as they inject their defaults today. The tab data and event data APIs (`KrowiAF.RegisterTabDataOptions`, `KrowiAF.RegisterEventDataOptions`) register their map entries' defaults through the store. `KrowiAF.UtilApi.InjectOptions` stays for its table helpers; its `AddDefaults` writes a table nothing reads any more. Only KAF's own plugins call it; an outside addon could, but would then read its value from `KrowiAF_Options` directly, which is not a documented API.
 21. The logout save and the change events allocate nothing while nothing changed; the logout handler is listed in `.claude/tools/Check-Repo.jobs` as running once.
 
 ## Design
@@ -69,9 +73,14 @@ KrowiAF_Settings = {
 
 **The minimap icon.** Krowi_Util's `Icon.lua` reads `addon.Options.db.profile.Minimap` and `.ShowMinimapIcon` once, in `Icon:Load`. KAF hands it exactly that, built from `minimap.icon` and `minimap.showIcon`, for the duration of that call. Letting `Icon:Load` take its table as an argument goes to the backlog for Krowi_Util, together with the store moving there.
 
-**The rename table's safety net.** The in-game check reads with the same table the migration wrote with, so it finds a value that went missing, not one put under the wrong key. The headless proof checks the table itself against three independent sources: every path an option writes when set, every leaf of the old defaults tree, and every value in the fixtures and in Krowi's real saved files (read headless). The generator found the tab order this way (`Tabs.<addon>.<tab>.Order`, written by no option the proof sets, `Api/TabDataApi.lua:59`).
+**The rename table's safety net.** The in-game check reads with the same table the migration wrote with, so it finds a value that went missing, not one put under the wrong key: swapping the two `CenterHeader` rows would pass it, and the old tables would then be cleared. So the table is proven headless, before any build reaches the game, against sources that do not come from it:
+- **Coverage:** every path an option writes when set, every leaf of the old defaults tree, and every value in the fixtures and in Krowi's real saved files (read headless). This found the tab order (`Tabs.<addon>.<tab>.Order`, written by no option the proof sets, `Api/TabDataApi.lua:59`) and the three values of removed options.
+- **Correctness, by option:** before any code changes, the old build's full list of option Id → saved paths is frozen from `main` (72c80618) as a fixture per client. For every option Id, the old path's row in the table must give the key the new build's row for that Id writes when set. The option Ids survive the change, since the rows keep their table shape (requirement 10).
+- **End to end, by option:** the old fixture file is migrated, and for every option Id in every profile, the value the new build's row shows equals the value the old build's row showed (the `-values` fixtures of docs/work/2026-11-25-leave-aceconfig). This is the check a swapped key fails.
 
-**Rewriting the readers.** About 715 reads of `db.profile` in 88 files change to the interface, file by file, each file's own suites run headless after it. The lint rules make a typo fail: `settings-keys` (every literal key in a `Get`, `Set`, `GetEntry`, `SetEntry`, `GetObject`, `OnChange` or row helper is declared, and every declaration is used) and `settings-direct` (no `db.profile`, no `KrowiAF_Options`, `KrowiAF_Filters`, `KrowiAF_SearchOptions` or `KrowiAF_Settings` outside `Settings/`).
+**Rewriting the readers.** About 715 reads of `db.profile` in 88 files change to the interface. The rewrite is generated from the same rows (a script replaces each `addon.Options.db.profile.<old path>` with `settings.Get("<new key>")`), and done by hand only where code holds a subtable (`local db = addon.Options.db.profile.EventReminders`). Each file's suites run headless after it. Lint rules make a typo fail, though not a swapped key (the proof above catches that): `settings-keys` (every literal key in a `Get`, `Set`, `GetEntry`, `SetEntry`, `GetObject`, `OnChange` or row helper is declared, and every declaration is used) and `settings-direct` (no `db.profile`, no `KrowiAF_Options`, `KrowiAF_Filters`, `KrowiAF_SearchOptions` or `KrowiAF_Settings` outside `Settings/`).
+
+**Clearing stays off until proven.** Until the headless proof and the dry run on Krowi's real files are green, the build migrates and checks at every login and runs on the result, but neither sets `Version` nor clears anything (a switch in `Settings/Migrations.lua`, turned off only for the final build; settings changed in game during development are rebuilt from the old tables at the next login). Otherwise the first in-game run of a half-built branch would migrate and clear Krowi's real accounts, and every later build would find `Version` 1 and never migrate again.
 
 ## Options considered
 
@@ -80,13 +89,18 @@ KrowiAF_Settings = {
 - B: flatten the filters into keys like the options. Rewrites the filter menu, the fan-out and the validation hot path for no player benefit, with a real risk of filter bugs.
 
 **A failing check.**
-- **A (recommended): run on the new store, keep the old tables, try again after the next update, tell the player once per session.** The player keeps a working addon; nothing is lost; a fix release moves what failed.
+- **A (recommended): run on the new store, keep the old tables, move only the failed values again after the next update, tell the player once per session.** The player keeps a working addon; nothing is lost; a fix release moves what failed and keeps what the player changed meanwhile.
+- A2: as A, but the update reruns the whole migration. Simpler, but throws away every change the player made between the failure and the fix.
 - B: try again at every login. Each login would throw away the changes the player made since, and repeat the same failure until a fix ships.
 - C: refuse to run until fixed. A broken addon for that player, for a problem the old tables already guard against.
 
 **How far the option rows go.**
 - **A (recommended, Krowi: "everything in"): rows name keys; their table shape stays the one the window reads.** The native format (rows in Krowi_Options' own format instead of AceConfig's shape) stays in `docs/backlog.md`: it changes no saved data and reworks what the window reads.
 - B: the native format in the same release. Doubles the change to every option file without moving a single setting.
+
+**The Advanced switches, per profile today, account-wide after.** Which old profile's value wins when a player has several:
+- **A (recommended): the profile of the character that logs in first after the update.** What that player sees at that moment stays the same; switches set only in another profile are lost. These are debug and diagnostics switches (debug info, trace info, taint diagnostics, map info, placeholders filter, the Collections window experiment).
+- B: on if on in any profile (off for taint diagnostics, whose default is on: off if off in any). Keeps every switch someone turned away from its default, but can turn on debug output a player only meant for one character.
 
 **One saved variable or three.** One (`KrowiAF_Settings` with `Account`, `Options` and `Filters`) keeps the version number, the two profile systems and the account scope in one place; three would need a version each.
 
@@ -108,16 +122,20 @@ KrowiAF_Settings = {
 
 **Headless, the `settings` suite reworked** (`.claude/tools/headless/run-tests.lua`; the fixtures from docs/work/2026-11-25-leave-aceconfig are the old files):
 - `defaults-unchanged`: every declaration's default equals the old default at its old path, by the rename table (Retail and Classic).
-- `renames-cover`: every path an option writes, every leaf of the old defaults tree and every value in the fixtures has a new key; no two old paths share one.
+- `renames-cover`: every path an option writes, every leaf of the old defaults tree and every value in the fixtures has an explicit row; no two old paths share a key.
+- `renames-by-option`: for every option Id in the frozen list, the old path's row gives the key the new row writes (Retail and Classic).
+- `old-file-same-values`: after migrating the old fixture file, every option Id in every profile shows the value the old build showed (the `-values` fixtures), by Id.
+- `dead-key`: an old value with no row, under a known prefix (`Achievements.ShowDateCompletedTime`), is skipped and logged and does not fail the check.
+- `migrate-errors`: a migration that errors midway changes nothing: no new store in place, nothing cleared, the failure recorded.
 - `migrate-fixture`: the old fixture file migrates, the check passes, every value reads back equal, the profile choices are kept, the three old variables are cleared, `Version` is 1.
 - `migrate-twice`: a second load changes nothing.
-- `migrate-fails`: a planted wrong rename fails the check: nothing cleared, `Version` 0, the failure recorded, the new store in use; the next load with the same addon version does not run it again, one with a new version does.
+- `migrate-fails`: a planted dropped value fails the check: nothing cleared, `Version` 0, every failing path recorded, the new store in use; the next load with the same addon version does not run it again; one with a new version moves only the failed paths, keeps a value the player changed since, and clears on a pass.
 - `legion-assaults`: the Tests/Schedules scenarios against migration 1's step (the merge for a pre-104 file, nothing for a file that ran it).
 - `profile-switch`: options and filter profiles switch independently; change events fire for the keys that differ; account values do not change.
 - `sparse-save`: a value set to its default leaves the saved table; an object's logout save holds only its difference; a disabled plugin tab's filters survive.
 - `first-install`: no old variables, no `KrowiAF_Settings`: defaults everywhere, `Version` 1, nothing else written.
 
-**Krowi's real files, headless and read-only:** the six files (five Retail accounts written between 2024-05 and 2026-11, one Mists) migrate in memory and pass the check, with 0 unknown paths. They are read from the game folder, never written, never committed.
+**Krowi's real files, headless and read-only:** the six files (five Retail accounts written between 2024-05 and 2026-11, one Mists) migrate in memory and pass the check; the only paths without a row are the three of removed options. They are read from the game folder, never written, never committed.
 
 **Lint:** `settings-keys` and `settings-direct` pass on the whole tree; `Check-Repo.ps1` clean.
 
