@@ -108,7 +108,7 @@ local function AddDoubleCriteriaLine(achievementId, achievementData, criteriaInd
 end
 
 function tooltip:AddCriteria(achievementId, achievementData, numCriteria)
-	if numCriteria < addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.SecondColumnThreshold then
+	if numCriteria < addon.Settings.Get("tooltips.objectivesProgress.secondColumnThreshold") then
 		for i = 1, numCriteria do
 			AddCriteriaLine(achievementId, achievementData, i)
 		end

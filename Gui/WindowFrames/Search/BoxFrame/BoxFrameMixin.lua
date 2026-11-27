@@ -18,7 +18,7 @@ local function LoadPreviewContainer(self)
 
     -- Populate the frame with buttons - doing this in code allows us to change the number of buttons later
     container.Buttons = {}
-    for i = 1, addon.Options.db.profile.SearchBox.NumberOfSearchPreviews do
+    for i = 1, addon.Settings.Get("searchBox.numberOfSearchPreviews") do
         container.Buttons[i] = CreateFrame("Button", "KrowiAF_SearchPreview" .. i, container, "KrowiAF_SearchPreviewButton_Template")
 		if i == 1 then
     		container.Buttons[i]:SetPoint("TOPLEFT")
@@ -86,7 +86,7 @@ function KrowiAF_SearchBoxFrameMixin:OnHide()
 end
 
 function KrowiAF_SearchBoxFrameMixin:OnEnterPressed()
-	if strlen(self:GetText()) < addon.Options.db.profile.SearchBox.MinimumCharactersToSearch and not string.match(self:GetText():lower(), "^#") then
+	if strlen(self:GetText()) < addon.Settings.Get("searchBox.minimumCharactersToSearch") and not string.match(self:GetText():lower(), "^#") then
 		return
 	end
 
@@ -114,7 +114,7 @@ local function SearchAchievement(text, achievement, results, excludeExcluded, ex
 			or (addon.SearchOptions.db.profile.SearchRewards and string.find(rewardText:lower(), text, 1, true)) then
 		if not (excludeExcluded and achievement.Excluded) and not (excludeTracking and achievement.IsTracking) then
 			local value = 1
-			if addon.Options.db.profile.SearchBox.OnlySearchFiltered then
+			if addon.Settings.Get("searchBox.onlySearchFiltered") then
 				local category
 				if addon.Filters.db.profile.MergeSmallCategories then
 					category = achievement:GetMergedCategory() -- This way we get the parent category
@@ -204,9 +204,9 @@ local function GetSearchResults(text)
 	local results = {}
 
 	local numAchievementIds = #addon.Data.AchievementIds
-	local excludeExcluded = addon.Options.db.profile.SearchBox.ExcludeExcluded
-	local excludeTracking = not addon.Options.db.profile.Categories.TrackingAchievements.DoLoad
-	local showPlaceholders = addon.Options.db.profile.ShowPlaceholdersFilter and addon.Filters.db.profile.ShowPlaceholders
+	local excludeExcluded = addon.Settings.Get("searchBox.excludeExcluded")
+	local excludeTracking = not addon.Settings.Get("categories.trackingAchievements.doLoad")
+	local showPlaceholders = addon.Settings.Get("advanced.placeholdersFilter") and addon.Filters.db.profile.ShowPlaceholders
 
 	if string.match(text, "^#") then
 		results = SearchAchievementIds(text, numAchievementIds, results, excludeExcluded, excludeTracking, showPlaceholders)
@@ -270,7 +270,7 @@ end
 function KrowiAF_SearchBoxFrameMixin:OnTextChanged()
 	SearchBoxTemplate_OnTextChanged(self)
 
-	if strlen(self:GetText()) >= addon.Options.db.profile.SearchBox.MinimumCharactersToSearch or string.match(self:GetText():lower(), "^#") then
+	if strlen(self:GetText()) >= addon.Settings.Get("searchBox.minimumCharactersToSearch") or string.match(self:GetText():lower(), "^#") then
 		self.Results = GetSearchResults(self:GetText())
 		ShowSearchPreviewResults(self)
 	else
@@ -282,7 +282,7 @@ function KrowiAF_SearchBoxFrameMixin:Focus()
 	SearchBoxTemplate_OnEditFocusGained(self)
 	self.ResultsFrame:Hide()
 
-	if self:HasFocus() and strlen(self:GetText()) >= addon.Options.db.profile.SearchBox.MinimumCharactersToSearch then
+	if self:HasFocus() and strlen(self:GetText()) >= addon.Settings.Get("searchBox.minimumCharactersToSearch") then
 		if addon.SearchOptions.Changed then
 			self.Results = GetSearchResults(self:GetText())
 		end
@@ -311,7 +311,7 @@ function KrowiAF_SearchBoxFrameMixin:OnKeyDown(key)
 end
 
 function KrowiAF_SearchBoxFrameMixin:OnMouseDown(button)
-	if addon.Options.db.profile.SearchBox.ClearOnRightClick then
+	if addon.Settings.Get("searchBox.clearOnRightClick") then
 		if button == "RightButton" then
 			self:SetText("")
 		end

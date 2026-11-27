@@ -244,7 +244,7 @@ end
 local firstTimeOpen = true
 function KrowiAF_AchievementCalendarFrameMixin:OnShow()
 	self:RegisterEvent("ACHIEVEMENT_EARNED")
-	if (not self.LockMonth and not addon.Options.db.profile.Calendar.LockMonth) or firstTimeOpen then
+	if (not self.LockMonth and not addon.Settings.Get("calendar.lockMonth")) or firstTimeOpen then
 		local currentCalendarTime = C_DateAndTime.GetCurrentCalendarTime()
 		monthCursor.SetAbsMonth(currentCalendarTime.month, currentCalendarTime.year)
 		self:Update()
@@ -309,7 +309,7 @@ local function UpdateNextMonthButtons(self)
 end
 
 local function GetWeekdayIndex(index)
-	return mod(index - 2 + addon.Options.db.profile.Calendar.FirstWeekDay, 7) + 1
+	return mod(index - 2 + addon.Settings.Get("calendar.firstWeekDay"), 7) + 1
 end
 
 local function UpdateWeekDays(self)
@@ -365,7 +365,7 @@ local function GetPrevMonthDarkFlags(firstWeekday, buttonIndex)
 end
 
 local function SetPrevMonthDays(self, year, month, numDays, firstWeekday, selectedYear, selectedMonth, selectedDay, presentYear, presentMonth, presentDay, buttonIndex)
-	local viewablePrevMonthDays = mod(firstWeekday - addon.Options.db.profile.Calendar.FirstWeekDay - 1 + 7, 7)
+	local viewablePrevMonthDays = mod(firstWeekday - addon.Settings.Get("calendar.firstWeekDay") - 1 + 7, 7)
 	local day = numDays - viewablePrevMonthDays
 	local isSelectedMonth = selectedMonth == month and selectedYear == year
 	local isThisMonth = presentMonth == month and presentYear == year

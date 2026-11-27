@@ -159,7 +159,7 @@ function content.Render(frame, achievement, width)
             frame[key].Used = 0
         end
     end
-    local useLinks = addon.Options.db.profile.Achievements.Guide.ActionStyle == content.ActionStyle.Links
+    local useLinks = addon.Settings.Get("guides.actionStyle") == content.ActionStyle.Links
     local y, numControls = 0, 0
     local lines = guide.GetLines(achievement)
     for index, line in ipairs(lines) do

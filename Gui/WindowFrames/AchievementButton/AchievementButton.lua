@@ -1,7 +1,7 @@
 local _, addon = ...
 
 function KrowiAF_AchievementButton_OnLoad(self)
-	if not addon.Options.db.profile.Achievements.CenterHeader then
+	if not addon.Settings.Get("achievements.centerHeader") then
 		self.Header:SetPoint("LEFT", self.HeaderLeftAnchor or self.PlusMinus, "RIGHT", 10, 0)
 		self.Header:SetPoint("RIGHT", self.DateCompleted, "LEFT", -10, 0)
 		self.Header:SetJustifyH("LEFT")

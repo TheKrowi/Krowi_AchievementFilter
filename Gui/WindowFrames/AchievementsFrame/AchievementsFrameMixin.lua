@@ -3,7 +3,7 @@ local _, addon = ...
 KrowiAF_AchievementsFrameMixin = {}
 
 local function CreateScrollView(self)
-	local template = "KrowiAF_AchievementButton_" .. (addon.Options.db.profile.Achievements.Compact and "Small" or "Normal") .. "_Template"
+	local template = "KrowiAF_AchievementButton_" .. (addon.Settings.Get("achievements.compact") and "Small" or "Normal") .. "_Template"
     self.DummyFrame = CreateFrame("Button", nil, self, template)
 
 	self.ScrollView = CreateScrollBoxListLinearView()
@@ -66,7 +66,7 @@ local function ScrollBoxSelectionChanged(self, achievement, selected)
 	selectedTab.Extend = button:GetHeight() - self.DummyFrame.CollapsedHeight
 
 	-- print("Selecting", selectedTab.SelectedAchievement and selectedTab.SelectedAchievement.Id)
-	if addon.Options.db.profile.TrackAchievementBrowserHistory then
+	if addon.Settings.Get("window.trackBrowsingHistory") then
 		addon.Util.DelayFunction("KrowiAF_AddToBrowsingHistory", 0.1, function()
 			addon.BrowsingHistory:Add(selectedTab.SelectedCategory, selectedTab.SelectedAchievement)
 			addon.Gui.BrowsingHistory:Update()
@@ -80,8 +80,8 @@ local function AddSelectionBehavior(self)
 end
 
 function KrowiAF_AchievementsFrameMixin:OnLoad()
-	self.ScrollBox.wheelPanScalar = addon.Options.db.profile.Achievements.MouseWheelPanScalar
-	self.ScrollBar.wheelPanScalar = addon.Options.db.profile.Achievements.MouseWheelPanScalar
+	self.ScrollBox.wheelPanScalar = addon.Settings.Get("achievements.mouseWheelPanScalar")
+	self.ScrollBar.wheelPanScalar = addon.Settings.Get("achievements.mouseWheelPanScalar")
 
 	CreateScrollView(self)
 	AddManagedScrollBarVisibilityBehavior(self)

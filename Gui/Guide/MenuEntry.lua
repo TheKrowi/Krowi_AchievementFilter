@@ -26,7 +26,7 @@ end
 
 function section:Add(menu, achievement, menuBuilder, caller)
     local guideMenu = menuBuilder:CreateSubmenuButton(menu, addon.L["Guide"])
-    if addon.Options.db.profile.Achievements.Guide.Icon then
+    if addon.Settings.Get("guides.icon") then
         menuBuilder:CreateButtonAndAdd(
             guideMenu,
             addon.L["Guide Open"],

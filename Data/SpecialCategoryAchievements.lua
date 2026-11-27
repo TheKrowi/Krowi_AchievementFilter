@@ -29,7 +29,7 @@ local function AddCategoriesTree(category, sourceCategory, extraFunc)
 end
 
 local function AddWatchListCategoriesTree(watchListCategory, achievement)
-    if not addon.Options.db.profile.Categories.WatchList.ShowSubCategories then
+    if not addon.Settings.Get("categories.watchList.showSubCategories") then
         return watchListCategory
     end
     return AddCategoriesTree(watchListCategory, achievement.Category, function(newCategory)
@@ -41,7 +41,7 @@ end
 -- rather than read from the achievement because AddAchievement on the first root makes that root the
 -- Category of an uncategorized one, and the next root would then mirror the first root's chain under itself
 local function AddTrackingAchievementsCategoriesTree(trackingAchievementsCategory, category)
-    if not addon.Options.db.profile.Categories.TrackingAchievements.ShowSubCategories or category == nil then
+    if not addon.Settings.Get("categories.trackingAchievements.showSubCategories") or category == nil then
         return trackingAchievementsCategory
     end
     return AddCategoriesTree(trackingAchievementsCategory, category, function(newCategory)
@@ -50,7 +50,7 @@ local function AddTrackingAchievementsCategoriesTree(trackingAchievementsCategor
 end
 
 local function AddExcludedCategoriesTree(excludedCategory, achievement)
-    if not addon.Options.db.profile.Categories.Excluded.ShowSubCategories then
+    if not addon.Settings.Get("categories.excluded.showSubCategories") then
         return excludedCategory
     end
     return AddCategoriesTree(excludedCategory, achievement.Category, function(newCategory)
@@ -140,7 +140,7 @@ function addon.ClearWatchAchievement(achievement, update)
     for i = 1, numWatchListCategories do
         achievement.WatchListCategories[i]:RemoveWatchedAchievement(achievement)
     end
-    if addon.Options.db.profile.Categories.WatchList.ShowSubCategories then
+    if addon.Settings.Get("categories.watchList.showSubCategories") then
         for i = 1, numWatchListCategories do
             ClearTree(achievement.WatchListCategories[i]:GetTree())
         end
@@ -160,7 +160,7 @@ end
 function addon.WatchAchievement(achievement, update)
     achievement:Watch()
     for i = 1, #addon.SpecialCategories.WatchList do
-        if addon.Options.db.profile.AdjustableCategories.WatchList[i] then
+        if addon.Settings.GetEntry("categories.shownOnTab", "WatchList", i) then
             local watchListCategory = AddWatchListCategoriesTree(addon.SpecialCategories.WatchList[i], achievement)
             watchListCategory:AddWatchedAchievement(achievement)
         end
@@ -175,7 +175,7 @@ end
 function addon.AddToTrackingAchievementsCategories(achievement, update)
     local category = achievement.Category -- before the first root's AddAchievement can claim it, see AddTrackingAchievementsCategoriesTree
     for i = 1, #addon.SpecialCategories.TrackingAchievements do
-        if addon.Options.db.profile.AdjustableCategories.TrackingAchievements[i] then
+        if addon.Settings.GetEntry("categories.shownOnTab", "TrackingAchievements", i) then
             local trackingAchievementsCategory = AddTrackingAchievementsCategoriesTree(addon.SpecialCategories.TrackingAchievements[i], category)
             trackingAchievementsCategory:AddAchievement(achievement)
             trackingAchievementsCategory.CountsDirty = true
@@ -189,7 +189,7 @@ end
 
 function addon.AddToUncategorizedAchievementsCategories(achievement, update)
     for i = 1, #addon.SpecialCategories.Uncategorized do
-        if addon.Options.db.profile.AdjustableCategories.Uncategorized[i] then
+        if addon.Settings.GetEntry("categories.shownOnTab", "Uncategorized", i) then
             local category = addon.SpecialCategories.Uncategorized[i]
             category:AddAchievement(achievement)
             category.CountsDirty = true
@@ -207,7 +207,7 @@ function addon.IncludeAchievement(achievement, update)
     for i = 1, numExcludedCategories do
         achievement.ExcludedCategories[i]:RemoveExcludedAchievement(achievement)
     end
-    if addon.Options.db.profile.Categories.Excluded.ShowSubCategories then
+    if addon.Settings.Get("categories.excluded.showSubCategories") then
         for i = 1, numExcludedCategories do
             ClearTree(achievement.ExcludedCategories[i]:GetTree())
         end
@@ -231,9 +231,9 @@ end
 
 function addon.ExcludeAchievement(achievement, update)
     achievement:Exclude()
-    if addon.Options.db.profile.Categories.Excluded.Show then
+    if addon.Settings.Get("categories.excluded.show") then
         for i = 1, #addon.SpecialCategories.Excluded do
-            if addon.Options.db.profile.AdjustableCategories.Excluded[i] then
+            if addon.Settings.GetEntry("categories.shownOnTab", "Excluded", i) then
                 local excludedCategory = AddExcludedCategoriesTree(addon.SpecialCategories.Excluded[i], achievement)
                 excludedCategory:AddExcludedAchievement(achievement)
             end

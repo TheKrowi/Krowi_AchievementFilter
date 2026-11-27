@@ -175,7 +175,7 @@ function scenes.tabs(ready)
 end
 
 function scenes.window(ready)
-    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab]
+    local tab = KrowiAF_SavedData.Tabs[addon.Settings.Get("window.microButtonTab")]
     KrowiAF_ToggleAchievementFrame(tab.AddonName, tab.Name, nil, true)
     Ready(ready, {Tab = tab.Name})
 end

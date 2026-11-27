@@ -11,7 +11,7 @@ local function CreateScrollView(self)
 		if not category then
 			return 0
 		end
-		return 2 + (category.Level - 1) * addon.Options.db.profile.Categories.Indentation
+		return 2 + (category.Level - 1) * addon.Settings.Get("categories.indentation")
 	end)
 	ScrollUtil.InitScrollBoxListWithScrollBar(self.Inset.CategoriesScrollBox, self.Inset.CategoriesScrollBar, self.ScrollView)
 end
@@ -31,8 +31,8 @@ local function AddManagedScrollBarVisibilityBehavior(self)
 end
 
 function KrowiAF_Collections_CategoriesFrameMixin:Load(achievementFrame)
-	achievementFrame.Inset.CategoriesScrollBox.wheelPanScalar = addon.Options.db.profile.Categories.MouseWheelPanScalar
-	achievementFrame.Inset.CategoriesScrollBar.wheelPanScalar = addon.Options.db.profile.Categories.MouseWheelPanScalar
+	achievementFrame.Inset.CategoriesScrollBox.wheelPanScalar = addon.Settings.Get("categories.mouseWheelPanScalar")
+	achievementFrame.Inset.CategoriesScrollBar.wheelPanScalar = addon.Settings.Get("categories.mouseWheelPanScalar")
 
 	CreateScrollView(achievementFrame)
 	-- AddManagedScrollBarVisibilityBehavior(self);

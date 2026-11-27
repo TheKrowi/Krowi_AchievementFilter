@@ -54,7 +54,7 @@ local function LoadBlizzard_AchievementUI()
     -- step cannot keep them off; it has its own run-once latch and runs each feature under xpcall (Features.lua)
     addon.Features.AchievementUILoaded()
 
-    if addon.Options.db.profile.Window.Movable then
+    if addon.Settings.Get("window.movable") then
         addon.MakeWindowMovable()
     else
         addon.MakeWindowStatic()
@@ -72,7 +72,7 @@ end
 local function LoadPlayerLogin()
     addon.Data:LoadOnPlayerLogin()
 
-    if addon.Diagnostics.DebugEnabled() or addon.Options.db.profile.PrintMapInfo then
+    if addon.Diagnostics.DebugEnabled() or addon.Settings.Get("advanced.printMapInfo") then
         hooksecurefunc(WorldMapFrame, "OnMapChanged", function()
             local mapID = WorldMapFrame.mapID
             print(mapID, addon.GetMapName(mapID))

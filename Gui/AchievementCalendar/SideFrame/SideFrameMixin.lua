@@ -18,7 +18,7 @@ local function OnAchievementsFrameViewAcquiredFrame(sideFrame, frame)
         if button ~= "LeftButton" then
             return
         end
-        calendarFrame.LockMonth = addon.Options.db.profile.Calendar.LockAchievementMonth
+        calendarFrame.LockMonth = addon.Settings.Get("calendar.lockAchievementMonth")
         calendarFrame:Hide()
     end)
 end
@@ -26,8 +26,8 @@ end
 function KrowiAF_AchievementCalendarSideFrameMixin:OnLoad()
     addon.Gui:RegisterFrameForClosing(self)
 
-    self.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Options.db.profile.Calendar.MouseWheelPanScalar
-	self.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Options.db.profile.Calendar.MouseWheelPanScalar
+    self.AchievementsFrame.ScrollBox.wheelPanScalar = addon.Settings.Get("calendar.mouseWheelPanScalar")
+	self.AchievementsFrame.ScrollBar.wheelPanScalar = addon.Settings.Get("calendar.mouseWheelPanScalar")
     self.AchievementsFrame:AlwaysHideBorder()
     ScrollUtil.AddAcquiredFrameCallback(self.AchievementsFrame.ScrollView, OnAchievementsFrameViewAcquiredFrame, self)
 end

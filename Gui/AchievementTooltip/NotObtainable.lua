@@ -7,17 +7,17 @@ function section:CheckAdd(achievement)
 end
 
 function section:Add(achievement)
-	if not addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.Show then
+	if not addon.Settings.Get("tooltips.temporarilyObtainable.show") then
 		return
 	end
 	local records = addon.Data.TemporaryObtainable:GetNotObtainableTexts(achievement)
 	for i = #records, 1, -1 do
-		if #records - i >= addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.NumberOfLines then
+		if #records - i >= addon.Settings.Get("tooltips.temporarilyObtainable.numberOfLines") then
 			return
 		end
 		local record = records[i]
 		Krowi_Tooltip:AddLine(record.Text, record.Color.R, record.Color.G, record.Color.B)
-		if record.Occurrence and addon.Options.db.profile.Tooltip.Achievements.TemporarilyObtainable.ShowDateTime then
+		if record.Occurrence and addon.Settings.Get("tooltips.temporarilyObtainable.showDateTime") then
 			Krowi_Tooltip:AddLine(record.Occurrence, record.Color.R, record.Color.G, record.Color.B)
 		end
 	end

@@ -16,8 +16,8 @@ end
 function KrowiAF_RewardPreviewResizeButtonMixin:OnMouseUp()
     local frame = self:GetParent()
     frame:StopMovingOrSizing()
-    addon.Options.db.profile.Achievements.RewardPreviewDefaultWidth = frame:GetWidth()
-    addon.Options.db.profile.Achievements.RewardPreviewDefaultHeight = frame:GetHeight()
+    addon.Settings.Set("rewardPreview.defaultWidth", frame:GetWidth())
+    addon.Settings.Set("rewardPreview.defaultHeight", frame:GetHeight())
 end
 
 KrowiAF_RewardPreviewPrevButtonMixin = {}
@@ -264,7 +264,7 @@ function KrowiAF_RewardPreviewMixin:ShowEntry(entry)
         if sceneOk then
             local camera = modelScene.GetActiveCamera and modelScene:GetActiveCamera()
             if camera and camera.SetLeftMouseButtonYMode then
-                local invert = addon.Options.db.profile.Achievements.RewardPreviewInvertVerticalRotation
+                local invert = addon.Settings.Get("rewardPreview.invertVerticalRotation")
                 camera:SetLeftMouseButtonYMode(ORBIT_CAMERA_MOUSE_MODE_PITCH_ROTATION, invert)
             end
 

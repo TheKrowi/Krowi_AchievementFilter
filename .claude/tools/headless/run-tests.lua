@@ -229,6 +229,8 @@ end
 -------------------------------------------------------------------------------------------------
 -- One client: a sandboxed global environment plus the Blizzard model for that client
 -------------------------------------------------------------------------------------------------
+local headlessDir = ((arg and arg[0]) or ""):gsub("\\", "/"):match("^(.*)/") or "."
+
 local function BuildClient(client)
     local isRetail = client == "Retail"
     local env = {}
@@ -303,7 +305,15 @@ local function BuildClient(client)
         Util = { IsMainline = isRetail, IsModern = isRetail, IsForever = false, IsClassicWithAchievements = not isRetail },
         Tests = { Suites = {}, Ready = {}, Async = {}, FirstDraw = {} },
     }
-    setmetatable(addon, { __index = function(t, k) local s = Stub("addon." .. tostring(k)) rawset(t, k, s) return s end })
+    setmetatable(addon, { __index = function(t, k)
+        -- the settings store's AceDB mode over the suite's fake addon.Options.db (docs/work/2026-11-25-settings-store,
+        -- until the switch of plan step 9), made the first time code asks for it
+        local options = rawget(t, "Options")
+        if k == "Settings" and type(options) == "table" and type(rawget(options, "db")) == "table" then
+            return assert(loadfile(headlessDir .. "/settings-store.lua"))().AceDBMode(root, t)
+        end
+        local s = Stub("addon." .. tostring(k)) rawset(t, k, s) return s
+    end })
 
     local function loadAddonFile(rel)
         local chunk, err = loadstring(readFile(root .. "/" .. rel), "@" .. rel)

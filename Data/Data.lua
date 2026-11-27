@@ -206,7 +206,7 @@ function data.GetCurrentZoneAchievements()
     local achievements = addon.GetAchievementsInZone(cachedZone)
     for i = 1, #currentZone do
         local category = currentZone[i]
-        category.Achievements = addon.Options.db.profile.AdjustableCategories.CurrentZone[i] and achievements or nil
+        category.Achievements = addon.Settings.GetEntry("categories.shownOnTab", "CurrentZone", i) and achievements or nil
         category.CountsDirty = true
     end
     return true -- Output that the zone has changed
@@ -278,7 +278,7 @@ local function AddAchievementToCategory(categoryID, achId, excludeTracking)
 end
 
 local function AddAchievementsToCategory()
-    local excludeTracking = not addon.Options.db.profile.Categories.TrackingAchievements.DoLoad
+    local excludeTracking = not addon.Settings.Get("categories.trackingAchievements.doLoad")
     for i = 1, #data.AchievementIds do
         local achId = data.AchievementIds[i]
         if addedOutOfOrder[achId] == nil then -- Not yet added

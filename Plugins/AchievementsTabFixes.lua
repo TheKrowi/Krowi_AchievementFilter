@@ -44,7 +44,7 @@ function atf:InjectOptions()
         name = addon.L["RenameExplorationDragonIslesCategory"],
         desc = addon.L["RenameExplorationDragonIslesCategory Desc"]:KAF_AddDefaultValueText("plugins.achievementsTabFixes.renameExplorationDragonIslesCategory"):K_AddReloadRequired(),
         set = function(_, value)
-            addon.Options.db.profile.Plugins.AchievementsTabFixes.RenameExplorationDragonIslesCategory = value
+            addon.Settings.Set("plugins.achievementsTabFixes.renameExplorationDragonIslesCategory", value)
             RenameExplorationDragonIslesCategory()
         end,
         hidden = not addon.Util.IsMainline

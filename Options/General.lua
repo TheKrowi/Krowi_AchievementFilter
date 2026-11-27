@@ -35,9 +35,9 @@ function general.OnProfileReset(db)
 end
 
 local function MinimapShowMinimapIconSet(_, value)
-    if addon.Options.db.profile.ShowMinimapIcon == value then return; end
-    addon.Options.db.profile.ShowMinimapIcon = value
-    if addon.Options.db.profile.ShowMinimapIcon then
+    if addon.Settings.Get("minimap.showIcon") == value then return; end
+    addon.Settings.Set("minimap.showIcon", value)
+    if addon.Settings.Get("minimap.showIcon") then
         addon.Icon:Show()
     else
         addon.Icon:Hide()
@@ -45,14 +45,14 @@ local function MinimapShowMinimapIconSet(_, value)
 end
 
 local function WorldMapShowWorldMapIconSet(_, value)
-    if addon.Options.db.profile.ShowWorldmapIcon == value then return; end
-    addon.Options.db.profile.ShowWorldmapIcon = value
+    if addon.Settings.Get("worldMap.showIcon") == value then return; end
+    addon.Settings.Set("worldMap.showIcon", value)
     addon.Gui.WorldMapButton:Refresh()
     LibStub("Krowi_WorldMapButtons-1.4").SetPoints()
 end
 
 local function MicroButtonSetKeybindFunc()
-    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab]
+    local tab = KrowiAF_SavedData.Tabs[addon.Settings.Get("window.microButtonTab")]
     if tab.BindingName then
         SetBinding("Y", tab.BindingName)
         SaveBindings(GetCurrentBindingSet())
@@ -210,7 +210,7 @@ local function PrintMapInfoWithoutReload()
         print(mapID, addon.GetMapName(mapID))
     end)
 
-    addon.Options.db.profile.PrintMapInfo = true
+    addon.Settings.Set("advanced.printMapInfo", true)
 end
 
 local function ExportTaintDiagnostics()
@@ -345,7 +345,7 @@ local keyBindingOptions = {
                             order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                             name = addon.L["Toggle window once opened"],
                             desc = addon.L["Toggle window once opened Desc"]:KAF_AddDefaultValueText("window.toggleWindow"),
-                            disabled = function() return addon.Options.db.profile.ResetViewOnOpen; end
+                            disabled = function() return addon.Settings.Get("window.resetViewOnOpen"); end
                         })
                     }
                 },
@@ -359,7 +359,7 @@ local keyBindingOptions = {
                             desc = addon.L["Rebind Micro Button Desc"], -- KAF_AddDefaultValueTextFromValues via PostLoad
                             values = function() return addon.Gui:TabsOrderGetActiveKeys(); end,
                             set = function(_, value)
-                                addon.Options.db.profile.MicroButtonTab = value
+                                addon.Settings.Set("window.microButtonTab", value)
                                 addon.ChangeAchievementMicroButtonOnClick()
                             end
                         }),

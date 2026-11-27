@@ -169,7 +169,7 @@ do -- AchievementFilters
         mb:CreateCheckbox(menu, addon.GetCategoryInfoTitle(81), filters, {"Special", "FeatsOfStrength"}, true)
         mb:CreateCheckbox(menu, addon.GetCategoryInfoTitle(95), filters, {"Special", "PvP"}, true)
         mb:CreateCheckbox(menu, addon.L["Collapse Chain"], filters, {"CollapseSeries"}, true)
-        if addon.Options.db.profile.Categories.TrackingAchievements.DoLoad then
+        if addon.Settings.Get("categories.trackingAchievements.doLoad") then
             mb:CreateCheckbox(menu, addon.L["Tracking"], filters, {"Tracking"}, true)
         end
         mb:CreateCheckbox(menu, addon.L["Excluded"], filters, {"Excluded"}, true)
@@ -240,7 +240,7 @@ function KrowiAF_AchievementFrameFilterButtonMixin:CreateMenu(menu)
         end
     )
 
-    if addon.Options.db.profile.ShowPlaceholdersFilter then
+    if addon.Settings.Get("advanced.placeholdersFilter") then
         mb:CreateDivider(menu)
         mb:CreateCheckbox(menu, addon.L["Show placeholders"], addon.Filters.db.profile, {"ShowPlaceholders"})
     end

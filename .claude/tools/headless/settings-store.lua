@@ -45,6 +45,31 @@ function M.New(repoRoot, opts)
     return s
 end
 
+-- The store's interface in its AceDB mode (Settings/AceDBMode.lua) over a suite's fake addon.Options.db, until the
+-- switch (docs/work/2026-11-25-settings-store, plan steps 8-9): the suites that fake an old-shaped profile keep it, and
+-- the code they run, moved to addon.Settings, reads and writes that same table. Loads Store.lua, Renames.lua,
+-- Declarations.lua and AceDBMode.lua into addon; every old option path the core does not declare (the features' and
+-- the plugins' settings, declared at ADDON_LOADED in the game) is declared with no default, so a read of one the fake
+-- does not hold gives nil, as the fake did.
+function M.AceDBMode(repoRoot, addon)
+    repoRoot = repoRoot:gsub("\\", "/"):gsub("/$", "")
+    addon.Settings = nil
+    for _, file in ipairs({ "Store", "Renames", "Declarations", "AceDBMode" }) do
+        assert(loadfile(repoRoot .. "/Settings/" .. file .. ".lua"))("Krowi_AchievementFilter", addon)
+    end
+    local settings = addon.Settings
+    for _, key in next, settings.Renames.Values do
+        if not settings.Declaration(key) then settings.Declare(key, {}) end
+    end
+    for _, map in ipairs(settings.Renames.Maps) do
+        if not settings.Declaration(map.Key) then settings.Declare(map.Key, { Kind = "map", Depth = map.Depth }) end
+    end
+    for _, key in ipairs({ "filters", "search" }) do
+        if not settings.Declaration(key) then settings.Declare(key, { Kind = "object", System = "filters" }) end
+    end
+    return settings
+end
+
 -- The migration runner on its own: Settings/Renames.lua, Check.lua and Migrations.lua in a fresh namespace. Returns
 -- addon.Settings (Renames, Check, Migrations); migrations.Run(sv, context) works on plain tables, no game needed.
 function M.Runner(repoRoot)

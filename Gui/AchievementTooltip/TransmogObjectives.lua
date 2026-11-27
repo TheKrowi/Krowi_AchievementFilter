@@ -17,10 +17,10 @@ function section:CheckAdd(achievement)
 		return
 	end
 	local state = achievement:GetObtainableState()
-	if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show or state == "Past" then
+	if not addon.Settings.Get("tooltips.objectivesProgress.show") or state == "Past" then
 		return
 	end
-	if achievement.IsCompleted and not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.ShowWhenAchievementCompleted then
+	if achievement.IsCompleted and not addon.Settings.Get("tooltips.objectivesProgress.showWhenAchievementCompleted") then
 		return
 	end
     transmogSetIds = addon.GetUsableSets(achievement.TransmogSetIds)

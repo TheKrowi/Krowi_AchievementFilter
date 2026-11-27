@@ -329,14 +329,14 @@ end
 
 function addon.ChangeAchievementMicroButtonOnClick()
     addon.Gui:TabsOrderGetActiveKeys() -- Cleanup unused tabs
-    if addon.Options.db.profile.MicroButtonTab > #KrowiAF_SavedData.Tabs then
+    if addon.Settings.Get("window.microButtonTab") > #KrowiAF_SavedData.Tabs then
         for i, _ in next, KrowiAF_SavedData.Tabs do
             if KrowiAF_SavedData.Tabs[i].AddonName == addonName and KrowiAF_SavedData.Tabs[i].Name == "Achievements" then
-                addon.Options.db.profile.MicroButtonTab = i
+                addon.Settings.Set("window.microButtonTab", i)
             end
         end
     end
-    local tab = KrowiAF_SavedData.Tabs[addon.Options.db.profile.MicroButtonTab]
+    local tab = KrowiAF_SavedData.Tabs[addon.Settings.Get("window.microButtonTab")]
     AchievementMicroButton:SetScript("OnClick", function(self)
         KrowiAF_ToggleAchievementFrame(tab.AddonName, tab.Name)
     end)

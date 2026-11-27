@@ -62,10 +62,10 @@ local function GetSortedCharacters()
 end
 
 local function LimitNumCharacters(characters)
-    local maxNumCharacters = addon.Options.db.profile.AchievementPoints.Tooltip.MaxNumCharacters
+    local maxNumCharacters = addon.Settings.Get("tooltips.points.maxNumCharacters")
     local trimmedCharacters = {}
 
-    if not addon.Options.db.profile.AchievementPoints.Tooltip.KeepCurrentCharacter then -- We can just take the 1st x characters and return
+    if not addon.Settings.Get("tooltips.points.keepCurrentCharacter") then -- We can just take the 1st x characters and return
         for i = 1, maxNumCharacters do
             tinsert(trimmedCharacters, characters[i])
         end
@@ -92,7 +92,7 @@ local function LimitNumCharacters(characters)
 end
 
 local function AddFactionIcon(name, faction)
-    if addon.Options.db.profile.AchievementPoints.Tooltip.ShowFaction then
+    if addon.Settings.Get("tooltips.points.showFaction") then
         local icon
         if faction == KrowiAF.Enum.Faction.Alliance then
             icon = "|A:worldquest-icon-alliance:15:16|a"
@@ -114,7 +114,7 @@ local function OnEnter(frame)
     for _, character in next, characters do
         local r, g, b = GetClassColor(character.Class)
         local name = character.Name
-        if addon.Options.db.profile.AchievementPoints.Tooltip.AlwaysShowRealm or character.Realm ~= (select(2, UnitFullName("player"))) then
+        if addon.Settings.Get("tooltips.points.alwaysShowRealm") or character.Realm ~= (select(2, UnitFullName("player"))) then
             name = name .. " - " .. character.Realm
         end
         name = AddFactionIcon(name, character.Faction)
@@ -143,7 +143,7 @@ function header:AnchorHeader()
     end
 
     AchievementFrame.Header:ClearAllPoints()
-    if addon.Options.db.profile.CenterHeader then
+    if addon.Settings.Get("window.centerHeader") then
         AchievementFrame.Header:SetPoint("BOTTOM", AchievementFrame, "TOP", 0, -38)
     else
         AchievementFrame.Header:SetPoint("BOTTOMLEFT", AchievementFrame, "TOPLEFT", 26, -38)
@@ -230,10 +230,10 @@ function header:HookSetPointsText()
 
         processHook = false
         local points = KrowiAF_SavedData.CharacterList[UnitGUID("player")].Points
-        if addon.Options.db.profile.AchievementPoints.Format == 1 then
-        elseif addon.Options.db.profile.AchievementPoints.Format == 2 then
+        if addon.Settings.Get("window.pointsFormat") == 1 then
+        elseif addon.Settings.Get("window.pointsFormat") == 2 then
             AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1) .. " / " .. BreakUpLargeNumbers(GetTotalAchievementPoints() or -1))
-        elseif addon.Options.db.profile.AchievementPoints.Format == 3 then
+        elseif addon.Settings.Get("window.pointsFormat") == 3 then
             AchievementFrame.Header.Points:SetText(BreakUpLargeNumbers(points or -1))
         end
         processHook = true

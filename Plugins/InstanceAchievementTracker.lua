@@ -33,7 +33,7 @@ end
 
 function iat:AddAchievementRightClickMenuItems(rightClickMenu, achievement, menuBuilder)
     if IsLoaded()
-    and addon.Options.db.profile.Plugins.InstanceAchievementTracker.AddToRightClickMenu
+    and addon.Settings.Get("plugins.instanceAchievementTracker.addToRightClickMenu")
     and IAT_HasAchievement(achievement.Id) then
         menuBuilder:CreateButtonAndAdd(
             rightClickMenu,

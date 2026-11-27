@@ -200,7 +200,7 @@ end
 
 function settings.OnChange(key, fn)
     listeners[key] = listeners[key] or {}
-    tinsert(listeners[key], fn)
+    table.insert(listeners[key], fn)
 end
 
 function settings.OnProfileChanged()

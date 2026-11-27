@@ -106,5 +106,5 @@ end
 
 -- The actions for a point with the player's provider option and what the game can do right now
 function waypoint.GetCurrentActions(point)
-    return waypoint.GetActions(point, addon.Options.db.profile.Achievements.Guide.WaypointProvider, waypoint.GetAvailability(point))
+    return waypoint.GetActions(point, addon.Settings.Get("guides.waypointProvider"), waypoint.GetAvailability(point))
 end

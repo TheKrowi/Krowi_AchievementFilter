@@ -3,7 +3,7 @@ local section = {}
 tinsert(addon.Gui.AchievementTooltip.Sections, section)
 
 function section:CheckAdd(achievement)
-    return achievement.Guide ~= nil and addon.Options.db.profile.Achievements.Guide.Tooltip
+    return achievement.Guide ~= nil and addon.Settings.Get("guides.tooltip")
 end
 
 -- Each step as a numbered white headline with its details in grey below it, as the side panel shows them

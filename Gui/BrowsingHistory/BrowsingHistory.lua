@@ -88,7 +88,7 @@ function KrowiAF_AchievementFrameBrowsingHistoryNextAchievementButtonMixin:OnEnt
 end
 
 function browsingHistory:Load()
-    if not addon.Options.db.profile.TrackAchievementBrowserHistory then
+    if not addon.Settings.Get("window.trackBrowsingHistory") then
         return
     end
     if AchievementFrame.HeaderDetails then

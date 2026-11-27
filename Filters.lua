@@ -97,7 +97,7 @@ local function ResetFactionFilters(tbl)
 end
 
 function filters:ResetFilters()
-    if addon.Options.db.profile.Filters.ResetFactionFilters then
+    if addon.Settings.Get("filtering.resetFactionFilters") then
         ResetFactionFilters(self.db.profile.Faction)
         ResetFactionFilters(self.db.profile.CurrentZone.Faction)
         ResetFactionFilters(self.db.profile.SelectedZone.Faction)
@@ -238,7 +238,7 @@ local validations = {
     },
     {   -- 13
         Validate = function(_filters, achievement, ignoreFilters)
-            if not addon.Options.db.profile.ShowPlaceholdersFilter and achievement.DoesNotExist then
+            if not addon.Settings.Get("advanced.placeholdersFilter") and achievement.DoesNotExist then
                 return true
             end
             return not filters.db.profile.ShowPlaceholders and achievement.DoesNotExist
@@ -322,7 +322,7 @@ function filters:GetFilters(category)
 	elseif category.IsSelectedZone then
 		return self.db.profile.SelectedZone
 	elseif category.IsWatchList then
-        self.db.profile.Ignore = addon.Options.db.profile.Categories.WatchList.IgnoreFilters
+        self.db.profile.Ignore = addon.Settings.Get("categories.watchList.ignoreFilters")
         return self.db.profile
     elseif category.IsTracking then
         return self.db.profile.TrackingAchievements

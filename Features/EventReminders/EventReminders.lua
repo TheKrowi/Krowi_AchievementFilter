@@ -18,19 +18,19 @@ local function OnEnteringWorld(isLogin, isReload)
     if not (isLogin or isReload) then
         return
     end
-    local profile = addon.Options.db.profile.EventReminders
-    local when = isLogin and "OnLogin" or "OnReload"
-    local popUps, chatMessages = profile.PopUps[when], profile.ChatMessages[when]
-    local popUpsUpcoming, chatMessagesUpcoming = profile.PopUps[when .. "Upcoming"], profile.ChatMessages[when .. "Upcoming"]
+    local triggers = addon.Gui.EventReminderAlertSystem.Triggers
+    local when = isLogin and "onLogin" or "onReload"
+    local popUps, chatMessages = triggers["popUps." .. when], triggers["chatMessages." .. when]
+    local popUpsUpcoming, chatMessagesUpcoming = triggers["popUps." .. when .. "Upcoming"], triggers["chatMessages." .. when .. "Upcoming"]
     C_Timer.After(0, function()
-        C_Timer.After(profile.OnLoginDelay, function()
+        C_Timer.After(addon.Settings.Get("eventReminders.onLoginDelay"), function()
             eventReminders.EventScheduler.EnsureData() -- the times of the events from Blizzard's event scheduler, for the reminders below
             addon.Gui.EventReminderAlertSystem:ShowActiveEventsOnPlayerEnteringWorld(popUps, chatMessages)
             eventReminders.EventObserver.Start() -- after the reminders, so nothing it does can stop them; learns the older events' starts, once a session
         end)
     end)
     C_Timer.After(0, function()
-        C_Timer.After(profile.OnLoginUpcomingDelay, function()
+        C_Timer.After(addon.Settings.Get("eventReminders.onLoginUpcomingDelay"), function()
             addon.Gui.EventReminderAlertSystem:ShowUpcomingCalendarEventsOnPlayerEnteringWorld(popUpsUpcoming, chatMessagesUpcoming)
         end)
     end)

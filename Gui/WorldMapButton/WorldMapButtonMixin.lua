@@ -24,12 +24,12 @@ function KrowiAF_WorldMapButtonMixin:OnClick()
         HideUIPanel(WorldMapFrame)
         for i = 1, #addon.SpecialCategories.SelectedZone do
             local category = addon.SpecialCategories.SelectedZone[i]
-            category.Achievements = addon.Options.db.profile.AdjustableCategories.SelectedZone[i] and achievements or nil
+            category.Achievements = addon.Settings.GetEntry("categories.shownOnTab", "SelectedZone", i) and achievements or nil
             category.Name = addon.L["Selected Zone"] .. " (" .. self.Text .. ")"
             category.CountsDirty = true
         end
         for i = 1, #addon.SpecialCategories.SelectedZone do
-            if addon.Options.db.profile.AdjustableCategories.SelectedZone[i] then
+            if addon.Settings.GetEntry("categories.shownOnTab", "SelectedZone", i) then
                 KrowiAF_SelectCategory(addon.SpecialCategories.SelectedZone[i])
                 return
             end
@@ -39,12 +39,12 @@ end
 
 function KrowiAF_WorldMapButtonMixin:OnEnter()
     if self.NumOfAch > 0 then
-        addon.Gui.ShowStatusBarTooltip(self, "ANCHOR_RIGHT", addon.Options.db.profile.AddAddonNameToWorldMapIcon and addon.Metadata.Title)
+        addon.Gui.ShowStatusBarTooltip(self, "ANCHOR_RIGHT", addon.Settings.Get("worldMap.addAddonName") and addon.Metadata.Title)
     else
         Krowi_Tooltip:SetOwner(self, "ANCHOR_RIGHT")
 	    GameTooltip_SetTitle(Krowi_Tooltip, self.Text)
         GameTooltip_AddNormalLine(Krowi_Tooltip, addon.L["No achievements are available with the current set of filters"])
-        if addon.Options.db.profile.AddAddonNameToWorldMapIcon then
+        if addon.Settings.Get("worldMap.addAddonName") then
             GameTooltip_AddBlankLineToTooltip(Krowi_Tooltip)
             GameTooltip_AddNormalLine(Krowi_Tooltip, addon.Metadata.Title)
         end
@@ -93,7 +93,7 @@ local function GetAchievementsForMap(mapID, mapInfo)
 end
 
 function KrowiAF_WorldMapButtonMixin:Refresh()
-    if not addon.Options.db.profile.ShowWorldmapIcon then
+    if not addon.Settings.Get("worldMap.showIcon") then
         self:Hide()
         return
     end

@@ -314,13 +314,13 @@ local function SetTextPoints(self, numTextCriteria, maxCriteriaWidth)
 	local numColumns = max(1, floor(self:GetWidth() / maxCriteriaWidth))
 
 	local truncate, flex
-	if addon.Options.db.profile.Achievements.Objectives.ForceTwoColumns then
-		if numColumns < 2 and numTextCriteria >= addon.Options.db.profile.Achievements.Objectives.ForceTwoColumnsThreshold then
+	if addon.Settings.Get("achievements.objectives.forceTwoColumns") then
+		if numColumns < 2 and numTextCriteria >= addon.Settings.Get("achievements.objectives.forceTwoColumnsThreshold") then
 			numColumns = 2
 			-- addon.Options.db.profile.Achievements.Objectives.CriteriaBehaviour == 1 needs no additional code to overflow
-			if addon.Options.db.profile.Achievements.Objectives.CriteriaBehaviour == 2 then -- Truncate
+			if addon.Settings.Get("achievements.objectives.criteriaBehaviour") == 2 then -- Truncate
 				truncate = self:GetWidth() / 2
-			elseif addon.Options.db.profile.Achievements.Objectives.CriteriaBehaviour == 3 then
+			elseif addon.Settings.Get("achievements.objectives.criteriaBehaviour") == 3 then
 				flex = true
 			end
 		end

@@ -4,7 +4,7 @@ tinsert(addon.Gui.AchievementTooltip.Sections, section)
 
 local firstAchievement
 function section:CheckAdd(achievement)
-	if not addon.Options.db.profile.Tooltip.Achievements.ShowPartOfAChain then
+	if not addon.Settings.Get("tooltips.showPartOfAChain") then
 		return
 	end
     local id = addon.GetFirstAchievementId(achievement.Id)
@@ -14,7 +14,7 @@ end
 
 local getFactionName
 local function AddPartOfAChainAchievement(currentAchievement, id, nameSuffix)
-	addon.Gui.AchievementTooltip:AddAchievementLine(currentAchievement, id, addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsPartOfAChain, nameSuffix)
+	addon.Gui.AchievementTooltip:AddAchievementLine(currentAchievement, id, addon.Settings.Get("tooltips.showCurrentCharacterIconsPartOfAChain"), nameSuffix)
 	local achievement = addon.Data.Achievements[id]
 	local nextAchievements = achievement.NextAchievements
 	if nextAchievements == nil then

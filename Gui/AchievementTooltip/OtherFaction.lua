@@ -3,7 +3,7 @@ local section = {}
 tinsert(addon.Gui.AchievementTooltip.Sections, section)
 
 function section:CheckAdd(achievement)
-	if not addon.Options.db.profile.Tooltip.Achievements.ShowOtherFaction then
+	if not addon.Settings.Get("tooltips.showOtherFaction") then
 		return
 	end
 	return achievement.OtherFactionAchievementId ~= nil
@@ -27,5 +27,5 @@ function section:Add(achievement)
 	end
 	Krowi_Tooltip:AddLine(addon.L["Other faction"] .. " (" .. faction .. ")")
 	local otherFactionAchievementCompleted = IsOtherFactionAchievementCompleted(achievement)
-	addon.Gui.AchievementTooltip:AddAchievementLine(achievement, achievement.OtherFactionAchievementId, addon.Options.db.profile.Tooltip.Achievements.ShowCurrentCharacterIconsRequiredFor, nil, otherFactionAchievementCompleted)
+	addon.Gui.AchievementTooltip:AddAchievementLine(achievement, achievement.OtherFactionAchievementId, addon.Settings.Get("tooltips.showCurrentCharacterIconsRequiredFor"), nil, otherFactionAchievementCompleted)
 end

@@ -117,20 +117,20 @@ tinsert(startTimeAndEndTimeDateTimeValues, "Custom")
 tinsert(startTimeAndEndTimeDateTimeFormats, addon.L["%m/%d/%Y %R"])
 
 local function TimeDisplayLine1Set(_, value)
-    if addon.Options.db.profile.EventReminders.TimeDisplay.Line1 == value then return; end
-    addon.Options.db.profile.EventReminders.TimeDisplay.Line1 = value
+    if addon.Settings.Get("eventReminders.timeDisplay.line1") == value then return; end
+    addon.Settings.Set("eventReminders.timeDisplay.line1", value)
     addon.Gui.EventReminderSideButtonSystem:Refresh()
 end
 
 local function TimeDisplayLine2Set(_, value)
-    if addon.Options.db.profile.EventReminders.TimeDisplay.Line2 == value then return; end
-    addon.Options.db.profile.EventReminders.TimeDisplay.Line2 = value
+    if addon.Settings.Get("eventReminders.timeDisplay.line2") == value then return; end
+    addon.Settings.Set("eventReminders.timeDisplay.line2", value)
     addon.Gui.EventReminderSideButtonSystem:Refresh()
 end
 
 local function SideButtonsAnchorSet(_, value)
-    if addon.Options.db.profile.EventReminders.SideButtonsAnchor == value then return; end
-    addon.Options.db.profile.EventReminders.SideButtonsAnchor = value
+    if addon.Settings.Get("eventReminders.sideButtonsAnchor") == value then return; end
+    addon.Settings.Set("eventReminders.sideButtonsAnchor", value)
     addon.Gui.EventReminderSideButtonSystem:Reload()
 end
 
@@ -145,32 +145,32 @@ local function IsFollowing()
 end
 
 local function PopUpsAppliesToSet(_, value)
-    if addon.Options.db.profile.EventReminders.PopUps.AppliesTo == value then return; end
-    addon.Options.db.profile.EventReminders.PopUps.AppliesTo = value
+    if addon.Settings.Get("eventReminders.popUps.appliesTo") == value then return; end
+    addon.Settings.Set("eventReminders.popUps.appliesTo", value)
     ApplyLocation()
 end
 
 local function PopUpsGrowDirectionSet(_, value)
-    if addon.Options.db.profile.EventReminders.PopUps.GrowDirection == value then return; end
-    addon.Options.db.profile.EventReminders.PopUps.GrowDirection = value
+    if addon.Settings.Get("eventReminders.popUps.growDirection") == value then return; end
+    addon.Settings.Set("eventReminders.popUps.growDirection", value)
     ApplyLocation()
 end
 
 local function PopUpsSpacingSet(_, value)
-    if addon.Options.db.profile.EventReminders.PopUps.Spacing == value then return; end
-    addon.Options.db.profile.EventReminders.PopUps.Spacing = value
+    if addon.Settings.Get("eventReminders.popUps.spacing") == value then return; end
+    addon.Settings.Set("eventReminders.popUps.spacing", value)
     ApplyLocation()
 end
 
 local function PopUpsOffsetXSet(_, value)
-    if addon.Options.db.profile.EventReminders.PopUps.OffsetX == value then return; end
-    addon.Options.db.profile.EventReminders.PopUps.OffsetX = value
+    if addon.Settings.Get("eventReminders.popUps.offsetX") == value then return; end
+    addon.Settings.Set("eventReminders.popUps.offsetX", value)
     ApplyLocation()
 end
 
 local function PopUpsOffsetYSet(_, value)
-    if addon.Options.db.profile.EventReminders.PopUps.OffsetY == value then return; end
-    addon.Options.db.profile.EventReminders.PopUps.OffsetY = value
+    if addon.Settings.Get("eventReminders.popUps.offsetY") == value then return; end
+    addon.Settings.Set("eventReminders.popUps.offsetY", value)
     ApplyLocation()
 end
 
@@ -185,7 +185,7 @@ end
 
 local function StartTimeAndEndTimePresetsGet()
     for i, format in next, startTimeAndEndTimeDateTimeFormats do
-        if format == addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime then
+        if format == addon.Settings.Get("eventReminders.dateTimeFormat.startTimeAndEndTime") then
             return i
         end
     end
@@ -193,8 +193,8 @@ local function StartTimeAndEndTimePresetsGet()
 end
 
 local function StartTimeAndEndTimeCustomSet(_, value)
-    if addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime == value then return; end
-    addon.Options.db.profile.EventReminders.DateTimeFormat.StartTimeAndEndTime = value
+    if addon.Settings.Get("eventReminders.dateTimeFormat.startTimeAndEndTime") == value then return; end
+    addon.Settings.Set("eventReminders.dateTimeFormat.startTimeAndEndTime", value)
     addon.Gui.EventReminderSideButtonSystem:Refresh()
 end
 
@@ -246,7 +246,7 @@ local function Rows()
                         desc = addon.L["Second Line Desc"]:KAF_AddDefaultValueText("eventReminders.timeDisplay.line2", timeDisplaysLine2),
                         values = timeDisplaysLine2,
                         set = TimeDisplayLine2Set,
-                        disabled = function() return addon.Options.db.profile.EventReminders.Compact; end
+                        disabled = function() return addon.Settings.Get("eventReminders.compact"); end
                     })
                 }
             },
@@ -304,13 +304,13 @@ local function Rows()
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                                 name = addon.L["In instances"],
                                 desc = addon.L["In Instances Desc"]:KAF_AddDefaultValueText("eventReminders.popUps.onLogin.showInInstances"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnLogin.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.popUps.onLogin.show") end
                             }),
                             ShowOnlyWhenTimeDataIsAvailable = addon.Settings.Row("eventReminders.popUps.onLogin.showOnlyWhenTimeDataIsAvailable", {
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                 name = addon.L["Only when time data is available"],
                                 desc = addon.L["Only With a Time Desc"]:KAF_AddDefaultValueText("eventReminders.popUps.onLogin.showOnlyWhenTimeDataIsAvailable"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnLogin.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.popUps.onLogin.show") end
                             })
                         }
                     },
@@ -327,13 +327,13 @@ local function Rows()
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                                 name = addon.L["In instances"],
                                 desc = addon.L["In Instances Desc"]:KAF_AddDefaultValueText("eventReminders.popUps.onReload.showInInstances"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnReload.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.popUps.onReload.show") end
                             }),
                             ShowOnlyWhenTimeDataIsAvailable = addon.Settings.Row("eventReminders.popUps.onReload.showOnlyWhenTimeDataIsAvailable", {
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                 name = addon.L["Only when time data is available"],
                                 desc = addon.L["Only With a Time Desc"]:KAF_AddDefaultValueText("eventReminders.popUps.onReload.showOnlyWhenTimeDataIsAvailable"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnReload.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.popUps.onReload.show") end
                             })
                         }
                     },
@@ -350,13 +350,13 @@ local function Rows()
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                                 name = addon.L["In instances"],
                                 desc = addon.L["In Instances Desc"]:KAF_AddDefaultValueText("eventReminders.popUps.onEventStart.showInInstances"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnEventStart.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.popUps.onEventStart.show") end
                             }),
                             ShowOnlyWhenTimeDataIsAvailable = addon.Settings.Row("eventReminders.popUps.onEventStart.showOnlyWhenTimeDataIsAvailable", {
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                 name = addon.L["Only when time data is available"],
                                 desc = addon.L["Only With a Time Desc"]:KAF_AddDefaultValueText("eventReminders.popUps.onEventStart.showOnlyWhenTimeDataIsAvailable"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnEventStart.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.popUps.onEventStart.show") end
                             })
                         }
                     },
@@ -379,7 +379,7 @@ local function Rows()
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                                 name = addon.L["In instances"],
                                 desc = addon.L["In Instances Desc"]:KAF_AddDefaultValueText("eventReminders.popUps.onLoginUpcoming.showInInstances"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnLoginUpcoming.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.popUps.onLoginUpcoming.show") end
                             })
                         }
                     },
@@ -396,7 +396,7 @@ local function Rows()
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                                 name = addon.L["In instances"],
                                 desc = addon.L["In Instances Desc"]:KAF_AddDefaultValueText("eventReminders.popUps.onReloadUpcoming.showInInstances"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnReloadUpcoming.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.popUps.onReloadUpcoming.show") end
                             })
                         }
                     },
@@ -413,7 +413,7 @@ local function Rows()
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                                 name = addon.L["In instances"],
                                 desc = addon.L["In Instances Desc"]:KAF_AddDefaultValueText("eventReminders.popUps.onEventStartUpcoming.showInInstances"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.PopUps.OnEventStartUpcoming.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.popUps.onEventStartUpcoming.show") end
                             })
                         }
                     },
@@ -524,13 +524,13 @@ local function Rows()
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                                 name = addon.L["In instances"],
                                 desc = addon.L["In Instances Desc"]:KAF_AddDefaultValueText("eventReminders.chatMessages.onLogin.showInInstances"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnLogin.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.chatMessages.onLogin.show") end
                             }),
                             ShowOnlyWhenTimeDataIsAvailable = addon.Settings.Row("eventReminders.chatMessages.onLogin.showOnlyWhenTimeDataIsAvailable", {
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                 name = addon.L["Only when time data is available"],
                                 desc = addon.L["Only With a Time Desc"]:KAF_AddDefaultValueText("eventReminders.chatMessages.onLogin.showOnlyWhenTimeDataIsAvailable"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnLogin.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.chatMessages.onLogin.show") end
                             })
                         }
                     },
@@ -547,13 +547,13 @@ local function Rows()
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                                 name = addon.L["In instances"],
                                 desc = addon.L["In Instances Desc"]:KAF_AddDefaultValueText("eventReminders.chatMessages.onReload.showInInstances"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnReload.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.chatMessages.onReload.show") end
                             }),
                             ShowOnlyWhenTimeDataIsAvailable = addon.Settings.Row("eventReminders.chatMessages.onReload.showOnlyWhenTimeDataIsAvailable", {
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                 name = addon.L["Only when time data is available"],
                                 desc = addon.L["Only With a Time Desc"]:KAF_AddDefaultValueText("eventReminders.chatMessages.onReload.showOnlyWhenTimeDataIsAvailable"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnReload.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.chatMessages.onReload.show") end
                             })
                         }
                     },
@@ -570,13 +570,13 @@ local function Rows()
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                                 name = addon.L["In instances"],
                                 desc = addon.L["In Instances Desc"]:KAF_AddDefaultValueText("eventReminders.chatMessages.onEventStart.showInInstances"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.chatMessages.onEventStart.show") end
                             }),
                             ShowOnlyWhenTimeDataIsAvailable = addon.Settings.Row("eventReminders.chatMessages.onEventStart.showOnlyWhenTimeDataIsAvailable", {
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(1.4),
                                 name = addon.L["Only when time data is available"],
                                 desc = addon.L["Only With a Time Desc"]:KAF_AddDefaultValueText("eventReminders.chatMessages.onEventStart.showOnlyWhenTimeDataIsAvailable"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnEventStart.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.chatMessages.onEventStart.show") end
                             })
                         }
                     },
@@ -599,7 +599,7 @@ local function Rows()
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                                 name = addon.L["In instances"],
                                 desc = addon.L["In Instances Desc"]:KAF_AddDefaultValueText("eventReminders.chatMessages.onLoginUpcoming.showInInstances"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnLoginUpcoming.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.chatMessages.onLoginUpcoming.show") end
                             })
                         }
                     },
@@ -616,7 +616,7 @@ local function Rows()
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                                 name = addon.L["In instances"],
                                 desc = addon.L["In Instances Desc"]:KAF_AddDefaultValueText("eventReminders.chatMessages.onReloadUpcoming.showInInstances"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnReloadUpcoming.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.chatMessages.onReloadUpcoming.show") end
                             })
                         }
                     },
@@ -633,7 +633,7 @@ local function Rows()
                                 order = OrderPP(), type = "toggle", width = AdjustedWidth(0.7),
                                 name = addon.L["In instances"],
                                 desc = addon.L["In Instances Desc"]:KAF_AddDefaultValueText("eventReminders.chatMessages.onEventStartUpcoming.showInInstances"),
-                                disabled = function() return not addon.Options.db.profile.EventReminders.ChatMessages.OnEventStartUpcoming.Show end
+                                disabled = function() return not addon.Settings.Get("eventReminders.chatMessages.onEventStartUpcoming.show") end
                             })
                         }
                     },

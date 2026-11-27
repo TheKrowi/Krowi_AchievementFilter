@@ -202,7 +202,7 @@ end
 -- One look at every watched POI: a POI that appeared is observed; one that went is forgotten until it is back
 function eventObserver.RunOnce()
     local items = Watched()
-    if not items or not addon.Options.db.profile.EventReminders.Enabled then
+    if not items or not addon.Settings.Get("eventReminders.enabled") then
         return -- reminders turned off in the session: nothing is read until they are back on
     end
     local now = source.Now()
@@ -236,7 +236,7 @@ end
 
 -- At login: Retail only, with event reminders on; once a session
 function eventObserver.Start()
-    if ticker or not addon.Util.IsMainline or not addon.Options.db.profile.EventReminders.Enabled then
+    if ticker or not addon.Util.IsMainline or not addon.Settings.Get("eventReminders.enabled") then
         return
     end
     ticker = C_Timer.NewTicker(runEvery, eventObserver.RunOnce)

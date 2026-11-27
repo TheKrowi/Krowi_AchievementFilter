@@ -871,7 +871,7 @@ end
 
 -- [[ Header ]]
 local function UpdatePointsDisplay()
-    if not addon.InGuildView() and addon.Options.db.profile.AchievementPoints.Format == 2 then
+    if not addon.InGuildView() and addon.Settings.Get("window.pointsFormat") == 2 then
         AchievementFrame.Header.Points:SetHeight(AchievementFrame.Header.Shield:GetHeight())
         AchievementFrame.Header.Points:SetPoint("TOP", AchievementFrame.Header.Shield)
         AchievementFrame.Header.Points:SetPoint("BOTTOM", AchievementFrame.Header.Shield)

@@ -54,7 +54,7 @@ local function FadeTo(popout, targetAlpha)
 		return
 	end
 
-	local duration = addon.Options.db.profile.Popout.FadeSpeed
+	local duration = addon.Settings.Get("popOut.fadeSpeed")
 	popout.FadeAnimGroup:Stop()
 	if duration <= 0 then
 		popout:SetAlpha(targetAlpha)
@@ -125,9 +125,9 @@ local function OnButtonEvent(button, event, ...)
 	end
 	RefreshButton(button)
 
-	if event == "ACHIEVEMENT_EARNED" and not wasAlreadyCompleted and addon.Options.db.profile.Popout.CloseOnEarn then
+	if event == "ACHIEVEMENT_EARNED" and not wasAlreadyCompleted and addon.Settings.Get("popOut.closeOnEarn") then
 		local popout = button:GetParent()
-		local delay = addon.Options.db.profile.Popout.CloseOnEarnDelay
+		local delay = addon.Settings.Get("popOut.closeOnEarnDelay")
 		if delay <= 0 then
 			popout.UserClosed = true
 			popout:Hide()
@@ -153,8 +153,8 @@ function KrowiAF_AchievementPopoutMixin:OnLoad()
 
 	Mixin(self, KrowiAF_SnapFrameMixin)
 	self:InitSnapping({
-		IsEnabled = function() return addon.Options.db.profile.Popout.EnableSnapping; end,
-		Threshold = function() return addon.Options.db.profile.Popout.SnapDistance; end,
+		IsEnabled = function() return addon.Settings.Get("popOut.enableSnapping"); end,
+		Threshold = function() return addon.Settings.Get("popOut.snapDistance"); end,
 		GetCandidates = function() return addon.Gui.AchievementPopout.OpenPopouts; end,
 		OnSnapped = function(self_, parent) addon.Gui.AchievementPopout:OnSnapped(self_, parent); end,
 		OnUnsnapped = function(self_) addon.Gui.AchievementPopout:OnUnsnapped(self_); end,

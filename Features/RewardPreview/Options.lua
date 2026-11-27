@@ -16,39 +16,39 @@ local function Redraw()
 end
 
 local function ShowRewardPreviewIconSet(_, value)
-    addon.Options.db.profile.Achievements.ShowRewardPreviewIcon = value
+    addon.Settings.Set("rewardPreview.showIcon", value)
     Redraw()
 end
 
 local function RewardPreviewMouseoverShowSet(_, value)
-    addon.Options.db.profile.Achievements.RewardPreviewMouseoverShow = value
+    addon.Settings.Set("rewardPreview.mouseoverShow", value)
 end
 
 local function RewardPreviewInvertVerticalRotationSet(_, value)
-    addon.Options.db.profile.Achievements.RewardPreviewInvertVerticalRotation = value
+    addon.Settings.Set("rewardPreview.invertVerticalRotation", value)
 end
 
 local function RewardPreviewMaxIndividualIconsSet(_, value)
-    addon.Options.db.profile.Achievements.RewardPreviewMaxIndividualIcons = value
+    addon.Settings.Set("rewardPreview.maxIndividualIcons", value)
     Redraw()
 end
 
 local function RewardPreviewDefaultWidthSet(_, value)
-    addon.Options.db.profile.Achievements.RewardPreviewDefaultWidth = value
+    addon.Settings.Set("rewardPreview.defaultWidth", value)
     if KrowiAF_RewardPreview and not KrowiAF_RewardPreview:IsShown() then
         KrowiAF_RewardPreview:SetWidth(value)
     end
 end
 
 local function RewardPreviewDefaultHeightSet(_, value)
-    addon.Options.db.profile.Achievements.RewardPreviewDefaultHeight = value
+    addon.Settings.Set("rewardPreview.defaultHeight", value)
     if KrowiAF_RewardPreview and not KrowiAF_RewardPreview:IsShown() then
         KrowiAF_RewardPreview:SetHeight(value)
     end
 end
 
 local function IconOff()
-    return not addon.Options.db.profile.Achievements.ShowRewardPreviewIcon
+    return not addon.Settings.Get("rewardPreview.showIcon")
 end
 
 -- Only the settings of the row icon follow it; rotation and size apply to every preview, also one opened from the

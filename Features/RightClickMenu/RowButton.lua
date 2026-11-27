@@ -31,7 +31,7 @@ end
 -- RowParts), made when the row is made while "Show Menu Button" is on (a reload setting). GW2_UI skins it through
 -- the row's RightClickMenuButton field (Plugins/GW2_UI/GW2_UI.lua).
 function feature.AddRowButton(row)
-    if not addon.Options.db.profile.RightClickMenu.ShowButtonOnAchievement then
+    if not addon.Settings.Get("rightClickMenu.showButtonOnAchievement") then
         return
     end
     local button = CreateFrame("Button", "$parentRightClickMenuButton", row, "KrowiAF_RightClickMenuButton_Template")

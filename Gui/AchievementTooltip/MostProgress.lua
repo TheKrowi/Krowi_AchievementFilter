@@ -4,11 +4,11 @@ tinsert(addon.Gui.AchievementTooltip.Sections, section)
 
 local numCriteria
 function section:CheckAdd(achievement)
-	if achievement.IsCompleted or achievement.IsAccountWide or addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters <= 0 then
+	if achievement.IsCompleted or achievement.IsAccountWide or addon.Settings.Get("tooltips.mostProgress.characters") <= 0 then
 		return
 	end
 	local state = achievement:GetObtainableState()
-	if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show or state == "Past" then
+	if not addon.Settings.Get("tooltips.objectivesProgress.show") or state == "Past" then
 		return
 	end
 	numCriteria = GetAchievementNumCriteria(achievement.Id)
@@ -110,7 +110,7 @@ local function AddName(character, achievement, thisRealm, names, numberOfNames)
 	if achievement.OtherFactionAchievementId and character.Faction and character.Faction ~= achievement.Faction then
 		name = name .. " (" .. addon.L[character.Faction] .. ")"
 	end
-	if addon.Options.db.profile.Tooltip.Achievements.MostProgress.AlwaysShowRealm or character.Realm ~= thisRealm then
+	if addon.Settings.Get("tooltips.mostProgress.alwaysShowRealm") or character.Realm ~= thisRealm then
 		name = name .. " - " .. character.Realm
 	end
 	name = name .. "|r"
@@ -127,7 +127,7 @@ local function GetNames(characters, achievement)
 	local names = ""
 	local numberOfNames = 0
 	for _, character in next, characters do
-		if numberOfNames >= addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters then
+		if numberOfNames >= addon.Settings.Get("tooltips.mostProgress.characters") then
 			return names
 		end
 		names, numberOfNames = AddName(character, achievement, thisRealm, names, numberOfNames)
