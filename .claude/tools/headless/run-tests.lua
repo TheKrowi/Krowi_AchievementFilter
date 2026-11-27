@@ -3007,8 +3007,8 @@ local settingsScenarios = {
     {Name = "sparse-save", Recorded = "compact=absent filters={MergeSmallCategories=false}", Target = "compact=absent filters={MergeSmallCategories=false}"},
     -- a new install's saved settings after the boot and the logout save: what the boot itself sets
     {Name = "first-install-boot",
-        Recorded = 'saved={Account={},Filters={ProfileOf={},Profiles={Default={}}},Options={ProfileOf={},Profiles={Default={["calendar.firstWeekDay"]=1,["tabs.order"]={Blizzard_AchievementUI={Achievements=4},Krowi_AchievementFilter={Achievements=1}},["window.microButtonTab"]=4}}}}',
-        Target = 'saved={Account={},Filters={ProfileOf={},Profiles={Default={}}},Options={ProfileOf={},Profiles={Default={["calendar.firstWeekDay"]=1,["tabs.order"]={Blizzard_AchievementUI={Achievements=4},Krowi_AchievementFilter={Achievements=1}},["window.microButtonTab"]=4}}}}'},
+        Recorded = 'saved={Account={},Filters={ProfileOf={},Profiles={Default={}}},Options={ProfileOf={},Profiles={Default={["calendar.firstWeekDay"]=1,["tabs.order"]={Blizzard_AchievementUI={Achievements=4},Krowi_AchievementFilter={Achievements=1}},["window.microButtonTab"]=4}}},Version=1}',
+        Target = 'saved={Account={},Filters={ProfileOf={},Profiles={Default={}}},Options={ProfileOf={},Profiles={Default={["calendar.firstWeekDay"]=1,["tabs.order"]={Blizzard_AchievementUI={Achievements=4},Krowi_AchievementFilter={Achievements=1}},["window.microButtonTab"]=4}}},Version=1}'},
     -- the rename table (Settings/Renames.lua, generate-renames.lua; docs/work/2026-11-25-settings-store): every path an
     -- option of the old code writes (fixtures/settings-option-paths-<client>.lua), every leaf of the old defaults
     -- (settings-old-defaults-<client>.lua) and every options value of the old file (settings-baseline-<client>.lua)

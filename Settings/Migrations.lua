@@ -9,10 +9,11 @@ addon.Settings.Migrations = {}
 local migrations = addon.Settings.Migrations
 local check = addon.Settings.Check
 
--- Off until the headless proof and the dry run on real files are green (plan step 11): the migration then runs at
--- every load and the addon runs on its result, but Version is not set and the old tables are not cleared, so a
--- half-built branch never clears a real account and the old tables stay the source.
-migrations.ClearOld = false
+-- On since the final build (plan step 12, Krowi 2026-11-27). Off, the migration runs at every load and the addon runs on its
+-- result, but Version is not set and the old tables are not cleared: how the branch ran until the headless proof, the
+-- dry run on real files and the in-game runs were green. The old variables stay on the .toc either way, so a player
+-- who returns months later is still migrated.
+migrations.ClearOld = true
 
 migrations.Log = {}       -- the runner's messages, printed by Diagnostics.Load when debug info is on
 migrations.Failed = nil   -- KrowiAF_Settings.MigrationFailed when the check failed: the chat line's cue
