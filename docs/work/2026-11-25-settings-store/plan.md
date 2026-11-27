@@ -61,6 +61,8 @@ Each step ends with the headless suites it reaches green and a commit. Nothing r
 - **Profile switches** now refresh through change events: the `profile-switch` scenario and the options suite's profile cases.
 - **Plugins and skins** (ElvUI, GW2_UI, EllesmereUI) disable rows through `KrowiAF_GetOptions`: the `plugins` suite.
 - **Memory**: the logout save and change events allocate nothing at rest; the `memory` suite.
+- **Load order.** The migration now runs before the Pop Out start-up log, which assumes it runs before saved-data changes (`Features/PopOut/AchievementPopout.lua:38-41`); step 6 checks it. Filters are built only after `Filters:InjectDefaults`, and map entries are never compared at load (spec, requirement 4).
+- **The harness** (spec, Design): eleven headless suites, `options-env.lua`, fourteen in-game suites and `Compare-SavedSettings.ps1` read the old layout. The shared fake-store helper comes in step 2, and each suite moves in the step that breaks it. The `unit-tests` lint stays green at every commit.
 - **The scope is large** (about 100 files). Steps 2-5 add without changing behaviour; step 6 onward is one branch, kept green per step. The PR is reviewed per step's commit.
 
 ## Proof

@@ -3,10 +3,10 @@ Spec: [spec.md](spec.md). Generated on 2026-11-27 from a headless whole-addon lo
 
 Checks the generator ran:
 - no two old paths share a new key;
-- every leaf of the old defaults tree (`KrowiAF_Options` defaults, every dynamic entry included) has a new key;
+- every leaf of the old defaults tree (`KrowiAF_Options` defaults, every dynamic entry included) has an explicit row, except `Categories.Excluded.CharacterSpecific`, a default no code reads or writes (Not carried over);
 - every saved option value in Krowi's six real saved-variable files (five Retail accounts, last written between 2024-05 and 2026-11, and one Mists) was matched against the explicit rows below, without catch-all rules: all have a row except three values of options removed in the past (Not carried over, at the end). A first run with catch-all rules (`^Achievements%.(.+)$` and the like) had given those three new keys, so `Settings/Renames.lua` holds explicit rows only.
 
-Kinds: **value** one setting; **map** one setting with an entry per id (event, tab, category and tab), only entries that differ from their default saved; **list** a fixed list, saved whole when any element differs; **object** a table edited in place, saved as its difference from the default.
+Kinds: **value** one setting; **map** one setting with an entry per id, one level (an event id) or two (an addon and a tab; a special category and a tab index), keyed exactly as the old file keys them, each entry with its own registered default, only entries that differ saved; **object** a table edited in place, saved as its difference from the default (the two five-element sort lists are objects, since AceDB saved them element by element, with holes).
 
 ## The options (options profiles, `KrowiAF_Options` today)
 
@@ -130,8 +130,8 @@ Kinds: **value** one setting; **map** one setting with an entry per id (event, t
 | `AchievementPoints.Tooltip.ShowFaction` | `tooltips.points.showFaction` | value | profile | both |
 | `AchievementPoints.Tooltip.MaxNumCharacters` | `tooltips.points.maxNumCharacters` | value | profile | both |
 | `AchievementPoints.Tooltip.KeepCurrentCharacter` | `tooltips.points.keepCurrentCharacter` | value | profile | both |
-| `AchievementPoints.Tooltip.Sort.Priority.1-5` | `tooltips.points.sortPriority` | list | profile | both |
-| `AchievementPoints.Tooltip.Sort.Reverse.1-5` | `tooltips.points.sortReverse` | list | profile | both |
+| `AchievementPoints.Tooltip.Sort.Priority.1-5` | `tooltips.points.sortPriority` | object | profile | both |
+| `AchievementPoints.Tooltip.Sort.Reverse.1-5` | `tooltips.points.sortReverse` | object | profile | both |
 
 ### Achievement guides
 
@@ -323,6 +323,7 @@ The filter menu and the search menu write into nested tables by key path (`Gui/W
 |---|---|
 | `EventReminders.WorldEvents.5177`, `.5178`, `.5210` in each options profile | Merged into 5175 by the Legion Assaults step (104.0) before the move, for a player returning from before 104.0 |
 | `Achievements.ShowDateCompletedTime`, `Achievements.ShowOtherFactionWarbandAsCompleted`, `Categories.WatchList.ApplyFilters` in an options profile | Options removed in the past; nothing reads them. Found in two of Krowi's six real files |
+| `Categories.Excluded.CharacterSpecific` (a default) | No code reads or writes it; found by the independent review |
 | `KrowiAF_SavedData.AlertSystem` | The pop-ups' old position copy (the 105.0 step) |
 | `KrowiAF_SavedData.Build`, `Version`, `Fixes`, `Verifications` | The DataIntegrityManager's bookkeeping; the runner's version number replaces it |
 | `KrowiAF_SavedData.CalendarEventsCache`, `CalendarEventsCacheTest`, `DFHashVerify`, `VerifyHash`, `ElvUISkin`, `GW2_UISkin`, `FeaturesTutorial`, `WatchedAchievements`, `ActiveEvents`, `DebugTable` | No code reads them any more (found in Krowi's real files, 2026-11-27); removed only if Krowi agrees at the spec gate |
