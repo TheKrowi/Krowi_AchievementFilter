@@ -4,7 +4,7 @@
 ## X-Acronym: KAF
 ## Version: 106.0
 ## Author: Krowi-Frostmane EU
-## SavedVariables: KrowiAF_DebugTable, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements, KrowiAF_MapVerifier
+## SavedVariables: KrowiAF_DebugTable, KrowiAF_Settings, KrowiAF_Options, KrowiAF_SavedData, KrowiAF_Filters, KrowiAF_SearchOptions, KrowiAF_Achievements, KrowiAF_MapVerifier
 ## OptionalDeps: BetterWardrobe, EllesmereUI, ElvUI, GW2_UI, InstanceAchievementTracker
 ## Notes: Filters your achievements.
 ## AddonCompartmentFuncOnEnter: KrowiAF_OnAddonCompartmentEnter

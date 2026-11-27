@@ -21,6 +21,6 @@ end
 addon.Features.Register({
     Name = "RightClickMenu",
     Title = addon.L["Right-click menu"],
-    Switch = "Features.RightClickMenu",
+    Switch = "rightClickMenu.enabled",
     Start = Start
 })

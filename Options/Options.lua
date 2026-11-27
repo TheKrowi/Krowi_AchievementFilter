@@ -1,5 +1,42 @@
 local _, addon = ...
+
+-- The options' shell (docs/work/2026-11-25-settings-store): what KAF used of Krowi_Util's Options/Options.lua, which it no
+-- longer loads, on the settings store instead of AceDB. The six pages register their tables here (OptionsTables), and
+-- each page's OnProfileChanged runs after an options profile switch, copy or reset.
+addon.Options = {}
 local options = addon.Options
+local title = addon.Metadata.Title
+
+options.OptionsTables = {}
+options.WidthMultiplier = addon.Util.IsModern and 200 / 170 or 1 -- 170 comes from AceConfigDialog-3.0.lua, 200 fits better on the screen in DF
+options.OptionsTable = {
+    name = title,
+    type = "group",
+    childGroups = "tab",
+    args = {}
+}
+
+-- An empty outline, so an outside call to KrowiAF.UtilApi.InjectOptions:AddDefaults cannot error; nothing reads it, every
+-- setting is declared in the store (requirement 2)
+options.Defaults = { profile = { Plugins = {}, Tabs = {}, AdjustableCategories = {}, EventReminders = {} } }
+
+function options:Load()
+    for _, optionsTable in next, self.OptionsTables do
+        if type(optionsTable.RegisterOptionsTable) == "function" then
+            optionsTable.RegisterOptionsTable()
+        end
+        if type(optionsTable.PostLoad) == "function" then
+            optionsTable.PostLoad()
+        end
+        if type(optionsTable.OnProfileChanged) == "function" then
+            addon.Settings.OnProfileChanged("options", optionsTable.OnProfileChanged)
+        end
+    end
+end
+
+string[addon.Metadata.Acronym .. "_InjectAddonName"] = function(str)
+    return str:K_ReplaceVars{addonName = addon.Metadata.Title}
+end
 
 -- The option tables by name: the six pages register here (General, Layout, Profiles, Plugins, Credits, Features) and
 -- KrowiAF_GetOptions, the plugins and a few options read them back. It replaced AceConfig's registry, which handed back

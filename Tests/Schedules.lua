@@ -579,14 +579,16 @@ end
 -- The toggles the scenarios read, on for the run whatever the player chose, and the player's own back after it, with
 -- the events' details read again at the real time
 local function ForceToggles()
-    local eventReminders = addon.Options.db.profile.EventReminders
     local saved = {}
+    if not addon.Util.IsMainline then -- Classic has neither world nor widget event toggles
+        return saved
+    end
     for _, scenario in ipairs(schedules.Scenarios) do
-        local toggles = scenario.Widget and eventReminders.WidgetEvents or eventReminders.WorldEvents
+        local key = scenario.Widget and "eventReminders.widgetEvents" or "eventReminders.worldEvents"
         for _, id in ipairs(scenario.Ids or {scenario.Event}) do
-            if toggles and saved[id] == nil then
-                saved[id] = {Toggles = toggles, Value = toggles[id], Widget = scenario.Widget}
-                toggles[id] = true
+            if saved[id] == nil then
+                saved[id] = {Key = key, Value = addon.Settings.GetEntry(key, id), Widget = scenario.Widget}
+                addon.Settings.SetEntry(key, id, true)
             end
         end
     end
@@ -595,7 +597,7 @@ end
 
 local function RestoreToggles(saved)
     for id, entry in next, saved do
-        entry.Toggles[id] = entry.Value
+        addon.Settings.SetEntry(entry.Key, id, entry.Value)
         local event = entry.Widget and WidgetEvent(id) or WorldEvent(id)
         if event then
             if entry.Widget then

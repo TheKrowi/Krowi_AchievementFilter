@@ -74,7 +74,7 @@ end
 addon.Features.Register({
     Name = "EventReminders",
     Title = addon.L["Event reminders"],
-    Switch = "EventReminders.Enabled",
+    Switch = "eventReminders.enabled",
     Start = Start,
     AfterAchievementUI = AfterAchievementUI
 })

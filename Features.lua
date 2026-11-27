@@ -6,8 +6,8 @@ local features = addon.Features
 -- while its files load; loading them makes nothing (no frame, hook, script, event, timer or slash command). At
 -- ADDON_LOADED, right after the options' AceDB is made, StartAll starts every feature whose switch is on in the current
 -- profile; one that is off never starts that session, and turning a switch on or off takes effect after a reload.
--- - Register{Name, Title, Switch, Start, OnNotStarted}: Switch is the saved path in the profile ("Features.<Name>", or a
---   setting the feature had before it was one), on by default; Start makes the feature's frames and adds its entries to
+-- - Register{Name, Title, Switch, Start, OnNotStarted}: Switch is the switch's key in the settings store ("popOut.enabled",
+--   or a setting the feature had before it was one), declared here and on by default; Start makes the feature's frames and adds its entries to
 --   the core's slots (Slots.lua); OnNotStarted lets a feature that stays off drop what its public API queued while the
 --   files loaded; AfterDataLoad runs once the login data load filled addon.Data.Achievements, only for a started feature
 --   (DataLoaded); AfterAchievementUI runs once Blizzard's achievement window has loaded, only for a started feature
@@ -65,18 +65,9 @@ local function Read(tbl, path)
     return tbl
 end
 
-local function Write(tbl, path, value)
-    local parts = Split(path)
-    for i = 1, #parts - 1 do
-        tbl[parts[i]] = tbl[parts[i]] or {}
-        tbl = tbl[parts[i]]
-    end
-    tbl[parts[#parts]] = value
-end
-
 -- The switch as saved in the current profile; on before the settings load
 local function IsOn(record)
-    return not addon.Settings.IsLoaded() or addon.Settings.Get(record.SwitchKey) ~= false
+    return not addon.Settings.IsLoaded() or addon.Settings.Get(record.Switch) ~= false
 end
 
 function features.Register(def)
@@ -88,12 +79,7 @@ function features.Register(def)
     end
     record.Registered = true
     tinsert(order, record)
-    Write(addon.Options.Defaults.profile, record.Switch, true)
-    -- the switch's key in the settings store (docs/work/2026-11-25-settings-store); found through the rename table until
-    -- the switches name their keys (plan step 8)
-    local _, key = addon.Settings.Check.Home(Split(record.Switch))
-    addon.Settings.Declare(key, {Type = "boolean", Default = true})
-    record.SwitchKey = key
+    addon.Settings.Declare(record.Switch, {Type = "boolean", Default = true})
     return record
 end
 
@@ -144,17 +130,6 @@ function features.AddOptions(name, def)
     tinsert(optionsOrder, record)
 end
 
--- Until AceDB leaves (docs/work/2026-11-25-settings-store, plan step 6): a feature's value also goes into AceDB's
--- defaults, at its old path
-local oldPathOf
-local function WriteOldDefault(key, value)
-    if not oldPathOf then
-        oldPathOf = {}
-        for path, newKey in next, addon.Settings.Renames.Values do oldPathOf[newKey] = path end
-    end
-    Write(addon.Options.Defaults.profile, assert(oldPathOf[key], "no old path for " .. key), value)
-end
-
 -- A feature's Defaults: a key's default value, or a table that declares the key (a map: {Kind = "map"})
 local function Declare(defaults)
     for key, value in next, defaults do
@@ -162,7 +137,6 @@ local function Declare(defaults)
             addon.Settings.Declare(key, value)
         else
             addon.Settings.Declare(key, {Type = type(value), Default = value})
-            WriteOldDefault(key, value)
         end
     end
 end
@@ -177,9 +151,9 @@ local function BuildFeatureOptions(record)
         Enabled = {
             order = 1, type = "toggle", width = "full",
             name = addon.L["Enable"],
-            desc = addon.L["Feature Switch Desc"]:K_ReplaceVars({feature = record.Title}):KAF_AddDefaultValueText(record.SwitchKey):K_AddReloadRequired(),
+            desc = addon.L["Feature Switch Desc"]:K_ReplaceVars({feature = record.Title}):KAF_AddDefaultValueText(record.Switch):K_AddReloadRequired(),
             get = function() return IsOn(record) end,
-            set = function(_, value) addon.Settings.Set(record.SwitchKey, value) end
+            set = function(_, value) addon.Settings.Set(record.Switch, value) end
         },
         Settings = {
             order = 2, type = "group", inline = true, name = "",
@@ -421,5 +395,5 @@ function features.GetSwitch(name)
 end
 
 function features.SetSwitch(name, value)
-    addon.Settings.Set(Get(name).SwitchKey, value and true or false)
+    addon.Settings.Set(Get(name).Switch, value and true or false)
 end

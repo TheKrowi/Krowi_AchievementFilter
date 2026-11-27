@@ -182,20 +182,19 @@ function gameEnv.IsRetail()
 end
 
 local function EventRemindersNote()
-    return ("the player's Refresh interval is %g s"):format(addon.Options.db.profile.EventReminders.RefreshInterval or 0)
+    return ("the player's Refresh interval is %g s"):format(addon.Settings.Get("eventReminders.refreshInterval") or 0)
 end
 
 -- How many world event POIs the refresh asks for and finds on their maps in this session, asked directly: a widget-timed
 -- event's POI on every refresh, another event's once it reports time left (Data/EventData.lua: GetWorldEventDetails)
 local function AskedPoisOnMap()
     local count = 0
-    local enabled = addon.Options.db.profile.EventReminders.WorldEvents
     for _, event in next, addon.Data.Events[KrowiAF.Enum.EventType.World] or {} do
         -- an event from Blizzard's event scheduler or on a fixed schedule is never asked (Features/EventReminders/Data/EventScheduler.lua,
         -- Features/EventReminders/Data/EventSchedules.lua)
         local asked = event.Source == nil
             and (addon.EventReminders.CustomWorldEventTimers.HasCustomTimer(event.Id) or C_AreaPoiInfo.GetAreaPOISecondsLeft(event.Id) ~= nil)
-        if enabled[event.Id] and asked and C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) then
+        if addon.Settings.GetEntry("eventReminders.worldEvents", event.Id) and asked and C_AreaPoiInfo.GetAreaPOIInfo(event.MapId, event.Id) then
             count = count + 1
         end
     end
@@ -231,7 +230,7 @@ end
 -- Event reminders' jobs run only while the feature started this session (Features.lua) and is still switched on, so a
 -- run with it off measures none of them and runs none of its code
 local function EventRemindersOff()
-    return not (addon.Features.IsStarted("EventReminders") and addon.Options.db.profile.EventReminders.Enabled)
+    return not (addon.Features.IsStarted("EventReminders") and addon.Settings.Get("eventReminders.enabled"))
 end
 
 function gameEnv.Jobs(name)
@@ -249,7 +248,7 @@ function gameEnv.Jobs(name)
         return {
             Call = probe.SweepOnce,
             PerMinute = probe.SweepsPerMinute,
-            Note = not addon.Options.db.profile.EnableTaintDiagnostics and "taint diagnostics are off, so the sweep does not run in this session" or nil
+            Note = not addon.Settings.Get("advanced.taintDiagnostics") and "taint diagnostics are off, so the sweep does not run in this session" or nil
         }
     end
     if name == "EventRefresh" or name == "EventRefreshNoPoiOnMap" or name == "EventRefreshPoiOnMap" or name == "ActiveWidgetTimers" then
@@ -335,10 +334,9 @@ local function ObserveSession(observations)
     local live = GetAddOnMemoryUsage(addonName)
     tinsert(observations, ("the addon held %.0f KB; a full collection freed %.0f KB of garbage, %.0f KB is live"):format(before, before - live, live))
 
-    local eventReminders = addon.Options.db.profile.EventReminders
-    if addon.Features.IsStarted("EventReminders") and eventReminders.Enabled then -- the feature runs this session (Features.lua)
+    if addon.Features.IsStarted("EventReminders") and addon.Settings.Get("eventReminders.enabled") then -- the feature runs this session (Features.lua)
         local perCall, method = AllocatedWarm(memory.RefreshEvents, 3)
-        local interval = math.max(1, eventReminders.RefreshInterval or 1)
+        local interval = math.max(1, addon.Settings.Get("eventReminders.refreshInterval") or 1)
         tinsert(observations, ("event-reminder refresh: %.0f bytes a run, every %g s, %.1f KB a minute (%s)"):format(perCall, interval, perCall * 60 / interval / kilobyte, method))
         ObserveEventParts(observations)
         if addon.Util.IsMainline and C_EventScheduler and WorldMapFrame and WorldMapFrame:IsShown() then
@@ -377,13 +375,12 @@ end
 -- What the background jobs allocate a minute at the player's own settings, for comparison with the idle minute
 local function JobsPerMinute()
     local total = 0
-    if addon.Options.db.profile.EnableTaintDiagnostics then
+    if addon.Settings.Get("advanced.taintDiagnostics") then
         local probe = addon.Diagnostics.TaintProbe
         total = total + AllocatedWarm(probe.SweepOnce, 10) * probe.SweepsPerMinute
     end
-    local eventReminders = addon.Options.db.profile.EventReminders
-    if addon.Features.IsStarted("EventReminders") and eventReminders.Enabled then -- the feature runs this session (Features.lua)
-        total = total + AllocatedWarm(memory.RefreshEvents, 10) * 60 / math.max(1, eventReminders.RefreshInterval or 1)
+    if addon.Features.IsStarted("EventReminders") and addon.Settings.Get("eventReminders.enabled") then -- the feature runs this session (Features.lua)
+        total = total + AllocatedWarm(memory.RefreshEvents, 10) * 60 / math.max(1, addon.Settings.Get("eventReminders.refreshInterval") or 1)
     end
     return total
 end

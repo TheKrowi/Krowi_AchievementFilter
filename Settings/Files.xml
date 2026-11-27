@@ -4,5 +4,4 @@
     <Script file="Check.lua" />
     <Script file="Migrations.lua" />
     <Script file="Declarations.lua" />
-    <Script file="AceDBMode.lua" /> <!-- until the switch, docs/work/2026-11-25-settings-store plan step 9 -->
 </Ui>

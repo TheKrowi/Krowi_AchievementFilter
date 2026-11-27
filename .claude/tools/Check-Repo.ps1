@@ -874,16 +874,10 @@ Write-Timing 'settings-direct'
 # --- settings-keys: every key code names is declared, every declaration is used ----------------------------------
 # docs/work/2026-11-25-settings-store: a typo in a key is a Lua error only when that line runs; this finds it at once.
 # Declared: Declare("<key>" anywhere, a feature's Defaults ("[`"<key>`"] =" in Features/*/Options.lua), and each feature
-# switch (Switch = "<old path>", through Settings/Renames.lua, until the switches name their keys). Used: the literal
+# switch (Switch = "<key>", which the registry declares). Used: the literal
 # first argument of addon.Settings' calls and of KAF_AddDefaultValueText, an On = "<key>" field, and the keys code
 # builds from a prefix below. A swapped key is not found here: the settings suite's renames-by-option and
 # rows-round-trip catch that. Always tree-wide.
-$settingsRenameOf = @{}
-if ($fileBytes.ContainsKey('Settings/Renames.lua')) {
-    foreach ($m in [regex]::Matches([Text.Encoding]::UTF8.GetString($fileBytes['Settings/Renames.lua']), '(?m)^\s*\["([^"]+)"\]\s*=\s*"([^"]+)",')) {
-        $settingsRenameOf[$m.Groups[1].Value] = $m.Groups[2].Value
-    }
-}
 # Keys code builds from a prefix: the pop-ups' fields and triggers (Features/EventReminders/AlertSystem.lua), the Pop
 # Out's rows (Features/PopOut/Options.lua, Key), the remembered positions (Gui/MovableFrames.lua), the guide options'
 # setter (Options/Layout.lua) and the event toggles' maps (EventOptions.lua, EventsKey; Menu/StopTracking.lua)
@@ -903,11 +897,9 @@ foreach ($rel in $ownLuaFiles) {
         if ($rel -like 'Features/*/Options.lua') {
             foreach ($m in [regex]::Matches($code, '^\s*\["([a-z]\w*(?:\.\w+)+)"\]\s*=')) { $settingsDeclared[$m.Groups[1].Value] = "${rel}:$lineNo" }
         }
-        foreach ($m in [regex]::Matches($code, '\bSwitch\s*=\s*"([^"]+)"')) {
-            if ($settingsRenameOf.ContainsKey($m.Groups[1].Value)) {
-                $settingsDeclared[$settingsRenameOf[$m.Groups[1].Value]] = "${rel}:$lineNo"
-                $settingsUsed[$settingsRenameOf[$m.Groups[1].Value]] = $true # the registry reads it (Features.lua, IsOn)
-            }
+        foreach ($m in [regex]::Matches($code, '\bSwitch\s*=\s*"([a-z]\w*(?:\.\w+)+)"')) {
+            $settingsDeclared[$m.Groups[1].Value] = "${rel}:$lineNo"
+            $settingsUsed[$m.Groups[1].Value] = $true # the registry declares and reads it (Features.lua, IsOn)
         }
         if ($rel.StartsWith('Settings/')) { continue }
         foreach ($m in [regex]::Matches($code, '\b[Ss]ettings\.(?:Get|Set|Reset|GetEntry|SetEntry|HasEntry|RemoveEntries|Entries|EntryDefault|RegisterEntryDefault|GetObject|OnChange|Row|Declaration)\(\s*"([^"]+)"|KAF_AddDefaultValueText\(\s*"([^"]+)"|\bOn\s*=\s*"([a-z]\w*(?:\.\w+)+)"')) {

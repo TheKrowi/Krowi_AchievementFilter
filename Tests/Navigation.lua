@@ -293,7 +293,7 @@ function gameEnv.Setup()
     if not Arrows() then
         return false, "the browsing history buttons do not exist (Track Achievement Browser History was off at login)"
     end
-    if not addon.Options.db.profile.TrackAchievementBrowserHistory then
+    if not addon.Settings.Get("window.trackBrowsingHistory") then
         return false, "Track Achievement Browser History is off"
     end
     if not addon.InjectOptions:GetTable(optionPath) then

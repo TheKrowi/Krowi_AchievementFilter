@@ -18,7 +18,7 @@ end
 addon.Features.Register({
     Name = "RewardPreview",
     Title = addon.L["Reward preview"],
-    Switch = "Features.RewardPreview",
+    Switch = "rewardPreview.enabled",
     Start = Start,
     OnNotStarted = function() feature.DropQueue() end
 })

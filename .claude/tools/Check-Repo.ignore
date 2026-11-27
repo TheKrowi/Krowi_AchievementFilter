@@ -5,8 +5,4 @@ files-xml Benchmark.lua                  # dev tool, added to the .toc by hand w
 files-xml Api/ApiDocumentation.lua       # documentation only
 # Line endings owned by external tools
 line-endings Localization/*.lua          # CurseForge exports these with LF
-line-endings Krowi_AchievementFilter.toc # written by the addon manager with LF# The settings store (docs/work/2026-11-25-settings-store): files that still reach AceDB until the switch, plan step 9
-settings-direct Filters.lua                      # makes and uses the filters' AceDB database until the switch
-settings-direct SearchOptions.lua                # makes the search options' AceDB database until the switch
-settings-direct Tests/*.lua                      # the in-game suites set settings by old path until the switch
-settings-keys Settings/Declarations.lua minimap.icon # its reader is the minimap icon's hand-over at the switch
+line-endings Krowi_AchievementFilter.toc # written by the addon manager with LF

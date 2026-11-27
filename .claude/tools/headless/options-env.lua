@@ -2,7 +2,7 @@
 -- Headless options environment: the whole addon loaded the way the game loads it, for the options suite.
 --
 -- client-env.lua loads only the data files into a namespace it builds by hand. The options need the
--- libraries too (LibStub, Krowi_Util with LibMan and AceLocale, AceDB), which build the addon's namespace
+-- libraries too (LibStub, Krowi_Util with LibMan and AceLocale), which build the addon's namespace
 -- themselves, so this module loads every file of the client's TOC instead, with WoW's globals stubbed. The
 -- serializers and Tests/ are not loaded; LibStub hands back a stub for a library Libs/ doesn't have, so a call to a
 -- removed library errors only in the lint's library-names rule, not here. It then runs the ADDON_LOADED steps of Krowi_AchievementFilter.lua that build and
@@ -13,14 +13,15 @@
 --   ctx.addon.Options.OptionsTable, ctx.addon.Options.Registry.Get(appName), ctx.Errors
 --
 -- optionsEnv.New(root, client, opts) takes options for a suite that boots the addon its own way (the features suite):
---   opts.Profile    the Default profile's saved values before Options:Load, as a player's saved variables would hold them
+--   opts.Profile    the Default options profile in AceDB's old shape, as a player's saved variables held it; the migration
+--                   moves it into the settings store at the first step
 --   opts.SavedVariables  { [name] = table }: whole saved variables (KrowiAF_Options, KrowiAF_Filters, ...) as a player's
 --                   files hold them, set after the files ran, where the game sets them (the settings suite's old file)
 --   opts.XmlFrames  every top-level named frame an XML file declares without virtual="true" becomes a stub global where
 --                   the file loads, as the game makes such a frame at file load
 --   opts.Watch      Watch(file, what) for everything a file makes while it loads: a frame (CreateFrame or XML), a hook
 --                   (hooksecurefunc, HookScript), a script, an event, a timer or a slash command
--- ctx.Logout() strips every AceDB database's defaults as the game's logout does, before the files are written
+-- ctx.Logout() runs the settings store's logout save, as the game's logout does before the files are written
 
 local M = {}
 local cache = {}
@@ -401,6 +402,12 @@ local function New(root, client, opts)
         return ok
     end
     if addon.EventReminders and addon.EventReminders.EventScheduler then addon.EventReminders.EventScheduler.GetName = function() return nil end end
+    -- A suite's own options profile, as AceDB kept one: the migration moves it into the settings store
+    if opts.Profile then
+        rawset(env, "KrowiAF_Options", { profileKeys = { ["Player - Realm"] = "Default" }, profiles = { Default = opts.Profile } })
+    end
+    -- The saved variables' migrations and the settings store on their result, first (Settings/Migrations.lua)
+    Step("Settings.Migrations.Load", function() addon.Settings.Migrations.Load() end)
     Step("Diagnostics.Load", function() addon.Diagnostics.Load() end)
     Step("LoadTabs", function() KrowiAF.LoadTabs() end)
     Step("SpecialCategories.InjectDynamicOptions", function() addon.SpecialCategories.InjectDynamicOptions() end)
@@ -413,10 +420,7 @@ local function New(root, client, opts)
     Step("AchievementFrameHeader:InjectDynamicOptions", function() addon.Gui.AchievementFrameHeader:InjectDynamicOptions() end)
     Step("Filters:InjectDefaults", function() addon.Filters:InjectDefaults() end)
     Step("PluginsApi:InjectPluginOptions", function() KrowiAF.PluginsApi:InjectPluginOptions() end)
-    if opts.Profile then
-        rawset(env, "KrowiAF_Options", { profileKeys = { ["Player - Realm"] = "Default" }, profiles = { Default = opts.Profile } })
-    end
-    Step("Options:Load", function() addon.Options:Load(true) end)
+    Step("Options:Load", function() addon.Options:Load() end)
     -- The feature registry starts the features that are on (Features.lua), right after the options as in the game
     if addon.Features and type(addon.Features.StartAll) == "function" then
         Step("Features.StartAll", function() addon.Features.StartAll() end)
@@ -465,26 +469,11 @@ local function New(root, client, opts)
     ctx.NewInstall = { Y = C_KeyBindings.GetBindingByKey("Y"), Pending = setUp and setUp.YBindingPending }
     ctx.Bindings = {}
 
-    -- PLAYER_LOGOUT as AceDB handles it before the game writes the files (AceDB-3.0.lua, logoutHandler): every
-    -- database drops the values equal to its defaults and its empty sections. The load's frames are stubs, so AceDB's
-    -- own handler never registered; this is its first loop (KAF's databases have no namespaces, the second loop's work)
+    -- PLAYER_LOGOUT as the settings store handles it before the game writes the files: its logout save writes every
+    -- live object back into its profile (Settings/Store.lua, Save). The load's frames are stubs, so the store's own handler
+    -- never registered
     function ctx.Logout()
-        local AceDB = rawget(env, "LibStub")("AceDB-3.0")
-        for db in pairs(AceDB.db_registry) do
-            db.callbacks:Fire("OnDatabaseShutdown", db)
-            db:RegisterDefaults(nil)
-            local sv = rawget(db, "sv")
-            for section in pairs(rawget(db, "keys")) do
-                if rawget(sv, section) then
-                    if section ~= "global" and (section ~= "profiles" or rawget(db, "parent")) then
-                        for key in pairs(sv[section]) do
-                            if not next(sv[section][key]) then sv[section][key] = nil end
-                        end
-                    end
-                    if not next(sv[section]) then sv[section] = nil end
-                end
-            end
-        end
+        addon.Settings.Save()
     end
     return ctx
 end

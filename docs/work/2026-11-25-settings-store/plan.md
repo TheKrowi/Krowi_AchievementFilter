@@ -76,6 +76,21 @@ Each step ends with the headless suites it reaches green and a commit. Nothing r
      - **The lint rules.** `settings-direct` and `settings-keys` are added. A deliberate typo in one key fails `settings-keys` at once. Exceptions until the switch, in `Check-Repo.ignore`: `Filters.lua`, `SearchOptions.lua`, the in-game `Tests/`, and `minimap.icon`, which has no reader until the minimap hand-over.
      - Left for the switch: `Filters.lua`'s and `SearchOptions.lua`'s own databases, the Profiles section in `Options/Window/Source.lua`, and the DataIntegrityManager (step 10).
 9. **The switch.** The runner and the store load first at `ADDON_LOADED`; `KrowiAF_Settings` on the `.toc`; KAF's `Options/Options.lua`; `Filters.lua` and `SearchOptions.lua` on their objects; the Profiles section on the store's two profile systems; the minimap icon hand-over; `ComputeDefault` on `WithDefaults`; `Settings/AceDBMode.lua` and AceDB leave. The settings suite's AceDB scenarios give way to the spec's whole-addon ones: `renames-by-option` at its target, `old-file-same-values` through the migration, `profile-switch`, `filter-switch` (the search toggles follow), account scope, objects bound to their profile, `sort-lists`, `map-entries`, `runner-quiet`, `sparse-save`, `first-install`.
+   - Done 2026-11-27; every headless suite green, the settings suite with no target open.
+     - **Load.** `Migrations.Load` runs the migrations and loads the store first at `ADDON_LOADED`; `Diagnostics.Load` prints the runner's log when debug info is on; `KrowiAF_Settings` is on the `.toc`.
+     - **Options.** KAF's own options shell (`Options/Options.lua`) replaces Krowi_Util's: the pages' `OnProfileChanged` handlers run on the store's options profile events. `Options/Defaults.lua` is gone; `addon.Options.Defaults` is an empty outline.
+     - **Filters and search.** `Filters.lua` and `SearchOptions.lua` run on their objects. A filter profile switch re-points every tab and marks the search stale.
+     - **Window and icon.** The Profiles section and `ComputeDefault` are on the store. The minimap icon gets its two settings for the one `Icon:Load` call.
+     - **What left.** AceDB leaves `Libs/`, `Settings/AceDBMode.lua` goes, and so do KAF's own `AddDefaults` calls. The feature switches name their keys (`Switch = "popOut.enabled"`).
+     - **Harness.** `options-env.lua` boots through the runner and the store, and logs out through the store's save. The suites that fake an old profile get a real store migrated from it (`settings-store.lua`, `FromFakeProfile`). The in-game suites in `Tests/` use the interface; the Pictures suite still restores a value a run before kept under its old name.
+     - **The settings suite on the switched build.**
+       - Proofs: `old-file-same-values` (the old file migrated at boot reads back the same by option, its line unchanged), `renames-by-option` at its target (359 and 255 options), `rows-round-trip` and `defaults-unchanged` (by key, formerly `defaults-by-key`).
+       - New: `profile-switch` (both systems, events, account scope, search stale), `sort-lists`, `runner-quiet`, `sparse-save`, `first-install-boot`.
+       - Retired with AceDB: the hash `defaults-unchanged`, `saved-keys-unchanged`, `first-install-profile` and `acedb-mode`.
+     - **Two findings.**
+       - `SavedKeys` reported a map new as a whole as one path; it now walks its leaves.
+       - The old fixture lacks the Legion mark every file since 104 holds (its writer never ran the DataIntegrityManager). Without it the migration merges the Legion toggles, so `old-file-same-values` gives the file that mark.
+     - **Owed before step 11:** `Compare-SavedSettings.ps1` and `saved-settings.lua` learn the new layout. `write-settings-fixture.lua` and `write-option-paths.lua` no longer run (no AceDB); their fixtures are frozen, as intended.
 10. **The DataIntegrityManager's retirement**, the import fix, the dead `KrowiAF_SavedData` keys, the failure line in 11 languages, the jobs list. The real-file dry run again.
 11. **In game, clearing still off.**
     - Before the first deploy: copy the six saved files to the scratchpad and take `Compare-SavedSettings.ps1 -Snapshot`.

@@ -105,7 +105,9 @@ local function Diff(before, after, path, out)
         local at = path .. "." .. tostring(key)
         if type(value) == "table" and type(old) == "table" then
             Diff(old, value, at, out)
-        elseif value ~= old and not (type(value) == "table" and next(value) == nil and old == nil) then
+        elseif type(value) == "table" and old == nil then
+            Diff({}, value, at, out) -- a table new as a whole (the settings store saves a map only once an entry differs): its leaves
+        elseif value ~= old then
             out[#out + 1] = at
         end
     end

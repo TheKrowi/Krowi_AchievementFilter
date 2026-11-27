@@ -45,19 +45,19 @@ function M.New(repoRoot, opts)
     return s
 end
 
--- The store's interface in its AceDB mode (Settings/AceDBMode.lua) over a suite's fake addon.Options.db, until the
--- switch (docs/work/2026-11-25-settings-store, plan steps 8-9): the suites that fake an old-shaped profile keep it, and
--- the code they run, moved to addon.Settings, reads and writes that same table. Loads Store.lua, Renames.lua,
--- Declarations.lua and AceDBMode.lua into addon; every old option path the core does not declare (the features' and
--- the plugins' settings, declared at ADDON_LOADED in the game) is declared with no default, so a read of one the fake
--- does not hold gives nil, as the fake did.
-function M.AceDBMode(repoRoot, addon)
+-- A real settings store made from a suite's fake old-shaped options profile (addon.Options.db.profile, as the suites
+-- built one for AceDB; docs/work/2026-11-25-settings-store): Store.lua, Renames.lua, Check.lua and Declarations.lua load
+-- into addon, the fake moves into the store through the migration's own Check.Move, and the store loads on it for the
+-- character "Player - Realm". Every old option path the core does not declare (the features' and the plugins' settings,
+-- declared at ADDON_LOADED in the game) is declared with no default, so a key the fake does not hold reads nil, as the
+-- fake did. A map's table with a metatable (a fake that answers every id) is kept as it is, so it answers as before.
+function M.FromFakeProfile(repoRoot, addon)
     repoRoot = repoRoot:gsub("\\", "/"):gsub("/$", "")
     addon.Settings = nil
-    for _, file in ipairs({ "Store", "Renames", "Declarations", "AceDBMode" }) do
+    for _, file in ipairs({ "Store", "Renames", "Check", "Declarations" }) do
         assert(loadfile(repoRoot .. "/Settings/" .. file .. ".lua"))("Krowi_AchievementFilter", addon)
     end
-    local settings = addon.Settings
+    local settings, check = addon.Settings, addon.Settings.Check
     for _, key in next, settings.Renames.Values do
         if not settings.Declaration(key) then settings.Declare(key, {}) end
     end
@@ -67,9 +67,21 @@ function M.AceDBMode(repoRoot, addon)
     for _, key in ipairs({ "filters", "search" }) do
         if not settings.Declaration(key) then settings.Declare(key, { Kind = "object", System = "filters" }) end
     end
+    local options = rawget(addon, "Options")
+    local db = type(options) == "table" and rawget(options, "db")
+    local profile = type(db) == "table" and db.profile or {}
+    local context = { Character = "Player - Realm" }
+    local old = check.Old({ Options = { profiles = { Default = profile }, profileKeys = {} } }, { Default = profile }, context)
+    local saved = { Account = {}, Options = { Profiles = { Default = {} }, ProfileOf = {} }, Filters = { Profiles = {}, ProfileOf = {} } }
+    check.Records(old, function(record, value) check.Move(saved, record, value, old) end)
+    for _, map in ipairs(settings.Renames.Maps) do
+        local t = profile
+        for _, name in ipairs(map.Path) do t = type(t) == "table" and rawget(t, name) or nil end
+        if type(t) == "table" and getmetatable(t) and not map.Leaf then saved.Options.Profiles.Default[map.Key] = t end
+    end
+    settings.Load(saved, context.Character)
     return settings
 end
-
 -- The migration runner on its own: Settings/Renames.lua, Check.lua and Migrations.lua in a fresh namespace. Returns
 -- addon.Settings (Renames, Check, Migrations); migrations.Run(sv, context) works on plain tables, no game needed.
 function M.Runner(repoRoot)

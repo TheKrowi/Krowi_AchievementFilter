@@ -171,7 +171,7 @@ end
 
 local snapshot
 function gameEnv.Setup(observations)
-    if not addon.Options.db.profile.ShowWorldmapIcon then
+    if not addon.Settings.Get("worldMap.showIcon") then
         return false, "Show world map icon is off (Options > General)"
     end
     if addon.Gui.WorldMapButton:GetParent() ~= WorldMapFrame then

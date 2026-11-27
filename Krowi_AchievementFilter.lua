@@ -19,6 +19,9 @@ loadHelper:RegisterEvent("PLAYER_ENTERING_WORLD")
 loadHelper:RegisterEvent("ACHIEVEMENT_EARNED")
 
 local function LoadKrowi_AchievementFilter()
+    -- The saved variables' migrations, then the settings store on their result, before anything reads a setting
+    -- (Settings/Migrations.lua, docs/work/2026-11-25-settings-store)
+    addon.Settings.Migrations.Load()
     addon.Diagnostics.Load()
 
     KrowiAF.LoadTabs()
@@ -35,12 +38,15 @@ local function LoadKrowi_AchievementFilter()
 
     KrowiAF.PluginsApi:LoadPlugins()
 
-    addon.Data.DataIntegrityManager.Load()
     addon.Data.SavedData.Load()
 
     addon.Gui:LoadWithAddon()
 
+    -- Krowi_Util's Icon:Load reads its two settings from addon.Options.db, once: it gets exactly those for that call,
+    -- the live minimap.icon table LibDBIcon keeps and writes into (docs/work/2026-11-25-settings-store, Design)
+    addon.Options.db = { profile = { Minimap = addon.Settings.GetObject("minimap.icon"), ShowMinimapIcon = addon.Settings.Get("minimap.showIcon") } }
     addon.Icon:Load()
+    addon.Options.db = nil
     addon.BrowsingHistory:Load()
 
     -- addon.TooltipData.Load(); -- Temporarily disabled (Issue #300 taint diagnostic build): the 99.4 securecall fix here was confirmed insufficient by a later user report; disabling entirely to confirm/deny this is the taint source before attempting another fix

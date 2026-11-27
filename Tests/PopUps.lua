@@ -258,7 +258,7 @@ end
 -- Runs observe with the achievement window closed, then puts the anchor and the window back as they were
 local function SideButtonScenario(env, observe)
     -- the feature not started this session (Features.lua), or switched off since (the reminders-off scenario)
-    if not (addon.Features.IsStarted("EventReminders") and addon.Options.db.profile.EventReminders.Enabled) then
+    if not (addon.Features.IsStarted("EventReminders") and addon.Settings.Get("eventReminders.enabled")) then
         return nil, "event reminders are off"
     end
     local anchor = GetOption(sideButtonsAnchor)
@@ -533,17 +533,17 @@ popUps.Scenarios = {
             if not env.Reload then
                 return nil, "headless only: switches the profile"
             end
-            local db = addon.Options.db
-            local current = db:GetCurrentProfile()
+            local settings = addon.Settings
+            local current = settings.CurrentProfile("options")
             local test = "KrowiAF_Tests_PopUps"
-            db:SetProfile(test)
-            db.profile.EventReminders.PopUps.OffsetY = 400 -- this profile's own position, as a player's saved one
-            db:SetProfile(current)
+            settings.SetProfile("options", test)
+            settings.Set("eventReminders.popUps.offsetY", 400) -- this profile's own position, as a player's saved one
+            settings.SetProfile("options", current)
             local before = Anchor(AlertFrame) .. Anchor(System().Holder)
-            db:SetProfile(test)
+            settings.SetProfile("options", test)
             local after = Anchor(AlertFrame) .. Anchor(System().Holder)
-            db:SetProfile(current)
-            db:DeleteProfile(test, true)
+            settings.SetProfile("options", current)
+            settings.DeleteProfile("options", test, true)
             return after ~= before and "moves" or "stays"
         end,
         -- moved at once until 106; since then every options-profile action ends with the reload prompt and the pop-ups
@@ -591,11 +591,10 @@ popUps.Scenarios = {
             if not env.Reload then
                 return nil, "headless only: loads the addon again with event reminders off"
             end
-            local reminders = addon.Options.db.profile.EventReminders
-            reminders.Enabled = false
+            addon.Settings.Set("eventReminders.enabled", false)
             env.Reload()
             local owners = ToastOwners()
-            reminders.Enabled = true
+            addon.Settings.Set("eventReminders.enabled", true)
             env.Reload()
             return owners
         end,
@@ -683,9 +682,8 @@ popUps.Scenarios = {
             if not env.Reload then
                 return nil, "headless only: logs in again before the achievement window loads"
             end
-            local reminders = addon.Options.db.profile.EventReminders
-            local anchor = reminders.SideButtonsAnchor
-            reminders.SideButtonsAnchor = worldMap
+            local anchor = addon.Settings.Get("eventReminders.sideButtonsAnchor")
+            addon.Settings.Set("eventReminders.sideButtonsAnchor", worldMap)
             env.Reload()
             local ok, got = pcall(function()
                 SetOption(sideButtonsAnchor, achievementWindow)
@@ -695,7 +693,7 @@ popUps.Scenarios = {
                 end))
             end)
             env.CloseAnchor("AchievementFrame")
-            reminders.SideButtonsAnchor = anchor
+            addon.Settings.Set("eventReminders.sideButtonsAnchor", anchor)
             env.Reload()
             if not ok then
                 error(got, 0)
@@ -712,13 +710,13 @@ popUps.Scenarios = {
                 return nil, "headless only: switches the profile"
             end
             return SideButtonScenario(env, function()
-                local db = addon.Options.db
-                local current = db:GetCurrentProfile()
+                local settings = addon.Settings
+                local current = settings.CurrentProfile("options")
                 local test = "KrowiAF_Tests_SideButtons"
                 SetOption(sideButtonsAnchor, achievementWindow)
-                db:SetProfile(test)
-                db.profile.EventReminders.SideButtonsAnchor = worldMap -- this profile's own anchor, as a player's saved one
-                db:SetProfile(current)
+                settings.SetProfile("options", test)
+                settings.Set("eventReminders.sideButtonsAnchor", worldMap) -- this profile's own anchor, as a player's saved one
+                settings.SetProfile("options", current)
                 OpenWindow(env)
                 local alertSystem = addon.Gui.EventReminderAlertSystem
                 local unregister, removed = alertSystem.UnregisterOnRefresh, false
@@ -727,12 +725,12 @@ popUps.Scenarios = {
                     return unregister(self, key, ...)
                 end
                 local ok, err = pcall(function()
-                    db:SetProfile(test)
+                    settings.SetProfile("options", test)
                     CloseWindow(env)
                 end)
                 alertSystem.UnregisterOnRefresh = unregister
-                db:SetProfile(current)
-                db:DeleteProfile(test, true)
+                settings.SetProfile("options", current)
+                settings.DeleteProfile("options", test, true)
                 if not ok then
                     error(err, 0)
                 end

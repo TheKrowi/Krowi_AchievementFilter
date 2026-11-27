@@ -416,11 +416,11 @@ function gameEnv.Setup(scenario, observations)
         PlaceCategoryButton()
         return true
     end
-    if not addon.Options.db.profile.Tooltip.Achievements.ObjectivesProgress.Show then
+    if not addon.Settings.Get("tooltips.objectivesProgress.show") then
         return false, "Objectives progress is off in the tooltip options"
     end
     if scenario.Kind == "most-progress" then -- leaves the global GetItemInfo alone: only the transmog scenario needs it gone
-        if addon.Options.db.profile.Tooltip.Achievements.MostProgress.Characters <= 0 then
+        if addon.Settings.Get("tooltips.mostProgress.characters") <= 0 then
             return false, "Most progress is set to 0 characters in the tooltip options"
         end
         if not addon.Data.Achievements[scenario.Id] then

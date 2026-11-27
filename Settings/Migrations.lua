@@ -249,8 +249,8 @@ function migrations.Run(sv, context)
     return "failed"
 end
 
--- At ADDON_LOADED, before anything reads a setting: runs the migrations on the saved variables and puts the result in
--- place, the new store first, then the old variables (nil once cleared)
+-- At ADDON_LOADED, before anything reads a setting: runs the migrations on the saved variables, puts the result in
+-- place (the new store first, then the old variables, nil once cleared) and loads the store on it
 function migrations.Load()
     local sv = { Settings = KrowiAF_Settings, Options = KrowiAF_Options, Filters = KrowiAF_Filters,
         SearchOptions = KrowiAF_SearchOptions, SavedData = KrowiAF_SavedData, Achievements = KrowiAF_Achievements }
@@ -266,5 +266,6 @@ function migrations.Load()
     local result = migrations.Run(sv, context)
     KrowiAF_Settings = sv.Settings or {}
     KrowiAF_Options, KrowiAF_Filters, KrowiAF_SearchOptions = sv.Options, sv.Filters, sv.SearchOptions
+    addon.Settings.Load(KrowiAF_Settings)
     return result
 end

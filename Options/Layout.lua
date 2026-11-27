@@ -24,15 +24,8 @@ function layout.PostLoad()
 end
 
 local RefreshOptions -- Assigned at the end of the file
-function layout.OnProfileChanged(db, newProfile)
-    RefreshOptions()
-end
-
-function layout.OnProfileCopied(db, sourceProfile)
-    RefreshOptions()
-end
-
-function layout.OnProfileReset(db)
+-- After an options profile switch, copy or reset (Options/Options.lua, Load)
+function layout.OnProfileChanged()
     RefreshOptions()
 end
 
@@ -235,11 +228,6 @@ local function InjectDynamicFixedAdjustableCategoriesOptions(category)
 end
 
 function layout.InjectDynamicAdjustableCategoryOptions(category, categoryDisplayName, tabIndex, tab, tabDisplayName, defaultValue)
-    if not addon.InjectOptions:DefaultsExists("AdjustableCategories." .. category) then
-        addon.InjectOptions:AddDefaults("AdjustableCategories", category, { })
-    end
-
-    addon.InjectOptions:AddDefaults("AdjustableCategories." .. category, tabIndex, defaultValue)
     addon.Settings.RegisterEntryDefault("categories.shownOnTab", category, tabIndex, defaultValue)
 
     if not addon.InjectOptions:TableExists("Layout.args.AdjustableCategories.args." .. category) then
@@ -561,7 +549,7 @@ local function AddStartTimeAndEndTimeFormat(format)
     AddFormat(startTimeAndEndTimeDateTimeFormats, startTimeAndEndTimeDateTimeValues, format)
 end
 
-AddStartTimeAndEndTimeFormat(options.Defaults.profile.Tooltip.Achievements.TemporarilyObtainable.DateTimeFormat.StartTimeAndEndTime)
+AddStartTimeAndEndTimeFormat(addon.Settings.Declaration("tooltips.temporarilyObtainable.dateTimeFormat.startTimeAndEndTime").Default)
 AddStartTimeAndEndTimeFormat(addon.L["%d/%m/%Y %I:%M %p"])
 AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %R"])
 AddStartTimeAndEndTimeFormat(addon.L["%m/%d/%Y %I:%M %p"])

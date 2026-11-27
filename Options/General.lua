@@ -22,15 +22,8 @@ function general.PostLoad()
 end
 
 local RefreshOptions -- Assigned at the end of the file
-function general.OnProfileChanged(db, newProfile)
-    RefreshOptions()
-end
-
-function general.OnProfileCopied(db, sourceProfile)
-    RefreshOptions()
-end
-
-function general.OnProfileReset(db)
+-- After an options profile switch, copy or reset (Options/Options.lua, Load)
+function general.OnProfileChanged()
     RefreshOptions()
 end
 

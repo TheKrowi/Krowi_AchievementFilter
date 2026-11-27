@@ -7,8 +7,6 @@ local function LoadOptionsMenuButton(self)
 	local button = self.OptionsMenuButton
 	button:SetFrameLevel(self:GetFrameLevel() + 7)
 	button:SetPoint("LEFT", -6, 0)
-
-    addon.SearchOptions:Load()
 end
 
 local function LoadPreviewContainer(self)

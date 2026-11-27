@@ -330,11 +330,11 @@ end
 
 -- The login with event reminders turned off
 function stories.RemindersOff(model, scheduler)
-    local eventReminders = addon.Options.db.profile.EventReminders
-    local enabled = eventReminders.Enabled
-    eventReminders.Enabled = false
+    local settings = addon.Settings
+    local enabled = settings.Get("eventReminders.enabled")
+    settings.Set("eventReminders.enabled", false)
     local ok, err = pcall(scheduler.EnsureData)
-    eventReminders.Enabled = enabled
+    settings.Set("eventReminders.enabled", enabled)
     if not ok then
         error(err, 0)
     end
@@ -419,19 +419,20 @@ end
 -- The player's settings are put back before the line is judged, also when it raised
 local function DescribeDateLine(scenario, observations)
     local alertSystem = addon.Gui.EventReminderAlertSystem
-    local eventReminders = addon.Options.db.profile.EventReminders
+    local settings = addon.Settings
     local saved = {
-        Format = eventReminders.DateTimeFormat.StartTimeAndEndTime,
-        Line1 = eventReminders.TimeDisplay.Line1,
-        Line2 = eventReminders.TimeDisplay.Line2,
-        Compact = eventReminders.Compact,
+        Format = settings.Get("eventReminders.dateTimeFormat.startTimeAndEndTime"),
+        Line1 = settings.Get("eventReminders.timeDisplay.line1"),
+        Line2 = settings.Get("eventReminders.timeDisplay.line2"),
+        Compact = settings.Get("eventReminders.compact"),
         Names = alertSystem.LocalizeDateNames,
         MonthNames = addon.MonthNames,
         WeekdayNames = addon.WeekdayNames
     }
-    eventReminders.DateTimeFormat.StartTimeAndEndTime = scenario.Format
-    eventReminders.TimeDisplay.Line1, eventReminders.TimeDisplay.Line2 = 1, scenario.Line2 or 1 -- End Time, None unless given
-    eventReminders.Compact = false
+    settings.Set("eventReminders.dateTimeFormat.startTimeAndEndTime", scenario.Format)
+    settings.Set("eventReminders.timeDisplay.line1", 1) -- End Time
+    settings.Set("eventReminders.timeDisplay.line2", scenario.Line2 or 1) -- None unless given
+    settings.Set("eventReminders.compact", false)
     alertSystem.LocalizeDateNames = scenario.Names
     if scenario.Names then
         addon.MonthNames, addon.WeekdayNames = testMonthNames, testWeekdayNames
@@ -446,9 +447,10 @@ local function DescribeDateLine(scenario, observations)
         event.EventDetails = occurrence
         built, line = pcall(alertSystem.GetRuntimeText, alertSystem, event)
     end
-    eventReminders.DateTimeFormat.StartTimeAndEndTime = saved.Format
-    eventReminders.TimeDisplay.Line1, eventReminders.TimeDisplay.Line2 = saved.Line1, saved.Line2
-    eventReminders.Compact = saved.Compact
+    settings.Set("eventReminders.dateTimeFormat.startTimeAndEndTime", saved.Format)
+    settings.Set("eventReminders.timeDisplay.line1", saved.Line1)
+    settings.Set("eventReminders.timeDisplay.line2", saved.Line2)
+    settings.Set("eventReminders.compact", saved.Compact)
     alertSystem.LocalizeDateNames = saved.Names
     addon.MonthNames, addon.WeekdayNames = saved.MonthNames, saved.WeekdayNames
     if not built then
@@ -590,19 +592,17 @@ end
 -- The toggles the scenarios read, on for the run whatever the player chose, and put back after it. A client has a
 -- type's toggles only when it has events of that type: Classic has neither world nor widget event toggles.
 local function ForceToggles()
-    local eventReminders = addon.Options.db.profile.EventReminders
-    local saved = {Enabled = eventReminders.Enabled, World = {}, Widget = {}}
-    eventReminders.Enabled = true
-    if eventReminders.WorldEvents then
+    local settings = addon.Settings
+    local saved = {Enabled = settings.Get("eventReminders.enabled"), World = {}, Widget = {}}
+    settings.Set("eventReminders.enabled", true)
+    if addon.Util.IsMainline then
         for _, poi in ipairs(surgeOrder) do
-            saved.World[poi] = eventReminders.WorldEvents[poi]
-            eventReminders.WorldEvents[poi] = true
+            saved.World[poi] = settings.GetEntry("eventReminders.worldEvents", poi)
+            settings.SetEntry("eventReminders.worldEvents", poi, true)
         end
-    end
-    if eventReminders.WidgetEvents then
         for _, id in ipairs({4729, 4731}) do
-            saved.Widget[id] = eventReminders.WidgetEvents[id]
-            eventReminders.WidgetEvents[id] = true
+            saved.Widget[id] = settings.GetEntry("eventReminders.widgetEvents", id)
+            settings.SetEntry("eventReminders.widgetEvents", id, true)
         end
     end
     return saved
@@ -610,17 +610,17 @@ end
 
 -- The player's toggles back, and the events' details read again at the real time, which the scenarios' times replaced
 local function RestoreToggles(saved)
-    local eventReminders = addon.Options.db.profile.EventReminders
-    eventReminders.Enabled = saved.Enabled
+    local settings = addon.Settings
+    settings.Set("eventReminders.enabled", saved.Enabled)
     for poi, value in next, saved.World do
-        eventReminders.WorldEvents[poi] = value
+        settings.SetEntry("eventReminders.worldEvents", poi, value)
         local event = WorldEvent(poi)
         if event then
             addon.EventReminders.EventData.GetWorldEventDetails(event)
         end
     end
     for id, value in next, saved.Widget do
-        eventReminders.WidgetEvents[id] = value
+        settings.SetEntry("eventReminders.widgetEvents", id, value)
         local event = WidgetEvent(id)
         if event then
             addon.EventReminders.EventData.GetWidgetEventDetails(event)

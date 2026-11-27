@@ -250,7 +250,7 @@ local function RunEntries(entries, debugSwitched, onFinished)
                 tinsert(lines, "/reload before entering combat")
             end
             ShowSummary(lines, debugSwitched and function()
-                addon.Options.db.profile.EnableDebugInfo = false
+                addon.Settings.Set("advanced.debugInfo", false)
                 GetDb().DebugSwitchedByRun = nil
                 print(prefix .. "debug mode is off again, as before the run")
             end)
@@ -315,7 +315,7 @@ local function StartRun(text)
             print(prefix .. "enable debug mode first (Options > General > Debug)")
             return
         end
-        addon.Options.db.profile.EnableDebugInfo = true -- what the option's own setter does (Options/General.lua)
+        addon.Settings.Set("advanced.debugInfo", true) -- what the option's own setter does (Options/General.lua)
         -- Noted in the saved variables too: a run that never reaches its summary (a suite that errors in a timer) is
         -- reloaded anyway, and the next login or reload turns debug mode off again (PLAYER_ENTERING_WORLD below)
         GetDb().DebugSwitchedByRun = true
@@ -400,7 +400,7 @@ local function StartMatrix()
             print(prefix .. "enable debug mode first (Options > General > Debug)")
             return
         end
-        addon.Options.db.profile.EnableDebugInfo = true -- what the option's own setter does (Options/General.lua)
+        addon.Settings.Set("advanced.debugInfo", true) -- what the option's own setter does (Options/General.lua)
         switched = true
     end
     local restore = {}
@@ -425,7 +425,7 @@ end
 local function DropMatrix(plan, reason)
     ApplySwitches(plan.Restore)
     if plan.DebugSwitched then
-        addon.Options.db.profile.EnableDebugInfo = false
+        addon.Settings.Set("advanced.debugInfo", false)
     end
     GetDb().Matrix.Pending = nil
     print(prefix .. "matrix run dropped (" .. reason .. "); the switches are back as they were from the next /reload")
@@ -490,7 +490,7 @@ local function RunMatrixStep()
         db.Matrix.Last = last
         db.Matrix.Pending = nil
         if plan.DebugSwitched then
-            addon.Options.db.profile.EnableDebugInfo = false
+            addon.Settings.Set("advanced.debugInfo", false)
         end
         ShowSummary(lines)
     end)
@@ -544,7 +544,7 @@ loginFrame:SetScript("OnEvent", function(_, _, isLogin, isReload)
     -- A /kaftest run that turned debug mode on and never reached its summary
     if KrowiAF_DebugTable and KrowiAF_DebugTable.Tests and KrowiAF_DebugTable.Tests.DebugSwitchedByRun then
         KrowiAF_DebugTable.Tests.DebugSwitchedByRun = nil
-        addon.Options.db.profile.EnableDebugInfo = false
+        addon.Settings.Set("advanced.debugInfo", false)
         print(prefix .. "debug mode is off again: the last /kaftest run turned it on and did not finish")
     end
     local name = KrowiAF_DebugTable and KrowiAF_DebugTable.Tests and KrowiAF_DebugTable.Tests.RunOnLogin

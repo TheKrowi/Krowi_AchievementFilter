@@ -35,29 +35,16 @@ local function GetIndexOrInsertTab(addonName, addonDisplayName, tabName, tabDisp
     return index
 end
 
+-- A tab's show and order defaults, as the tab registers (docs/work/2026-11-25-settings-store)
 local function InjectOptionsDefaults(addonName, tabName, showByDefault)
     if showByDefault == nil then
         showByDefault = false
     end
-    if not addon.InjectOptions:DefaultsExists("Tabs." .. addonName) then
-        addon.InjectOptions:AddDefaults("Tabs", addonName, { })
-    end
-    addon.InjectOptions:AddDefaults("Tabs." .. addonName, tabName, {
-        Show = showByDefault
-    })
     addon.Settings.RegisterEntryDefault("tabs.show", addonName, tabName, showByDefault)
 end
 
 local function SetOptionsOrder(addonName, tabName, index)
-    if addon.Options.Defaults then -- Pre options loaded
-        local options = addon.Options.Defaults.profile.Tabs -- AceDB's defaults, until the switch (docs/work/2026-11-25-settings-store)
-        options[addonName] = options[addonName] or {}
-        options[addonName][tabName] = options[addonName][tabName] or {}
-        options[addonName][tabName].Order = index
-        addon.Settings.RegisterEntryDefault("tabs.order", addonName, tabName, index)
-    else -- Post options loaded
-        addon.Settings.SetEntry("tabs.order", addonName, tabName, index)
-    end
+    addon.Settings.RegisterEntryDefault("tabs.order", addonName, tabName, index)
 end
 
 local OrderPP = addon.InjectOptions.AutoOrderPlusPlus

@@ -1,7 +1,5 @@
 <Ui>
-    <Script file="..\Libs\Krowi_Util\Options\Options.lua" />
     <Script file="Options.lua" />
-    <Script file="Defaults.lua" />
 
     <Script file="General.lua" />
     <Script file="Layout.lua" />

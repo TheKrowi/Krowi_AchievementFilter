@@ -241,27 +241,15 @@ function Option:GetValues()
     return list
 end
 
--- The default: the option's own get, called against a defaults-only profile (design decision 1 of plan.md). An option
--- has one only when its get read that profile and it has a set; the real profile is back on every path.
-local function DeepCopy(t)
-    local copy = {}
-    for k, v in next, t do copy[k] = type(v) == "table" and DeepCopy(v) or v end
-    return copy
-end
-
+-- The default: the option's own get, called with every setting at its default (the settings store's WithDefaults,
+-- docs/work/2026-11-25-settings-store). An option has one only when its get read a setting and it has a set; the real
+-- settings are back on every path, and what the get wrote went to a throwaway layer.
 function Option:ComputeDefault()
     if self.DefaultComputed then return end
     self.DefaultComputed = true
     if self.Type == "execute" or self.Type == "key" or self.Entry.NoDefault or not self:CanSet() then return end
-    local db = addon.Options.db
-    local real = rawget(db, "profile")
-    local copy = DeepCopy(addon.Options.Defaults.profile)
-    local touched = false
-    local proxy = setmetatable({}, { __index = function(_, k) touched = true return copy[k] end })
-    rawset(db, "profile", proxy)
-    local ok, value = pcall(self.Get, self)
-    rawset(db, "profile", real)
-    if ok and touched and value ~= nil then
+    local ok, read, value = pcall(addon.Settings.WithDefaults, self.Get, self)
+    if ok and read and value ~= nil then
         self.HasDefault, self.Default = true, value
     end
 end
@@ -287,7 +275,7 @@ function source.NewKeyOption(label, slots)
     return option
 end
 
--- --- profiles, drawn on AceDB's own API (AceDBOptions' tables call handler methods the window does not emulate) ----
+-- --- profiles, on the settings store's two profile systems (docs/work/2026-11-25-settings-store) ------------------
 local Custom = setmetatable({}, { __index = Option })
 Custom.__index = Custom
 
@@ -306,12 +294,13 @@ function Custom:IsChanged() return false end
 function Custom:Reset() end
 
 local function ProfileOptions(database)
-    local db = database == "Filters" and addon.Filters.db or addon.Options.db
+    local system = database == "Filters" and "filters" or "options"
+    local settings = addon.Settings
     local L = addon.L
     local function Profiles(excludeCurrent)
         local list = {}
-        local current = db:GetCurrentProfile()
-        for _, name in ipairs((db:GetProfiles({}))) do
+        local current = settings.CurrentProfile(system)
+        for _, name in ipairs(settings.Profiles(system)) do
             if not (excludeCurrent and name == current) then list[#list + 1] = { name, name } end
         end
         table.sort(list, function(a, b) return a[1] < b[1] end)
@@ -325,16 +314,16 @@ local function ProfileOptions(database)
         return setmetatable(fields, Custom)
     end
     return {
-        New{ Key = "current", Type = "select", Label = L["Current profile"], GetFunc = function() return db:GetCurrentProfile() end,
-            SetFunc = function(name) db:SetProfile(name) end, ValuesFunc = function() return Profiles(false) end },
+        New{ Key = "current", Type = "select", Label = L["Current profile"], GetFunc = function() return settings.CurrentProfile(system) end,
+            SetFunc = function(name) settings.SetProfile(system, name) end, ValuesFunc = function() return Profiles(false) end },
         New{ Key = "new", Type = "input", Label = L["New profile"], GetFunc = function() return "" end,
-            SetFunc = function(name) if name and name ~= "" then db:SetProfile(name) end end },
+            SetFunc = function(name) if name and name ~= "" then settings.SetProfile(system, name) end end },
         New{ Key = "copy", Type = "select", Label = L["Copy From"], Placeholder = L["Choose a profile"], GetFunc = function() return nil end,
-            SetFunc = function(name) db:CopyProfile(name) end, ValuesFunc = function() return Profiles(true) end },
+            SetFunc = function(name) settings.CopyProfile(system, name) end, ValuesFunc = function() return Profiles(true) end },
         New{ Key = "delete", Type = "select", Label = L["Delete a Profile"], Placeholder = L["Choose a profile"], GetFunc = function() return nil end,
-            SetFunc = function(name) db:DeleteProfile(name) end, ValuesFunc = function() return Profiles(true) end,
+            SetFunc = function(name) settings.DeleteProfile(system, name) end, ValuesFunc = function() return Profiles(true) end,
             Confirm = function(_, name) return L["Delete a Profile"] .. ": " .. name .. "?" end }, -- AceDBOptions asked too
-        New{ Key = "reset", Type = "execute", Label = L["Reset Profile"], Button = L["Reset"], SetFunc = function() db:ResetProfile() end },
+        New{ Key = "reset", Type = "execute", Label = L["Reset Profile"], Button = L["Reset"], SetFunc = function() settings.ResetProfile(system) end },
     }
 end
 

@@ -17,12 +17,8 @@ local function InjectOptionsDefaults(eventType, eventIds, hideByDefault)
     if hideByDefault == nil then
         hideByDefault = false
     end
-    if not addon.InjectOptions:DefaultsExists("EventReminders." .. eventType .. "Events") then
-        addon.InjectOptions:AddDefaults("EventReminders", eventType .. "Events", { })
-    end
     local key = EventsKey(eventType)
     for _, eventId in next, eventIds do
-        addon.InjectOptions:AddDefaults("EventReminders." .. eventType .. "Events", eventId, not hideByDefault)
         addon.Settings.RegisterEntryDefault(key, eventId, not hideByDefault)
     end
 end

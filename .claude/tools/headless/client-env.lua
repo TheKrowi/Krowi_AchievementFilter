@@ -206,11 +206,11 @@ function M.New(root, client)
     end
     addon.GetCategoryInfoTitle = function(id) return "CategoryInfoTitle " .. tostring(id) end -- Blizzard's title, a fallback beside it
     setmetatable(addon, { __index = function(t, k)
-        -- the settings store's AceDB mode over a suite's fake addon.Options.db (docs/work/2026-11-25-settings-store, until
-        -- the switch of plan step 9); without a fake, a stub as before
+        -- a real settings store made from a suite's fake old-shaped addon.Options.db (docs/work/2026-11-25-settings-store);
+        -- without a fake, a stub as before
         local options = rawget(t, "Options")
         if k == "Settings" and type(options) == "table" and type(rawget(options, "db")) == "table" then
-            return assert(loadfile(root .. "/.claude/tools/headless/settings-store.lua"))().AceDBMode(root, t)
+            return assert(loadfile(root .. "/.claude/tools/headless/settings-store.lua"))().FromFakeProfile(root, t)
         end
         local s = Stub("addon." .. tostring(k)); rawset(t, k, s); return s
     end })
