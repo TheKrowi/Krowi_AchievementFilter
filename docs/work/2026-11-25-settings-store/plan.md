@@ -110,6 +110,9 @@ Each step ends with the headless suites it reaches green and a commit. Nothing r
     - Then `Deploy.ps1 -WhatIf`, deploy, Retail login.
     - The old tables are still in the file. The new store's values match the snapshot (`Compare-SavedSettings.ps1 -Options -Against`). Every suite but the probes and `-Matrix`. BugGrabber clean.
     - Then the same on Mists.
+   - Retail done 2026-11-27 (12.1.5). The six files were copied and snapshotted first. Then all 19 suites but the probes ran: no failure, the addon has no BugGrabber error, and `plugins` skipped both Zygor scenarios (Zygor is not on for the kit's character).
+     - What the game saved, read by option, equals the branch's headless migration of the snapshot on four of the five Retail accounts, and the old tables are untouched on all five.
+     - On the account the client played, ten values differ. They are what the options suite's `CheckDefaults` leaves changed: it puts the values back in list order, which fails where two rows share one setting (the Pop Out modifier, the date formats' preset and custom rows, the sort lists). It leaves the same ten on `main` (72c80618), headless, on the same file, so it is a test bug older than this item, not the migration. On `main` it writes into the player's real settings at every options run. A work item of its own (`docs/backlog.md`).
 12. **Turn clearing on** (the final build); the headless suites again. In game on Retail, then Mists:
     - the first login migrates and clears: the file holds `KrowiAF_Settings` and not the three old variables; the options still match the snapshot;
     - a second login changes nothing;
