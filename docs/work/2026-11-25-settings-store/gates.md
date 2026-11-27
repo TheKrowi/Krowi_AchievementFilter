@@ -21,3 +21,4 @@ Class: saved-data
 | 2026-11-27 | design | Which profile's Advanced switches become the account's | First character's profile | "First character's profile (Recommended)" | accept |
 | 2026-11-27 | scope | Remove the KrowiAF_SavedData keys no code reads | Remove them | "Remove them (Recommended)" | accept |
 | 2026-11-27 | plan | Approve the plan so step 1 starts? | Approve | "compact before approval", then after the compact: "start implementing" | accept |
+| 2026-11-27 | plan | (decision taken without asking, with the advisor) Build order: rows and readers before the switch, against an AceDB-backed mode of the store, so every step stays green and `saved-keys-unchanged` keeps proving each row's key; the switch to the real store comes after them. Behaviour unchanged. | Reorder | (not asked; told to Krowi in the next message) | other |
