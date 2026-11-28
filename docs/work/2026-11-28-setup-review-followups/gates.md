@@ -9,3 +9,4 @@ Class: harness
 | 2026-11-28 | plan | Approve plan.md | Approve | "Approve" | took |
 | 2026-11-28 | plan | `/code-review`: 9 findings (5 important, 4 nits) on the taint rule, the skill pointers and the backlog | Fix all | not asked | auto |
 | 2026-11-28 | plan | The taint rule's general part claimed more than its sources back (a reviewed-exceptions sentence, a HookScript rule); a second `/code-review` of the fixes: 8 findings | Reword to what WowAddons.md, the backlog and codebase-analysis back; fix all | not asked | auto |
+| 2026-11-28 | merge | PR #439 | Merge | "merge" | took |
