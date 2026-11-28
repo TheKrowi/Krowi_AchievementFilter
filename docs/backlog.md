@@ -2,9 +2,13 @@
 
 Follow-ups that are not a work item yet. When one is taken up, it gets its own work folder under `docs/work/` (`docs/sdlc-playbook.md`) and leaves this list.
 
-## The two large data skills (found 2026-11-27, docs/work/2026-11-27-setup-review)
+## Outside this repo: the setup review's findings for the user settings and the kit (found 2026-11-27, docs/work/2026-11-27-setup-review)
 
-`add-achievement-data` (419 lines, 30 KB) and `add-zone-data` (28 KB) load whole each time they trigger. Moving their reference tables into a `REFERENCE.md` next to each, as `add-category-data` already does, keeps the steps in `SKILL.md` and loads the tables only when a step needs them. Measure first: a data run's context before and after (the kit's `Measure-Sessions.ps1`).
+Krowi keeps these on the backlog (2026-11-28, docs/work/2026-11-28-setup-review-followups). Each belongs to `~/.claude` or `Krowi_ClaudeKit`, not to this repo.
+- **Escaping in the user allow rules** [inferred]: lines 9 to 12 of `~/.claude/settings.json` write `\\\\` (a literal double backslash) where lines 13 and 14 and this repo's `settings.json` write `\\`, so the `Get-RepoState.ps1` and `Show-Achievement.ps1` rules may never match. The 2026-11-28 `data-verifier` smoke test ran `Show-Achievement.ps1` without a prompt, but under auto mode that can be the classifier, so it settles nothing; `/permissions` or a run in Manual mode would.
+- **The merge rule in three forms** [verified 2026-11-27]: `PowerShell(gh pr merge:*)` in the user settings (the legacy `:*` form), `gh pr merge *` in the workspace `CLAUDE.md`, and a third form in `settings.local.json`.
+- **`MultiEdit` in the kit's hook matcher** [unverified]: the review's docs check could not say whether the tool still exists.
+- **`WowAddons.md` is 34 KB** [verified]: the workspace `CLAUDE.md` loads in every session of every Krowi repo; with this repo's file it is about 12k tokens before any work starts, the largest fixed context cost. Trimming it is a kit work item (its own rule: rules and pointers only, detail in skills and tool help).
 
 ## The options suite changes a player's settings (found 2026-11-27, docs/work/2026-11-25-settings-store)
 

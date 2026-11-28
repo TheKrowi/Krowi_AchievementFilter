@@ -40,12 +40,7 @@ There is no build step, no external linter or test framework and no CI: never ru
 
 ## Taint
 
-Most fixes (the changelog's dev notes, the root causes in `docs/work/*/spec.md`) are taint or secret-value errors; the workspace rules hold the general ones.
-- Never override Blizzard API functions (`GetAchievementCriteriaInfo`, `GetAchievementNumCriteria` and the like); that approach was removed years ago and its leftovers still cause bugs.
-- The only globals the addon writes on purpose are the FrameXML UI functions it replaces in `addon.OverwriteFunctions` and the polyfills for removed API in `addon.LoadBlizzardApiChanges` (both in `Gui/BlizzardOverrides.lua`). They are listed in `.claude/tools/Check-Repo.globals`, and the `globals` rule fails on any other write to the global environment. A new global is allowlisted there with a reason, and needing one is a design smell.
-- Do not compare or do arithmetic on values from `C_Calendar`, aura or objective-tracker APIs without considering `SecretInChatMessagingLockdown`.
-- `TaintDiagnostics.lua` and `Diagnostics.lua` exist for probing this; `addon.Diagnostics.DebugEnabled()` gates debug paths.
-- `krowi:taint-reviewer` reviews every change to GUI code, hooks, event handlers or lockdown-protected APIs.
+Most fixes are taint or secret-value errors. Never override Blizzard API functions, and write globals only through the allowlist in `.claude/tools/Check-Repo.globals` (`globals` rule). `krowi:taint-reviewer` reviews every change to GUI code, hooks, event handlers or lockdown-protected APIs. The rest, for this addon and in general: `.claude/rules/taint.md`, which loads with the GUI, feature, option, settings, plugin, runtime-data and root files.
 
 ## Background jobs allocate nothing when nothing changed
 
