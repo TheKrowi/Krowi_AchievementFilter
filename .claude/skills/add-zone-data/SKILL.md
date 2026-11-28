@@ -39,7 +39,8 @@ Given a list of achievement IDs, the parent agent does everything itself; there 
    ```
    The script starts wow.tools.local if needed and waits up to 60 s (the first start can take longer; rerun once). If it is still unreachable, **stop**; every lookup would return NOT_FOUND. Build strings are never typed by hand: every script dot-sources the kit's `Get-WowBuilds.ps1` (after `.claude/tools/KitPath.ps1`), which picks the newest `wow` (Retail) and `wow_classic` (Classic) build from `POST /build/table` (local builds, falling back to `showOnline=true`). To prepare a patch that is still on the PTR, set `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) in the shell first: Retail then resolves to the newest build of that product, so the new ids and their criteria are found. New maps of such a patch are not in `raw/MapVerifier.csv` until they are verdicted in game (`sync-mapverifier`); their entries wait for that.
 1. **Look up every id** with `_lookup_ids.ps1` (both builds; `builds=` in the output says where the id exists). Then apply the Skip rules and, for the rest, `_check_zonedata.ps1` (already placed?), `_zone_search.ps1` / `_linkgroups_search.ps1` (which map, which link group), and `_lookup_criteria.ps1` (the game's own list of zones, NPCs or bosses behind the achievement; this is the fact Rules 2, 3 and 9 demand).
-2. **Edit the ZoneData.lua files** (one per expansion, see below) following the Entry Type Rules.
+   Any lookup beyond these scripts (reading the cached DBC export, a helper function) has known pitfalls: [REFERENCE.md](REFERENCE.md), Pitfalls.
+2. **Edit the ZoneData.lua files** (one per expansion, see below) following the Entry Type Rules. A batch of edits goes through a plan file and `_apply_zone_plan.ps1` (`-WhatIf` first; it puts every line of a raid block in the 25-player list): [REFERENCE.md](REFERENCE.md), Evaluate-ZoneCriteria.ps1 and batch edits.
 3. **Validate** (Step 3).
 4. **Update the decisions log** (Step 4).
 
@@ -161,15 +162,7 @@ cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter"
 
 The `Zones.<client>.txt` diff is the review of the edit: one `ZONE <map> # <id>` line per placement added or removed. It must show exactly the placements the batch intended, and it is committed with the ZoneData change (lint rule `data-snapshot`).
 
-`Evaluate-ZoneCriteria.ps1` is the Rule 2/3 fact-checker: its `[R2  ]` and `[R3  ]` lines are placement errors; `[D8  ]` (a criterion names a city, or an outdoor sub-map decided no, decision D8), `[D8? ]` (an outdoor sub-map not decided yet, one whose parent chain in `raw/MapVerifier.csv` reaches a map the id is on: ask the user, then add it to `$d8SubMaps` in the script) and `[R3+ ]` (meta on a map no child is on) are information. A missed map that is not inside a map the id is on is an `[R2  ]` error. For a batch of edits, write a plan file (`map,token,op` lines) and apply it with `_apply_zone_plan.ps1 -PlanFile <path>` (`-WhatIf` first): it inserts `N, -- Title` lines (titles from the cached export) or table references into the right `Zone()` block by primary map id, or removes them, and keeps CRLF. It inserts before the block's closing `})`, so in a raid block with 10- and 25-player lists every line lands in the 25-player list: place a 10-player or difficulty-neutral id there by hand. Quest-chain facts (Rule 5) come from `_lookup_quest_maps.ps1` (`questpoiblob`: quest id → UiMapID); a quest with no POI there needs Warcraft Wiki or Wowhead.
-
-Pitfalls of ad-hoc lookups and plan scripts:
-- Read the cached DBC export with `Import-Csv`, never `awk -F','`: a description with a comma splits its row, which once produced two false statements.
-- A PowerShell function that returns a collection needs `return ,$x`, or a one-item result unrolls.
-- `(?s)` with `.*` in a block regex swallows the rest of the file; match up to the block's own closing `})`.
-- Hashtable keys must share a type: `[int]` 123 and `"123"` are two keys.
-
-Both evaluators resolve the builds themselves. `Evaluate-ZoneDataDecisions.ps1` prints `[ERROR]`, `[WARN ]`, `[INFO ]` lines with a check id (S-* structure, L-* log vs ZoneData, D-* log vs DB) and exits 1 on any ERROR. Its offline subset also runs from `Check-Repo.ps1` (rule `zone-decisions`) whenever the log or a ZoneData file changed.
+Read [REFERENCE.md](REFERENCE.md) before you act on the evaluators' output or edit a batch: `Evaluate-ZoneCriteria.ps1`'s `[R2  ]` and `[R3  ]` lines are placement errors, a `[D8? ]` line needs the user's decision and then an entry in the script's `$d8SubMaps`, and its other tags are information (the legend is there), a batch goes through a plan file and `_apply_zone_plan.ps1` (which puts every line of a raid block in the 25-player list), `Evaluate-ZoneDataDecisions.ps1` exits 1 on any ERROR, and ad-hoc lookups have known pitfalls.
 
 ---
 

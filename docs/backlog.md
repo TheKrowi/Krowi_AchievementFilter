@@ -2,9 +2,16 @@
 
 Follow-ups that are not a work item yet. When one is taken up, it gets its own work folder under `docs/work/` (`docs/sdlc-playbook.md`) and leaves this list.
 
-## The two large data skills (found 2026-11-27, docs/work/2026-11-27-setup-review)
+## Outside this repo: the setup review's findings for the user settings and the kit (found 2026-11-27, docs/work/2026-11-27-setup-review)
 
-`add-achievement-data` (419 lines, 30 KB) and `add-zone-data` (28 KB) load whole each time they trigger. Moving their reference tables into a `REFERENCE.md` next to each, as `add-category-data` already does, keeps the steps in `SKILL.md` and loads the tables only when a step needs them. Measure first: a data run's context before and after (the kit's `Measure-Sessions.ps1`).
+Krowi keeps these on the backlog (2026-11-28, docs/work/2026-11-28-setup-review-followups). Each belongs to `~/.claude` or `Krowi_ClaudeKit`, not to this repo.
+- **The merge rule in three forms** [verified 2026-11-27]: `PowerShell(gh pr merge:*)` in the user settings (the legacy `:*` form), `gh pr merge *` in the workspace `CLAUDE.md`, and a third form in `settings.local.json`.
+- **`MultiEdit` in the kit's hook matcher** [unverified]: the review's docs check could not say whether the tool still exists.
+- **`WowAddons.md` is 34 KB** [verified]: the workspace `CLAUDE.md` loads in every session of every Krowi repo; with this repo's file it is about 12k tokens before any work starts, the largest fixed context cost. Trimming it is a kit work item (its own rule: rules and pointers only, detail in skills and tool help).
+
+## The worldmap suite sets a CVar (found 2026-11-28, docs/work/2026-11-28-setup-review-followups)
+
+`Tests/WorldMap.lua:204, 245, 256` set and restore `miniWorldMap` with `SetCVar`, which runs every `CVAR_UPDATE` handler tainted; the workspace rule is that an in-game test routine never sets a CVar. Older than the rule; found by the code review of that work item. A fix has the player's own click change the map size: a real click served by the kit's `Send-GameInput.ps1 -WaitForDone` through `KrowiGameInput`, never `Button:Click()` from Lua, whose handler would set the CVar from tainted code again. Or the scenario drops its mini-map half.
 
 ## The options suite changes a player's settings (found 2026-11-27, docs/work/2026-11-25-settings-store)
 
@@ -70,7 +77,7 @@ Two weaknesses of the Data Manager's character import, older than this work (its
     - A Blizzard leave handler in that window that runs tainted hides `GameTooltip` tainted. If `GameTooltip` still shows another owner's widget tooltip (a map POI, a vignette) at that moment, #300's error can come back once. That is low likelihood, since that owner hides it on its own leave first.
     - The category buttons, Feat of Strength ones included, are not among them: their `OnLeave` was secure in game (`/kaftest tooltip`, 2026-10-24).
     - The achievement, summary and shield buttons are not measured.
-- **`addon.TooltipData.Load` stays disabled** (`Krowi_AchievementFilter.lua:51`). It was turned off in 99.6 while #300 was investigated, and #300 turned out not to come from it. Turning it back on is its own work item: its `HookScript` calls on `GameTooltip` run addon code inside Blizzard's tooltip building, which needs a taint review first.
+- **`addon.TooltipData.Load` stays disabled** (`Krowi_AchievementFilter.lua:52`). It was turned off in 99.6 while #300 was investigated, and #300 turned out not to come from it. Turning it back on is its own work item: its `HookScript` calls on `GameTooltip` run addon code inside Blizzard's tooltip building, which needs a taint review first.
 
 ## From the event scheduler work (2026-10-21, docs/work/2026-10-21-event-scheduler)
 

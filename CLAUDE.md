@@ -4,7 +4,7 @@
 
 ## Instructions
 
-This file loads into every session and every general-purpose subagent, so it holds only what most tasks need and the code does not show. A rule one area of the code needs is in `.claude/rules/` (data, events, features, localization, tests, release) and loads once a file of that area is read or edited. A lesson goes back where it applies (`docs/sdlc-playbook.md`, stage 6): here only when every task needs it, else its path rule, a skill, a lint rule or a scenario. The `instructions` lint rule keeps this file within 16 KB and 200 lines and each rule within 8 KB.
+This file loads into every session and every general-purpose subagent, so it holds only what most tasks need and the code does not show. A rule one area of the code needs is in `.claude/rules/` (data, events, features, localization, settings, taint, tests, release) and loads once a file of that area is read or edited. A lesson goes back where it applies (`docs/sdlc-playbook.md`, stage 6): here only when every task needs it, else its path rule, a skill, a lint rule or a scenario. The `instructions` lint rule keeps this file within 16 KB and 200 lines and each rule within 8 KB.
 
 ## Build and checks
 
@@ -40,12 +40,7 @@ There is no build step, no external linter or test framework and no CI: never ru
 
 ## Taint
 
-Most fixes (the changelog's dev notes, the root causes in `docs/work/*/spec.md`) are taint or secret-value errors; the workspace rules hold the general ones.
-- Never override Blizzard API functions (`GetAchievementCriteriaInfo`, `GetAchievementNumCriteria` and the like); that approach was removed years ago and its leftovers still cause bugs.
-- The only globals the addon writes on purpose are the FrameXML UI functions it replaces in `addon.OverwriteFunctions` and the polyfills for removed API in `addon.LoadBlizzardApiChanges` (both in `Gui/BlizzardOverrides.lua`). They are listed in `.claude/tools/Check-Repo.globals`, and the `globals` rule fails on any other write to the global environment. A new global is allowlisted there with a reason, and needing one is a design smell.
-- Do not compare or do arithmetic on values from `C_Calendar`, aura or objective-tracker APIs without considering `SecretInChatMessagingLockdown`.
-- `TaintDiagnostics.lua` and `Diagnostics.lua` exist for probing this; `addon.Diagnostics.DebugEnabled()` gates debug paths.
-- `krowi:taint-reviewer` reviews every change to GUI code, hooks, event handlers or lockdown-protected APIs.
+Most fixes are taint or secret-value errors. Never override Blizzard API functions, and write globals only through the allowlist in `.claude/tools/Check-Repo.globals` (`globals` rule). `krowi:taint-reviewer` reviews every change to GUI code, hooks, event handlers or lockdown-protected APIs. The rest, for this addon and in general: `.claude/rules/taint.md`, which loads with the GUI, feature, option, settings, plugin, runtime-data, test and root files.
 
 ## Background jobs allocate nothing when nothing changed
 

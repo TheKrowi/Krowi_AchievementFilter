@@ -1,6 +1,6 @@
 # Architecture reference
 
-The rules (the two namespaces, the three-phase boot, taint, background jobs) are in `CLAUDE.md`, and the rules for one area of code (data, events, features, localization, tests, release) are in `.claude/rules/`. This file is the load order, the file map and the mechanics behind them, read when a task touches that part of the code.
+The rules (the two namespaces, the three-phase boot, background jobs, a stub on taint) are in `CLAUDE.md`, and the rules for one area of code (data, events, features, localization, settings, taint, tests, release) are in `.claude/rules/`. This file is the load order, the file map and the mechanics behind them, read when a task touches that part of the code.
 
 ## Load order
 
