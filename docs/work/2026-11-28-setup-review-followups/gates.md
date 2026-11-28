@@ -7,3 +7,4 @@ Class: harness
 | 2026-11-28 | design | Where the taint guidance goes | Path rule + stub | "Path rule + stub" | took |
 | 2026-11-28 | scope | How far the two data skills split | Achievement full, zone light | "Achievement full, zone light" | took |
 | 2026-11-28 | plan | Approve plan.md | Approve | "Approve" | took |
+| 2026-11-28 | plan | `/code-review`: 9 findings (5 important, 4 nits) on the taint rule, the skill pointers and the backlog | Fix all | not asked | auto |

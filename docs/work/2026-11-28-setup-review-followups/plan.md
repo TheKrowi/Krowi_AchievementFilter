@@ -1,5 +1,5 @@
 # Plan: The setup review's deferred items
-Spec: [spec.md](spec.md). Status: accepted
+Spec: [spec.md](spec.md). Status: done 2026-11-28
 
 ## Files that change
 | File | Change |
@@ -29,3 +29,8 @@ Spec: [spec.md](spec.md). Status: accepted
 
 ## Proof
 The line check prints nothing missing; the lint is clean; the byte sizes before and after are in the PR.
+
+## Departures during the build
+- From `/code-review` (9 findings, all fixed): the general taint rules name this addon's reviewed exceptions (`addon.OverwriteFunctions`, `HideUIPanel(WorldMapFrame)`, the binding options and the Y key move of #197) instead of forbidding them; `Tests/**` joins the rule's paths; `add-zone-data` points to its reference from Steps 1 and 2 too and names `[D8? ]` as a decision; `add-achievement-data` points to Edge Cases & Exceptions for any time-limited, event, anniversary or season achievement, also from step 4; the moved blocks keep their own headings; `docs/architecture.md` and `CLAUDE.md` list `taint` (and `settings`) among the path rules.
+- The backlog drops the user-settings escaping finding: `~/.claude/settings.json` has no quadruple backslash any more (checked 2026-11-28), so it was fixed since the review. It gains the worldmap suite's `SetCVar` calls, older than this work, found by its review.
+- The line check: every non-blank line of the old texts is in the new files, except step 2 of `add-zone-data`, which now continues with the pointer to its batch tooling.

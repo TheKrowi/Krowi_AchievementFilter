@@ -1,5 +1,5 @@
 # Spec: The setup review's deferred items
-Intent: [intent.md](intent.md). Status: accepted
+Intent: [intent.md](intent.md). Status: done 2026-11-28
 
 ## Requirements
 1. `CLAUDE.md` keeps a short Taint section: the bug class, the two must-nots a subagent needs without reading any GUI file (never override Blizzard API; global writes only through the allowlist), when `krowi:taint-reviewer` runs, and a pointer to the rule.

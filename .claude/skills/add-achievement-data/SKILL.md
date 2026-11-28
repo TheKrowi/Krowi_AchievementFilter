@@ -81,7 +81,7 @@ Output format per line: `id|Title_lang|Reward_lang|Faction|RewardItemID` (or `id
 
 #### Wowhead (secondary)
 
-When `Reward_lang` is ambiguous, empty while a reward is suspected, or you need the exact reward name: [REFERENCE.md](REFERENCE.md), Wowhead lookup (URL per client, and which Wowhead section maps to which method).
+When `Reward_lang` is ambiguous, empty while a reward is suspected, or you need the exact reward name: [REFERENCE.md](REFERENCE.md), Wowhead (URL per client, which Wowhead section maps to which method, and the faction, category and "unavailable" banners that confirm `:IsPvP()`, `:FactionSplit()` and `:Obtainable()`).
 
 ### 1. Parse Achievement ID
 Extract numeric ID from each entry. IDs must be valid positive integers.
@@ -129,7 +129,7 @@ Map comment text to `AchBuilder` method names:
 
 ### 3.5 to 3.7 Reward preview ids
 
-A battle pet, mount or housing decoration reward always gets its preview id: the SpeciesID for `:Pet(id)`, the mount id for `:Mount(id)`, the decor record id for `:HousingDecor(id)`. The lookup scripts and fallbacks: [REFERENCE.md](REFERENCE.md), Reward preview ids.
+A battle pet, mount or housing decoration reward always gets its preview id: the SpeciesID for `:Pet(id)`, the mount id for `:Mount(id)`, the decor record id for `:HousingDecor(id)`. The lookup scripts and fallbacks: [REFERENCE.md](REFERENCE.md), sections 3.5 to 3.7.
 
 ### 4. Season/Event Reference Detection
 Extract from comment text:
@@ -147,6 +147,8 @@ Extract from comment text:
 - `:PvP(N)` — Achievement is PvP AND tied to a specific season (e.g., gladiator titles, seasonal mounts)
 - `:IsPvP()` — Achievement is PvP but NOT tied to a specific season (e.g., battleground wins, tour of duty, conquest accumulation)
 - Both can be combined with reward type methods: `Ach(id):Pet():IsPvP()`
+
+An event, anniversary or season achievement often needs an `Obtainable()` window as well (`:Anniv20()`, a calendar date window, a season added a patch early): read Edge Cases and Obtainable Patterns below before writing it.
 
 ### 5. Faction Detection
 Scan comment for faction keywords:
@@ -218,7 +220,7 @@ local faction = KrowiAF.Enum.Faction -- only if AutoFactionSplit or FactionSplit
 
 ## Edge Cases and Obtainable Patterns
 
-For any entry with an `Obtainable()`, a season, a faction split with rewards or more than one method, read [REFERENCE.md](REFERENCE.md), Edge cases and Obtainable() patterns: the chained examples and every common `Obtainable()` form, with the rules for calendar dates, where a cutoff starts and ranges that differ per client.
+For any achievement that is time-limited, tied to an event, an anniversary or a season, removed from the game, a realm first, faction-split with rewards, or given more than one method, read [REFERENCE.md](REFERENCE.md), Edge Cases & Exceptions, before writing its line. It holds the chained examples, `:Anniv20()`, and every common `Obtainable()` form with its rules: date windows from the game's calendar (`_lookup_holidays.ps1`), where a cutoff starts, and ranges that differ per client.
 
 ## Patch Version Determination
 
@@ -299,7 +301,7 @@ Before returning output, verify:
 
 ## Clarification Questions
 
-Ask the user when the reward type stays unclear after the DB and Wowhead, when a season or its number is unclear, when a faction counterpart is missing from the list, and for where the output goes. Sample wording and a worked input-to-output example: [REFERENCE.md](REFERENCE.md), Clarification questions and a worked example.
+Ask the user when the reward type stays unclear after the DB and Wowhead, when a season or its number is unclear, when a faction counterpart is missing from the list, and for where the output goes. Sample wording and a worked input-to-output example: [REFERENCE.md](REFERENCE.md), Clarification Questions and Example Transformation.
 
 ---
 
@@ -334,4 +336,4 @@ This loop catches common mistakes (missing `:IsPvP()` on PvP achievements, wrong
 
 ### Loop B: Finding new achievements in a patch
 
-When asked which achievements a patch adds, follow [REFERENCE.md](REFERENCE.md), Finding new achievements in a patch: `Find-NewAchievements.ps1` is the only source, checked with `Evaluate-FindNewAchievements.ps1` before you present the list.
+When asked which achievements a patch adds, follow [REFERENCE.md](REFERENCE.md), Loop B: `Find-NewAchievements.ps1` is the only source, checked with `Evaluate-FindNewAchievements.ps1` before you present the list.

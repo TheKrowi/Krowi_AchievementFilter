@@ -5,10 +5,13 @@ Follow-ups that are not a work item yet. When one is taken up, it gets its own w
 ## Outside this repo: the setup review's findings for the user settings and the kit (found 2026-11-27, docs/work/2026-11-27-setup-review)
 
 Krowi keeps these on the backlog (2026-11-28, docs/work/2026-11-28-setup-review-followups). Each belongs to `~/.claude` or `Krowi_ClaudeKit`, not to this repo.
-- **Escaping in the user allow rules** [inferred]: lines 9 to 12 of `~/.claude/settings.json` write `\\\\` (a literal double backslash) where lines 13 and 14 and this repo's `settings.json` write `\\`, so the `Get-RepoState.ps1` and `Show-Achievement.ps1` rules may never match. The 2026-11-28 `data-verifier` smoke test ran `Show-Achievement.ps1` without a prompt, but under auto mode that can be the classifier, so it settles nothing; `/permissions` or a run in Manual mode would.
 - **The merge rule in three forms** [verified 2026-11-27]: `PowerShell(gh pr merge:*)` in the user settings (the legacy `:*` form), `gh pr merge *` in the workspace `CLAUDE.md`, and a third form in `settings.local.json`.
 - **`MultiEdit` in the kit's hook matcher** [unverified]: the review's docs check could not say whether the tool still exists.
 - **`WowAddons.md` is 34 KB** [verified]: the workspace `CLAUDE.md` loads in every session of every Krowi repo; with this repo's file it is about 12k tokens before any work starts, the largest fixed context cost. Trimming it is a kit work item (its own rule: rules and pointers only, detail in skills and tool help).
+
+## The worldmap suite sets a CVar (found 2026-11-28, docs/work/2026-11-28-setup-review-followups)
+
+`Tests/WorldMap.lua:204, 245, 256` set and restore `miniWorldMap` with `SetCVar`, which runs every `CVAR_UPDATE` handler tainted; the workspace rule is that an in-game test routine never sets a CVar. Older than the rule; found by the code review of that work item. A fix drives the map size the way a player does (the map's own size button) or skips the scenario's mini-map half.
 
 ## The options suite changes a player's settings (found 2026-11-27, docs/work/2026-11-25-settings-store)
 

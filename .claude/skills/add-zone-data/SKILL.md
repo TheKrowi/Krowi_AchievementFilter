@@ -39,7 +39,8 @@ Given a list of achievement IDs, the parent agent does everything itself; there 
    ```
    The script starts wow.tools.local if needed and waits up to 60 s (the first start can take longer; rerun once). If it is still unreachable, **stop**; every lookup would return NOT_FOUND. Build strings are never typed by hand: every script dot-sources the kit's `Get-WowBuilds.ps1` (after `.claude/tools/KitPath.ps1`), which picks the newest `wow` (Retail) and `wow_classic` (Classic) build from `POST /build/table` (local builds, falling back to `showOnline=true`). To prepare a patch that is still on the PTR, set `$env:KAF_RETAIL_PRODUCT = "wowxptr"` (or `"wowt"`) in the shell first: Retail then resolves to the newest build of that product, so the new ids and their criteria are found. New maps of such a patch are not in `raw/MapVerifier.csv` until they are verdicted in game (`sync-mapverifier`); their entries wait for that.
 1. **Look up every id** with `_lookup_ids.ps1` (both builds; `builds=` in the output says where the id exists). Then apply the Skip rules and, for the rest, `_check_zonedata.ps1` (already placed?), `_zone_search.ps1` / `_linkgroups_search.ps1` (which map, which link group), and `_lookup_criteria.ps1` (the game's own list of zones, NPCs or bosses behind the achievement; this is the fact Rules 2, 3 and 9 demand).
-2. **Edit the ZoneData.lua files** (one per expansion, see below) following the Entry Type Rules.
+   Any lookup beyond these scripts (reading the cached DBC export, a helper function) has known pitfalls: [REFERENCE.md](REFERENCE.md), Pitfalls.
+2. **Edit the ZoneData.lua files** (one per expansion, see below) following the Entry Type Rules. A batch of edits goes through a plan file and `_apply_zone_plan.ps1` (`-WhatIf` first; it puts every line of a raid block in the 25-player list): [REFERENCE.md](REFERENCE.md), Evaluate-ZoneCriteria.ps1 and batch edits.
 3. **Validate** (Step 3).
 4. **Update the decisions log** (Step 4).
 
@@ -161,7 +162,7 @@ cd "e:\World of Warcraft Addon Development\Krowi_AchievementFilter"
 
 The `Zones.<client>.txt` diff is the review of the edit: one `ZONE <map> # <id>` line per placement added or removed. It must show exactly the placements the batch intended, and it is committed with the ZoneData change (lint rule `data-snapshot`).
 
-Read [REFERENCE.md](REFERENCE.md) before you act on the evaluators' output or edit a batch: `Evaluate-ZoneCriteria.ps1`'s `[R2  ]` and `[R3  ]` lines are placement errors and its other tags are information (the legend is there), a batch goes through a plan file and `_apply_zone_plan.ps1` (which puts every line of a raid block in the 25-player list), `Evaluate-ZoneDataDecisions.ps1` exits 1 on any ERROR, and ad-hoc lookups have known pitfalls.
+Read [REFERENCE.md](REFERENCE.md) before you act on the evaluators' output or edit a batch: `Evaluate-ZoneCriteria.ps1`'s `[R2  ]` and `[R3  ]` lines are placement errors, a `[D8? ]` line needs the user's decision and then an entry in the script's `$d8SubMaps`, and its other tags are information (the legend is there), a batch goes through a plan file and `_apply_zone_plan.ps1` (which puts every line of a raid block in the 25-player list), `Evaluate-ZoneDataDecisions.ps1` exits 1 on any ERROR, and ad-hoc lookups have known pitfalls.
 
 ---
 

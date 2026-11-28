@@ -2,9 +2,7 @@
 
 The blocks of [SKILL.md](SKILL.md) that only some runs need. Read the section a step there points to.
 
-## Wowhead lookup
-
-#### Wowhead (secondary — reward and description detail)
+## Wowhead (secondary — reward and description detail)
 
 Use Wowhead when `Reward_lang` is ambiguous, empty but a reward is suspected, or you need to see the exact reward item/mount/pet name.
 
@@ -32,9 +30,7 @@ On the Wowhead page, look for:
 
 > **Tip:** Wowhead also shows faction restrictions, category (PvP / Dungeon & Raids / etc.), and "unavailable" banners — use these to confirm `:IsPvP()`, `:FactionSplit()`, and `:Obtainable()` needs.
 
-## Reward preview ids
-
-### 3.5 Pet Reward Preview: SpeciesID Lookup
+## 3.5 Pet Reward Preview: SpeciesID Lookup
 
 `:Pet()` optionally takes a battle pet **SpeciesID** — this is the only way to deterministically render the correct pet model in the reward preview (there's no reliable spell/item → species API). At runtime the game resolves name + display model from this id via `C_PetJournal.GetPetInfoBySpeciesID(speciesId)`. Always look this up when the achievement grants a battle pet.
 
@@ -48,7 +44,7 @@ On the Wowhead page, look for:
 4. If the creature name search returns multiple/no matches, fall back to a manual lookup in the web UI: `/dbc/?dbc=creature&build=<build>&locale=enUS#page=1&colFilter[1]=<Name>` to find the creature's `ID`, then `/dbc/?dbc=battlepetspecies&build=<build>&locale=enUS#page=1&colFilter[3]=exact:<creatureId>` to find its `ID` (SpeciesID).
 5. If no SpeciesID can be found at all (rare), fall back to a plain `:Pet()` with no argument rather than guessing an id.
 
-### 3.6 Mount Reward Preview: MountId Lookup
+## 3.6 Mount Reward Preview: MountId Lookup
 
 `:Mount()` optionally takes a **mount id** (the `mount` DBC table's own `ID`, NOT the summoning spell id) — needed to deterministically render the correct mount model in the reward preview. At runtime the game resolves name/display via `C_MountJournal.GetMountInfoByID(mountId)` (name) and `C_MountJournal.GetMountInfoExtraByID(mountId)` (display/scene id). Always look this up when the achievement grants a mount.
 
@@ -62,7 +58,7 @@ On the Wowhead page, look for:
 4. If the name search returns multiple/no matches, fall back to a manual lookup in the web UI: `/dbc/?dbc=mount&build=<build>&locale=enUS#page=1&colFilter[0]=<Name>` and read the `ID` column (4th column).
 5. If no mount id can be found at all (rare), fall back to a plain `:Mount()` with no argument rather than guessing an id.
 
-### 3.7 Housing Decor Reward Preview: RecordID Lookup
+## 3.7 Housing Decor Reward Preview: RecordID Lookup
 
 `:HousingDecor()` optionally takes a **record id** (the `housedecor` DBC table's own `ID`) — needed to deterministically render the correct model in the reward preview. At runtime the game resolves the asset/scene via `C_HousingCatalog.GetCatalogEntryInfoByRecordID(Enum.HousingCatalogEntryType.Decor, recordId)`. Always look this up when the achievement grants a housing decoration.
 
@@ -75,8 +71,6 @@ On the Wowhead page, look for:
 3. Pass the record id value into the builder: `Ach(62184):HousingDecor(17454), -- Achievement Name (Reward: Preyseeker's Twilight Effigy)`.
 4. If the name search returns multiple/no matches, fall back to a manual lookup in the web UI: `/dbc/?dbc=housedecor&build=<build>&locale=enUS#page=1&colFilter[0]=<Name>` and read the `ID` column (5th column).
 5. If no record id can be found at all (rare), fall back to a plain `:HousingDecor()` with no argument rather than guessing an id.
-
-## Edge cases and Obtainable() patterns
 
 ## Edge Cases & Exceptions
 
@@ -145,8 +139,6 @@ The common forms; every form, what each one includes and excludes, and how a rec
 - **A cutoff starts at the achievement's own patch.** The three-argument `Before` and `Until` forms take the patch block the entry sits in as their start. If the achievement can only be earned from a later patch, use the During form or a window instead. For example, a season achievement added one patch ahead of its season: the Mists Classic Season 3 Challenge Mode achievements were added in 5.5.3, but Season 3 started with 5.5.4, so they use `Obtainable("Version", {5, 5, 4})`.
 - **A range that differs per client cannot stay in Shared.** Give the achievement an entry in both the Retail and the Classic file. Write the anchors as Retail patches; Classic maps them through `DataAddons/Classic/ContentTimeline.lua`. For example, 5313 is `Until 5.0.4` on Retail and `Before 5.0.4` on Classic.
 
-## Clarification questions and a worked example
-
 ## Clarification Questions
 
 Ask user for input when:
@@ -190,9 +182,7 @@ Ach(40234):AutoFactionSplit(faction.Horde, 40235):Title():PvP(38), -- Forged War
 Ach(40083):IsPvP(), -- Tour of Duty: Isle of Dorn
 ```
 
-## Finding new achievements in a patch
-
-### Loop B: Finding new achievements in a patch
+## Loop B: Finding new achievements in a patch
 
 When asked "what new achievements does patch X.Y.Z have?", **always use `Find-NewAchievements.ps1`** as the authoritative source. Never derive the ID list by:
 - Assuming only IDs above a threshold are new (Blizzard can assign any ID)

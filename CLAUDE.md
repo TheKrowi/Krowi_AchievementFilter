@@ -4,7 +4,7 @@
 
 ## Instructions
 
-This file loads into every session and every general-purpose subagent, so it holds only what most tasks need and the code does not show. A rule one area of the code needs is in `.claude/rules/` (data, events, features, localization, tests, release) and loads once a file of that area is read or edited. A lesson goes back where it applies (`docs/sdlc-playbook.md`, stage 6): here only when every task needs it, else its path rule, a skill, a lint rule or a scenario. The `instructions` lint rule keeps this file within 16 KB and 200 lines and each rule within 8 KB.
+This file loads into every session and every general-purpose subagent, so it holds only what most tasks need and the code does not show. A rule one area of the code needs is in `.claude/rules/` (data, events, features, localization, settings, taint, tests, release) and loads once a file of that area is read or edited. A lesson goes back where it applies (`docs/sdlc-playbook.md`, stage 6): here only when every task needs it, else its path rule, a skill, a lint rule or a scenario. The `instructions` lint rule keeps this file within 16 KB and 200 lines and each rule within 8 KB.
 
 ## Build and checks
 

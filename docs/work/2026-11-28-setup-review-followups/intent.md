@@ -1,5 +1,5 @@
 # Intent: The setup review's deferred items
-Author: Krowi (maintainer). Source: idea; the items [2026-11-27-setup-review](../2026-11-27-setup-review/spec.md) left out, which Krowi took up on 2026-11-28: "trim the taint section in claude or put it in a separate reference, split the skills, we keep user level settings and kit wowaddons.md on backlog. You organize, I get a single report once all these are done". Status: accepted
+Author: Krowi (maintainer). Source: idea; the items [2026-11-27-setup-review](../2026-11-27-setup-review/spec.md) left out, which Krowi took up on 2026-11-28: "trim the taint section in claude or put it in a separate reference, split the skills, we keep user level settings and kit wowaddons.md on backlog. You organize, I get a single report once all these are done". Status: done 2026-11-28
 
 ## Problem
 1. `CLAUDE.md`'s Taint section loads in every session, Q&A, data and harness work included, though only GUI, hook and event code needs it. The 2026-11-27 spec kept it because the public repo's contributors have no kit, so this section is their only taint guidance.
