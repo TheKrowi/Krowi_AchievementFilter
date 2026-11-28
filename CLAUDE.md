@@ -40,7 +40,7 @@ There is no build step, no external linter or test framework and no CI: never ru
 
 ## Taint
 
-Most fixes are taint or secret-value errors. Never override Blizzard API functions, and write globals only through the allowlist in `.claude/tools/Check-Repo.globals` (`globals` rule). `krowi:taint-reviewer` reviews every change to GUI code, hooks, event handlers or lockdown-protected APIs. The rest, for this addon and in general: `.claude/rules/taint.md`, which loads with the GUI, feature, option, settings, plugin, runtime-data and root files.
+Most fixes are taint or secret-value errors. Never override Blizzard API functions, and write globals only through the allowlist in `.claude/tools/Check-Repo.globals` (`globals` rule). `krowi:taint-reviewer` reviews every change to GUI code, hooks, event handlers or lockdown-protected APIs. The rest, for this addon and in general: `.claude/rules/taint.md`, which loads with the GUI, feature, option, settings, plugin, runtime-data, test and root files.
 
 ## Background jobs allocate nothing when nothing changed
 
